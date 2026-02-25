@@ -72,6 +72,7 @@ public sealed class InMemoryCosmosEventStore : IEventStore
     /// <summary>
     /// Gets pending outbox messages (for the processor).
     /// </summary>
+    /// <returns>A list of unprocessed <see cref="OutboxMessage"/>.</returns>
     public List<OutboxMessage> GetUnprocessedOutboxMessages()
     {
         return [.. _outbox.Where(m => m.ProcessedOnUtc == null)];
