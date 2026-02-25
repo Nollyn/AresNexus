@@ -1,13 +1,13 @@
 <Solution>
-  <Folder Name="/apps/" />
-  <Folder Name="/apps/settlement-core/" />
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/apps/settlement-core/src/">
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Api/AresNexus.Settlement.Api.csproj" />
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Application/AresNexus.Settlement.Application.csproj" />
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Domain/AresNexus.Settlement.Domain.csproj" />
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Infrastructure/AresNexus.Settlement.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/shared/" />
   <Folder Name="/shared/src/">
     <Project Path="shared/src/AresNexus.Shared.Kernel/AresNexus.Shared.Kernel.csproj" />
   </Folder>
@@ -22,7 +22,6 @@
     <File Path="docs/10-portfolio-summary.md" />
     <File Path="docs/system-context.md" />
   </Folder>
-  <Folder Name="/infrastructure/" />
   <Folder Name="/infrastructure/kubernetes/">
     <File Path="infrastructure/kubernetes/08-k8s-network-policy.yaml" />
     <File Path="infrastructure/kubernetes/08-k8s-resilience-manifest.yaml" />
