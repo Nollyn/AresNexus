@@ -64,7 +64,7 @@ public abstract class AggregateRoot
 
     private void ApplyChange(IDomainEvent @event, bool isNew)
     {
-        var method = this.GetType().GetMethod("Apply", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, [@event.GetType()], null);
+        var method = GetType().GetMethod("Apply", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, [@event.GetType()], null);
         if (method != null)
         {
             method.Invoke(this, [@event]);
@@ -78,10 +78,8 @@ public abstract class AggregateRoot
         {
             _changes.Add(@event);
         }
-        else
-        {
-            Version++;
-        }
+
+        Version++;
     }
 }
 

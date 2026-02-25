@@ -81,6 +81,16 @@ Located in `infrastructure/kubernetes/`:
 - **Observability**: Fully integrated with OpenTelemetry, Prometheus, and Grafana.
 - **Modern API**: Built with Minimal APIs, Versioning, and Scalar for documentation.
 
+## Seniority Upgrades (Audit-Ready & Resilient)
+
+To meet Swiss Banking Resilience (FINMA & DORA compliance) standards, the following pillars have been implemented:
+
+1.  **Data Consistency (Transactional Outbox)**: Atomic persistence of domain events and integration messages using the Outbox pattern.
+2.  **Operational Efficiency (Snapshotting)**: Automated aggregate snapshotting every 50 events to ensure low-latency state recovery.
+3.  **Resilience (Strict Idempotency)**: Mandatory `Idempotency-Key` (UUID) validation for all transaction commands to prevent duplicate processing.
+4.  **Security (PII Encryption-at-Rest)**: Field-level encryption for sensitive data (e.g., References) using `IEncryptionService`.
+5.  **Infrastructure Hardening (Resource Governance)**: Kubernetes `ResourceQuota` and `LimitRange` to prevent resource exhaustion and ensure namespace stability.
+
 ## License
 
 This project is licensed under the MIT License.

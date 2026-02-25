@@ -10,9 +10,9 @@ public record AccountCreatedEvent(Guid AccountId, string Owner, Guid EventId, Da
 /// <summary>
 /// Event raised when funds are deposited.
 /// </summary>
-public record FundsDepositedEvent(Guid AccountId, decimal Amount, Guid EventId, DateTime OccurredOn) : IDomainEvent;
+public record FundsDepositedEvent(Guid AccountId, decimal Amount, Guid EventId, DateTime OccurredOn, string? Reference = null) : IDomainEvent;
 
 /// <summary>
 /// Event raised when funds are withdrawn.
 /// </summary>
-public record FundsWithdrawnEvent(Guid AccountId, decimal Amount, Guid EventId, DateTime OccurredOn) : IDomainEvent;
+public record FundsWithdrawnEvent(Guid AccountId, decimal Amount, Guid EventId, DateTime OccurredOn, string? Reference = null) : IDomainEvent;

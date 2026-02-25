@@ -3,7 +3,9 @@ using System.Reflection;
 using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.EventStore;
+using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
 using MediatR;
@@ -56,7 +58,10 @@ builder.Services.AddValidatorsFromAssembly(Assembly.Load("AresNexus.Settlement.A
 
 // Infrastructure adapters
 builder.Services.AddSingleton<IEventStore, InMemoryCosmosEventStore>();
+builder.Services.AddSingleton<IIdempotencyStore, InMemoryIdempotencyStore>();
+builder.Services.AddSingleton<IEncryptionService, MockEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
+builder.Services.AddHostedService<OutboxProcessor>();
 
 // OpenAPI
 builder.Services.AddOpenApi();

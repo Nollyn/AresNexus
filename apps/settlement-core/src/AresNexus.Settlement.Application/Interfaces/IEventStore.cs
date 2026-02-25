@@ -15,5 +15,20 @@ public interface IEventStore
     /// <summary>
     /// Loads events for an aggregate.
     /// </summary>
-    Task<List<IDomainEvent>> GetEventsAsync(Guid aggregateId);
+    Task<List<IDomainEvent>> GetEventsAsync(Guid aggregateId, int fromVersion = -1);
+
+    /// <summary>
+    /// Saves a snapshot of an aggregate.
+    /// </summary>
+    Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version);
+
+    /// <summary>
+    /// Gets the latest snapshot for an aggregate.
+    /// </summary>
+    Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId);
+
+    /// <summary>
+    /// Saves events and outbox messages atomically.
+    /// </summary>
+    Task SaveChangesAsync(Guid aggregateId, IEnumerable<IDomainEvent> events, int expectedVersion, IEnumerable<object> outboxMessages);
 }
