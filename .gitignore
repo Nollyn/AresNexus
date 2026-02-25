@@ -1,0 +1,51 @@
+﻿# .NET
+bin/
+obj/
+[Oo]bj/
+[Bb]in/
+
+# IDEs
+.vs/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bbin/
+obj/
+external/
+node_modules/
+
+# MSTest test Results
+TestResults/
+[Tt]est[Rr]esults/
+
+# Rider
+.idea/
+*.sln.DotSettings.user
+
+# Project specific
+*.log
+.DS_Store

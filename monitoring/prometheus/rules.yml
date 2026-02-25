@@ -1,0 +1,18 @@
+﻿groups:
+  - name: AresNexusAlerts
+    rules:
+      - alert: HighSettlementLatency
+        expr: histogram_quantile(0.99, sum(rate(settlement_processing_seconds_bucket[5m])) by (le)) > 0.050
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Settlement Latency exceeds 50ms (p99) in Switzerland North"
+      
+      - alert: RegulatoryValidationFailure
+        expr: rate(compliance_validation_errors_total[1m]) > 0
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Compliance Engine rejected a Tier-1 transaction. Manual audit required."
