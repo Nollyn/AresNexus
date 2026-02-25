@@ -1,9 +1,3 @@
-
----
-
-### File 5: `05-resilience-and-scalability.md`
-
-```markdown
 # Proof of Resilience: Meeting the 99.99% Availability Constraint
 
 ## 1. High Availability (HA) Strategy
