@@ -8,7 +8,7 @@ namespace AresNexus.Settlement.Application.Handlers;
 /// <summary>
 /// Handles processing of deposit and withdrawal transactions.
 /// </summary>
-public sealed class ProcessTransactionCommandHandler(IEventStore eventStore, IIdempotencyStore idempotencyStore, IEncryptionService encryptionService) : IRequestHandler<ProcessTransactionCommand, bool>
+public sealed class ProcessTransactionCommandHandler(IAccountRepository repository, IIdempotencyStore idempotencyStore, IEncryptionService encryptionService) : IRequestHandler<ProcessTransactionCommand, bool>
 {
     /// <inheritdoc />
     public async Task<bool> Handle(ProcessTransactionCommand request, CancellationToken cancellationToken)
@@ -19,19 +19,10 @@ public sealed class ProcessTransactionCommandHandler(IEventStore eventStore, IId
             return await idempotencyStore.GetAsync<bool>(request.IdempotencyKey);
         }
 
-        // Load from snapshot if available
-        var (snapshot, snapshotVersion) = await eventStore.GetLatestSnapshotAsync<Account.Snapshot>(request.AccountId);
-        var account = new Account();
+        // Load account using the repository
+        var account = await repository.GetByIdAsync(request.AccountId, cancellationToken);
         
-        if (snapshot != null)
-        {
-            account.LoadFromSnapshot(snapshot);
-        }
-
-        var history = await eventStore.GetEventsAsync(request.AccountId, snapshotVersion);
-        account.LoadsFromHistory(history);
-
-        if (snapshot == null && history.Count == 0)
+        if (account == null)
         {
             account = new Account(request.AccountId, "SYSTEM");
         }
@@ -55,8 +46,6 @@ public sealed class ProcessTransactionCommandHandler(IEventStore eventStore, IId
                 throw new ArgumentOutOfRangeException(nameof(request.TransactionType), "Unknown transaction type");
         }
 
-        var changes = account.GetUncommittedChanges();
-        
         // Define outbox message
         var outboxMessages = new List<object>
         {
@@ -69,15 +58,8 @@ public sealed class ProcessTransactionCommandHandler(IEventStore eventStore, IId
             }
         };
 
-        await eventStore.SaveChangesAsync(account.Id, changes, account.Version - changes.Count, outboxMessages);
-
-        // Snapshotting logic: Every 50 events
-        if (account.Version >= 50 && (account.Version - changes.Count) / 50 < account.Version / 50)
-        {
-            await eventStore.SaveSnapshotAsync(account.Id, account.CreateSnapshot(), account.Version);
-        }
-
-        account.MarkChangesAsCommitted();
+        // Save account and outbox messages atomically via the repository
+        await repository.SaveAsync(account, outboxMessages, cancellationToken);
 
         await idempotencyStore.StoreAsync(request.IdempotencyKey, true);
 

@@ -5,14 +5,19 @@ using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Repositories;
 using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
+using JasperFx;
+using Marten;
+using Weasel.Core;
 using MediatR;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
+using Weasel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,9 +62,16 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.L
 builder.Services.AddValidatorsFromAssembly(Assembly.Load("AresNexus.Settlement.Application"));
 
 // Infrastructure adapters
-builder.Services.AddSingleton<IEventStore, InMemoryCosmosEventStore>();
+builder.Services.AddMarten(options =>
+{
+    options.Connection(builder.Configuration.GetConnectionString("PostgreSQL") ?? "Host=localhost;Database=AresNexus;Username=postgres;Password=postgres");
+    options.AutoCreateSchemaObjects = AutoCreate.All;
+}).UseLightweightSessions();
+
+builder.Services.AddScoped<IEventStore, MartenEventStore>();
+builder.Services.AddScoped<IAccountRepository, MartenAccountRepository>();
 builder.Services.AddSingleton<IIdempotencyStore, InMemoryIdempotencyStore>();
-builder.Services.AddSingleton<IEncryptionService, MockEncryptionService>();
+builder.Services.AddSingleton<IEncryptionService, PiiEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
 builder.Services.AddHostedService<OutboxProcessor>();
 
@@ -87,8 +99,19 @@ var versionSet = app.NewApiVersionSet()
     .ReportApiVersions()
     .Build();
 
-app.MapPost("/api/v{version:apiVersion}/transactions", async (ProcessTransactionCommand cmd, IValidator<ProcessTransactionCommand> validator, ISender mediator) =>
+app.MapPost("/api/v{version:apiVersion}/transactions", async (HttpContext context, ProcessTransactionCommand cmd, IValidator<ProcessTransactionCommand> validator, ISender mediator) =>
 {
+    // Extract Idempotency-Key from header if present
+    if (context.Request.Headers.TryGetValue("Idempotency-Key", out var headerKey) && Guid.TryParse(headerKey, out var idempotencyGuid))
+    {
+        cmd = cmd with { IdempotencyKey = idempotencyGuid };
+    }
+
+    if (cmd.IdempotencyKey == Guid.Empty)
+    {
+        return Results.BadRequest(new { error = "Idempotency-Key header or property is required" });
+    }
+
     var result = await validator.ValidateAsync(cmd);
     if (!result.IsValid)
     {

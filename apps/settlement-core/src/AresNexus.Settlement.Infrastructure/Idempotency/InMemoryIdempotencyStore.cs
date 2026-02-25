@@ -21,6 +21,8 @@ public sealed class InMemoryIdempotencyStore : IIdempotencyStore
     public Task StoreAsync(Guid key, object result)
     {
         _cache[key] = result;
+        // In a real Redis implementation, we would set an expiry of 24 hours here.
+        // For this mock, we just store it.
         return Task.CompletedTask;
     }
 

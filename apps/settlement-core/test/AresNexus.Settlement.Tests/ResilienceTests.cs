@@ -5,6 +5,7 @@ using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Security;
+using AresNexus.Settlement.Infrastructure.Repositories;
 using Xunit;
 
 namespace AresNexus.Settlement.Tests;
@@ -12,13 +13,15 @@ namespace AresNexus.Settlement.Tests;
 public class ResilienceTests
 {
     private readonly InMemoryCosmosEventStore _eventStore = new();
+    private readonly InMemoryAccountRepository _repository;
     private readonly InMemoryIdempotencyStore _idempotencyStore = new();
     private readonly MockEncryptionService _encryptionService = new();
     private readonly ProcessTransactionCommandHandler _handler;
 
     public ResilienceTests()
     {
-        _handler = new ProcessTransactionCommandHandler(_eventStore, _idempotencyStore, _encryptionService);
+        _repository = new InMemoryAccountRepository(_eventStore);
+        _handler = new ProcessTransactionCommandHandler(_repository, _idempotencyStore, _encryptionService);
     }
 
     [Fact]

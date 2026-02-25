@@ -7,12 +7,12 @@ public sealed class OutboxMessage
 {
     /// <summary>Unique identifier.</summary>
     public Guid Id { get; set; } = Guid.NewGuid();
+    /// <summary>Message creation timestamp.</summary>
+    public DateTime OccurredOnUtc { get; set; } = DateTime.UtcNow;
     /// <summary>Message type.</summary>
     public string Type { get; set; } = string.Empty;
     /// <summary>Serialized content.</summary>
     public string Content { get; set; } = string.Empty;
-    /// <summary>Creation timestamp.</summary>
-    public DateTime CreatedOnUtc { get; set; } = DateTime.UtcNow;
     /// <summary>Processing timestamp.</summary>
     public DateTime? ProcessedOnUtc { get; set; }
     /// <summary>Error message if any.</summary>

@@ -20,12 +20,12 @@ public interface IEventStore
     /// <summary>
     /// Saves a snapshot of an aggregate.
     /// </summary>
-    Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version);
+    Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version) where T : notnull;
 
     /// <summary>
     /// Gets the latest snapshot for an aggregate.
     /// </summary>
-    Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId);
+    Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId) where T : notnull;
 
     /// <summary>
     /// Saves events and outbox messages atomically.

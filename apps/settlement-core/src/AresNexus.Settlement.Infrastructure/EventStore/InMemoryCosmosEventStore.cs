@@ -48,7 +48,7 @@ public sealed class InMemoryCosmosEventStore : IEventStore
             {
                 Type = msg.GetType().FullName ?? "Unknown",
                 Content = JsonConvert.SerializeObject(msg),
-                CreatedOnUtc = DateTime.UtcNow
+                OccurredOnUtc = DateTime.UtcNow
             });
         }
 
@@ -56,7 +56,7 @@ public sealed class InMemoryCosmosEventStore : IEventStore
     }
 
     /// <inheritdoc />
-    public Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version)
+    public Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version) where T : notnull
     {
         if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
         _snapshots[aggregateId] = (snapshot, version);
@@ -64,7 +64,7 @@ public sealed class InMemoryCosmosEventStore : IEventStore
     }
 
     /// <inheritdoc />
-    public Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId)
+    public Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId) where T : notnull
     {
         return _snapshots.TryGetValue(aggregateId, out var result) ? Task.FromResult(((T?)result.Snapshot, result.Version)) : Task.FromResult<(T?, int)>((default, -1));
     }
