@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/Solution Items/">
-    <File Path="README.md" />
-  </Folder>
   <Folder Name="/apps/settlement-core/src/">
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Api/AresNexus.Settlement.Api.csproj" />
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Application/AresNexus.Settlement.Application.csproj" />
