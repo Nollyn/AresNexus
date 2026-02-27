@@ -23,6 +23,7 @@
     <File Path="docs/06-implementation-plan.md" />
     <File Path="docs/07-infrastructure-as-code-manifest.md" />
     <File Path="docs/10-portfolio-summary.md" />
+    <File Path="docs/14-advanced-resilience.md" />
     <File Path="docs/system-context.md" />
   </Folder>
   <Folder Name="/infrastructure/" />

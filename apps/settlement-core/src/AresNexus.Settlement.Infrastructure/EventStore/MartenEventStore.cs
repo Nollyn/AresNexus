@@ -13,41 +13,39 @@ namespace AresNexus.Settlement.Infrastructure.EventStore;
 /// Initializes a new instance of the <see cref="MartenEventStore"/> class.
 /// </remarks>
 /// <param name="session">The Marten document session.</param>
-public sealed class MartenEventStore(IDocumentSession session) : IEventStore
+/// <param name="upcasters">The collection of event upcasters.</param>
+public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEventUpcaster> upcasters) : IEventStore
 {
-    /// <summary>
-    /// Fetches events for a given aggregate starting from a specific version.
-    /// </summary>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
-    /// <param name="fromVersion">The version to start fetching from (exclusive).</param>
-    /// <returns>A list of domain events.</returns>
+    /// <inheritdoc />
     public async Task<List<IDomainEvent>> GetEventsAsync(Guid aggregateId, int fromVersion = -1)
     {
         var events = await session.Events.FetchStreamAsync(aggregateId, fromVersion: fromVersion + 1);
-        return [.. events.Select(e => (IDomainEvent)e.Data)];
+        var domainEvents = events.Select(e => (IDomainEvent)e.Data).ToList();
+
+        // Apply upcasting
+        for (var i = 0; i < domainEvents.Count; i++)
+        {
+            var @event = domainEvents[i];
+            foreach (var upcaster in upcasters)
+            {
+                if (upcaster.CanUpcast(@event.GetType()))
+                {
+                    domainEvents[i] = upcaster.Upcast(@event);
+                }
+            }
+        }
+
+        return domainEvents;
     }
 
-    /// <summary>
-    /// Appends events to the aggregate stream and saves changes.
-    /// </summary>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
-    /// <param name="events">The collection of domain events to append.</param>
-    /// <param name="expectedVersion">The expected version of the aggregate.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <inheritdoc />
     public Task SaveEventsAsync(Guid aggregateId, IEnumerable<IDomainEvent> events, int expectedVersion)
     {
         session.Events.Append(aggregateId, expectedVersion + 1, events);
         return session.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Saves events and outbox messages in a single transaction.
-    /// </summary>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
-    /// <param name="events">The collection of domain events.</param>
-    /// <param name="expectedVersion">The expected version of the aggregate.</param>
-    /// <param name="outboxMessages">The collection of outbox messages.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <inheritdoc />
     public async Task SaveChangesAsync(Guid aggregateId, IEnumerable<IDomainEvent> events, int expectedVersion, IEnumerable<object> outboxMessages)
     {
         // Marten's event store automatically handles versioning and transactions
@@ -68,38 +66,35 @@ public sealed class MartenEventStore(IDocumentSession session) : IEventStore
         await session.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Saves a snapshot of the aggregate state.
-    /// </summary>
-    /// <typeparam name="T">The type of the snapshot.</typeparam>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
-    /// <param name="snapshot">The snapshot data.</param>
-    /// <param name="version">The version at which the snapshot was taken.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <inheritdoc />
     public Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version) where T : notnull
     {
-        // Marten stores snapshots as documents
-        session.Store(snapshot);
+        // Performance requirement #1: Create a Snapshot entity in the Infrastructure layer.
+        var infrastructureSnapshot = new Persistence.Snapshot(
+            aggregateId,
+            typeof(T).Name,
+            JsonSerializer.Serialize(snapshot),
+            version,
+            DateTime.UtcNow);
+
+        session.Store(infrastructureSnapshot);
         return session.SaveChangesAsync();
     }
 
-    /// <summary>
-    /// Retrieves the latest snapshot for a given aggregate.
-    /// </summary>
-    /// <typeparam name="T">The type of the snapshot.</typeparam>
-    /// <param name="aggregateId">The unique identifier of the aggregate.</param>
-    /// <returns>The snapshot and its version, or null if not found.</returns>
+    /// <inheritdoc />
     public async Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId) where T : notnull
     {
-        var snapshot = await session.LoadAsync<T>(aggregateId);
-        // We assume the snapshot object has a Version property as per our Account.Snapshot record
-        var version = -1;
-        if (snapshot == null) return (snapshot, version);
-        var prop = typeof(T).GetProperty("Version");
-        if (prop != null)
+        var infraSnapshot = await session.Query<Persistence.Snapshot>()
+            .Where(x => x.AggregateId == aggregateId && x.AggregateType == typeof(T).Name)
+            .OrderByDescending(x => x.Version)
+            .FirstOrDefaultAsync();
+
+        if (infraSnapshot == null)
         {
-            version = (int)(prop.GetValue(snapshot) ?? -1);
+            return (default, -1);
         }
-        return (snapshot, version);
+
+        var snapshot = JsonSerializer.Deserialize<T>(infraSnapshot.Data);
+        return (snapshot, infraSnapshot.Version);
     }
 }

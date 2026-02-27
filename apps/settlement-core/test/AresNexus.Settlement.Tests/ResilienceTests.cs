@@ -1,5 +1,6 @@
-﻿using AresNexus.Settlement.Application.Commands;
+﻿using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Application.Handlers;
+using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Domain.Aggregates;
 using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.EventStore;
@@ -19,6 +20,7 @@ public class ResilienceTests
     private readonly InMemoryAccountRepository _repository;
     private readonly InMemoryIdempotencyStore _idempotencyStore = new();
     private readonly MockEncryptionService _encryptionService = new();
+    private readonly IKeyVaultClient _keyVaultClient = new MockKeyVaultClient();
     private readonly ProcessTransactionCommandHandler _handler;
 
     /// <summary>
@@ -27,10 +29,8 @@ public class ResilienceTests
     public ResilienceTests()
     {
         _repository = new InMemoryAccountRepository(_eventStore);
-        // Handler uses IAccountRepository and IEncryptionService. 
-        // Idempotency is handled by the MediatR decorator (CommandIdempotencyBehavior), 
-        // but for unit testing the handler directly, we only need repository and encryption.
-        _handler = new ProcessTransactionCommandHandler(_repository, _encryptionService);
+        // Handler uses IAccountRepository, IEncryptionService and IKeyVaultClient.
+        _handler = new ProcessTransactionCommandHandler(_repository, _encryptionService, _keyVaultClient);
     }
 
     /// <summary>
@@ -73,34 +73,35 @@ public class ResilienceTests
         // Assert
         var events = await _eventStore.GetEventsAsync(accountId);
         var depositEvent = events.OfType<FundsDepositedEvent>().First();
-        Assert.StartsWith("ENC:", depositEvent.Reference);
+        // Since we now use KeyVault after EncryptionService, the prefix will be different.
+        Assert.Contains("KVAULT:", depositEvent.Reference);
     }
 
     /// <summary>
-    /// Verifies that snapshotting is triggered after 50 events.
+    /// Verifies that snapshotting is triggered after 100 events.
     /// </summary>
     [Fact]
-    public async Task Snapshotting_ShouldSaveSnapshot_After50Events()
+    public async Task Snapshotting_ShouldSaveSnapshot_After100Events()
     {
         // Arrange
         var accountId = Guid.NewGuid();
         
-        // Act: Process 51 transactions (1 AccountCreated + 50 Deposits)
+        // Act: Process 101 transactions (1 AccountCreated + 100 Deposits)
         // First one creates the account and 1st deposit (2 events)
         await _handler.Handle(new ProcessTransactionCommand(accountId, 1, "DEPOSIT", Guid.NewGuid()), CancellationToken.None);
         
-        // Process 49 more deposits
-        for (var i = 0; i < 49; i++)
+        // Process 99 more deposits
+        for (var i = 0; i < 99; i++)
         {
             var cmd = new ProcessTransactionCommand(accountId, 1, "DEPOSIT", Guid.NewGuid());
             await _handler.Handle(cmd, CancellationToken.None);
         }
 
-        // Total events: 51. The 50th event (version 49) should trigger a snapshot.
+        // Total events: 101. The 100th event (version 99) or above should trigger a snapshot.
         // Assert
         var (snapshot, version) = await _eventStore.GetLatestSnapshotAsync<Account.Snapshot>(accountId);
         Assert.NotNull(snapshot);
-        Assert.True(version >= 49); 
+        Assert.True(version >= 99); 
     }
 
     /// <summary>

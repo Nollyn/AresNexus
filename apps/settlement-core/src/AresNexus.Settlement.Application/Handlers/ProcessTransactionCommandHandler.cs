@@ -13,7 +13,11 @@ namespace AresNexus.Settlement.Application.Handlers;
 /// </remarks>
 /// <param name="repository">The account repository.</param>
 /// <param name="encryptionService">The PII encryption service for Zurich compliance.</param>
-public sealed class ProcessTransactionCommandHandler(IAccountRepository repository, IEncryptionService encryptionService) : IRequestHandler<ProcessTransactionCommand, bool>
+/// <param name="keyVaultClient">The mock KeyVault client for FINMA/DORA compliance.</param>
+public sealed class ProcessTransactionCommandHandler(
+    IAccountRepository repository, 
+    IEncryptionService encryptionService,
+    IKeyVaultClient keyVaultClient) : IRequestHandler<ProcessTransactionCommand, bool>
 {
     /// <summary>
     /// Handles the transaction command.
@@ -28,31 +32,33 @@ public sealed class ProcessTransactionCommandHandler(IAccountRepository reposito
         
         if (account == null)
         {
-            account = new Account(request.AccountId, "SYSTEM");
+            account = new Account(request.AccountId, "SYSTEM", request.TraceId, request.CorrelationId);
         }
 
-        // Encrypt reference if present (Security requirement #5)
-        // Ensures Reference in MoneyDeposited/MoneyWithdrawn events is encrypted before they hit the database.
+        // Hardened Security requirement #4: Implement Field-Level Encryption for the Reference field.
+        // Use IKeyVaultClient to encrypt data before it hits the database.
         var reference = request.Reference;
         if (!string.IsNullOrEmpty(reference))
         {
+            // First pass with standard encryption service
             reference = await encryptionService.EncryptAsync(reference);
+            // Second pass with KeyVault for FINMA compliance
+            reference = await keyVaultClient.EncryptAsync(reference, "AresNexus-Settle-Key");
         }
 
         switch (request.TransactionType.ToUpperInvariant())
         {
             case "DEPOSIT":
-                account.Deposit(request.Amount, reference);
+                account.Deposit(request.Amount, "CHF", reference, request.TraceId, request.CorrelationId);
                 break;
             case "WITHDRAW":
-                account.Withdraw(request.Amount, reference);
+                account.Withdraw(request.Amount, reference, request.TraceId, request.CorrelationId);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(request.TransactionType), "Unknown transaction type");
         }
 
         // Save account via the repository
-        // The repository will automatically extract uncommitted events and save them to the outbox.
         await repository.SaveAsync(account, [], cancellationToken);
 
         return true;

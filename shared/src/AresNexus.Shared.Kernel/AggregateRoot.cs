@@ -14,6 +14,16 @@ public interface IDomainEvent
     /// Gets the timestamp when the event occurred.
     /// </summary>
     DateTime OccurredOn { get; }
+
+    /// <summary>
+    /// Gets the Trace ID for distributed tracing (FINMA requirement).
+    /// </summary>
+    string? TraceId { get; init; }
+
+    /// <summary>
+    /// Gets the Correlation ID for distributed tracing (DORA requirement).
+    /// </summary>
+    string? CorrelationId { get; init; }
 }
 
 /// <summary>
@@ -50,6 +60,9 @@ public abstract class AggregateRoot
     /// <param name="history">The collection of domain events to apply.</param>
     public void LoadsFromHistory(IEnumerable<IDomainEvent> history)
     {
+        // Resiliency requirement #1: Update the Account loading logic to:
+        // Find the latest Snapshot (done in Repository)
+        // Replay only the events occurred after that snapshot.
         foreach (var e in history)
         {
             ApplyChange(e, false);

@@ -16,6 +16,8 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,23 @@ builder.Services.AddOptions<ServiceBusOptions>()
 
 // Health checks
 builder.Services.AddHealthChecks();
+
+// Hardened Security requirement #4: API Rate Limiting using .NET 10 built-in middleware.
+// Configured for high-frequency trading constraints.
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = 1000,
+                QueueLimit = 100,
+                Window = TimeSpan.FromSeconds(1)
+            }));
+});
 
 // API Versioning
 builder.Services.AddApiVersioning(options =>
@@ -79,6 +98,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 builder.Services.AddSingleton<IIdempotencyStore, RedisIdempotencyStore>();
 
+builder.Services.AddSingleton<IKeyVaultClient, MockKeyVaultClient>();
+builder.Services.AddSingleton<IEventUpcaster, MoneyDeposited_v1_to_v2_Upcaster>();
 builder.Services.AddSingleton<IEncryptionService, PiiEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
 builder.Services.AddHostedService<OutboxProcessor>();
@@ -99,6 +120,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
+app.UseRateLimiter();
+
 app.MapGet("/health/live", () => Results.Ok(new { status = "LIVE" }));
 app.MapGet("/health/ready", () => Results.Ok(new { status = "READY" }));
 
@@ -109,11 +132,17 @@ var versionSet = app.NewApiVersionSet()
 
 app.MapPost("/api/v{version:apiVersion}/transactions", async (HttpContext context, ProcessTransactionCommand cmd, IValidator<ProcessTransactionCommand> validator, ISender mediator) =>
 {
+    // Distributed Tracing requirement #3: Ensure every Command and Event carries a TraceId and CorrelationId.
+    var traceId = context.Request.Headers["X-Trace-Id"].FirstOrDefault() ?? context.TraceIdentifier;
+    var correlationId = context.Request.Headers["X-Correlation-Id"].FirstOrDefault() ?? Guid.NewGuid().ToString();
+
     // Extract Idempotency-Key from header if present
     if (context.Request.Headers.TryGetValue("Idempotency-Key", out var headerKey) && Guid.TryParse(headerKey, out var idempotencyGuid))
     {
         cmd = cmd with { IdempotencyKey = idempotencyGuid };
     }
+    
+    cmd = cmd with { TraceId = traceId, CorrelationId = correlationId };
 
     if (cmd.IdempotencyKey == Guid.Empty)
     {

@@ -26,28 +26,33 @@ public sealed class Account : AggregateRoot
     /// <summary>
     /// Creates a new account.
     /// </summary>
-    public Account(Guid id, string owner)
+    public Account(Guid id, string owner, string? traceId = null, string? correlationId = null)
     {
-        ApplyChange(new AccountCreatedEvent(id, owner, Guid.NewGuid(), DateTime.UtcNow));
+        ApplyChange(new AccountCreatedEvent(id, owner, Guid.NewGuid(), DateTime.UtcNow, traceId, correlationId));
     }
 
     /// <summary>
     /// Deposits funds into the account.
     /// </summary>
-    public void Deposit(decimal amount, string? reference = null)
+    /// <param name="amount">The amount to deposit.</param>
+    /// <param name="currency">The currency of the deposit.</param>
+    /// <param name="reference">The optional reference.</param>
+    /// <param name="traceId">The trace identifier.</param>
+    /// <param name="correlationId">The correlation identifier.</param>
+    public void Deposit(decimal amount, string currency = "CHF", string? reference = null, string? traceId = null, string? correlationId = null)
     {
         if (amount <= 0) throw new ArgumentException("Amount must be positive", nameof(amount));
-        ApplyChange(new FundsDepositedEvent(Id, amount, Guid.NewGuid(), DateTime.UtcNow, reference));
+        ApplyChange(new FundsDepositedEvent(Id, amount, currency, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
     /// <summary>
     /// Withdraws funds from the account.
     /// </summary>
-    public void Withdraw(decimal amount, string? reference = null)
+    public void Withdraw(decimal amount, string? reference = null, string? traceId = null, string? correlationId = null)
     {
         if (amount <= 0) throw new ArgumentException("Amount must be positive", nameof(amount));
         if (Balance < amount) throw new InvalidOperationException("Insufficient funds");
-        ApplyChange(new FundsWithdrawnEvent(Id, amount, Guid.NewGuid(), DateTime.UtcNow, reference));
+        ApplyChange(new FundsWithdrawnEvent(Id, amount, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
     /// <summary>

@@ -16,12 +16,7 @@ namespace AresNexus.Settlement.Infrastructure.Repositories;
 /// <param name="eventStore">The event store for snapshots and history.</param>
 public sealed class MartenAccountRepository(IDocumentSession session, IEventStore eventStore) : IAccountRepository
 {
-    /// <summary>
-    /// Loads an account by its unique identifier, supporting snapshotting.
-    /// </summary>
-    /// <param name="id">The account identifier.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>The loaded account or null if not found.</returns>
+    /// <inheritdoc />
     public async Task<Account?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         // Load from snapshot if available (Performance requirement #4)
@@ -45,13 +40,7 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
         return account;
     }
 
-    /// <summary>
-    /// Saves the account aggregate and its uncommitted events into the Outbox in a single transaction.
-    /// </summary>
-    /// <param name="account">The account aggregate to save.</param>
-    /// <param name="outboxMessages">Additional messages to be saved to the outbox.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
+    /// <inheritdoc />
     public async Task SaveAsync(Account account, IEnumerable<object> outboxMessages, CancellationToken cancellationToken = default)
     {
         var changes = account.GetUncommittedChanges();
@@ -94,8 +83,8 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
         await session.SaveChangesAsync(cancellationToken);
 
         // Snapshotting (Performance requirement #4)
-        // Take a snapshot every 50 events
-        if (account.Version >= 50 && (expectedVersion / 50 < account.Version / 50))
+        // Take a snapshot every 100 events
+        if (account.Version >= 99 && (expectedVersion / 100 < account.Version / 100))
         {
             await eventStore.SaveSnapshotAsync(account.Id, account.CreateSnapshot(), account.Version);
         }
