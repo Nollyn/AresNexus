@@ -8,13 +8,24 @@ using Microsoft.Extensions.Logging;
 namespace AresNexus.Settlement.Infrastructure.Messaging;
 
 /// <summary>
-/// Background worker to process outbox messages from Marten.
+/// Background worker to process outbox messages from Marten and publish them to Azure Service Bus.
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="OutboxProcessor"/> class.
+/// </remarks>
+/// <param name="serviceProvider">The service provider to create scopes.</param>
+/// <param name="logger">The logger for diagnostics.</param>
 public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<OutboxProcessor> logger) : BackgroundService
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// Executes the background processing loop.
+    /// </summary>
+    /// <param name="stoppingToken">The cancellation token.</param>
+    /// <returns>A task representing the background operation.</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        logger.LogInformation("OutboxProcessor starting...");
+
         while (!stoppingToken.IsCancellationRequested)
         {
             try
@@ -30,15 +41,23 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                     .Take(50)
                     .ToListAsync(stoppingToken);
 
+                if (messages.Count == 0)
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+                    continue;
+                }
+
                 foreach (var message in messages)
                 {
                     var retryCount = 0;
                     var success = false;
+                    const int maxRetries = 5;
 
-                    while (!success && retryCount < 5 && !stoppingToken.IsCancellationRequested)
+                    while (!success && retryCount < maxRetries && !stoppingToken.IsCancellationRequested)
                     {
                         try
                         {
+                            // Publish to Azure Service Bus
                             await publisher.PublishAsync("settlements.transactions", message.Content);
                             message.ProcessedOnUtc = DateTime.UtcNow;
                             
@@ -55,11 +74,17 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                             logger.LogError(ex, "Error processing outbox message {MessageId}. Retry {RetryCount}", message.Id, retryCount);
                             message.Error = ex.Message;
                             
-                            if (retryCount < 5)
+                            if (retryCount < maxRetries)
                             {
-                                // Exponential backoff for financial reliability
+                                // Exponential backoff for financial reliability (Background worker requirement #2)
                                 var delay = TimeSpan.FromSeconds(Math.Pow(2, retryCount));
                                 await Task.Delay(delay, stoppingToken);
+                            }
+                            else
+                            {
+                                // Permanent failure for this attempt, save error state
+                                session.Store(message);
+                                await session.SaveChangesAsync(stoppingToken);
                             }
                         }
                     }
@@ -68,9 +93,8 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error in OutboxProcessor loop");
+                await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
             }
-
-            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
         }
     }
 }

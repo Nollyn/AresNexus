@@ -34,9 +34,11 @@ public sealed class InMemoryAccountRepository(IEventStore eventStore) : IAccount
     public async Task SaveAsync(Account account, IEnumerable<object> outboxMessages, CancellationToken cancellationToken = default)
     {
         var changes = account.GetUncommittedChanges();
-        if (changes.Count == 0) return;
+        if (changes.Count == 0 && !outboxMessages.Any()) return;
 
         var expectedVersion = account.Version - changes.Count;
+        
+        // Use the event store to save events and outbox messages atomically (simulated)
         await eventStore.SaveChangesAsync(account.Id, changes, expectedVersion, outboxMessages);
 
         if (account.Version >= 50 && expectedVersion / 50 < account.Version / 50)

@@ -11,13 +11,11 @@ using Asp.Versioning;
 using FluentValidation;
 using JasperFx;
 using Marten;
-using Weasel.Core;
 using MediatR;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
-using Weasel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,9 +66,19 @@ builder.Services.AddMarten(options =>
     options.AutoCreateSchemaObjects = AutoCreate.All;
 }).UseLightweightSessions();
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandIdempotencyBehavior<,>));
+
 builder.Services.AddScoped<IEventStore, MartenEventStore>();
 builder.Services.AddScoped<IAccountRepository, MartenAccountRepository>();
-builder.Services.AddSingleton<IIdempotencyStore, InMemoryIdempotencyStore>();
+
+// Redis-based Idempotency Store
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379";
+    options.InstanceName = "AresNexus:";
+});
+builder.Services.AddSingleton<IIdempotencyStore, RedisIdempotencyStore>();
+
 builder.Services.AddSingleton<IEncryptionService, PiiEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
 builder.Services.AddHostedService<OutboxProcessor>();

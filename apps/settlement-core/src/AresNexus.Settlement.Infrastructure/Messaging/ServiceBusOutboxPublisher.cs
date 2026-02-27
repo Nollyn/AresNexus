@@ -1,5 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Concurrent;
+using System.Text.Json;
 using AresNexus.Settlement.Application.Interfaces;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -17,22 +19,52 @@ public sealed class ServiceBusOptions
 }
 
 /// <summary>
-/// Outbox publisher using Azure Service Bus SDK patterns. In this scaffold it logs instead of sending.
+/// Outbox publisher using Azure Service Bus SDK.
 /// </summary>
 /// <remarks>
 /// Initializes a new instance of the <see cref="ServiceBusOutboxPublisher"/> class.
 /// </remarks>
-public sealed class ServiceBusOutboxPublisher(ILogger<ServiceBusOutboxPublisher> logger, IOptions<ServiceBusOptions> options) : IOutboxPublisher
+public sealed class ServiceBusOutboxPublisher(ILogger<ServiceBusOutboxPublisher> logger, IOptions<ServiceBusOptions> options) : IOutboxPublisher, IAsyncDisposable
 {
     private readonly ServiceBusOptions _options = options.Value;
+    private ServiceBusClient? _client;
+    private readonly ConcurrentDictionary<string, ServiceBusSender> _senders = new();
 
     /// <inheritdoc />
-    public Task PublishAsync(string topic, object payload)
+    public async Task PublishAsync(string topic, object payload)
     {
-        // In production, we would create a ServiceBusClient using _options.ConnectionString and send the message.
-        // For scaffold, we log the outgoing message as part of outbox responsibility.
-        var json = JsonSerializer.Serialize(payload);
-        logger.LogInformation("[Outbox] Publishing to {Topic}: {Payload}", topic, json);
-        return Task.CompletedTask;
+        try
+        {
+            _client ??= new ServiceBusClient(_options.ConnectionString);
+            var sender = _senders.GetOrAdd(topic, t => _client.CreateSender(t));
+
+            var json = JsonSerializer.Serialize(payload);
+            var message = new ServiceBusMessage(json)
+            {
+                ContentType = "application/json",
+                MessageId = Guid.NewGuid().ToString()
+            };
+
+            await sender.SendMessageAsync(message);
+            logger.LogInformation("[Outbox] Successfully published to {Topic}", topic);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "[Outbox] Failed to publish to {Topic}", topic);
+            throw;
+        }
+    }
+
+    /// <inheritdoc />
+    public async ValueTask DisposeAsync()
+    {
+        foreach (var sender in _senders.Values)
+        {
+            await sender.DisposeAsync();
+        }
+        if (_client != null)
+        {
+            await _client.DisposeAsync();
+        }
     }
 }

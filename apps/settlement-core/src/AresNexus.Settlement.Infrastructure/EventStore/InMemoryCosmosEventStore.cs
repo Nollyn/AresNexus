@@ -42,10 +42,23 @@ public sealed class InMemoryCosmosEventStore : IEventStore
         // Atomically (simulated) add events and outbox messages
         stream.AddRange(events);
         
+        // Also add the events themselves as outbox messages for consistency with MartenAccountRepository logic
+        foreach (var change in events)
+        {
+            _outbox.Enqueue(new OutboxMessage
+            {
+                Id = Guid.NewGuid(),
+                Type = change.GetType().FullName ?? "Unknown",
+                Content = JsonConvert.SerializeObject(change),
+                OccurredOnUtc = DateTime.UtcNow
+            });
+        }
+        
         foreach (var msg in outboxMessages)
         {
             _outbox.Enqueue(new OutboxMessage
             {
+                Id = Guid.NewGuid(),
                 Type = msg.GetType().FullName ?? "Unknown",
                 Content = JsonConvert.SerializeObject(msg),
                 OccurredOnUtc = DateTime.UtcNow

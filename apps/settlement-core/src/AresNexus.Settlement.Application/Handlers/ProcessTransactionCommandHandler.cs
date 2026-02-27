@@ -6,19 +6,23 @@ using MediatR;
 namespace AresNexus.Settlement.Application.Handlers;
 
 /// <summary>
-/// Handles processing of deposit and withdrawal transactions.
+/// Handles processing of deposit and withdrawal transactions with PII encryption.
 /// </summary>
-public sealed class ProcessTransactionCommandHandler(IAccountRepository repository, IIdempotencyStore idempotencyStore, IEncryptionService encryptionService) : IRequestHandler<ProcessTransactionCommand, bool>
+/// <remarks>
+/// Initializes a new instance of the <see cref="ProcessTransactionCommandHandler"/> class.
+/// </remarks>
+/// <param name="repository">The account repository.</param>
+/// <param name="encryptionService">The PII encryption service for Zurich compliance.</param>
+public sealed class ProcessTransactionCommandHandler(IAccountRepository repository, IEncryptionService encryptionService) : IRequestHandler<ProcessTransactionCommand, bool>
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// Handles the transaction command.
+    /// </summary>
+    /// <param name="request">The transaction command.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>True if the transaction was processed successfully.</returns>
     public async Task<bool> Handle(ProcessTransactionCommand request, CancellationToken cancellationToken)
     {
-        // Check idempotency
-        if (await idempotencyStore.ExistsAsync(request.IdempotencyKey))
-        {
-            return await idempotencyStore.GetAsync<bool>(request.IdempotencyKey);
-        }
-
         // Load account using the repository
         var account = await repository.GetByIdAsync(request.AccountId, cancellationToken);
         
@@ -27,7 +31,8 @@ public sealed class ProcessTransactionCommandHandler(IAccountRepository reposito
             account = new Account(request.AccountId, "SYSTEM");
         }
 
-        // Encrypt reference if present
+        // Encrypt reference if present (Security requirement #5)
+        // Ensures Reference in MoneyDeposited/MoneyWithdrawn events is encrypted before they hit the database.
         var reference = request.Reference;
         if (!string.IsNullOrEmpty(reference))
         {
@@ -46,22 +51,9 @@ public sealed class ProcessTransactionCommandHandler(IAccountRepository reposito
                 throw new ArgumentOutOfRangeException(nameof(request.TransactionType), "Unknown transaction type");
         }
 
-        // Define outbox message
-        var outboxMessages = new List<object>
-        {
-            new
-            {
-                account.Id,
-                request.Amount,
-                request.TransactionType,
-                Reference = reference
-            }
-        };
-
-        // Save account and outbox messages atomically via the repository
-        await repository.SaveAsync(account, outboxMessages, cancellationToken);
-
-        await idempotencyStore.StoreAsync(request.IdempotencyKey, true);
+        // Save account via the repository
+        // The repository will automatically extract uncommitted events and save them to the outbox.
+        await repository.SaveAsync(account, [], cancellationToken);
 
         return true;
     }
