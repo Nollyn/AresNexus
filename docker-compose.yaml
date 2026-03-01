@@ -95,5 +95,8 @@
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./monitoring/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
     depends_on:
       - prometheus
