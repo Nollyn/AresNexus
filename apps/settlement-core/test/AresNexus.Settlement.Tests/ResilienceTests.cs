@@ -22,6 +22,7 @@ public class ResilienceTests
     private readonly InMemoryIdempotencyStore _idempotencyStore = new();
     private readonly MockEncryptionService _encryptionService = new();
     private readonly IKeyVaultClient _keyVaultClient = new MockKeyVaultClient();
+    private readonly System.Diagnostics.Metrics.Meter _meter = new("TestMeter", "1.0.0");
     private readonly ProcessTransactionCommandHandler _handler;
 
     /// <summary>
@@ -30,8 +31,8 @@ public class ResilienceTests
     public ResilienceTests()
     {
         _repository = new InMemoryAccountRepository(_eventStore);
-        // Handler uses IAccountRepository, IEncryptionService and IKeyVaultClient.
-        _handler = new ProcessTransactionCommandHandler(_repository, _encryptionService, _keyVaultClient);
+        // Handler uses IAccountRepository, IEncryptionService, IKeyVaultClient and Meter.
+        _handler = new ProcessTransactionCommandHandler(_repository, _encryptionService, _keyVaultClient, _meter);
     }
 
     /// <summary>

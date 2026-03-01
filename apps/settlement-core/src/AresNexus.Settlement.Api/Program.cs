@@ -158,6 +158,9 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+// Enable OpenTelemetry Prometheus Scraping Endpoint early
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+
 // Global Exception Handling
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
@@ -170,8 +173,6 @@ app.UseSwaggerUI(options =>
 });
 app.MapOpenApi();
 app.MapScalarApiReference();
-
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.UseRateLimiter();
 
