@@ -51,9 +51,7 @@ app.MapOpenApi();
 
 app.MapGet("/", () => "AresNexus Gateway API (Active)");
 
-/// <summary>
-/// Returns the health status of the Gateway API.
-/// </summary>
+// Returns the health status of the Gateway API.
 app.MapGet("/health", () => Results.Ok(new { status = "UP" }));
 
 app.Run();

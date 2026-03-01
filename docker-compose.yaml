@@ -41,7 +41,7 @@
     ports:
       - "8081:8080"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8080/health', timeout=5).raise_for_status()"]
       interval: 10s
       timeout: 5s
       retries: 3

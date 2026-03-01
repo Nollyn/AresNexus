@@ -7,9 +7,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-RUN pip install --no-cache-dir fastapi uvicorn
+RUN pip install --no-cache-dir fastapi uvicorn requests
 
-COPY main.py /app/main.py
+COPY apps/compliance-engine/main.py ./
 RUN chown -R appuser:appuser /app
 
 USER appuser

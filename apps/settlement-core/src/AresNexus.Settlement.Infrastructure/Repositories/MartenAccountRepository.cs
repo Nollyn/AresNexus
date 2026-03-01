@@ -77,7 +77,7 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
         if (changes.Count > 0)
         {
             // Append events to the aggregate stream in Marten
-            session.Events.Append(account.Id, expectedVersion + 1, changes);
+            session.Events.Append(account.Id, changes);
 
             // Crucial: Implement the Transactional Outbox (Persistence requirement #1)
             // Extract uncommitted events and save them into an OutboxMessages table in the same transaction.

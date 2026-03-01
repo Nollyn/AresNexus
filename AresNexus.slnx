@@ -43,6 +43,7 @@
     <File Path="monitoring/grafana/dashboard-settlement.json" />
   </Folder>
   <Folder Name="/monitoring/prometheus/">
+    <File Path="monitoring/prometheus/prometheus.yml" />
     <File Path="monitoring/prometheus/rules.yml" />
   </Folder>
 </Solution>

@@ -103,6 +103,7 @@ public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEven
     {
         // Performance requirement #1: Create a Snapshot entity in the Infrastructure layer.
         var infrastructureSnapshot = new Persistence.Snapshot(
+            Guid.NewGuid(),
             aggregateId,
             typeof(T).Name,
             JsonSerializer.Serialize(snapshot),

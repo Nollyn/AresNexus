@@ -25,7 +25,8 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                 var session = scope.ServiceProvider.GetRequiredService<IDocumentSession>();
 
                 // Use Marten Advisory Lock to ensure only one worker processes at a time
-                await session.Connection.OpenAsync(stoppingToken);
+                // We use the IDocumentSession to manage the unit of work
+                // Advisory locks are transaction-level, so we start a transaction
                 using var tx = await session.Connection.BeginTransactionAsync(stoppingToken);
                 using (var cmd = new NpgsqlCommand("SELECT pg_advisory_xact_lock(12345);", session.Connection, tx))
                 {
