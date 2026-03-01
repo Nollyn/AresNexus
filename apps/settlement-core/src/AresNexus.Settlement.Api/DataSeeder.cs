@@ -33,21 +33,18 @@ public sealed class DataSeeder(IServiceScopeFactory scopeFactory, ILogger<DataSe
         var accountId = Guid.Parse("d0000000-0000-0000-0000-000000000001");
         var account = new Account(accountId, "Demo Evaluator (FINMA-TIER1)");
 
-        // Inject 15 Demo Transactions (Task 2)
-        for (int i = 1; i <= 15; i++)
+        // Inject 5 Historical Transactions (Task 4)
+        for (int i = 1; i <= 5; i++)
         {
-            account.Deposit(1000 * i, "CHF", $"Demo Deposit {i:D2}");
+            account.Deposit(1000 * i, "CHF", $"Historical Deposit {i:D2}");
         }
 
         // Save the aggregate and its history
         await repository.SaveAsync(account, Array.Empty<object>(), stoppingToken);
 
-        // Task 2: Inject 1 "Snapshot" upon startup
-        // The repository automatically creates a snapshot if version >= 99, 
-        // but the requirement explicitly says "inject 1 Snapshot upon startup".
-        // Let's force one for the demo account.
+        // Task 4: Inject 1 "Account Snapshot" upon startup
         await eventStore.SaveSnapshotAsync(account.Id, account.CreateSnapshot(), account.Version);
 
-        logger.LogInformation("Data Seeding completed. 1 Account, 15 Transactions, and 1 Snapshot created.");
+        logger.LogInformation("Data Seeding completed. 1 Account, 5 Transactions, and 1 Snapshot created.");
     }
 }

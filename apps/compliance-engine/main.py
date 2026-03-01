@@ -11,3 +11,7 @@ class Transaction(BaseModel):
 @app.post("/validate")
 def validate(tx: Transaction):
     return {"status": "APPROVED", "riskScore": 0.01}
+
+@app.get("/health")
+def health():
+    return {"status": "UP"}

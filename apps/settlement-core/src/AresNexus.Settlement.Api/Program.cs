@@ -1,5 +1,6 @@
 using System.Diagnostics.Metrics;
 using System.Reflection;
+using System.Threading.RateLimiting;
 using AresNexus.Settlement.Api;
 using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Application.Interfaces;
@@ -13,14 +14,23 @@ using FluentValidation;
 using JasperFx;
 using Marten;
 using MediatR;
+using Microsoft.OpenApi.Models;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
-using Microsoft.AspNetCore.RateLimiting;
-using System.Threading.RateLimiting;
+using Serilog;
+using Serilog.Formatting.Compact;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog for Structured Logging (JSON) to Console
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console(new RenderedCompactJsonFormatter())
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // Custom Metrics
 var meter = new Meter("AresNexus.Settlement", "1.0.0");
@@ -47,7 +57,7 @@ builder.Services.AddRateLimiter(options =>
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
-            factory: partition => new FixedWindowRateLimiterOptions
+            factory: _ => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
                 PermitLimit = 1000,
@@ -59,7 +69,7 @@ builder.Services.AddRateLimiter(options =>
     options.AddPolicy("HighRisk", httpContext =>
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
-            factory: partition => new FixedWindowRateLimiterOptions
+            factory: _ => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
                 PermitLimit = 10, // Significantly more restrictive for high-risk operations
@@ -121,6 +131,23 @@ builder.Services.AddHostedService<OutboxProcessor>();
 builder.Services.AddHostedService<DataSeeder>();
 
 // OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "AresNexus Settlement Core API",
+        Description = "Swiss Banking Settlement Core (DORA compliant)"
+    });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
+});
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -128,7 +155,13 @@ var app = builder.Build();
 // Global Exception Handling
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
-// Task 4: Visual Entrance (Swagger UI enabled in Release mode for demo)
+// Task 3: Visual Entrance (Swagger UI enabled)
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = "swagger";
+});
 app.MapOpenApi();
 app.MapScalarApiReference();
 
@@ -136,6 +169,7 @@ app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.UseRateLimiter();
 
+app.MapGet("/health", () => Results.Ok(new { status = "UP" }));
 app.MapGet("/health/live", () => Results.Ok(new { status = "LIVE" }));
 app.MapGet("/health/ready", () => Results.Ok(new { status = "READY" }));
 
