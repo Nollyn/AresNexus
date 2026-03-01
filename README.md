@@ -1,5 +1,11 @@
 ﻿# Ares-Nexus
 
+[![.NET](https://img.shields.io/badge/.NET-10.0-purple)](https://dotnet.microsoft.com/)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean_Architecture_%7C_DDD-green)](https://en.wikipedia.org/wiki/Domain-driven_design)
+[![Pattern](https://img.shields.io/badge/Pattern-Event_Sourcing-darkred)](https://martinfowler.com/eaaDev/EventSourcing.html)
+[![Orchestration](https://img.shields.io/badge/Orchestration-Kubernetes-blue)](https://kubernetes.io/)
+[![Compliance](https://img.shields.io/badge/Compliance-FINMA%20%2F%20DORA-red)](https://www.finma.ch/en/)
+
 Welcome to the Ares-Nexus solution. This project is a robust, event-driven settlement system built with .NET 10.
 
 ## Overview
@@ -112,3 +118,7 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 ## License
 
 This project is licensed under the MIT License.
+
+## Architectural Governance & AI Assistance
+
+While this repository utilizes Junie (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and repetitive implementation tasks, all Architectural Thinking, System Design Decisions, and Pattern Selection (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed and validated solely by the author. This project demonstrates a modern 'Architect-as-Orchestrator' workflow, leveraging AI to accelerate delivery without compromising human-led strategic integrity.

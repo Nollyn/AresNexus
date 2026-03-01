@@ -2,6 +2,8 @@
 
 Welcome to the AresNexus Technical Evaluation. This guide is designed to provide you with a "Zero-Config" experience for auditing the system's resilience, consistency, and compliance architectures.
 
+**Note for Evaluators:** This project was built using an AI-augmented workflow. The author provided the architectural blueprints and strategic direction, while the AI agent assisted in code generation and documentation formatting. This approach was chosen to simulate a high-velocity, modern engineering environment.
+
 ## 1. Quick Start (The "One-Command" Experience)
 AresNexus is fully containerized and orchestrated via Docker and a root `Makefile`.
 
