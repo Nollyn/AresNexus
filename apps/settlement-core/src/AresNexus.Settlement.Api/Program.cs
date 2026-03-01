@@ -1,5 +1,6 @@
 using System.Diagnostics.Metrics;
 using System.Reflection;
+using AresNexus.Settlement.Api;
 using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.EventStore;
@@ -117,6 +118,7 @@ builder.Services.AddSingleton<IEventUpcaster, MoneyDeposited_v1_to_v2_Upcaster>(
 builder.Services.AddSingleton<IEncryptionService, PiiEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
 builder.Services.AddHostedService<OutboxProcessor>();
+builder.Services.AddHostedService<DataSeeder>();
 
 // OpenAPI
 builder.Services.AddOpenApi();
@@ -126,11 +128,9 @@ var app = builder.Build();
 // Global Exception Handling
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+// Task 4: Visual Entrance (Swagger UI enabled in Release mode for demo)
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 

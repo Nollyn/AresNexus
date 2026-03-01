@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/apps/" />
-  <Folder Name="/apps/settlement-core/" />
+  <Folder Name="/apps/settlement-core/">
+    <File Path="apps/settlement-core/Dockerfile" />
+  </Folder>
   <Folder Name="/apps/settlement-core/src/">
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Api/AresNexus.Settlement.Api.csproj" />
     <Project Path="apps/settlement-core/src/AresNexus.Settlement.Application/AresNexus.Settlement.Application.csproj" />

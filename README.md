@@ -91,6 +91,15 @@ To meet Swiss Banking Resilience (FINMA & DORA compliance) standards, the follow
 4.  **Security (Field-Level Encryption)**: AES-256 encryption for sensitive fields (`Reference` and `Metadata`) in financial events before they are persisted to the database. This provides defense-in-depth and meets Tier-1 banking standards for data privacy.
 5.  **Operational Resilience (Kubernetes Hardening)**: Implementation of `ResourceQuota` to limit CPU/RAM per namespace and `PodDisruptionBudget` to ensure 99.99% availability during cluster maintenance and upgrades.
 
+## Quick Start for Evaluators
+
+1.  **Clone** the repository.
+2.  **`make up`**: Pulls/Builds everything and starts the stack (Docker required).
+3.  **Open `http://localhost:5001/swagger`**: Explore the Settlement Core API (enabled in Release mode).
+    *   *Note: Port 5000 is the Gateway API (placeholder), Port 5001 is the Settlement Core API.*
+4.  **`make demo`**: Sends a burst of 50 sample ISO 20022 transactions to "populate" the system and Grafana charts live.
+5.  **`make test`**: Runs all Unit and Integration tests.
+
 ## Swiss Tier-1 Compliance
 
 AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss Financial Market Supervisory Authority) and **DORA** (Digital Operational Resilience Act):

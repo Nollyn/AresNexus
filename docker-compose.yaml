@@ -1,0 +1,99 @@
+﻿services:
+  postgres-eventstore:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: AresNexus
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d AresNexus"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  compliance-engine:
+    build:
+      context: .
+      dockerfile: apps/compliance-engine/Dockerfile
+    ports:
+      - "8081:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  settlement-core:
+    build:
+      context: .
+      dockerfile: apps/settlement-core/Dockerfile
+    environment:
+      - ConnectionStrings__PostgreSQL=Host=postgres-eventstore;Database=AresNexus;Username=postgres;Password=password123
+      - ConnectionStrings__Redis=redis:6379
+      - ServiceBus__ConnectionString=Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock
+    depends_on:
+      postgres-eventstore:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "5001:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  gateway-api:
+    build:
+      context: .
+      dockerfile: apps/gateway-api/Dockerfile
+    depends_on:
+      settlement-core:
+        condition: service_healthy
+    ports:
+      - "5000:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
