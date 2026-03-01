@@ -1,0 +1,12 @@
+﻿{
+  "AccountId": "00000000-0000-0000-0000-000000000005",
+  "Money": {
+    "Amount": 3000.00,
+    "Currency": "CHF"
+  },
+  "TransactionType": "WITHDRAW",
+  "IdempotencyKey": "00000000-0000-0000-0000-000000000005",
+  "Reference": "ISO20022 PACS.008 Payment 5",
+  "TraceId": "trace-5",
+  "CorrelationId": "corr-5"
+}

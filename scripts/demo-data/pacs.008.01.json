@@ -1,0 +1,12 @@
+﻿{
+  "AccountId": "00000000-0000-0000-0000-000000000001",
+  "Money": {
+    "Amount": 1000.00,
+    "Currency": "CHF"
+  },
+  "TransactionType": "DEPOSIT",
+  "IdempotencyKey": "00000000-0000-0000-0000-000000000001",
+  "Reference": "ISO20022 PACS.008 Payment 1",
+  "TraceId": "trace-1",
+  "CorrelationId": "corr-1"
+}
