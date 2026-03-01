@@ -23,6 +23,10 @@
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ares-nexus-prometheus"
+      },
       "title": "TPS (Transactions Per Second)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
@@ -34,6 +38,10 @@
       ]
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ares-nexus-prometheus"
+      },
       "title": "Success Rate",
       "type": "heatmap",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
@@ -45,6 +53,10 @@
       ]
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ares-nexus-prometheus"
+      },
       "title": "Regional Health",
       "type": "stat",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
@@ -56,6 +68,10 @@
       ]
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ares-nexus-prometheus"
+      },
       "title": "Audit Lag (FINMA Compliance)",
       "type": "gauge",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
