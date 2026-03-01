@@ -1,0 +1,10 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using MediatR;
+global using AresNexus.Shared.Kernel;
+global using AresNexus.Settlement.Domain;
+global using AresNexus.Settlement.Domain.Events;
+global using AresNexus.Settlement.Domain.Aggregates;

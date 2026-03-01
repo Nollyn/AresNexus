@@ -23,8 +23,7 @@ public record AccountCreatedEvent(
 /// Event raised when funds are deposited (Version 2).
 /// </summary>
 /// <param name="AccountId">The unique identifier of the account.</param>
-/// <param name="Amount">The amount deposited.</param>
-/// <param name="Currency">The currency of the deposit (added in V2).</param>
+/// <param name="Money">The money deposited.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
 /// <param name="Reference">An optional reference for the deposit.</param>
@@ -32,8 +31,7 @@ public record AccountCreatedEvent(
 /// <param name="CorrelationId">The correlation identifier.</param>
 public record FundsDepositedEvent(
     Guid AccountId, 
-    decimal Amount, 
-    string Currency, 
+    Money Money, 
     Guid EventId, 
     DateTime OccurredOn, 
     string? Reference = null, 
@@ -44,7 +42,7 @@ public record FundsDepositedEvent(
 /// Event raised when funds are withdrawn.
 /// </summary>
 /// <param name="AccountId">The unique identifier of the account.</param>
-/// <param name="Amount">The amount withdrawn.</param>
+/// <param name="Money">The money withdrawn.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
 /// <param name="Reference">An optional reference for the withdrawal.</param>
@@ -52,7 +50,7 @@ public record FundsDepositedEvent(
 /// <param name="CorrelationId">The correlation identifier.</param>
 public record FundsWithdrawnEvent(
     Guid AccountId, 
-    decimal Amount, 
+    Money Money, 
     Guid EventId, 
     DateTime OccurredOn, 
     string? Reference = null, 

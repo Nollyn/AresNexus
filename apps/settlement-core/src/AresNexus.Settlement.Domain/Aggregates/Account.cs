@@ -16,7 +16,7 @@ public sealed class Account : AggregateRoot
     /// <summary>
     /// Gets the current balance.
     /// </summary>
-    public decimal Balance { get; private set; }
+    public Money Balance { get; private set; } = new(0);
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Account"/> class.
@@ -34,31 +34,28 @@ public sealed class Account : AggregateRoot
     /// <summary>
     /// Deposits funds into the account.
     /// </summary>
-    /// <param name="amount">The amount to deposit.</param>
-    /// <param name="currency">The currency of the deposit.</param>
+    /// <param name="money">The money to deposit.</param>
     /// <param name="reference">The optional reference.</param>
     /// <param name="traceId">The trace identifier.</param>
     /// <param name="correlationId">The correlation identifier.</param>
-    public void Deposit(decimal amount, string currency = "CHF", string? reference = null, string? traceId = null, string? correlationId = null)
+    public void Deposit(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
-        if (amount <= 0) throw new ArgumentException("Amount must be positive", nameof(amount));
-        ApplyChange(new FundsDepositedEvent(Id, amount, currency, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
+        ApplyChange(new FundsDepositedEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
     /// <summary>
     /// Withdraws funds from the account.
     /// </summary>
-    public void Withdraw(decimal amount, string? reference = null, string? traceId = null, string? correlationId = null)
+    public void Withdraw(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
-        if (amount <= 0) throw new ArgumentException("Amount must be positive", nameof(amount));
-        if (Balance < amount) throw new InvalidOperationException("Insufficient funds");
-        ApplyChange(new FundsWithdrawnEvent(Id, amount, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
+        if (Balance.Amount < money.Amount) throw new InvalidOperationException("Insufficient funds");
+        ApplyChange(new FundsWithdrawnEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
     /// <summary>
     /// Represents a snapshot of the account state.
     /// </summary>
-    public record Snapshot(Guid Id, string Owner, decimal Balance, int Version);
+    public record Snapshot(Guid Id, string Owner, Money Balance, int Version);
 
     /// <summary>
     /// Creates a snapshot of the current state.
@@ -83,7 +80,7 @@ public sealed class Account : AggregateRoot
     {
         Id = e.AccountId;
         Owner = e.Owner;
-        Balance = 0;
+        Balance = new Money(0);
     }
 
     /// <summary>
@@ -91,7 +88,7 @@ public sealed class Account : AggregateRoot
     /// </summary>
     public void Apply(FundsDepositedEvent e)
     {
-        Balance += e.Amount;
+        Balance += e.Money;
     }
 
     /// <summary>
@@ -99,6 +96,6 @@ public sealed class Account : AggregateRoot
     /// </summary>
     public void Apply(FundsWithdrawnEvent e)
     {
-        Balance -= e.Amount;
+        Balance -= e.Money;
     }
 }

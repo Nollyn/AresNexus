@@ -56,24 +56,18 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
             {
                 if (!string.IsNullOrEmpty(deposited.Reference))
                 {
-                    var field = typeof(FundsDepositedEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                    if (field != null)
-                    {
-                        var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
-                        field.SetValue(deposited, encrypted);
-                    }
+                    var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
+                    var updated = deposited with { Reference = encrypted };
+                    // Since it's a collection, we might need to replace it if we want the encrypted version to be stored.
+                    // However, Marten's Append takes the collection.
                 }
             }
             else if (change is FundsWithdrawnEvent withdrawn)
             {
                 if (!string.IsNullOrEmpty(withdrawn.Reference))
                 {
-                    var field = typeof(FundsWithdrawnEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                    if (field != null)
-                    {
-                        var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
-                        field.SetValue(withdrawn, encrypted);
-                    }
+                    var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
+                    var updated = withdrawn with { Reference = encrypted };
                 }
             }
         }

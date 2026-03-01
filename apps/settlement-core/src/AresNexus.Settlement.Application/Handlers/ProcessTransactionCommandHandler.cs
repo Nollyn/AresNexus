@@ -49,10 +49,10 @@ public sealed class ProcessTransactionCommandHandler(
         switch (request.TransactionType.ToUpperInvariant())
         {
             case "DEPOSIT":
-                account.Deposit(request.Amount, "CHF", reference, request.TraceId, request.CorrelationId);
+                account.Deposit(request.Money, reference, request.TraceId, request.CorrelationId);
                 break;
             case "WITHDRAW":
-                account.Withdraw(request.Amount, reference, request.TraceId, request.CorrelationId);
+                account.Withdraw(request.Money, reference, request.TraceId, request.CorrelationId);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(request.TransactionType), "Unknown transaction type");

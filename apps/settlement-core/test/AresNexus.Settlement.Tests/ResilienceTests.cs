@@ -1,6 +1,7 @@
 ﻿using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Application.Handlers;
 using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Domain;
 using AresNexus.Settlement.Domain.Aggregates;
 using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.EventStore;
@@ -44,7 +45,7 @@ public class ResilienceTests
         // Arrange
         var accountId = Guid.NewGuid();
         var idempotencyKey = Guid.NewGuid();
-        var cmd = new ProcessTransactionCommand(accountId, 100, "DEPOSIT", idempotencyKey);
+        var cmd = new ProcessTransactionCommand(accountId, new Money(100), "DEPOSIT", idempotencyKey);
 
         // Act
         var result1 = await _handler.Handle(cmd, CancellationToken.None);
@@ -65,7 +66,7 @@ public class ResilienceTests
     {
         // Arrange
         var accountId = Guid.NewGuid();
-        var cmd = new ProcessTransactionCommand(accountId, 100, "DEPOSIT", Guid.NewGuid(), "Secret Reference");
+        var cmd = new ProcessTransactionCommand(accountId, new Money(100), "DEPOSIT", Guid.NewGuid(), "Secret Reference");
 
         // Act
         await _handler.Handle(cmd, CancellationToken.None);
@@ -88,12 +89,12 @@ public class ResilienceTests
         
         // Act: Process 101 transactions (1 AccountCreated + 100 Deposits)
         // First one creates the account and 1st deposit (2 events)
-        await _handler.Handle(new ProcessTransactionCommand(accountId, 1, "DEPOSIT", Guid.NewGuid()), CancellationToken.None);
+        await _handler.Handle(new ProcessTransactionCommand(accountId, new Money(1), "DEPOSIT", Guid.NewGuid()), CancellationToken.None);
         
         // Process 99 more deposits
         for (var i = 0; i < 99; i++)
         {
-            var cmd = new ProcessTransactionCommand(accountId, 1, "DEPOSIT", Guid.NewGuid());
+            var cmd = new ProcessTransactionCommand(accountId, new Money(1), "DEPOSIT", Guid.NewGuid());
             await _handler.Handle(cmd, CancellationToken.None);
         }
 
@@ -112,7 +113,7 @@ public class ResilienceTests
     {
         // Arrange
         var accountId = Guid.NewGuid();
-        var cmd = new ProcessTransactionCommand(accountId, 100, "DEPOSIT", Guid.NewGuid());
+        var cmd = new ProcessTransactionCommand(accountId, new Money(100), "DEPOSIT", Guid.NewGuid());
 
         // Act
         await _handler.Handle(cmd, CancellationToken.None);

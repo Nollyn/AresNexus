@@ -14,7 +14,7 @@ public sealed class ProcessTransactionCommandValidator : AbstractValidator<Proce
     public ProcessTransactionCommandValidator()
     {
         RuleFor(x => x.AccountId).NotEmpty();
-        RuleFor(x => x.Amount).GreaterThan(0);
+        RuleFor(x => x.Money.Amount).GreaterThan(0);
         RuleFor(x => x.TransactionType)
             .NotEmpty()
             .Must(t => t.Equals("DEPOSIT", StringComparison.OrdinalIgnoreCase) || t.Equals("WITHDRAW", StringComparison.OrdinalIgnoreCase))

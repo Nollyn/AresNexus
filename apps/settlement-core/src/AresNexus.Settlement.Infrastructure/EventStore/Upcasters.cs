@@ -1,8 +1,4 @@
-﻿using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Domain.Events;
-using AresNexus.Shared.Kernel;
-
-namespace AresNexus.Settlement.Infrastructure.EventStore;
+﻿namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
 /// Base class for event upcasters to handle version evolution of domain events.
@@ -32,7 +28,7 @@ public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
     {
         if (@event is FundsDepositedEvent_v1 v1)
         {
-            return new FundsDepositedEvent(v1.AccountId, v1.Amount, "CHF", v1.EventId, v1.OccurredOn, v1.Reference, v1.TraceId, v1.CorrelationId);
+            return new FundsDepositedEvent(v1.AccountId, new Money(v1.Amount, "CHF"), v1.EventId, v1.OccurredOn, v1.Reference, v1.TraceId, v1.CorrelationId);
         }
         return @event;
     }

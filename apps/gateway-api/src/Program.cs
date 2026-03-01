@@ -34,6 +34,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.AddOpenApi();
 
+// Task 3: Ensure all HttpClient calls in the Gateway use Polly for retries and circuit breaking.
+builder.Services.AddHttpClient("ComplianceBridge")
+    .AddStandardResilienceHandler();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

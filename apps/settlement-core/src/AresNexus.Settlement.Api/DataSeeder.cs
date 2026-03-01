@@ -1,8 +1,4 @@
-﻿using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Domain.Aggregates;
-using Marten;
-
-namespace AresNexus.Settlement.Api;
+﻿namespace AresNexus.Settlement.Api;
 
 /// <summary>
 /// Task 2: Automated Seeding and Demo Mode.
@@ -34,9 +30,9 @@ public sealed class DataSeeder(IServiceScopeFactory scopeFactory, ILogger<DataSe
         var account = new Account(accountId, "Demo Evaluator (FINMA-TIER1)");
 
         // Inject 5 Historical Transactions (Task 4)
-        for (int i = 1; i <= 5; i++)
+        for (var i = 1; i <= 5; i++)
         {
-            account.Deposit(1000 * i, "CHF", $"Historical Deposit {i:D2}");
+            account.Deposit(new Money(1000 * i, "CHF"), $"Historical Deposit {i:D2}");
         }
 
         // Save the aggregate and its history

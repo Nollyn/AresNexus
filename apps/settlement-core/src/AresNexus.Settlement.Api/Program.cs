@@ -22,10 +22,13 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Formatting.Compact;
 
+using AresNexus.Settlement.Infrastructure.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure Serilog for Structured Logging (JSON) to Console
 Log.Logger = new LoggerConfiguration()
+    .Destructure.With<SensitiveDataDestructuringPolicy>()
     .WriteTo.Console(new RenderedCompactJsonFormatter())
     .Enrich.FromLogContext()
     .CreateLogger();
@@ -122,6 +125,9 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.InstanceName = "AresNexus:";
 });
 builder.Services.AddSingleton<IIdempotencyStore, RedisIdempotencyStore>();
+
+builder.Services.AddHttpClient("ResilientClient")
+    .AddStandardResilienceHandler();
 
 builder.Services.AddSingleton<IKeyVaultClient, MockKeyVaultClient>();
 builder.Services.AddSingleton<IEventUpcaster, MoneyDeposited_v1_to_v2_Upcaster>();

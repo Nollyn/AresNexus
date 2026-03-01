@@ -77,15 +77,7 @@ public abstract class AggregateRoot
 
     private void ApplyChange(IDomainEvent @event, bool isNew)
     {
-        var method = GetType().GetMethod("Apply", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, [@event.GetType()], null);
-        if (method != null)
-        {
-            method.Invoke(this, [@event]);
-        }
-        else
-        {
-            throw new InvalidOperationException($"Method 'Apply' not found for event type '{@event.GetType().Name}' on aggregate '{this.GetType().Name}'.");
-        }
+        ((dynamic)this).Apply((dynamic)@event);
 
         if (isNew)
         {
