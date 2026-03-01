@@ -57,8 +57,8 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                     {
                         try
                         {
-                            // Publish to Azure Service Bus
-                            await publisher.PublishAsync("settlements.transactions", message.Content);
+                            // Publish to Azure Service Bus with Trace/Correlation IDs for Zero-Lag Observability requirement #2
+                            await publisher.PublishAsync("settlements.transactions", message.Content, message.TraceId, message.CorrelationId);
                             message.ProcessedOnUtc = DateTime.UtcNow;
                             
                             // Mark as processed in the database

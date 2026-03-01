@@ -10,5 +10,7 @@ public interface IOutboxPublisher
     /// </summary>
     /// <param name="topic">The destination topic or queue.</param>
     /// <param name="payload">The message payload.</param>
-    Task PublishAsync(string topic, object payload);
+    /// <param name="traceId">The optional trace identifier.</param>
+    /// <param name="correlationId">The optional correlation identifier.</param>
+    Task PublishAsync(string topic, object payload, string? traceId = null, string? correlationId = null);
 }

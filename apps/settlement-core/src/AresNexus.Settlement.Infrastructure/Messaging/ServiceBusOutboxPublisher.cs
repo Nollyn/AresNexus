@@ -31,7 +31,7 @@ public sealed class ServiceBusOutboxPublisher(ILogger<ServiceBusOutboxPublisher>
     private readonly ConcurrentDictionary<string, ServiceBusSender> _senders = new();
 
     /// <inheritdoc />
-    public async Task PublishAsync(string topic, object payload)
+    public async Task PublishAsync(string topic, object payload, string? traceId = null, string? correlationId = null)
     {
         try
         {
@@ -45,8 +45,18 @@ public sealed class ServiceBusOutboxPublisher(ILogger<ServiceBusOutboxPublisher>
                 MessageId = Guid.NewGuid().ToString()
             };
 
+            // Propagate Trace and Correlation IDs for DORA Zero-Lag Observability requirement #2
+            if (!string.IsNullOrEmpty(traceId))
+            {
+                message.ApplicationProperties["TraceId"] = traceId;
+            }
+            if (!string.IsNullOrEmpty(correlationId))
+            {
+                message.ApplicationProperties["CorrelationId"] = correlationId;
+            }
+
             await sender.SendMessageAsync(message);
-            logger.LogInformation("[Outbox] Successfully published to {Topic}", topic);
+            logger.LogInformation("[Outbox] Successfully published to {Topic} with CorrelationId: {CorrelationId}", topic, correlationId);
         }
         catch (Exception ex)
         {

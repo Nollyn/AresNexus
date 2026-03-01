@@ -2,6 +2,7 @@
 using AresNexus.Settlement.Domain.Aggregates;
 using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Shared.Kernel;
 using Marten;
 using System.Text.Json;
 
@@ -88,24 +89,34 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
             // Extract uncommitted events and save them into an OutboxMessages table in the same transaction.
             foreach (var change in changes)
             {
+                var traceId = (change as IDomainEvent)?.TraceId;
+                var correlationId = (change as IDomainEvent)?.CorrelationId;
+
                 session.Store(new OutboxMessage
                 {
                     Id = Guid.NewGuid(),
                     Type = change.GetType().AssemblyQualifiedName ?? change.GetType().FullName ?? "Unknown",
                     Content = JsonSerializer.Serialize(change),
+                    TraceId = traceId,
+                    CorrelationId = correlationId,
                     OccurredOnUtc = DateTime.UtcNow
                 });
             }
         }
 
-        // Also save additional outbox messages if any
+        // Also save additional outbox messages if any (propagate IDs if message type supports them)
         foreach (var msg in outboxMessages)
         {
+            var traceId = (msg as IDomainEvent)?.TraceId;
+            var correlationId = (msg as IDomainEvent)?.CorrelationId;
+
             session.Store(new OutboxMessage
             {
                 Id = Guid.NewGuid(),
                 Type = msg.GetType().AssemblyQualifiedName ?? msg.GetType().FullName ?? "Unknown",
                 Content = JsonSerializer.Serialize(msg),
+                TraceId = traceId,
+                CorrelationId = correlationId,
                 OccurredOnUtc = DateTime.UtcNow
             });
         }

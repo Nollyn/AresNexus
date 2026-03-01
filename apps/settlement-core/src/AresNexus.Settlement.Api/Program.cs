@@ -37,10 +37,12 @@ builder.Services.AddOptions<ServiceBusOptions>()
 builder.Services.AddHealthChecks();
 
 // Hardened Security requirement #4: API Rate Limiting using .NET 10 built-in middleware.
-// Configured for high-frequency trading constraints.
+// Configured for high-frequency trading constraints and specific "High-Risk" policies for DORA compliance.
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    
+    // Default policy for standard requests
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
         RateLimitPartition.GetFixedWindowLimiter(
             partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
@@ -50,6 +52,18 @@ builder.Services.AddRateLimiter(options =>
                 PermitLimit = 1000,
                 QueueLimit = 100,
                 Window = TimeSpan.FromSeconds(1)
+            }));
+
+    // Specific policy for "High-Risk" transaction endpoints (Swiss Security Hardening #4)
+    options.AddPolicy("HighRisk", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                AutoReplenishment = true,
+                PermitLimit = 10, // Significantly more restrictive for high-risk operations
+                QueueLimit = 0,
+                Window = TimeSpan.FromMinutes(1)
             }));
 });
 
@@ -158,6 +172,7 @@ app.MapPost("/api/v{version:apiVersion}/transactions", async (HttpContext contex
     var ok = await mediator.Send(cmd);
     return ok ? Results.Accepted($"/api/v1/transactions/{cmd.AccountId}") : Results.BadRequest();
 })
+.RequireRateLimiting("HighRisk")
 .WithApiVersionSet(versionSet)
 .MapToApiVersion(1.0);
 

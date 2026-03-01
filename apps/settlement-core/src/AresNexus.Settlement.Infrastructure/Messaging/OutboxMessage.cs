@@ -13,6 +13,10 @@ public sealed class OutboxMessage
     public string Type { get; set; } = string.Empty;
     /// <summary>Serialized content.</summary>
     public string Content { get; set; } = string.Empty;
+    /// <summary>Trace identifier.</summary>
+    public string? TraceId { get; set; }
+    /// <summary>Correlation identifier.</summary>
+    public string? CorrelationId { get; set; }
     /// <summary>Processing timestamp.</summary>
     public DateTime? ProcessedOnUtc { get; set; }
     /// <summary>Error message if any.</summary>
