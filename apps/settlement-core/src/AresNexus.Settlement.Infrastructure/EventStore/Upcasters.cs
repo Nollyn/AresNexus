@@ -5,22 +5,34 @@ using AresNexus.Shared.Kernel;
 namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
-/// Upcasts FundsDepositedEvent from V1 (no currency) to V2 (with currency).
+/// Base class for event upcasters to handle version evolution of domain events.
 /// </summary>
-public sealed class MoneyDeposited_v1_to_v2_Upcaster : IEventUpcaster
+public abstract class EventUpcaster : IEventUpcaster
 {
     /// <inheritdoc />
-    public bool CanUpcast(Type eventType)
+    public abstract bool CanUpcast(Type eventType);
+
+    /// <inheritdoc />
+    public abstract IDomainEvent Upcast(IDomainEvent @event);
+}
+
+/// <summary>
+/// Upcasts FundsDepositedEvent from V1 (no currency) to V2 (with currency).
+/// </summary>
+public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
+{
+    /// <inheritdoc />
+    public override bool CanUpcast(Type eventType)
     {
         return eventType == typeof(FundsDepositedEvent_v1);
     }
 
     /// <inheritdoc />
-    public IDomainEvent Upcast(IDomainEvent @event)
+    public override IDomainEvent Upcast(IDomainEvent @event)
     {
         if (@event is FundsDepositedEvent_v1 v1)
         {
-            return new FundsDepositedEvent(v1.AccountId, v1.Amount, "CHF", v1.EventId, v1.OccurredOn, v1.Reference);
+            return new FundsDepositedEvent(v1.AccountId, v1.Amount, "CHF", v1.EventId, v1.OccurredOn, v1.Reference, v1.TraceId, v1.CorrelationId);
         }
         return @event;
     }

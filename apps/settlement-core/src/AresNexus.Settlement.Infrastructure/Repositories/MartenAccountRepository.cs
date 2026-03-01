@@ -1,5 +1,6 @@
 ﻿using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using Marten;
 using System.Text.Json;
@@ -14,7 +15,8 @@ namespace AresNexus.Settlement.Infrastructure.Repositories;
 /// </remarks>
 /// <param name="session">The Marten document session.</param>
 /// <param name="eventStore">The event store for snapshots and history.</param>
-public sealed class MartenAccountRepository(IDocumentSession session, IEventStore eventStore) : IAccountRepository
+/// <param name="encryptionService">The PII encryption service.</param>
+public sealed class MartenAccountRepository(IDocumentSession session, IEventStore eventStore, IEncryptionService encryptionService) : IAccountRepository
 {
     /// <inheritdoc />
     public async Task<Account?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -45,6 +47,35 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
     {
         var changes = account.GetUncommittedChanges();
         if (changes.Count == 0 && !outboxMessages.Any()) return;
+
+        // Encrypt PII fields before serialization (Security requirement #4)
+        foreach (var change in changes)
+        {
+            if (change is FundsDepositedEvent deposited)
+            {
+                if (!string.IsNullOrEmpty(deposited.Reference))
+                {
+                    var field = typeof(FundsDepositedEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
+                        field.SetValue(deposited, encrypted);
+                    }
+                }
+            }
+            else if (change is FundsWithdrawnEvent withdrawn)
+            {
+                if (!string.IsNullOrEmpty(withdrawn.Reference))
+                {
+                    var field = typeof(FundsWithdrawnEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
+                        field.SetValue(withdrawn, encrypted);
+                    }
+                }
+            }
+        }
 
         var expectedVersion = account.Version - changes.Count;
 

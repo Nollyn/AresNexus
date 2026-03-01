@@ -1,0 +1,10 @@
+﻿apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ares-nexus-pdb
+  namespace: ares-nexus
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: settlement-core

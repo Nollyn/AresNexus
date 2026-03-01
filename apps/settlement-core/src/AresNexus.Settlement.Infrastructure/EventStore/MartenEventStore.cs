@@ -1,5 +1,6 @@
 ﻿using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Domain.Events;
 using AresNexus.Shared.Kernel;
 using Marten;
 using System.Text.Json;
@@ -14,13 +15,44 @@ namespace AresNexus.Settlement.Infrastructure.EventStore;
 /// </remarks>
 /// <param name="session">The Marten document session.</param>
 /// <param name="upcasters">The collection of event upcasters.</param>
-public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEventUpcaster> upcasters) : IEventStore
+/// <param name="encryptionService">The PII encryption service.</param>
+public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEventUpcaster> upcasters, IEncryptionService encryptionService) : IEventStore
 {
     /// <inheritdoc />
     public async Task<List<IDomainEvent>> GetEventsAsync(Guid aggregateId, int fromVersion = -1)
     {
         var events = await session.Events.FetchStreamAsync(aggregateId, fromVersion: fromVersion + 1);
         var domainEvents = events.Select(e => (IDomainEvent)e.Data).ToList();
+
+        // Decrypt PII fields (Security requirement #4)
+        foreach (var @event in domainEvents)
+        {
+            if (@event is FundsDepositedEvent deposited)
+            {
+                if (!string.IsNullOrEmpty(deposited.Reference))
+                {
+                    // Use private reflection to update the record field (not ideal but record properties are init-only)
+                    var field = typeof(FundsDepositedEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        var decrypted = await encryptionService.DecryptAsync(deposited.Reference);
+                        field.SetValue(deposited, decrypted);
+                    }
+                }
+            }
+            else if (@event is FundsWithdrawnEvent withdrawn)
+            {
+                if (!string.IsNullOrEmpty(withdrawn.Reference))
+                {
+                    var field = typeof(FundsWithdrawnEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        var decrypted = await encryptionService.DecryptAsync(withdrawn.Reference);
+                        field.SetValue(withdrawn, decrypted);
+                    }
+                }
+            }
+        }
 
         // Apply upcasting
         for (var i = 0; i < domainEvents.Count; i++)

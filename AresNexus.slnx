@@ -33,6 +33,7 @@
     <File Path="infrastructure/kubernetes/08b-k8s-network-policy.yaml" />
     <File Path="infrastructure/kubernetes/09-k8s-resilience-manifest.yaml" />
     <File Path="infrastructure/kubernetes/09-resource-quota.yaml" />
+    <File Path="infrastructure/kubernetes/10-pod-disruption-budget.yaml" />
   </Folder>
   <Folder Name="/monitoring/" />
   <Folder Name="/monitoring/grafana/">
