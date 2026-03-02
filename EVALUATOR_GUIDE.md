@@ -44,7 +44,33 @@ To see the system in action and verify its resilience patterns:
    - Observe the `outbox.messages` queue as transactions are processed.
    - Verify that events are persisted atomically with the aggregate state.
 
-## 4. Architectural Compliance (DORA/FINMA)
+## 4. Architectural Pattern Audit Trail (Code-to-Concept)
+To verify the implementation of core architectural patterns, please refer to the following key files:
+
+- **Event Sourcing (Aggregate Root)**: `apps/settlement-core/src/AresNexus.Settlement.Domain/Aggregates/Account.cs`
+  - *Audit Note*: Observe the `ApplyChange` and `Apply` methods for state mutation via events.
+- **Transactional Outbox**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Messaging/OutboxProcessor.cs` and `MartenAccountRepository.cs`
+  - *Audit Note*: The repository saves events and outbox messages in a single Marten transaction; the processor relays them.
+- **Strict Idempotency**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Idempotency/IdempotencyMiddleware.cs`
+  - *Audit Note*: Verification of the `Idempotency-Key` header against Redis.
+- **Field-Level Encryption**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Security/PiiEncryptionService.cs`
+  - *Audit Note*: AES-256 encryption applied to the `Reference` field in the command handler.
+- **Automated Snapshotting**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Repositories/MartenAccountRepository.cs` (Line 123)
+  - *Audit Note*: Threshold-based snapshotting to maintain O(1) recovery time.
+
+## 5. Observability & "Golden Signals" (DORA Compliance)
+The monitoring stack (Grafana/Prometheus) is pre-configured to track the four "Golden Signals" required for DORA operational resilience:
+
+1. **Latency**: Tracked via `settlement_processing_seconds` histogram in `ProcessTransactionCommandHandler.cs`.
+2. **Traffic**: Monitored through `settlement_total_count` (success/failure) counter.
+3. **Errors**: Captured by status tags on metrics and structured Serilog logs.
+4. **Saturation**: System-level metrics (CPU/RAM/Connection Pools) provided by .NET 10 runtime instrumentation.
+
+**Grafana Dashboard**: [http://localhost:3000](http://localhost:3000) (Admin/Admin)
+- Navigate to the **"Settlement Core - Executive Overview"** dashboard.
+- This view maps directly to the FINMA requirement for real-time operational transparency.
+
+## 6. Regulatory Mapping (DORA/FINMA)
 The following files describe how AresNexus meets the 2026 DORA requirements:
 - `/docs/14-operational-resilience-dora.md`: Detailed mapping of patterns to regulatory requirements.
 - `README.md`: High-level overview of the resilience strategy.

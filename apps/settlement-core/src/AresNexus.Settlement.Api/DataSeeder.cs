@@ -1,4 +1,6 @@
-﻿namespace AresNexus.Settlement.Api;
+﻿using AresNexus.Shared.Kernel;
+
+namespace AresNexus.Settlement.Api;
 
 /// <summary>
 /// Task 2: Automated Seeding and Demo Mode.
@@ -32,7 +34,7 @@ public sealed class DataSeeder(IServiceScopeFactory scopeFactory, ILogger<DataSe
         // Inject 5 Historical Transactions (Task 4)
         for (var i = 1; i <= 5; i++)
         {
-            account.Deposit(new Money(1000 * i, "CHF"), $"Historical Deposit {i:D2}");
+            account.Deposit(new Money(1000 * i, CurrencyConstants.Chf), $"Historical Deposit {i:D2}");
         }
 
         // Save the aggregate and its history

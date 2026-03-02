@@ -1,51 +1,47 @@
 ﻿# .NET
-bin/
-obj/
-[Oo]bj/
 [Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.log
+TestResults/
+[Tt]est[Rr]esults/
 
 # IDEs
 .vs/
 .idea/
-*.user
-*.userosscache
-*.sln.docstates
 .vscode/
+*.swp
+*.swo
+*.sln.DotSettings.user
 
 # OS
+.DS_Store
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Build Results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-[Aa][Rr][Mm]/
-[Aa][Rr][Mm]64/
-bbin/
-obj/
-external/
+# Node/Frontend (if any)
 node_modules/
 
-# MSTest test Results
-TestResults/
-[Tt]est[Rr]esults/
-
-# Rider
-.idea/
-*.sln.DotSettings.user
-
-# Project specific
-*.log
-.DS_Store
+# Docker
+.dockerignore

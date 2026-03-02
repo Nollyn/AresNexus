@@ -16,13 +16,32 @@ Ares-Nexus is designed to handle complex settlement processes with a focus on sc
 
 This project utilizes Minimal APIs (.NET 10) to minimize vertical overhead and leverage the latest performance optimizations of the Kestrel server, moving away from the traditional Mvc/Controller pattern for a leaner, high-throughput execution.
 
+## Core Pillars (Strategic Highlights)
+
+- **Event Sourcing (Marten)**: Complete, immutable audit trail of all financial movements, ensuring 100% auditability for FINMA compliance.
+- **Transactional Outbox**: Atomic consistency between domain state changes and external notifications, solving the "Dual-Write" problem.
+- **Strict Idempotency**: Redis-backed command validation ensuring every financial instruction is processed exactly once.
+- **Performance Snapshotting**: Automated state capturing every 100 events to maintain sub-millisecond recovery times as streams grow.
+- **Field-Level Encryption**: AES-256 hardening of PII data within events before persistence, meeting Tier-1 banking privacy standards.
+
+## Tech Stack Justification
+
+- **.NET 10 (Chiseled)**: Chosen for its industry-leading performance, native AOT capabilities, and reduced attack surface (via Chiseled containers), essential for high-frequency settlement.
+- **PostgreSQL + Marten**: Leverages the stability of Postgres with the power of Marten as a Document Store and Event Store, providing ACID compliance and flexible schema evolution.
+- **RabbitMQ**: Selected for its robust message queuing and support for complex routing patterns, ensuring resilient inter-service communication.
+- **Redis**: Provides high-performance distributed locking and idempotency checks required for DORA operational resilience.
+
+## AI Governance & Leadership
+
+While this repository utilized **Junie** (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and mechanics, all **Architectural Thinking, System Design Decisions, and Pattern Selection** (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed, reviewed, and validated by the author. This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for mechanical execution while maintaining absolute human-led strategic integrity.
+
 ## Project Structure
 
 - **apps/settlement-core**: The primary settlement system.
   - **Api**: ASP.NET Core Web API providing the transaction interface.
   - **Application**: Layer containing MediatR commands, handlers, and validators.
   - **Domain**: Core business logic, aggregate roots (Account), and domain events.
-  - **Infrastructure**: Event Store (CosmosDB) and Messaging (Service Bus) adapters.
+  - **Infrastructure**: Event Store (Marten/PostgreSQL) and Messaging (RabbitMQ/Redis) adapters.
 - **apps/compliance-engine**: A secondary service (Python-based) for transaction compliance checks.
 - **shared**: Common libraries.
   - **AresNexus.Shared.Kernel**: Common DDD primitives, base `AggregateRoot`, and event interfaces.
@@ -38,9 +57,9 @@ This project utilizes Minimal APIs (.NET 10) to minimize vertical overhead and l
 For a deeper dive into the architecture and design decisions, please refer to the [docs](/docs) folder.
 
 ### Strategic & Architecture
-- [Strategic Vision](/docs/01-strategic-vision.md) - Project goals and high-level roadmap.
-- [Architecture Definition](/docs/03-architecture-definition.md) - Detailed technical architecture.
-- [System Context](/docs/system-context.md) - C1/C2 diagrams and external dependencies.
+- [Architecture Vision & ADRs](ARCHITECTURE.md) - Project goals and high-level roadmap.
+- [Evaluator Audit Guide](EVALUATOR_GUIDE.md) - Quick-start for auditing the system's resilience.
+- [Architecture Details](/docs/03-architecture-definition.md) - Low-level technical specifications.
 - [Visual Architecture (C4)](/docs/04-visual-architecture-c4.md) - C4 Model diagrams.
 
 ### Design Decisions
@@ -104,11 +123,10 @@ To meet Swiss Banking Resilience (FINMA & DORA compliance) standards, the follow
 ## Quick Start for Evaluators
 
 1.  **Clone** the repository.
-2.  **`make up`**: Pulls/Builds everything and starts the stack (Docker required).
-3.  **Open `http://localhost:5001/swagger`**: Explore the Settlement Core API (enabled in Release mode).
-    *   *Note: Port 5000 is the Gateway API (placeholder), Port 5001 is the Settlement Core API.*
-4.  **`make demo`**: Sends a burst of 50 sample ISO 20022 transactions to "populate" the system and Grafana charts live.
-5.  **`make test`**: Runs all Unit and Integration tests.
+2.  **`make up`**: Pulls/Builds everything and starts the infrastructure stack (Postgres, RabbitMQ, Redis, Prometheus, Grafana).
+3.  **`make demo`**: Sends a burst of ISO 20022 transactions to populate the system and verify the end-to-end flow.
+4.  **Open `http://localhost:5001/swagger`**: Explore the Settlement Core API.
+5.  **`make test`**: Runs all Unit, Integration, and Architecture tests.
 
 ## Swiss Tier-1 Compliance
 
@@ -123,6 +141,6 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 
 This project is licensed under the MIT License.
 
-## Architectural Governance & AI Assistance
+## AI Governance & Leadership
 
-While this repository utilizes Junie (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and repetitive implementation tasks, all Architectural Thinking, System Design Decisions, and Pattern Selection (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed and validated solely by the author. This project demonstrates a modern 'Architect-as-Orchestrator' workflow, leveraging AI to accelerate delivery without compromising human-led strategic integrity.
+While this repository utilized **Junie** (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and mechanics, all **Architectural Thinking, System Design Decisions, and Pattern Selection** (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed, reviewed, and validated by the author. This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for mechanical execution while maintaining absolute human-led strategic integrity.

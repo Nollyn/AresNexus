@@ -1,4 +1,6 @@
-﻿namespace AresNexus.Settlement.Infrastructure.EventStore;
+﻿using AresNexus.Shared.Kernel;
+
+namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
 /// Base class for event upcasters to handle version evolution of domain events.

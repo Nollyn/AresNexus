@@ -1,6 +1,7 @@
 ﻿using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Shared.Kernel;
 using MediatR;
 
 namespace AresNexus.Settlement.Application.Handlers;
@@ -37,7 +38,7 @@ public sealed class ProcessTransactionCommandHandler(
             
             if (account == null)
             {
-                account = new Account(request.AccountId, "SYSTEM", request.TraceId, request.CorrelationId);
+                account = new Account(request.AccountId, SystemConstants.SystemUser, request.TraceId, request.CorrelationId);
             }
 
             // Hardened Security requirement #4: Implement Field-Level Encryption for the Reference field.
@@ -48,15 +49,15 @@ public sealed class ProcessTransactionCommandHandler(
                 // First pass with standard encryption service
                 reference = await encryptionService.EncryptAsync(reference);
                 // Second pass with KeyVault for FINMA compliance
-                reference = await keyVaultClient.EncryptAsync(reference, "AresNexus-Settle-Key");
+                reference = await keyVaultClient.EncryptAsync(reference, SecurityConstants.SettlementKey);
             }
 
             switch (request.TransactionType.ToUpperInvariant())
             {
-                case "DEPOSIT":
+                case TransactionTypes.Deposit:
                     account.Deposit(request.Money, reference, request.TraceId, request.CorrelationId);
                     break;
-                case "WITHDRAW":
+                case TransactionTypes.Withdraw:
                     account.Withdraw(request.Money, reference, request.TraceId, request.CorrelationId);
                     break;
                 default:

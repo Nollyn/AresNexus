@@ -1,4 +1,6 @@
-﻿namespace AresNexus.Settlement.Domain;
+﻿using AresNexus.Shared.Kernel;
+
+namespace AresNexus.Settlement.Domain;
 
 /// <summary>
 /// Represents a monetary value in a specific currency.
@@ -15,7 +17,7 @@ public record Money
     /// </summary>
     /// <param name="amount">The amount.</param>
     /// <param name="currency">The currency code.</param>
-    public Money(decimal amount, string currency = "CHF")
+    public Money(decimal amount, string currency = CurrencyConstants.Chf)
     {
         if (amount < 0)
         {
