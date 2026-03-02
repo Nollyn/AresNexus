@@ -1,0 +1,2928 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coverage line-rate="0.2893" branch-rate="0.2119" version="1.9" timestamp="1772481760" lines-covered="195" lines-valid="674" branches-covered="39" branches-valid="184">
+  <sources>
+    <source>C:\Users\Noll\source\repos\Ares-Nexus\Solution\</source>
+  </sources>
+  <packages>
+    <package name="AresNexus.Settlement.Application" line-rate="0.7121" branch-rate="0.5" complexity="19">
+      <classes>
+        <class name="AresNexus.Settlement.Application.Validation.ProcessTransactionCommandValidator" filename="apps\settlement-core\src\AresNexus.Settlement.Application\Validation\ProcessTransactionCommandValidator.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="14" hits="0" branch="False" />
+                <line number="15" hits="0" branch="False" />
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+                <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="12" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="21" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="12" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="21" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Application.Handlers.ProcessTransactionCommandHandler" filename="apps\settlement-core\src\AresNexus.Settlement.Application\Handlers\ProcessTransactionCommandHandler.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IAccountRepository,AresNexus.Settlement.Application.Interfaces.IEncryptionService,AresNexus.Settlement.Application.Interfaces.IKeyVaultClient,System.Diagnostics.Metrics.Meter)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="28" hits="4" branch="False" />
+                <line number="29" hits="4" branch="False" />
+                <line number="30" hits="4" branch="False" />
+                <line number="31" hits="4" branch="False" />
+                <line number="32" hits="4" branch="False" />
+                <line number="33" hits="4" branch="False" />
+                <line number="34" hits="4" branch="False" />
+                <line number="35" hits="4" branch="False" />
+                <line number="36" hits="4" branch="False" />
+                <line number="37" hits="4" branch="False" />
+                <line number="38" hits="4" branch="False" />
+                <line number="39" hits="4" branch="False" />
+                <line number="40" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="28" hits="4" branch="False" />
+            <line number="29" hits="4" branch="False" />
+            <line number="30" hits="4" branch="False" />
+            <line number="31" hits="4" branch="False" />
+            <line number="32" hits="4" branch="False" />
+            <line number="33" hits="4" branch="False" />
+            <line number="34" hits="4" branch="False" />
+            <line number="35" hits="4" branch="False" />
+            <line number="36" hits="4" branch="False" />
+            <line number="37" hits="4" branch="False" />
+            <line number="38" hits="4" branch="False" />
+            <line number="39" hits="4" branch="False" />
+            <line number="40" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Application.Handlers.ProcessTransactionCommandHandler/&lt;Handle&gt;d__7" filename="apps\settlement-core\src\AresNexus.Settlement.Application\Handlers\ProcessTransactionCommandHandler.cs" line-rate="0.75" branch-rate="0.625" complexity="8">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0.75" branch-rate="0.625" complexity="8">
+              <lines>
+                <line number="49" hits="103" branch="False" />
+                <line number="50" hits="103" branch="False" />
+                <line number="52" hits="103" branch="False" />
+                <line number="54" hits="103" branch="False" />
+                <line number="56" hits="103" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="230" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="57" hits="4" branch="False" />
+                <line number="58" hits="4" branch="False" />
+                <line number="59" hits="4" branch="False" />
+                <line number="63" hits="103" branch="False" />
+                <line number="64" hits="103" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="318" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="65" hits="1" branch="False" />
+                <line number="67" hits="1" branch="False" />
+                <line number="69" hits="1" branch="False" />
+                <line number="70" hits="1" branch="False" />
+                <line number="72" hits="103" branch="True" condition-coverage="25% (1/4)">
+                  <conditions>
+                    <condition number="654" type="jump" coverage="50%" />
+                    <condition number="668" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="75" hits="103" branch="False" />
+                <line number="76" hits="103" branch="False" />
+                <line number="78" hits="0" branch="False" />
+                <line number="79" hits="0" branch="False" />
+                <line number="81" hits="0" branch="False" />
+                <line number="85" hits="103" branch="False" />
+                <line number="87" hits="103" branch="False" />
+                <line number="88" hits="103" branch="False" />
+                <line number="89" hits="103" branch="False" />
+                <line number="91" hits="103" branch="False" />
+                <line number="93" hits="0" branch="False" />
+                <line number="94" hits="0" branch="False" />
+                <line number="95" hits="0" branch="False" />
+                <line number="96" hits="0" branch="False" />
+                <line number="97" hits="0" branch="False" />
+                <line number="98" hits="0" branch="False" />
+                <line number="101" hits="103" branch="False" />
+                <line number="102" hits="103" branch="False" />
+                <line number="103" hits="103" branch="False" />
+                <line number="104" hits="103" branch="False" />
+                <line number="105" hits="103" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="49" hits="103" branch="False" />
+            <line number="50" hits="103" branch="False" />
+            <line number="52" hits="103" branch="False" />
+            <line number="54" hits="103" branch="False" />
+            <line number="56" hits="103" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="230" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="57" hits="4" branch="False" />
+            <line number="58" hits="4" branch="False" />
+            <line number="59" hits="4" branch="False" />
+            <line number="63" hits="103" branch="False" />
+            <line number="64" hits="103" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="318" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="65" hits="1" branch="False" />
+            <line number="67" hits="1" branch="False" />
+            <line number="69" hits="1" branch="False" />
+            <line number="70" hits="1" branch="False" />
+            <line number="72" hits="103" branch="True" condition-coverage="25% (1/4)">
+              <conditions>
+                <condition number="654" type="jump" coverage="50%" />
+                <condition number="668" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="75" hits="103" branch="False" />
+            <line number="76" hits="103" branch="False" />
+            <line number="78" hits="0" branch="False" />
+            <line number="79" hits="0" branch="False" />
+            <line number="81" hits="0" branch="False" />
+            <line number="85" hits="103" branch="False" />
+            <line number="87" hits="103" branch="False" />
+            <line number="88" hits="103" branch="False" />
+            <line number="89" hits="103" branch="False" />
+            <line number="91" hits="103" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="94" hits="0" branch="False" />
+            <line number="95" hits="0" branch="False" />
+            <line number="96" hits="0" branch="False" />
+            <line number="97" hits="0" branch="False" />
+            <line number="98" hits="0" branch="False" />
+            <line number="101" hits="103" branch="False" />
+            <line number="102" hits="103" branch="False" />
+            <line number="103" hits="103" branch="False" />
+            <line number="104" hits="103" branch="False" />
+            <line number="105" hits="103" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Application.Commands.ProcessTransactionCommand" filename="apps\settlement-core\src\AresNexus.Settlement.Application\Commands\ProcessTransactionCommand.cs" line-rate="0.875" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="107" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TransactionType" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="206" branch="False" />
+              </lines>
+            </method>
+            <method name="get_IdempotencyKey" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="21" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="22" hits="107" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="23" hits="210" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.String,System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="103" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="17" hits="107" branch="False" />
+            <line number="18" hits="103" branch="False" />
+            <line number="19" hits="206" branch="False" />
+            <line number="20" hits="0" branch="False" />
+            <line number="21" hits="103" branch="False" />
+            <line number="22" hits="107" branch="False" />
+            <line number="23" hits="210" branch="False" />
+            <line number="16" hits="103" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="AresNexus.Settlement.Domain" line-rate="0.6666" branch-rate="0.3" complexity="46">
+      <classes>
+        <class name="AresNexus.Settlement.Domain.Money" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Money.cs" line-rate="0.52" branch-rate="0.375" complexity="10">
+          <methods>
+            <method name="get_Amount" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="8025" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Currency" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="10578" branch="False" />
+              </lines>
+            </method>
+            <method name="op_Addition" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="0.6666" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="43" hits="2553" branch="False" />
+                <line number="44" hits="2553" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="20" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="49" hits="2553" branch="False" />
+                <line number="50" hits="2553" branch="False" />
+              </lines>
+            </method>
+            <method name="op_Subtraction" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="20" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Decimal,System.String)" line-rate="0.6363" branch-rate="0.5" complexity="4">
+              <lines>
+                <line number="20" hits="2816" branch="False" />
+                <line number="21" hits="2816" branch="False" />
+                <line number="22" hits="2816" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="21" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+                <line number="27" hits="2816" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="48" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="32" hits="2816" branch="False" />
+                <line number="33" hits="2816" branch="False" />
+                <line number="34" hits="2816" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="11" hits="8025" branch="False" />
+            <line number="13" hits="10578" branch="False" />
+            <line number="43" hits="2553" branch="False" />
+            <line number="44" hits="2553" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="20" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="49" hits="2553" branch="False" />
+            <line number="50" hits="2553" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="20" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="20" hits="2816" branch="False" />
+            <line number="21" hits="2816" branch="False" />
+            <line number="22" hits="2816" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="21" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="27" hits="2816" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="48" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="32" hits="2816" branch="False" />
+            <line number="33" hits="2816" branch="False" />
+            <line number="34" hits="2816" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.AccountCreatedEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="7">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="57" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="57" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="8" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.String,System.Guid,System.DateTime,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="57" branch="False" />
+            <line number="16" hits="57" branch="False" />
+            <line number="17" hits="4" branch="False" />
+            <line number="18" hits="4" branch="False" />
+            <line number="19" hits="4" branch="False" />
+            <line number="20" hits="8" branch="False" />
+            <line number="14" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.FundsDepositedEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="33" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="34" hits="2656" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="35" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="36" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="37" hits="104" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="38" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="206" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="32" hits="103" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="33" hits="103" branch="False" />
+            <line number="34" hits="2656" branch="False" />
+            <line number="35" hits="103" branch="False" />
+            <line number="36" hits="103" branch="False" />
+            <line number="37" hits="104" branch="False" />
+            <line number="38" hits="103" branch="False" />
+            <line number="39" hits="206" branch="False" />
+            <line number="32" hits="103" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="0" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="52" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Money" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="53" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="54" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="56" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="51" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="51" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Aggregates.Account" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Aggregates\Account.cs" line-rate="0.7812" branch-rate="0" complexity="12">
+          <methods>
+            <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="212" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Balance" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="5318" branch="False" />
+              </lines>
+            </method>
+            <method name="Deposit" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="42" hits="103" branch="False" />
+                <line number="43" hits="103" branch="False" />
+                <line number="44" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="Withdraw" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="50" hits="0" branch="False" />
+                <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="25" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="CreateSnapshot" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="63" hits="2" branch="False" />
+              </lines>
+            </method>
+            <method name="LoadFromSnapshot" signature="(AresNexus.Settlement.Domain.Aggregates.Account/Snapshot)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="69" hits="50" branch="False" />
+                <line number="70" hits="50" branch="False" />
+                <line number="71" hits="50" branch="False" />
+                <line number="72" hits="50" branch="False" />
+                <line number="73" hits="50" branch="False" />
+                <line number="74" hits="50" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="80" hits="53" branch="False" />
+                <line number="81" hits="53" branch="False" />
+                <line number="82" hits="53" branch="False" />
+                <line number="83" hits="53" branch="False" />
+                <line number="84" hits="53" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="90" hits="2553" branch="False" />
+                <line number="91" hits="2553" branch="False" />
+                <line number="92" hits="2553" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="98" hits="0" branch="False" />
+                <line number="99" hits="0" branch="False" />
+                <line number="100" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="24" hits="309" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="29" hits="4" branch="False" />
+                <line number="30" hits="4" branch="False" />
+                <line number="31" hits="4" branch="False" />
+                <line number="32" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="212" branch="False" />
+            <line number="19" hits="5318" branch="False" />
+            <line number="42" hits="103" branch="False" />
+            <line number="43" hits="103" branch="False" />
+            <line number="44" hits="103" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="51" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="25" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="63" hits="2" branch="False" />
+            <line number="69" hits="50" branch="False" />
+            <line number="70" hits="50" branch="False" />
+            <line number="71" hits="50" branch="False" />
+            <line number="72" hits="50" branch="False" />
+            <line number="73" hits="50" branch="False" />
+            <line number="74" hits="50" branch="False" />
+            <line number="80" hits="53" branch="False" />
+            <line number="81" hits="53" branch="False" />
+            <line number="82" hits="53" branch="False" />
+            <line number="83" hits="53" branch="False" />
+            <line number="84" hits="53" branch="False" />
+            <line number="90" hits="2553" branch="False" />
+            <line number="91" hits="2553" branch="False" />
+            <line number="92" hits="2553" branch="False" />
+            <line number="98" hits="0" branch="False" />
+            <line number="99" hits="0" branch="False" />
+            <line number="100" hits="0" branch="False" />
+            <line number="24" hits="309" branch="False" />
+            <line number="29" hits="4" branch="False" />
+            <line number="30" hits="4" branch="False" />
+            <line number="31" hits="4" branch="False" />
+            <line number="32" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Aggregates.Account/Snapshot" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Aggregates\Account.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="58" hits="202" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="58" hits="202" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="AresNexus.Settlement.Infrastructure" line-rate="0.1462" branch-rate="0.1582" complexity="217">
+      <classes>
+        <class name="AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\AzureKeyVaultSecretManager.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="20" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="21" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="20" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="21" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager/&lt;GetSecretAsync&gt;d__2" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\AzureKeyVaultSecretManager.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.DevSecretManager" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\DevSecretManager.cs" line-rate="0" branch-rate="0" complexity="3">
+          <methods>
+            <method name="GetSecretAsync" signature="(System.String)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="14" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="14" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="8" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.MockEncryptionService" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\MockEncryptionService.cs" line-rate="0.5" branch-rate="0" complexity="3">
+          <methods>
+            <method name="EncryptAsync" signature="(System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="DecryptAsync" signature="(System.String)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="12" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="12" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="24" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.MockKeyVaultClient" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\MockKeyVaultClient.cs" line-rate="0.3333" branch-rate="0" complexity="3">
+          <methods>
+            <method name="EncryptAsync" signature="(System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="1" branch="False" />
+                <line number="17" hits="1" branch="False" />
+                <line number="18" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="DecryptAsync" signature="(System.String,System.String)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="25" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+                <line number="28" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="1" branch="False" />
+            <line number="17" hits="1" branch="False" />
+            <line number="18" hits="1" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="25" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="28" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.PiiEncryptionService" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\PiiEncryptionService.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(AresNexus.Settlement.Infrastructure.Security.ISecretManager)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
+                <line number="21" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="33" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+            <line number="21" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="33" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.PiiEncryptionService/&lt;DecryptAsync&gt;d__3" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\PiiEncryptionService.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="28" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="55" hits="0" branch="False" />
+                <line number="57" hits="0" branch="False" />
+                <line number="58" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+                <line number="64" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+                <line number="68" hits="0" branch="False" />
+                <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+                <line number="74" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="28" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="55" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="68" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="74" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Security.PiiEncryptionService/&lt;EncryptAsync&gt;d__2" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\PiiEncryptionService.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="29" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="29" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\InMemoryAccountRepository.cs" line-rate="1" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IEventStore)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository/&lt;GetByIdAsync&gt;d__2" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\InMemoryAccountRepository.cs" line-rate="1" branch-rate="1" complexity="6">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="1" complexity="6">
+              <lines>
+                <line number="13" hits="103" branch="False" />
+                <line number="14" hits="103" branch="False" />
+                <line number="15" hits="103" branch="False" />
+                <line number="17" hits="103" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="240" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="18" hits="50" branch="False" />
+                <line number="19" hits="50" branch="False" />
+                <line number="20" hits="50" branch="False" />
+                <line number="22" hits="103" branch="False" />
+                <line number="24" hits="103" branch="True" condition-coverage="100% (4/4)">
+                  <conditions>
+                    <condition number="419" type="jump" coverage="100%" />
+                    <condition number="442" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="25" hits="4" branch="False" />
+                <line number="26" hits="4" branch="False" />
+                <line number="29" hits="99" branch="False" />
+                <line number="30" hits="99" branch="False" />
+                <line number="31" hits="103" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="103" branch="False" />
+            <line number="14" hits="103" branch="False" />
+            <line number="15" hits="103" branch="False" />
+            <line number="17" hits="103" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="240" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="18" hits="50" branch="False" />
+            <line number="19" hits="50" branch="False" />
+            <line number="20" hits="50" branch="False" />
+            <line number="22" hits="103" branch="False" />
+            <line number="24" hits="103" branch="True" condition-coverage="100% (4/4)">
+              <conditions>
+                <condition number="419" type="jump" coverage="100%" />
+                <condition number="442" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="25" hits="4" branch="False" />
+            <line number="26" hits="4" branch="False" />
+            <line number="29" hits="99" branch="False" />
+            <line number="30" hits="99" branch="False" />
+            <line number="31" hits="103" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository/&lt;SaveAsync&gt;d__3" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\InMemoryAccountRepository.cs" line-rate="1" branch-rate="0.75" complexity="8">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="1" branch-rate="0.75" complexity="8">
+              <lines>
+                <line number="35" hits="103" branch="False" />
+                <line number="36" hits="103" branch="False" />
+                <line number="37" hits="103" branch="True" condition-coverage="50% (2/4)">
+                  <conditions>
+                    <condition number="57" type="jump" coverage="50%" />
+                    <condition number="78" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="39" hits="103" branch="False" />
+                <line number="42" hits="103" branch="False" />
+                <line number="44" hits="103" branch="True" condition-coverage="100% (4/4)">
+                  <conditions>
+                    <condition number="262" type="jump" coverage="100%" />
+                    <condition number="296" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="45" hits="2" branch="False" />
+                <line number="46" hits="2" branch="False" />
+                <line number="47" hits="2" branch="False" />
+                <line number="49" hits="103" branch="False" />
+                <line number="50" hits="103" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="35" hits="103" branch="False" />
+            <line number="36" hits="103" branch="False" />
+            <line number="37" hits="103" branch="True" condition-coverage="50% (2/4)">
+              <conditions>
+                <condition number="57" type="jump" coverage="50%" />
+                <condition number="78" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="39" hits="103" branch="False" />
+            <line number="42" hits="103" branch="False" />
+            <line number="44" hits="103" branch="True" condition-coverage="100% (4/4)">
+              <conditions>
+                <condition number="262" type="jump" coverage="100%" />
+                <condition number="296" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="45" hits="2" branch="False" />
+            <line number="46" hits="2" branch="False" />
+            <line number="47" hits="2" branch="False" />
+            <line number="49" hits="103" branch="False" />
+            <line number="50" hits="103" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\MartenAccountRepository.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(Marten.IDocumentSession,AresNexus.Settlement.Application.Interfaces.IEventStore,AresNexus.Settlement.Application.Interfaces.IEncryptionService)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="20" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository/&lt;GetByIdAsync&gt;d__4" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\MartenAccountRepository.cs" line-rate="0" branch-rate="0" complexity="6">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="6">
+              <lines>
+                <line number="24" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+                <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="240" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="37" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="419" type="jump" coverage="0%" />
+                    <condition number="442" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="24" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="29" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="240" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="37" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="419" type="jump" coverage="0%" />
+                <condition number="442" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository/&lt;SaveAsync&gt;d__5" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\MartenAccountRepository.cs" line-rate="0" branch-rate="0" complexity="40">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="40">
+              <lines>
+                <line number="48" hits="0" branch="False" />
+                <line number="49" hits="0" branch="False" />
+                <line number="50" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="72" type="jump" coverage="0%" />
+                    <condition number="93" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="709" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="191" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="56" hits="0" branch="False" />
+                <line number="57" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="218" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="450" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="66" hits="0" branch="False" />
+                <line number="67" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="479" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="68" hits="0" branch="False" />
+                <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+                <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+                <line number="75" hits="0" branch="False" />
+                <line number="77" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="795" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="78" hits="0" branch="False" />
+                <line number="80" hits="0" branch="False" />
+                <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1114" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="85" hits="0" branch="False" />
+                <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="889" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="87" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="913" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="89" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="983" type="jump" coverage="0%" />
+                    <condition number="1003" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="90" hits="0" branch="False" />
+                <line number="91" hits="0" branch="False" />
+                <line number="92" hits="0" branch="False" />
+                <line number="93" hits="0" branch="False" />
+                <line number="94" hits="0" branch="False" />
+                <line number="95" hits="0" branch="False" />
+                <line number="96" hits="0" branch="False" />
+                <line number="97" hits="0" branch="False" />
+                <line number="98" hits="0" branch="False" />
+                <line number="99" hits="0" branch="False" />
+                <line number="102" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1438" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="103" hits="0" branch="False" />
+                <line number="104" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1208" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="105" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1237" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="107" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="1307" type="jump" coverage="0%" />
+                    <condition number="1327" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="108" hits="0" branch="False" />
+                <line number="109" hits="0" branch="False" />
+                <line number="110" hits="0" branch="False" />
+                <line number="111" hits="0" branch="False" />
+                <line number="112" hits="0" branch="False" />
+                <line number="113" hits="0" branch="False" />
+                <line number="114" hits="0" branch="False" />
+                <line number="115" hits="0" branch="False" />
+                <line number="116" hits="0" branch="False" />
+                <line number="119" hits="0" branch="False" />
+                <line number="123" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="1606" type="jump" coverage="0%" />
+                    <condition number="1640" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="124" hits="0" branch="False" />
+                <line number="125" hits="0" branch="False" />
+                <line number="126" hits="0" branch="False" />
+                <line number="128" hits="0" branch="False" />
+                <line number="129" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="48" hits="0" branch="False" />
+            <line number="49" hits="0" branch="False" />
+            <line number="50" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="72" type="jump" coverage="0%" />
+                <condition number="93" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="709" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="191" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="218" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="450" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="66" hits="0" branch="False" />
+            <line number="67" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="479" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="68" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+            <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="75" hits="0" branch="False" />
+            <line number="77" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="795" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="78" hits="0" branch="False" />
+            <line number="80" hits="0" branch="False" />
+            <line number="84" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1114" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="85" hits="0" branch="False" />
+            <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="889" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="87" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="913" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="89" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="983" type="jump" coverage="0%" />
+                <condition number="1003" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="90" hits="0" branch="False" />
+            <line number="91" hits="0" branch="False" />
+            <line number="92" hits="0" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="94" hits="0" branch="False" />
+            <line number="95" hits="0" branch="False" />
+            <line number="96" hits="0" branch="False" />
+            <line number="97" hits="0" branch="False" />
+            <line number="98" hits="0" branch="False" />
+            <line number="99" hits="0" branch="False" />
+            <line number="102" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1438" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="103" hits="0" branch="False" />
+            <line number="104" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1208" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="105" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1237" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="107" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="1307" type="jump" coverage="0%" />
+                <condition number="1327" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="108" hits="0" branch="False" />
+            <line number="109" hits="0" branch="False" />
+            <line number="110" hits="0" branch="False" />
+            <line number="111" hits="0" branch="False" />
+            <line number="112" hits="0" branch="False" />
+            <line number="113" hits="0" branch="False" />
+            <line number="114" hits="0" branch="False" />
+            <line number="115" hits="0" branch="False" />
+            <line number="116" hits="0" branch="False" />
+            <line number="119" hits="0" branch="False" />
+            <line number="123" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="1606" type="jump" coverage="0%" />
+                <condition number="1640" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="124" hits="0" branch="False" />
+            <line number="125" hits="0" branch="False" />
+            <line number="126" hits="0" branch="False" />
+            <line number="128" hits="0" branch="False" />
+            <line number="129" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Projections.AccountSummary" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Projections\AccountSummaryProjection.cs" line-rate="0" branch-rate="1" complexity="5">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Owner" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Balance" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TransactionCount" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_LastUpdated" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="12" hits="0" branch="False" />
+            <line number="14" hits="0" branch="False" />
+            <line number="16" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Projections.AccountSummaryProjection" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Projections\AccountSummaryProjection.cs" line-rate="0" branch-rate="1" complexity="4">
+          <methods>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="False" />
+                <line number="49" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="57" hits="0" branch="False" />
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+                <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="False" />
+            <line number="49" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+            <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Persistence.Snapshot" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Persistence\Snapshot.cs" line-rate="0" branch-rate="1" complexity="7">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="10" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_AggregateId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_AggregateType" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Data" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Version" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CreatedAt" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.Guid,System.String,System.String,System.Int32,System.DateTime)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="0" branch="False" />
+            <line number="11" hits="0" branch="False" />
+            <line number="12" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+            <line number="14" hits="0" branch="False" />
+            <line number="15" hits="0" branch="False" />
+            <line number="9" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.OutboxMessage" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\OutboxMessage.cs" line-rate="0.625" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="9" hits="214" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOnUtc" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="214" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Type" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="214" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Content" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="214" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_ProcessedOnUtc" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="21" hits="2" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Error" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="23" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="9" hits="214" branch="False" />
+            <line number="11" hits="214" branch="False" />
+            <line number="13" hits="214" branch="False" />
+            <line number="15" hits="214" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="21" hits="2" branch="False" />
+            <line number="23" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\OutboxProcessor.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor&gt;)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="8" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="8" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor/&lt;ExecuteAsync&gt;d__3" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\OutboxProcessor.cs" line-rate="0" branch-rate="0" complexity="6">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="6">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+                <line number="19" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1583" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="20" hits="0" branch="False" />
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="714" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1096" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="49" hits="0" branch="False" />
+                <line number="51" hits="0" branch="False" />
+                <line number="52" hits="0" branch="False" />
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+                <line number="67" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="19" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1583" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="20" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="42" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="714" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1096" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="49" hits="0" branch="False" />
+            <line number="51" hits="0" branch="False" />
+            <line number="52" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="67" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOptions" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_ConnectionString" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="18" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="1" complexity="2">
+          <methods>
+            <method name="&lt;PublishAsync&gt;b__5_0" signature="(System.String)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher&gt;,Microsoft.Extensions.Options.IOptions`1&lt;AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOptions&gt;)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="27" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="39" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher/&lt;DisposeAsync&gt;d__6" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="0" complexity="4">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="4">
+              <lines>
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="208" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+                <line number="74" hits="0" branch="False" />
+                <line number="75" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="265" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
+                <line number="78" hits="0" branch="False" />
+                <line number="79" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="208" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="74" hits="0" branch="False" />
+            <line number="75" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="265" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
+            <line number="78" hits="0" branch="False" />
+            <line number="79" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher/&lt;PublishAsync&gt;d__5" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="0" complexity="6">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="6">
+              <lines>
+                <line number="35" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="38" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="49" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="206" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="50" hits="0" branch="False" />
+                <line number="51" hits="0" branch="False" />
+                <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="254" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="False" />
+                <line number="56" hits="0" branch="False" />
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+                <line number="64" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="35" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="38" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="49" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="206" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="50" hits="0" branch="False" />
+            <line number="51" hits="0" branch="False" />
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="254" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Logging.SensitiveDataDestructuringPolicy" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Logging\SensitiveDataDestructuringPolicy.cs" line-rate="0" branch-rate="0" complexity="9">
+          <methods>
+            <method name="TryDestructure" signature="(System.Object,Serilog.Core.ILogEventPropertyValueFactory,Serilog.Events.LogEventPropertyValue&amp;)" line-rate="0" branch-rate="0" complexity="8">
+              <lines>
+                <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="22" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="29" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="31" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="199" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="35" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="107" type="jump" coverage="0%" />
+                    <condition number="121" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="36" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".cctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="22" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="29" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="31" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="199" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="35" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="107" type="jump" coverage="0%" />
+                <condition number="121" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="36" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="13" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior`2" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\CommandIdempotencyBehavior.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IIdempotencyStore,Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior`2&lt;TRequest,TResponse&gt;&gt;)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+                <line number="18" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior`2/&lt;Handle&gt;d__3" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\CommandIdempotencyBehavior.cs" line-rate="0" branch-rate="0" complexity="4">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="4">
+              <lines>
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="97" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+                <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="368" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="34" hits="0" branch="False" />
+                <line number="37" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="97" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="368" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="34" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.InMemoryIdempotencyStore" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\InMemoryIdempotencyStore.cs" line-rate="0.0909" branch-rate="0" complexity="5">
+          <methods>
+            <method name="ExistsAsync" signature="(System.Guid)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="0" branch="False" />
+                <line number="17" hits="0" branch="False" />
+                <line number="18" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="StoreAsync" signature="(System.Guid,System.Object)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="22" hits="0" branch="False" />
+                <line number="23" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+                <line number="27" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="GetAsync" signature="(System.Guid)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="15" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="12" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+            <line number="22" hits="0" branch="False" />
+            <line number="23" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="27" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="15" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="33" hits="0" branch="False" />
+            <line number="12" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\RedisIdempotencyStore.cs" line-rate="0" branch-rate="1" complexity="2">
+          <methods>
+            <method name=".ctor" signature="(Microsoft.Extensions.Caching.Distributed.IDistributedCache)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".cctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="0" branch="False" />
+                <line number="18" hits="0" branch="False" />
+                <line number="19" hits="0" branch="False" />
+                <line number="20" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="0" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore/&lt;ExistsAsync&gt;d__3" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\RedisIdempotencyStore.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore/&lt;GetAsync&gt;d__5`1" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\RedisIdempotencyStore.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+                <line number="54" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="178" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="178" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="55" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore/&lt;StoreAsync&gt;d__4" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\RedisIdempotencyStore.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.InMemoryCosmosEventStore" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\InMemoryCosmosEventStore.cs" line-rate="0.72" branch-rate="0.65" complexity="23">
+          <methods>
+            <method name="GetEventsAsync" signature="(System.Guid,System.Int32)" line-rate="1" branch-rate="1" complexity="4">
+              <lines>
+                <line number="20" hits="105" branch="False" />
+                <line number="21" hits="105" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="15" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="23" hits="105" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="28" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="105" branch="False" />
+              </lines>
+            </method>
+            <method name="SaveEventsAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="30" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="SaveChangesAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32,System.Collections.Generic.IEnumerable`1&lt;System.Object&gt;)" line-rate="0.6206" branch-rate="0.5" complexity="12">
+              <lines>
+                <line number="34" hits="103" branch="False" />
+                <line number="35" hits="107" branch="False" />
+                <line number="36" hits="103" branch="False" />
+                <line number="37" hits="103" branch="True" condition-coverage="50% (2/4)">
+                  <conditions>
+                    <condition number="56" type="jump" coverage="50%" />
+                    <condition number="70" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="43" hits="103" branch="False" />
+                <line number="46" hits="523" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="201" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="47" hits="107" branch="False" />
+                <line number="48" hits="107" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="148" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="49" hits="107" branch="False" />
+                <line number="50" hits="107" branch="False" />
+                <line number="51" hits="107" branch="False" />
+                <line number="52" hits="107" branch="False" />
+                <line number="53" hits="107" branch="False" />
+                <line number="54" hits="107" branch="False" />
+                <line number="55" hits="107" branch="False" />
+                <line number="57" hits="309" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="329" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="58" hits="0" branch="False" />
+                <line number="59" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="275" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="False" />
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+                <line number="68" hits="103" branch="False" />
+                <line number="69" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="SaveSnapshotAsync" signature="(System.Guid,T,System.Int32)" line-rate="1" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="73" hits="2" branch="False" />
+                <line number="74" hits="2" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="12" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="75" hits="2" branch="False" />
+                <line number="76" hits="2" branch="False" />
+                <line number="77" hits="2" branch="False" />
+              </lines>
+            </method>
+            <method name="GetLatestSnapshotAsync" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="81" hits="104" branch="False" />
+                <line number="82" hits="104" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="15" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="83" hits="104" branch="False" />
+              </lines>
+            </method>
+            <method name="GetUnprocessedOutboxMessages" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="90" hits="1" branch="False" />
+                <line number="91" hits="3" branch="False" />
+                <line number="92" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="4" branch="False" />
+                <line number="15" hits="4" branch="False" />
+                <line number="16" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="20" hits="105" branch="False" />
+            <line number="21" hits="105" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="15" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="23" hits="105" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="28" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="24" hits="105" branch="False" />
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="30" hits="0" branch="False" />
+            <line number="34" hits="103" branch="False" />
+            <line number="35" hits="107" branch="False" />
+            <line number="36" hits="103" branch="False" />
+            <line number="37" hits="103" branch="True" condition-coverage="50% (2/4)">
+              <conditions>
+                <condition number="56" type="jump" coverage="50%" />
+                <condition number="70" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="43" hits="103" branch="False" />
+            <line number="46" hits="523" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="201" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="47" hits="107" branch="False" />
+            <line number="48" hits="107" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="148" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="49" hits="107" branch="False" />
+            <line number="50" hits="107" branch="False" />
+            <line number="51" hits="107" branch="False" />
+            <line number="52" hits="107" branch="False" />
+            <line number="53" hits="107" branch="False" />
+            <line number="54" hits="107" branch="False" />
+            <line number="55" hits="107" branch="False" />
+            <line number="57" hits="309" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="329" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="58" hits="0" branch="False" />
+            <line number="59" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="275" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="68" hits="103" branch="False" />
+            <line number="69" hits="103" branch="False" />
+            <line number="73" hits="2" branch="False" />
+            <line number="74" hits="2" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="12" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="75" hits="2" branch="False" />
+            <line number="76" hits="2" branch="False" />
+            <line number="77" hits="2" branch="False" />
+            <line number="81" hits="104" branch="False" />
+            <line number="82" hits="104" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="15" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="83" hits="104" branch="False" />
+            <line number="90" hits="1" branch="False" />
+            <line number="91" hits="3" branch="False" />
+            <line number="92" hits="1" branch="False" />
+            <line number="14" hits="4" branch="False" />
+            <line number="15" hits="4" branch="False" />
+            <line number="16" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="1" complexity="3">
+          <methods>
+            <method name="SaveEventsAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="75" hits="0" branch="False" />
+                <line number="76" hits="0" branch="False" />
+                <line number="77" hits="0" branch="False" />
+                <line number="78" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="SaveSnapshotAsync" signature="(System.Guid,T,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="103" hits="0" branch="False" />
+                <line number="105" hits="0" branch="False" />
+                <line number="106" hits="0" branch="False" />
+                <line number="107" hits="0" branch="False" />
+                <line number="108" hits="0" branch="False" />
+                <line number="109" hits="0" branch="False" />
+                <line number="110" hits="0" branch="False" />
+                <line number="111" hits="0" branch="False" />
+                <line number="113" hits="0" branch="False" />
+                <line number="114" hits="0" branch="False" />
+                <line number="115" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(Marten.IDocumentSession,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Settlement.Application.Interfaces.IEventUpcaster&gt;,AresNexus.Settlement.Application.Interfaces.IEncryptionService)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="75" hits="0" branch="False" />
+            <line number="76" hits="0" branch="False" />
+            <line number="77" hits="0" branch="False" />
+            <line number="78" hits="0" branch="False" />
+            <line number="103" hits="0" branch="False" />
+            <line number="105" hits="0" branch="False" />
+            <line number="106" hits="0" branch="False" />
+            <line number="107" hits="0" branch="False" />
+            <line number="108" hits="0" branch="False" />
+            <line number="109" hits="0" branch="False" />
+            <line number="110" hits="0" branch="False" />
+            <line number="111" hits="0" branch="False" />
+            <line number="113" hits="0" branch="False" />
+            <line number="114" hits="0" branch="False" />
+            <line number="115" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore/&lt;&gt;c" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="&lt;GetEventsAsync&gt;b__4_0" signature="(JasperFx.Events.IEvent)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="25" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="25" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore/&lt;GetEventsAsync&gt;d__4" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="0" complexity="22">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="22">
+              <lines>
+                <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="16" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="24" hits="0" branch="False" />
+                <line number="28" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="960" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="29" hits="0" branch="False" />
+                <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="350" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="31" hits="0" branch="False" />
+                <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="379" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="33" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="36" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="429" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="37" hits="0" branch="False" />
+                <line number="38" hits="0" branch="False" />
+                <line number="39" hits="0" branch="False" />
+                <line number="40" hits="0" branch="False" />
+                <line number="41" hits="0" branch="False" />
+                <line number="42" hits="0" branch="False" />
+                <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="656" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="44" hits="0" branch="False" />
+                <line number="45" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="685" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="46" hits="0" branch="False" />
+                <line number="47" hits="0" branch="False" />
+                <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="735" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="49" hits="0" branch="False" />
+                <line number="50" hits="0" branch="False" />
+                <line number="51" hits="0" branch="False" />
+                <line number="52" hits="0" branch="False" />
+                <line number="53" hits="0" branch="False" />
+                <line number="54" hits="0" branch="False" />
+                <line number="55" hits="0" branch="False" />
+                <line number="58" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1250" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="59" hits="0" branch="False" />
+                <line number="60" hits="0" branch="False" />
+                <line number="61" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1165" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="62" hits="0" branch="False" />
+                <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="1107" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="64" hits="0" branch="False" />
+                <line number="65" hits="0" branch="False" />
+                <line number="66" hits="0" branch="False" />
+                <line number="67" hits="0" branch="False" />
+                <line number="68" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="23" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="16" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="24" hits="0" branch="False" />
+            <line number="28" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="960" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="29" hits="0" branch="False" />
+            <line number="30" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="350" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="31" hits="0" branch="False" />
+            <line number="32" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="379" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="33" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="429" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="0" branch="False" />
+            <line number="40" hits="0" branch="False" />
+            <line number="41" hits="0" branch="False" />
+            <line number="42" hits="0" branch="False" />
+            <line number="43" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="656" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="44" hits="0" branch="False" />
+            <line number="45" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="685" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="46" hits="0" branch="False" />
+            <line number="47" hits="0" branch="False" />
+            <line number="48" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="735" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="49" hits="0" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="51" hits="0" branch="False" />
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="58" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1250" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="59" hits="0" branch="False" />
+            <line number="60" hits="0" branch="False" />
+            <line number="61" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1165" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="62" hits="0" branch="False" />
+            <line number="63" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="1107" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="64" hits="0" branch="False" />
+            <line number="65" hits="0" branch="False" />
+            <line number="66" hits="0" branch="False" />
+            <line number="67" hits="0" branch="False" />
+            <line number="68" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore/&lt;GetLatestSnapshotAsync&gt;d__8`1" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="0" complexity="2">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="119" hits="0" branch="False" />
+                <line number="120" hits="0" branch="False" />
+                <line number="121" hits="0" branch="False" />
+                <line number="122" hits="0" branch="False" />
+                <line number="123" hits="0" branch="False" />
+                <line number="125" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="470" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="126" hits="0" branch="False" />
+                <line number="127" hits="0" branch="False" />
+                <line number="130" hits="0" branch="False" />
+                <line number="131" hits="0" branch="False" />
+                <line number="132" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="119" hits="0" branch="False" />
+            <line number="120" hits="0" branch="False" />
+            <line number="121" hits="0" branch="False" />
+            <line number="122" hits="0" branch="False" />
+            <line number="123" hits="0" branch="False" />
+            <line number="125" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="470" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="126" hits="0" branch="False" />
+            <line number="127" hits="0" branch="False" />
+            <line number="130" hits="0" branch="False" />
+            <line number="131" hits="0" branch="False" />
+            <line number="132" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore/&lt;SaveChangesAsync&gt;d__6" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="0" complexity="6">
+          <methods>
+            <method name="MoveNext" signature="()" line-rate="0" branch-rate="0" complexity="6">
+              <lines>
+                <line number="82" hits="0" branch="False" />
+                <line number="84" hits="0" branch="False" />
+                <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="247" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="87" hits="0" branch="False" />
+                <line number="89" hits="0" branch="True" condition-coverage="0% (0/4)">
+                  <conditions>
+                    <condition number="156" type="jump" coverage="0%" />
+                    <condition number="176" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="90" hits="0" branch="False" />
+                <line number="91" hits="0" branch="False" />
+                <line number="92" hits="0" branch="False" />
+                <line number="93" hits="0" branch="False" />
+                <line number="94" hits="0" branch="False" />
+                <line number="95" hits="0" branch="False" />
+                <line number="96" hits="0" branch="False" />
+                <line number="98" hits="0" branch="False" />
+                <line number="99" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="82" hits="0" branch="False" />
+            <line number="84" hits="0" branch="False" />
+            <line number="86" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="247" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="87" hits="0" branch="False" />
+            <line number="89" hits="0" branch="True" condition-coverage="0% (0/4)">
+              <conditions>
+                <condition number="156" type="jump" coverage="0%" />
+                <condition number="176" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="90" hits="0" branch="False" />
+            <line number="91" hits="0" branch="False" />
+            <line number="92" hits="0" branch="False" />
+            <line number="93" hits="0" branch="False" />
+            <line number="94" hits="0" branch="False" />
+            <line number="95" hits="0" branch="False" />
+            <line number="96" hits="0" branch="False" />
+            <line number="98" hits="0" branch="False" />
+            <line number="99" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.MoneyDeposited_v1_to_v2_Upcaster" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\Upcasters.cs" line-rate="0" branch-rate="0" complexity="3">
+          <methods>
+            <method name="CanUpcast" signature="(System.Type)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="24" hits="0" branch="False" />
+                <line number="25" hits="0" branch="False" />
+                <line number="26" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Upcast" signature="(AresNexus.Shared.Kernel.IDomainEvent)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="30" hits="0" branch="False" />
+                <line number="31" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="14" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="32" hits="0" branch="False" />
+                <line number="33" hits="0" branch="False" />
+                <line number="35" hits="0" branch="False" />
+                <line number="36" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="24" hits="0" branch="False" />
+            <line number="25" hits="0" branch="False" />
+            <line number="26" hits="0" branch="False" />
+            <line number="30" hits="0" branch="False" />
+            <line number="31" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="14" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="32" hits="0" branch="False" />
+            <line number="33" hits="0" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.FundsDepositedEvent_v1" filename="apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\Upcasters.cs" line-rate="0" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="50" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Amount" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="51" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="52" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="53" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="54" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="56" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.Decimal,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="49" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="50" hits="0" branch="False" />
+            <line number="51" hits="0" branch="False" />
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="0" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="49" hits="0" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="AresNexus.Shared.Kernel" line-rate="0.9523" branch-rate="1" complexity="13">
+      <classes>
+        <class name="AresNexus.Shared.Kernel.AggregateRoot" filename="shared\src\AresNexus.Shared.Kernel\AggregateRoot.cs" line-rate="1" branch-rate="1" complexity="12">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="313" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Version" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="44" hits="5630" branch="False" />
+              </lines>
+            </method>
+            <method name="GetUncommittedChanges" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="50" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="MarkChangesAsCommitted" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="103" branch="False" />
+              </lines>
+            </method>
+            <method name="LoadsFromHistory" signature="(System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="62" hits="99" branch="False" />
+                <line number="66" hits="5295" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="35" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="67" hits="2499" branch="False" />
+                <line number="68" hits="2499" branch="False" />
+                <line number="69" hits="2499" branch="False" />
+                <line number="70" hits="99" branch="False" />
+              </lines>
+            </method>
+            <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="76" hits="107" branch="False" />
+              </lines>
+            </method>
+            <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent,System.Boolean)" line-rate="1" branch-rate="1" complexity="4">
+              <lines>
+                <line number="79" hits="2606" branch="False" />
+                <line number="80" hits="2606" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="6" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="82" hits="2606" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="98" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="83" hits="107" branch="False" />
+                <line number="84" hits="107" branch="False" />
+                <line number="85" hits="107" branch="False" />
+                <line number="87" hits="2606" branch="False" />
+                <line number="88" hits="2606" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="34" hits="107" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="39" hits="313" branch="False" />
+            <line number="44" hits="5630" branch="False" />
+            <line number="50" hits="103" branch="False" />
+            <line number="55" hits="103" branch="False" />
+            <line number="62" hits="99" branch="False" />
+            <line number="66" hits="5295" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="35" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="67" hits="2499" branch="False" />
+            <line number="68" hits="2499" branch="False" />
+            <line number="69" hits="2499" branch="False" />
+            <line number="70" hits="99" branch="False" />
+            <line number="76" hits="107" branch="False" />
+            <line number="79" hits="2606" branch="False" />
+            <line number="80" hits="2606" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="6" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="82" hits="2606" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="98" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="83" hits="107" branch="False" />
+            <line number="84" hits="107" branch="False" />
+            <line number="85" hits="107" branch="False" />
+            <line number="87" hits="2606" branch="False" />
+            <line number="88" hits="2606" branch="False" />
+            <line number="34" hits="107" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Shared.Kernel.PrivateReflectionDynamicObjectExtensions" filename="shared\src\AresNexus.Shared.Kernel\AggregateRoot.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="AsDynamic" signature="(System.Object)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="99" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="99" hits="0" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>

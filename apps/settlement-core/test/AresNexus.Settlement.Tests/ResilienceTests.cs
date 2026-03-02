@@ -107,6 +107,42 @@ public class ResilienceTests
     }
 
     /// <summary>
+    /// Verifies that withdrawing with insufficient funds throws an exception.
+    /// </summary>
+    [Fact]
+    public async Task ProcessTransaction_WithdrawWithInsufficientFunds_ShouldThrow()
+    {
+        // Arrange
+        var accountId = Guid.NewGuid();
+        // First deposit 50
+        await _handler.Handle(new ProcessTransactionCommand(accountId, new Money(50), "DEPOSIT", Guid.NewGuid()), CancellationToken.None);
+        
+        // Act: Withdraw 100
+        var cmd = new ProcessTransactionCommand(accountId, new Money(100), "WITHDRAW", Guid.NewGuid());
+        var act = () => _handler.Handle(cmd, CancellationToken.None);
+
+        // Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(act);
+    }
+
+    /// <summary>
+    /// Verifies that an unknown transaction type throws an exception.
+    /// </summary>
+    [Fact]
+    public async Task ProcessTransaction_UnknownType_ShouldThrow()
+    {
+        // Arrange
+        var accountId = Guid.NewGuid();
+        var cmd = new ProcessTransactionCommand(accountId, new Money(100), "INVALID", Guid.NewGuid());
+
+        // Act
+        var act = () => _handler.Handle(cmd, CancellationToken.None);
+
+        // Assert
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(act);
+    }
+
+    /// <summary>
     /// Verifies that outbox messages are stored when a transaction is processed.
     /// </summary>
     [Fact]

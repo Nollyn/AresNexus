@@ -1,0 +1,737 @@
+﻿
+    Directory:
+    C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.Tests.Unit
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                bin
+d-----          3/2/2026     12:53                obj
+-a----          3/2/2026     11:59           1670 AccountTests.cs
+-a----          3/2/2026     12:53           1069 AresNexus.Tests.Unit.csproj
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     11:58                Debug
+d-----          3/2/2026     12:53                Release
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     14:02                net10.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:54                cs
+d-----          3/2/2026     12:54                de
+d-----          3/2/2026     12:54                es
+d-----          3/2/2026     12:54                fr
+d-----          3/2/2026     12:54                it
+d-----          3/2/2026     12:54                ja
+d-----          3/2/2026     12:54                ko
+d-----          3/2/2026     12:54                pl
+d-----          3/2/2026     12:54                pt-BR
+d-----          3/2/2026     12:54                ru
+d-----          3/2/2026     12:54                runtimes
+d-----          3/2/2026     12:54                tr
+d-----          3/2/2026     12:54                zh-Hans
+d-----          3/2/2026     12:54                zh-Hant
+-a----          3/2/2026     11:58           3578 .msCoverageSourceRootsMapping
+                                                  _AresNexus.Tests.Unit
+-a----          3/2/2026     14:02          18432 AresNexus.Settlement.Domain.d
+                                                  ll
+-a----          3/2/2026     14:02          14660 AresNexus.Settlement.Domain.p
+                                                  db
+-a----          3/2/2026     14:02          13808 AresNexus.Settlement.Domain.x
+                                                  ml
+-a----          3/2/2026     14:02           7168 AresNexus.Shared.Kernel.dll
+-a----          3/2/2026     14:02          12388 AresNexus.Shared.Kernel.pdb
+-a----          3/2/2026     14:02           4882 AresNexus.Shared.Kernel.xml
+-a----          3/2/2026     12:54          20236 AresNexus.Tests.Unit.deps.jso
+                                                  n
+-a----          3/2/2026     14:02           7680 AresNexus.Tests.Unit.dll
+-a----          3/2/2026     14:02          13852 AresNexus.Tests.Unit.pdb
+-a----          3/2/2026     12:54            318 AresNexus.Tests.Unit.runtimec
+                                                  onfig.json
+-a----          3/2/2026     14:02            145 AresNexus.Tests.Unit.xml
+-a----        12/30/2022     03:16         385024 Castle.Core.dll
+-a----          3/2/2026     11:58           3578 CoverletSourceRootsMapping_Ar
+                                                  esNexus.Tests.Unit
+-a----        10/22/2025     23:15         766464 FluentAssertions.dll
+-a----          6/2/2025     06:00         137776 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.dll
+-a----          6/2/2025     06:00          98336 Microsoft.TestPlatform.CoreUt
+                                                  ilities.dll
+-a----          6/2/2025     06:00         316960 Microsoft.TestPlatform.CrossP
+                                                  latEngine.dll
+-a----          6/2/2025     06:00          51232 Microsoft.TestPlatform.Platfo
+                                                  rmAbstractions.dll
+-a----          6/2/2025     06:00          67104 Microsoft.TestPlatform.Utilit
+                                                  ies.dll
+-a----         2/26/2025     10:16          17464 Microsoft.VisualStudio.CodeCo
+                                                  verage.Shim.dll
+-a----          6/2/2025     06:00         248352 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.dll
+-a----          6/2/2025     06:00         334392 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.dll
+-a----          9/6/2024     19:36         312320 Moq.dll
+-a----          3/8/2023     01:09         712464 Newtonsoft.Json.dll
+-a----        10/22/2021     18:50          51328 System.Diagnostics.EventLog.d
+                                                  ll
+-a----          6/2/2025     06:00          49696 testhost.dll
+-a----          6/2/2025     06:00         150576 testhost.exe
+-a----         8/25/2018     14:54          21928 xunit.abstractions.dll
+-a----          1/8/2025     11:29         187088 xunit.assert.dll
+-a----          1/8/2025     11:29          70352 xunit.core.dll
+-a----          1/8/2025     11:30         279760 xunit.execution.dotnet.dll
+-a----         8/15/2025     20:35        1251840 xunit.runner.visualstudio.tes
+                                                  tadapter.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\cs
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16440 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20520 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23624 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\de
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21064 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24136 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\es
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21032 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\fr
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\it
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\ja
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          17440 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          22088 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21552 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24632 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\ko
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16936 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21560 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\pl
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16936 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21536 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24136 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\pt-BR
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\ru
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          17440 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          17464 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          23072 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          23096 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          26168 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\runtimes
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:54                win
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\runtimes\win
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:54                lib
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\runtimes\win\lib
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:54                net6.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\runtimes\win\lib\net6.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        10/22/2021     18:47         132200 System.Diagnostics.EventLog.d
+                                                  ll
+-a----        10/22/2021     18:47         799856 System.Diagnostics.EventLog.M
+                                                  essages.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\tr
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21024 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20536 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23608 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\zh-Hans
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          20008 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23072 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Debug\net10.0\zh-Hant
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          20552 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20024 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                net10.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                cs
+d-----          3/2/2026     12:53                de
+d-----          3/2/2026     12:53                es
+d-----          3/2/2026     12:53                fr
+d-----          3/2/2026     12:53                it
+d-----          3/2/2026     12:53                ja
+d-----          3/2/2026     12:53                ko
+d-----          3/2/2026     12:53                pl
+d-----          3/2/2026     12:53                pt-BR
+d-----          3/2/2026     12:53                ru
+d-----          3/2/2026     12:53                runtimes
+d-----          3/2/2026     12:53                tr
+d-----          3/2/2026     12:53                zh-Hans
+d-----          3/2/2026     12:53                zh-Hant
+-a----          3/2/2026     12:53           3578 .msCoverageSourceRootsMapping
+                                                  _AresNexus.Tests.Unit
+-a----          3/2/2026     12:53          18432 AresNexus.Settlement.Domain.d
+                                                  ll
+-a----          3/2/2026     12:53          14508 AresNexus.Settlement.Domain.p
+                                                  db
+-a----          3/2/2026     12:53          13808 AresNexus.Settlement.Domain.x
+                                                  ml
+-a----          3/2/2026     12:53           7168 AresNexus.Shared.Kernel.dll
+-a----          3/2/2026     12:53          12312 AresNexus.Shared.Kernel.pdb
+-a----          3/2/2026     12:53           4882 AresNexus.Shared.Kernel.xml
+-a----          3/2/2026     12:53          20236 AresNexus.Tests.Unit.deps.jso
+                                                  n
+-a----          3/2/2026     12:53           7680 AresNexus.Tests.Unit.dll
+-a----          3/2/2026     12:53          13744 AresNexus.Tests.Unit.pdb
+-a----          3/2/2026     12:53            390 AresNexus.Tests.Unit.runtimec
+                                                  onfig.json
+-a----          3/2/2026     12:53            145 AresNexus.Tests.Unit.xml
+-a----        12/30/2022     03:16         385024 Castle.Core.dll
+-a----          3/2/2026     12:53           3578 CoverletSourceRootsMapping_Ar
+                                                  esNexus.Tests.Unit
+-a----        10/22/2025     23:15         766464 FluentAssertions.dll
+-a----          6/2/2025     06:00         137776 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.dll
+-a----          6/2/2025     06:00          98336 Microsoft.TestPlatform.CoreUt
+                                                  ilities.dll
+-a----          6/2/2025     06:00         316960 Microsoft.TestPlatform.CrossP
+                                                  latEngine.dll
+-a----          6/2/2025     06:00          51232 Microsoft.TestPlatform.Platfo
+                                                  rmAbstractions.dll
+-a----          6/2/2025     06:00          67104 Microsoft.TestPlatform.Utilit
+                                                  ies.dll
+-a----         2/26/2025     10:16          17464 Microsoft.VisualStudio.CodeCo
+                                                  verage.Shim.dll
+-a----          6/2/2025     06:00         248352 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.dll
+-a----          6/2/2025     06:00         334392 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.dll
+-a----          9/6/2024     19:36         312320 Moq.dll
+-a----          3/8/2023     01:09         712464 Newtonsoft.Json.dll
+-a----        10/22/2021     18:50          51328 System.Diagnostics.EventLog.d
+                                                  ll
+-a----          6/2/2025     06:00          49696 testhost.dll
+-a----          6/2/2025     06:00         150576 testhost.exe
+-a----         8/25/2018     14:54          21928 xunit.abstractions.dll
+-a----          1/8/2025     11:29         187088 xunit.assert.dll
+-a----          1/8/2025     11:29          70352 xunit.core.dll
+-a----          1/8/2025     11:30         279760 xunit.execution.dotnet.dll
+-a----         8/15/2025     20:35        1251840 xunit.runner.visualstudio.tes
+                                                  tadapter.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\cs
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16440 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20520 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23624 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\de
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21064 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24136 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\es
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21032 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\fr
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\it
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\ja
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          17440 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          22088 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21552 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24632 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\ko
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16944 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16936 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21560 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\pl
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16936 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21536 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24136 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\pt-BR
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          21048 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          24120 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\ru
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          17440 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          17464 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          23072 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          23096 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          26168 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\runtimes
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                win
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\runtimes\win
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                lib
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\runtimes\win\lib
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                net6.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\runtimes\win\lib\net6.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        10/22/2021     18:47         132200 System.Diagnostics.EventLog.d
+                                                  ll
+-a----        10/22/2021     18:47         799856 System.Diagnostics.EventLog.M
+                                                  essages.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\tr
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          21024 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20536 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23608 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\zh-Hans
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16928 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          20008 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20040 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23072 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\bin\Release\net10.0\zh-Hant
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          6/2/2025     06:00          16416 Microsoft.TestPlatform.Commun
+                                                  icationUtilities.resources.dl
+                                                  l
+-a----          6/2/2025     06:00          16952 Microsoft.TestPlatform.CoreUt
+                                                  ilities.resources.dll
+-a----          6/2/2025     06:00          20552 Microsoft.TestPlatform.CrossP
+                                                  latEngine.resources.dll
+-a----          6/2/2025     06:00          20024 Microsoft.VisualStudio.TestPl
+                                                  atform.Common.resources.dll
+-a----          6/2/2025     06:00          23096 Microsoft.VisualStudio.TestPl
+                                                  atform.ObjectModel.resources.
+                                                  dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     11:58                Debug
+d-----          3/2/2026     12:53                Release
+-a----          3/2/2026     11:58          68128 AresNexus.Tests.Unit.csproj.n
+                                                  uget.dgspec.json
+-a----          3/2/2026     11:57           2914 AresNexus.Tests.Unit.csproj.n
+                                                  uget.g.props
+-a----          3/2/2026     11:57           1415 AresNexus.Tests.Unit.csproj.n
+                                                  uget.g.targets
+-a----          3/2/2026     12:00          75304 project.assets.json
+-a----          3/2/2026     12:00           2252 project.nuget.cache
+-a----          3/2/2026     11:58          17603 project.packagespec.json
+-a----          3/2/2026     12:00             20 rider.project.model.nuget.inf
+                                                  o
+-a----          3/2/2026     12:00             20 rider.project.restore.info
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Debug
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     14:02                net10.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Debug\net10.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:54                ref
+d-----          3/2/2026     12:54                refint
+-a----          3/2/2026     11:58            200 .NETCoreApp,Version=v10.0.Ass
+                                                  emblyAttributes.cs
+-a----          3/2/2026     14:02              0 AresNexu.082229D5.Up2Date
+-a----          3/2/2026     14:02           1034 AresNexus.Tests.Unit.Assembly
+                                                  Info.cs
+-a----          3/2/2026     14:02             66 AresNexus.Tests.Unit.Assembly
+                                                  InfoInputs.cache
+-a----          3/2/2026     12:00          34004 AresNexus.Tests.Unit.assets.c
+                                                  ache
+-a----          3/2/2026     14:02          11257 AresNexus.Tests.Unit.csproj.A
+                                                  ssemblyReference.cache
+-a----          3/2/2026     12:54             66 AresNexus.Tests.Unit.csproj.C
+                                                  oreCompileInputs.cache
+-a----          3/2/2026     12:54          16097 AresNexus.Tests.Unit.csproj.F
+                                                  ileListAbsolute.txt
+-a----          3/2/2026     14:02           7680 AresNexus.Tests.Unit.dll
+-a----          3/2/2026     11:58            830 AresNexus.Tests.Unit.Generate
+                                                  dMSBuildEditorConfig.editorco
+                                                  nfig
+-a----          3/2/2026     12:54             66 AresNexus.Tests.Unit.genrunti
+                                                  meconfig.cache
+-a----          3/2/2026     11:58            260 AresNexus.Tests.Unit.GlobalUs
+                                                  ings.g.cs
+-a----          3/2/2026     14:02          13852 AresNexus.Tests.Unit.pdb
+-a----          3/2/2026     14:02            169 AresNexus.Tests.Unit.sourceli
+                                                  nk.json
+-a----          3/2/2026     14:02            145 AresNexus.Tests.Unit.xml
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Debug\net10.0\ref
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          3/2/2026     14:02           6656 AresNexus.Tests.Unit.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Debug\net10.0\refint
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          3/2/2026     14:02           6656 AresNexus.Tests.Unit.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Release
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                net10.0
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Release\net10.0
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          3/2/2026     12:53                ref
+d-----          3/2/2026     12:53                refint
+-a----          3/2/2026     12:53            200 .NETCoreApp,Version=v10.0.Ass
+                                                  emblyAttributes.cs
+-a----          3/2/2026     12:53              0 AresNexu.082229D5.Up2Date
+-a----          3/2/2026     12:53           1036 AresNexus.Tests.Unit.Assembly
+                                                  Info.cs
+-a----          3/2/2026     12:53             66 AresNexus.Tests.Unit.Assembly
+                                                  InfoInputs.cache
+-a----          3/2/2026     12:53          34004 AresNexus.Tests.Unit.assets.c
+                                                  ache
+-a----          3/2/2026     12:53          11262 AresNexus.Tests.Unit.csproj.A
+                                                  ssemblyReference.cache
+-a----          3/2/2026     12:53             66 AresNexus.Tests.Unit.csproj.C
+                                                  oreCompileInputs.cache
+-a----          3/2/2026     12:53          16323 AresNexus.Tests.Unit.csproj.F
+                                                  ileListAbsolute.txt
+-a----          3/2/2026     12:53           7680 AresNexus.Tests.Unit.dll
+-a----          3/2/2026     12:53            830 AresNexus.Tests.Unit.Generate
+                                                  dMSBuildEditorConfig.editorco
+                                                  nfig
+-a----          3/2/2026     12:53             66 AresNexus.Tests.Unit.genrunti
+                                                  meconfig.cache
+-a----          3/2/2026     12:53            260 AresNexus.Tests.Unit.GlobalUs
+                                                  ings.g.cs
+-a----          3/2/2026     12:53          13744 AresNexus.Tests.Unit.pdb
+-a----          3/2/2026     12:53            169 AresNexus.Tests.Unit.sourceli
+                                                  nk.json
+-a----          3/2/2026     12:53            145 AresNexus.Tests.Unit.xml
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Release\net10.0\ref
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          3/2/2026     12:53           6656 AresNexus.Tests.Unit.dll
+    Directory: C:\Users\Noll\source\repos\Ares-Nexus\Solution\tests\AresNexus.T
+    ests.Unit\obj\Release\net10.0\refint
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----          3/2/2026     12:53           6656 AresNexus.Tests.Unit.dll

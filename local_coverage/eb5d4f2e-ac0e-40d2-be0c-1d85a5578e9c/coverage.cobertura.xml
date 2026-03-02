@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coverage line-rate="0.6175999999999999" branch-rate="0.625" version="1.9" timestamp="1772481760" lines-covered="63" lines-valid="102" branches-covered="10" branches-valid="16">
+  <sources>
+    <source>C:\Users\Noll\source\repos\Ares-Nexus\Solution\</source>
+  </sources>
+  <packages>
+    <package name="AresNexus.Settlement.Domain" line-rate="0.6296" branch-rate="0.6" complexity="46">
+      <classes>
+        <class name="AresNexus.Settlement.Domain.Money" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Money.cs" line-rate="0.68" branch-rate="0.5" complexity="10">
+          <methods>
+            <method name="get_Amount" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="11" hits="32" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Currency" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="13" hits="29" branch="False" />
+              </lines>
+            </method>
+            <method name="op_Addition" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="0.6666" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="43" hits="3" branch="False" />
+                <line number="44" hits="3" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="20" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="45" hits="0" branch="False" />
+                <line number="46" hits="0" branch="False" />
+                <line number="49" hits="3" branch="False" />
+                <line number="50" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="op_Subtraction" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="0.6666" branch-rate="0.5" complexity="2">
+              <lines>
+                <line number="59" hits="1" branch="False" />
+                <line number="60" hits="1" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="20" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="61" hits="0" branch="False" />
+                <line number="62" hits="0" branch="False" />
+                <line number="65" hits="1" branch="False" />
+                <line number="66" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Decimal,System.String)" line-rate="0.6363" branch-rate="0.5" complexity="4">
+              <lines>
+                <line number="20" hits="17" branch="False" />
+                <line number="21" hits="17" branch="False" />
+                <line number="22" hits="17" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="21" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="23" hits="0" branch="False" />
+                <line number="24" hits="0" branch="False" />
+                <line number="27" hits="17" branch="True" condition-coverage="50% (1/2)">
+                  <conditions>
+                    <condition number="48" type="jump" coverage="50%" />
+                  </conditions>
+                </line>
+                <line number="28" hits="0" branch="False" />
+                <line number="29" hits="0" branch="False" />
+                <line number="32" hits="17" branch="False" />
+                <line number="33" hits="17" branch="False" />
+                <line number="34" hits="17" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="11" hits="32" branch="False" />
+            <line number="13" hits="29" branch="False" />
+            <line number="43" hits="3" branch="False" />
+            <line number="44" hits="3" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="20" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="45" hits="0" branch="False" />
+            <line number="46" hits="0" branch="False" />
+            <line number="49" hits="3" branch="False" />
+            <line number="50" hits="3" branch="False" />
+            <line number="59" hits="1" branch="False" />
+            <line number="60" hits="1" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="20" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="61" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="65" hits="1" branch="False" />
+            <line number="66" hits="1" branch="False" />
+            <line number="20" hits="17" branch="False" />
+            <line number="21" hits="17" branch="False" />
+            <line number="22" hits="17" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="21" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="23" hits="0" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="27" hits="17" branch="True" condition-coverage="50% (1/2)">
+              <conditions>
+                <condition number="48" type="jump" coverage="50%" />
+              </conditions>
+            </line>
+            <line number="28" hits="0" branch="False" />
+            <line number="29" hits="0" branch="False" />
+            <line number="32" hits="17" branch="False" />
+            <line number="33" hits="17" branch="False" />
+            <line number="34" hits="17" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.AccountCreatedEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="0.5714" branch-rate="1" complexity="7">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="15" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="16" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="17" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="18" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="20" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.String,System.Guid,System.DateTime,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="15" hits="4" branch="False" />
+            <line number="16" hits="4" branch="False" />
+            <line number="17" hits="0" branch="False" />
+            <line number="18" hits="0" branch="False" />
+            <line number="19" hits="0" branch="False" />
+            <line number="20" hits="4" branch="False" />
+            <line number="14" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.FundsDepositedEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="0.375" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="33" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="34" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="35" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="36" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="37" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="38" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="32" hits="3" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="33" hits="0" branch="False" />
+            <line number="34" hits="3" branch="False" />
+            <line number="35" hits="0" branch="False" />
+            <line number="36" hits="0" branch="False" />
+            <line number="37" hits="0" branch="False" />
+            <line number="38" hits="0" branch="False" />
+            <line number="39" hits="3" branch="False" />
+            <line number="32" hits="3" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="0.375" branch-rate="1" complexity="8">
+          <methods>
+            <method name="get_AccountId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="52" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="53" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="get_EventId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="54" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_OccurredOn" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Reference" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="56" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_TraceId" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="57" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="58" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="51" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="52" hits="0" branch="False" />
+            <line number="53" hits="1" branch="False" />
+            <line number="54" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="56" hits="0" branch="False" />
+            <line number="57" hits="0" branch="False" />
+            <line number="58" hits="1" branch="False" />
+            <line number="51" hits="1" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Aggregates.Account" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Aggregates\Account.cs" line-rate="0.75" branch-rate="1" complexity="12">
+          <methods>
+            <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="14" hits="9" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Balance" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="19" hits="21" branch="False" />
+              </lines>
+            </method>
+            <method name="Deposit" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="42" hits="3" branch="False" />
+                <line number="43" hits="3" branch="False" />
+                <line number="44" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="Withdraw" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="2">
+              <lines>
+                <line number="50" hits="2" branch="False" />
+                <line number="51" hits="3" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="25" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="52" hits="1" branch="False" />
+                <line number="53" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name="CreateSnapshot" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="63" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="LoadFromSnapshot" signature="(AresNexus.Settlement.Domain.Aggregates.Account/Snapshot)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+                <line number="71" hits="0" branch="False" />
+                <line number="72" hits="0" branch="False" />
+                <line number="73" hits="0" branch="False" />
+                <line number="74" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="80" hits="4" branch="False" />
+                <line number="81" hits="4" branch="False" />
+                <line number="82" hits="4" branch="False" />
+                <line number="83" hits="4" branch="False" />
+                <line number="84" hits="4" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="90" hits="3" branch="False" />
+                <line number="91" hits="3" branch="False" />
+                <line number="92" hits="3" branch="False" />
+              </lines>
+            </method>
+            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="98" hits="1" branch="False" />
+                <line number="99" hits="1" branch="False" />
+                <line number="100" hits="1" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="24" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="(System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="29" hits="4" branch="False" />
+                <line number="30" hits="4" branch="False" />
+                <line number="31" hits="4" branch="False" />
+                <line number="32" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="14" hits="9" branch="False" />
+            <line number="19" hits="21" branch="False" />
+            <line number="42" hits="3" branch="False" />
+            <line number="43" hits="3" branch="False" />
+            <line number="44" hits="3" branch="False" />
+            <line number="50" hits="2" branch="False" />
+            <line number="51" hits="3" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="25" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="52" hits="1" branch="False" />
+            <line number="53" hits="1" branch="False" />
+            <line number="63" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="71" hits="0" branch="False" />
+            <line number="72" hits="0" branch="False" />
+            <line number="73" hits="0" branch="False" />
+            <line number="74" hits="0" branch="False" />
+            <line number="80" hits="4" branch="False" />
+            <line number="81" hits="4" branch="False" />
+            <line number="82" hits="4" branch="False" />
+            <line number="83" hits="4" branch="False" />
+            <line number="84" hits="4" branch="False" />
+            <line number="90" hits="3" branch="False" />
+            <line number="91" hits="3" branch="False" />
+            <line number="92" hits="3" branch="False" />
+            <line number="98" hits="1" branch="False" />
+            <line number="99" hits="1" branch="False" />
+            <line number="100" hits="1" branch="False" />
+            <line number="24" hits="0" branch="False" />
+            <line number="29" hits="4" branch="False" />
+            <line number="30" hits="4" branch="False" />
+            <line number="31" hits="4" branch="False" />
+            <line number="32" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Settlement.Domain.Aggregates.Account/Snapshot" filename="apps\settlement-core\src\AresNexus.Settlement.Domain\Aggregates\Account.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="58" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="58" hits="0" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="AresNexus.Shared.Kernel" line-rate="0.5714" branch-rate="0.6666" complexity="13">
+      <classes>
+        <class name="AresNexus.Shared.Kernel.AggregateRoot" filename="shared\src\AresNexus.Shared.Kernel\AggregateRoot.cs" line-rate="0.6" branch-rate="0.6666" complexity="12">
+          <methods>
+            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="39" hits="9" branch="False" />
+              </lines>
+            </method>
+            <method name="get_Version" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="44" hits="20" branch="False" />
+              </lines>
+            </method>
+            <method name="GetUncommittedChanges" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="50" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="MarkChangesAsCommitted" signature="()" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="55" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="LoadsFromHistory" signature="(System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;)" line-rate="0" branch-rate="0" complexity="2">
+              <lines>
+                <line number="62" hits="0" branch="False" />
+                <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+                  <conditions>
+                    <condition number="35" type="jump" coverage="0%" />
+                  </conditions>
+                </line>
+                <line number="67" hits="0" branch="False" />
+                <line number="68" hits="0" branch="False" />
+                <line number="69" hits="0" branch="False" />
+                <line number="70" hits="0" branch="False" />
+              </lines>
+            </method>
+            <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent)" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="76" hits="8" branch="False" />
+              </lines>
+            </method>
+            <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent,System.Boolean)" line-rate="1" branch-rate="1" complexity="4">
+              <lines>
+                <line number="79" hits="8" branch="False" />
+                <line number="80" hits="8" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="6" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="82" hits="8" branch="True" condition-coverage="100% (2/2)">
+                  <conditions>
+                    <condition number="98" type="jump" coverage="100%" />
+                  </conditions>
+                </line>
+                <line number="83" hits="8" branch="False" />
+                <line number="84" hits="8" branch="False" />
+                <line number="85" hits="8" branch="False" />
+                <line number="87" hits="8" branch="False" />
+                <line number="88" hits="8" branch="False" />
+              </lines>
+            </method>
+            <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
+              <lines>
+                <line number="34" hits="4" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="39" hits="9" branch="False" />
+            <line number="44" hits="20" branch="False" />
+            <line number="50" hits="0" branch="False" />
+            <line number="55" hits="0" branch="False" />
+            <line number="62" hits="0" branch="False" />
+            <line number="66" hits="0" branch="True" condition-coverage="0% (0/2)">
+              <conditions>
+                <condition number="35" type="jump" coverage="0%" />
+              </conditions>
+            </line>
+            <line number="67" hits="0" branch="False" />
+            <line number="68" hits="0" branch="False" />
+            <line number="69" hits="0" branch="False" />
+            <line number="70" hits="0" branch="False" />
+            <line number="76" hits="8" branch="False" />
+            <line number="79" hits="8" branch="False" />
+            <line number="80" hits="8" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="6" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="82" hits="8" branch="True" condition-coverage="100% (2/2)">
+              <conditions>
+                <condition number="98" type="jump" coverage="100%" />
+              </conditions>
+            </line>
+            <line number="83" hits="8" branch="False" />
+            <line number="84" hits="8" branch="False" />
+            <line number="85" hits="8" branch="False" />
+            <line number="87" hits="8" branch="False" />
+            <line number="88" hits="8" branch="False" />
+            <line number="34" hits="4" branch="False" />
+          </lines>
+        </class>
+        <class name="AresNexus.Shared.Kernel.PrivateReflectionDynamicObjectExtensions" filename="shared\src\AresNexus.Shared.Kernel\AggregateRoot.cs" line-rate="0" branch-rate="1" complexity="1">
+          <methods>
+            <method name="AsDynamic" signature="(System.Object)" line-rate="0" branch-rate="1" complexity="1">
+              <lines>
+                <line number="99" hits="0" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="99" hits="0" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
