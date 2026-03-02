@@ -8,7 +8,6 @@ using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using AresNexus.Settlement.Infrastructure.Repositories;
-using AresNexus.Settlement.Infrastructure.Services;
 using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
@@ -43,15 +42,10 @@ var meter = new Meter("AresNexus.Settlement", "1.0.0");
 builder.Services.AddSingleton(meter);
 
 // Options configuration with validation
-var serviceBusOptionsBuilder = builder.Services.AddOptions<ServiceBusOptions>()
+builder.Services.AddOptions<ServiceBusOptions>()
     .Bind(builder.Configuration.GetSection("ServiceBus"))
-    .Validate(o => !string.IsNullOrWhiteSpace(o.ConnectionString), "ServiceBus:ConnectionString is required");
-
-// Only enforce ValidateOnStart in Production to avoid failing local/dev Swagger startup
-if (builder.Environment.IsProduction())
-{
-    serviceBusOptionsBuilder.ValidateOnStart();
-}
+    .Validate(o => !string.IsNullOrWhiteSpace(o.ConnectionString), "ServiceBus:ConnectionString is required")
+    .ValidateOnStart();
 
 // Health checks
 builder.Services.AddHealthChecks();
@@ -123,8 +117,6 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandIdempo
 
 builder.Services.AddScoped<IEventStore, MartenEventStore>();
 builder.Services.AddScoped<IAccountRepository, MartenAccountRepository>();
-builder.Services.AddScoped<IIdempotencyService, IdempotencyService>();
-builder.Services.AddScoped<ISettlementService, SettlementService>();
 
 // Redis-based Idempotency Store
 builder.Services.AddStackExchangeRedisCache(options =>

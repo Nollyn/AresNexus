@@ -12,14 +12,6 @@ NUM_REQUESTS=$((50 + RANDOM % 51)) # 50-100 requests
 
 echo "Starting high-impact demo: Sending $NUM_REQUESTS requests to $API_URL..."
 
-# Check if jq is installed
-if ! command -v jq &> /dev/null; then
-    echo "Warning: jq is not installed. Using fallback (no JSON manipulation)."
-    JQ_AVAILABLE=false
-else
-    JQ_AVAILABLE=true
-fi
-
 for ((i=1; i<=NUM_REQUESTS; i++)); do
     # Select a random payload file
     FILE=${FILES[$RANDOM % ${#FILES[@]}]}
@@ -29,30 +21,14 @@ for ((i=1; i<=NUM_REQUESTS; i++)); do
     TRACE_ID="trace-$i-$RANDOM"
     CORR_ID="corr-$i-$RANDOM"
 
-    # Manipulate payload
-    if [ "$JQ_AVAILABLE" = true ]; then
-        # Simulate 5% error rate by sending an invalid amount (-100)
-        if (( RANDOM % 100 < 5 )); then
-            echo "Simulating error for request $i..."
-            PAYLOAD=$(jq --arg id "$IDEMPOTENCY_KEY" --arg trace "$TRACE_ID" --arg corr "$CORR_ID" \
-                      '.IdempotencyKey = $id | .TraceId = $trace | .CorrelationId = $corr | .Money.Amount = -100' "$FILE")
-        else
-            PAYLOAD=$(jq --arg id "$IDEMPOTENCY_KEY" --arg trace "$TRACE_ID" --arg corr "$CORR_ID" \
-                      '.IdempotencyKey = $id | .TraceId = $trace | .CorrelationId = $corr' "$FILE")
-        fi
+    # Simulate 5% error rate by sending an invalid amount (-100)
+    if (( RANDOM % 100 < 5 )); then
+        echo "Simulating error for request $i..."
+        PAYLOAD=$(jq --arg id "$IDEMPOTENCY_KEY" --arg trace "$TRACE_ID" --arg corr "$CORR_ID" \
+                  '.IdempotencyKey = $id | .TraceId = $trace | .CorrelationId = $corr | .Money.Amount = -100' "$FILE")
     else
-        # Fallback using sed for basic replacement (optional but good for a demo)
-        # We replace the values for IdempotencyKey, TraceId and CorrelationId.
-        # This is a very simple sed and might be fragile if JSON format varies widely.
-        PAYLOAD=$(cat "$FILE" | \
-                  sed "s/\"IdempotencyKey\": \".*\"/\"IdempotencyKey\": \"$IDEMPOTENCY_KEY\"/" | \
-                  sed "s/\"TraceId\": \".*\"/\"TraceId\": \"$TRACE_ID\"/" | \
-                  sed "s/\"CorrelationId\": \".*\"/\"CorrelationId\": \"$CORR_ID\"/")
-        
-        if (( RANDOM % 100 < 5 )); then
-            echo "Simulating error for request $i (fallback mode)..."
-            PAYLOAD=$(echo "$PAYLOAD" | sed 's/"Amount": [0-9.]*/"Amount": -100/')
-        fi
+        PAYLOAD=$(jq --arg id "$IDEMPOTENCY_KEY" --arg trace "$TRACE_ID" --arg corr "$CORR_ID" \
+                  '.IdempotencyKey = $id | .TraceId = $trace | .CorrelationId = $corr' "$FILE")
     fi
 
     # Send request
