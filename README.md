@@ -1,7 +1,7 @@
 ﻿# Ares-Nexus
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple)](https://dotnet.microsoft.com/)
-[![Architecture](https://img.shields.io/badge/Architecture-Clean_Architecture_%7C_DDD-green)](https://en.wikipedia.org/wiki/Domain-driven_design)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean_Architecture_%7C_DDD-darkgreen)](https://en.wikipedia.org/wiki/Domain-driven_design)
 [![Pattern](https://img.shields.io/badge/Pattern-Event_Sourcing-darkred)](https://martinfowler.com/eaaDev/EventSourcing.html)
 [![Orchestration](https://img.shields.io/badge/Orchestration-Kubernetes-blue)](https://kubernetes.io/)
 [![Compliance](https://img.shields.io/badge/Compliance-FINMA%20%2F%20DORA-red)](https://www.finma.ch/en/)
@@ -11,6 +11,10 @@ Welcome to the Ares-Nexus solution. This project is a robust, event-driven settl
 ## Overview
 
 Ares-Nexus is designed to handle complex settlement processes with a focus on scalability, resilience, and domain-driven design (DDD). It utilizes event sourcing to maintain a complete history of all account-related activities.
+
+## Architecture Choice
+
+This project utilizes Minimal APIs (.NET 10) to minimize vertical overhead and leverage the latest performance optimizations of the Kestrel server, moving away from the traditional Mvc/Controller pattern for a leaner, high-throughput execution.
 
 ## Project Structure
 

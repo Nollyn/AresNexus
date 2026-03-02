@@ -15,6 +15,7 @@ using JasperFx;
 using Marten;
 using MediatR;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -118,12 +119,8 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandIdempo
 builder.Services.AddScoped<IEventStore, MartenEventStore>();
 builder.Services.AddScoped<IAccountRepository, MartenAccountRepository>();
 
-// Redis-based Idempotency Store
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379";
-    options.InstanceName = "AresNexus:";
-});
+// Distributed Memory Cache (Fallback for local dev)
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IIdempotencyStore, RedisIdempotencyStore>();
 
 builder.Services.AddHttpClient("ResilientClient")
@@ -158,13 +155,20 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Enable OpenTelemetry Prometheus Scraping Endpoint early
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
-
-// Global Exception Handling
+// Task 2: Pipeline Order (Switzerland-compliant)
+// 1. Exception handling (Resilience)
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
-// Task 3: Visual Entrance (Swagger UI enabled)
+// 2. OpenTelemetry Prometheus (Before Routing)
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
+
+// 3. Routing
+app.UseRouting();
+
+// 4. Rate Limiting
+app.UseRateLimiter();
+
+// 5. Swagger & Scalar (Documenting)
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -174,18 +178,22 @@ app.UseSwaggerUI(options =>
 app.MapOpenApi();
 app.MapScalarApiReference();
 
-app.UseRateLimiter();
-
-app.MapGet("/health", () => Results.Ok(new { status = "UP" }));
-app.MapGet("/health/live", () => Results.Ok(new { status = "LIVE" }));
-app.MapGet("/health/ready", () => Results.Ok(new { status = "READY" }));
+app.MapGet("/health", () => Results.Ok(new { status = "UP" }))
+    .WithName("GetHealth")
+    .WithOpenApi();
+app.MapGet("/health/live", () => Results.Ok(new { status = "LIVE" }))
+    .WithName("GetHealthLive")
+    .WithOpenApi();
+app.MapGet("/health/ready", () => Results.Ok(new { status = "READY" }))
+    .WithName("GetHealthReady")
+    .WithOpenApi();
 
 var versionSet = app.NewApiVersionSet()
     .HasApiVersion(new ApiVersion(1, 0))
     .ReportApiVersions()
     .Build();
 
-app.MapPost("/api/v{version:apiVersion}/transactions", async (HttpContext context, ProcessTransactionCommand cmd, IValidator<ProcessTransactionCommand> validator, ISender mediator) =>
+app.MapPost("/api/v1/transactions", async (HttpContext context, ProcessTransactionCommand cmd, [FromServices] IValidator<ProcessTransactionCommand> validator, [FromServices] ISender mediator, [FromServices] IIdempotencyStore idempotencyStore) =>
 {
     // Distributed Tracing requirement #3: Ensure every Command and Event carries a TraceId and CorrelationId.
     var traceId = context.Request.Headers["X-Trace-Id"].FirstOrDefault() ?? context.TraceIdentifier;
@@ -211,11 +219,13 @@ app.MapPost("/api/v{version:apiVersion}/transactions", async (HttpContext contex
     }
 
     var ok = await mediator.Send(cmd);
-    return ok ? Results.Accepted($"/api/v1/transactions/{cmd.AccountId}") : Results.BadRequest();
+    return ok ? Results.Created($"/api/v1/transactions/{cmd.AccountId}", new { status = "PROCESSED" }) : Results.BadRequest();
 })
 .RequireRateLimiting("HighRisk")
-.WithApiVersionSet(versionSet)
-.MapToApiVersion(1.0);
+.Produces<object>(StatusCodes.Status201Created)
+.ProducesProblem(StatusCodes.Status400BadRequest)
+.WithName("ProcessTransaction")
+.WithOpenApi();
 
 app.Run();
 
