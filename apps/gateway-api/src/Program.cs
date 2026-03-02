@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -12,6 +15,17 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+// OpenTelemetry configuration
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(r => r.AddService("AresNexus.Gateway.Api"))
+    .WithTracing(t => t.AddAspNetCoreInstrumentation()
+                       .AddHttpClientInstrumentation()
+                       .AddConsoleExporter())
+    .WithMetrics(m => m.AddAspNetCoreInstrumentation()
+                       .AddRuntimeInstrumentation()
+                       .AddProcessInstrumentation()
+                       .AddPrometheusExporter());
 
 // Add services to the container.
 builder.Services.AddHealthChecks();
@@ -41,6 +55,10 @@ builder.Services.AddHttpClient("ComplianceBridge")
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+// 1. OpenTelemetry Prometheus (Before Routing)
+app.UseOpenTelemetryPrometheusScrapingEndpoint("/metrics");
+
+// 2. Swagger & Scalar (Documenting)
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {

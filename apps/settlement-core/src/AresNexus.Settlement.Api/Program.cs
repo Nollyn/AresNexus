@@ -3,27 +3,24 @@ using System.Reflection;
 using System.Threading.RateLimiting;
 using AresNexus.Settlement.Api;
 using AresNexus.Settlement.Application.Commands;
-using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
+using AresNexus.Settlement.Infrastructure.Logging;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using AresNexus.Settlement.Infrastructure.Repositories;
 using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
 using JasperFx;
-using Marten;
 using MediatR;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Scalar.AspNetCore;
 using Serilog;
 using Serilog.Formatting.Compact;
-
-using AresNexus.Settlement.Infrastructure.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,7 +157,7 @@ var app = builder.Build();
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 // 2. OpenTelemetry Prometheus (Before Routing)
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
+app.UseOpenTelemetryPrometheusScrapingEndpoint("/metrics");
 
 // 3. Routing
 app.UseRouting();
@@ -188,7 +185,7 @@ app.MapGet("/health/ready", () => Results.Ok(new { status = "READY" }))
     .WithName("GetHealthReady")
     .WithOpenApi();
 
-var versionSet = app.NewApiVersionSet()
+app.NewApiVersionSet()
     .HasApiVersion(new ApiVersion(1, 0))
     .ReportApiVersions()
     .Build();
@@ -199,7 +196,7 @@ app.MapPost("/api/v1/transactions", async (HttpContext context, ProcessTransacti
     var traceId = context.Request.Headers["X-Trace-Id"].FirstOrDefault() ?? context.TraceIdentifier;
     var correlationId = context.Request.Headers["X-Correlation-Id"].FirstOrDefault() ?? Guid.NewGuid().ToString();
 
-    // Extract Idempotency-Key from header if present
+    // Extract Idempotency-Key from a header if present
     if (context.Request.Headers.TryGetValue("Idempotency-Key", out var headerKey) && Guid.TryParse(headerKey, out var idempotencyGuid))
     {
         cmd = cmd with { IdempotencyKey = idempotencyGuid };
