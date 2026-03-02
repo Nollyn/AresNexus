@@ -8,9 +8,20 @@ namespace AresNexus.Settlement.Infrastructure.Security;
 /// <summary>
 /// PII Encryption Service using AES-256 for Zurich Compliance.
 /// </summary>
-public sealed class PiiEncryptionService(IConfiguration configuration) : IEncryptionService
+public sealed class PiiEncryptionService : IEncryptionService
 {
-    private readonly byte[] _key = Encoding.UTF8.GetBytes((configuration["Security:EncryptionKey"] ?? "SwissBankingSecretKey2026!AresNexus").PadRight(32)[..32]);
+    private readonly byte[] _key;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PiiEncryptionService"/> class.
+    /// </summary>
+    /// <param name="secretManager">The secret manager to load the encryption key from.</param>
+    public PiiEncryptionService(ISecretManager secretManager)
+    {
+        var keyString = secretManager.GetSecretAsync("Security:EncryptionKey").GetAwaiter().GetResult() 
+                        ?? "SwissBankingSecretKey2026!AresNexus";
+        _key = Encoding.UTF8.GetBytes(keyString.PadRight(32)[..32]);
+    }
 
     /// <inheritdoc />
     public async Task<string> EncryptAsync(string plainText)

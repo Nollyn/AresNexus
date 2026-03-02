@@ -12,6 +12,11 @@
   <Folder Name="/apps/settlement-core/test/">
     <Project Path="apps/settlement-core/test/AresNexus.Settlement.Tests/AresNexus.Settlement.Tests.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AresNexus.Tests.Unit/AresNexus.Tests.Unit.csproj" />
+    <Project Path="tests/AresNexus.Tests.Integration/AresNexus.Tests.Integration.csproj" />
+    <Project Path="tests/AresNexus.Tests.Architecture/AresNexus.Tests.Architecture.csproj" />
+  </Folder>
   <Folder Name="/shared/" />
   <Folder Name="/shared/src/">
     <Project Path="shared/src/AresNexus.Shared.Kernel/AresNexus.Shared.Kernel.csproj" />
@@ -23,6 +28,7 @@
     <File Path="docs/04-visual-architecture-c4.md" />
     <File Path="docs/05-resilience-and-scalability.md" />
     <File Path="docs/06-implementation-plan.md" />
+    <File Path="docs/06-performance-report.md" />
     <File Path="docs/07-infrastructure-as-code-manifest.md" />
     <File Path="docs/10-portfolio-summary.md" />
     <File Path="docs/14-advanced-resilience.md" />

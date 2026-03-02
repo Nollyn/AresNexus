@@ -24,11 +24,10 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                 var publisher = scope.ServiceProvider.GetRequiredService<IOutboxPublisher>();
                 var session = scope.ServiceProvider.GetRequiredService<IDocumentSession>();
 
-                // Use Marten Advisory Lock to ensure only one worker processes at a time
-                // We use the IDocumentSession to manage the unit of work
-                // Advisory locks are transaction-level, so we start a transaction
-                using var tx = await session.Connection.BeginTransactionAsync(stoppingToken);
-                using (var cmd = new NpgsqlCommand("SELECT pg_advisory_xact_lock(12345);", session.Connection, tx))
+                // Use Marten Advisory Lock to ensure only one worker processes at a time.
+                // We use the IDocumentSession's internal connection but avoid starting a manual transaction
+                // as Marten sessions already manage the connection state.
+                using (var cmd = new NpgsqlCommand("SELECT pg_advisory_xact_lock(12345);", (NpgsqlConnection)session.Connection))
                 {
                     await cmd.ExecuteNonQueryAsync(stoppingToken);
                 }
@@ -42,7 +41,6 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
 
                 if (messages.Count == 0)
                 {
-                    await tx.CommitAsync(stoppingToken);
                     await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
                     continue;
                 }
@@ -58,7 +56,6 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
                 }
                 
                 await session.SaveChangesAsync(stoppingToken); 
-                await tx.CommitAsync(stoppingToken); // releases the transaction-level advisory lock
                 logger.LogInformation("Successfully processed batch of {Count} outbox messages", messages.Count);
             }
             catch (Exception ex)

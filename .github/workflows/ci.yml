@@ -25,4 +25,32 @@ jobs:
       run: dotnet build AresNexus.slnx --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test AresNexus.slnx --configuration Release --no-build --verbosity normal
+      run: dotnet test AresNexus.slnx --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+
+    - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-Action@v5
+      with:
+        reports: 'coverage/**/coverage.cobertura.xml'
+        targetdir: 'coveragereport'
+        reporttypes: 'HtmlInline;Cobertura'
+
+    - name: Check Coverage
+      shell: pwsh
+      run: |
+        [xml]$xml = Get-Content coveragereport/Cobertura.xml
+        $coverage = [double]$xml.coverage.'line-rate' * 100
+        Write-Host "Code Coverage: $coverage%"
+        if ($coverage -lt 80) {
+          Write-Error "Code coverage is below 80% ($coverage%)"
+          exit 1
+        }
+
+    - name: Trivy Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'aresnexus-settlement:latest'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'

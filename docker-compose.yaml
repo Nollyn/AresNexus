@@ -54,6 +54,7 @@
       - ConnectionStrings__PostgreSQL=Host=postgres-eventstore;Database=AresNexus;Username=postgres;Password=password123
       - ConnectionStrings__Redis=redis:6379
       - ServiceBus__ConnectionString=Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock
+      - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
     depends_on:
       postgres-eventstore:
         condition: service_healthy

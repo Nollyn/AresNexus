@@ -35,9 +35,11 @@ builder.Host.UseSerilog();
 
 // Custom Metrics
 var meter = new Meter("AresNexus.Settlement", "1.0.0");
-
-// Add metrics to DI for use in handlers/controllers
 builder.Services.AddSingleton(meter);
+
+// Create counters at startup to ensure they are registered with the meter
+meter.CreateCounter<long>("settlement_total_count");
+meter.CreateHistogram<double>("settlement_processing_seconds");
 
 // Options configuration with validation
 builder.Services.AddOptions<ServiceBusOptions>()
@@ -98,6 +100,9 @@ builder.Services.AddOpenTelemetry()
                        .AddRuntimeInstrumentation()
                        .AddProcessInstrumentation()
                        .AddMeter("AresNexus.Settlement")
+                       .AddMeter("AresNexus.Shared.Kernel")
+                       .AddMeter("Microsoft.AspNetCore.Hosting")
+                       .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
                        .AddPrometheusExporter());
 
 // MediatR + Validators
@@ -122,6 +127,18 @@ builder.Services.AddSingleton<IIdempotencyStore, RedisIdempotencyStore>();
 
 builder.Services.AddHttpClient("ResilientClient")
     .AddStandardResilienceHandler();
+
+// Secret Management requirement #4: Infrastructure project to support Azure Key Vault for production environments
+// (use a SecretManager abstraction so it uses UserSecrets in Dev)
+// Force DevSecretManager in Docker to avoid needing real Azure Key Vault URI
+if (builder.Environment.IsProduction() && !string.IsNullOrEmpty(builder.Configuration["AzureKeyVault:Uri"]))
+{
+    builder.Services.AddSingleton<ISecretManager, AzureKeyVaultSecretManager>();
+}
+else
+{
+    builder.Services.AddSingleton<ISecretManager, DevSecretManager>();
+}
 
 builder.Services.AddSingleton<IKeyVaultClient, MockKeyVaultClient>();
 builder.Services.AddSingleton<IEventUpcaster, MoneyDeposited_v1_to_v2_Upcaster>();
