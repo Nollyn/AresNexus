@@ -1,0 +1,31 @@
+﻿# Kubernetes PodDisruptionBudget and Chaos experiment for pod failure
+# Requires: Kubernetes cluster; optional Chaos Mesh installed for PodChaos
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: settlement-core-pdb
+  namespace: ares
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: settlement-core
+---
+# If Chaos Mesh is available, this experiment will randomly kill one pod every minute for 5 minutes
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: settlement-core-pod-kill
+  namespace: ares
+spec:
+  action: pod-kill
+  mode: one
+  selector:
+    namespaces:
+      - ares
+    labelSelectors:
+      app: settlement-core
+  scheduler:
+    cron: '@every 1m'
+  duration: '5m'

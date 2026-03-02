@@ -24,10 +24,14 @@
   <Folder Name="/docs/">
     <File Path="docs/01-strategic-vision.md" />
     <File Path="docs/02-adr-001-event-sourcing.md" />
+    <File Path="docs/02-adr-002-storage-marten-vs-eventstoredb.md" />
+    <File Path="docs/02-adr-003-messaging-rabbitmq-vs-kafka.md" />
+    <File Path="docs/02-adr-004-apis-minimal-vs-controllers.md" />
     <File Path="docs/03-architecture-definition.md" />
     <File Path="docs/04-visual-architecture-c4.md" />
     <File Path="docs/05-resilience-and-scalability.md" />
     <File Path="docs/06-implementation-plan.md" />
+    <File Path="docs/06-performance-benchmarks.md" />
     <File Path="docs/06-performance-report.md" />
     <File Path="docs/07-infrastructure-as-code-manifest.md" />
     <File Path="docs/10-portfolio-summary.md" />

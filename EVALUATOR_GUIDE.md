@@ -75,5 +75,37 @@ The following files describe how AresNexus meets the 2026 DORA requirements:
 - `/docs/14-operational-resilience-dora.md`: Detailed mapping of patterns to regulatory requirements.
 - `README.md`: High-level overview of the resilience strategy.
 
+## 7. How to Verify 99.99% Availability
+This exercise demonstrates resilience during a simulated node/pod failure with zero message loss.
+
+Prerequisites:
+- Deployment has ≥3 replicas with label `app=settlement-core`.
+- `infrastructure/chaos/pod-failure.yaml` applied (PDB + optional Chaos Mesh PodChaos).
+
+Steps:
+1. Start a stress load:
+   ```bash
+   ./benchmarks/load-test.sh stress
+   ```
+2. In another terminal, simulate failure (any one):
+   - If Chaos Mesh installed (recommended):
+     ```bash
+     kubectl apply -f infrastructure/chaos/pod-failure.yaml
+     ```
+   - Manual kill one replica:
+     ```bash
+     kubectl delete pod -l app=settlement-core --field-selector=status.phase=Running --grace-period=0 --force --namespace ares --limit=1
+     ```
+3. Observe in Grafana:
+   - Request success rate remains ≥ 99.99%.
+   - p99 latency remains < 50ms after brief spike.
+   - Outbox backlog remains bounded and returns to baseline.
+4. Verify zero data loss:
+   - Compare total events persisted (Marten) vs. messages delivered (RabbitMQ) — counts align.
+
+Why it works:
+- The PodDisruptionBudget enforces at least 2 pods available at all times, preventing total unavailability during voluntary disruptions and most node failures.
+- Readiness/Liveness probes and idempotent handlers ensure rapid failover and safe retries.
+
 ---
 **Audit Note:** All containers run as non-root users using .NET 10 Chiseled images to minimize the attack surface, in accordance with Swiss banking security standards.
