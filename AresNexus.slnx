@@ -31,9 +31,11 @@
     <File Path="docs/04-visual-architecture-c4.md" />
     <File Path="docs/05-resilience-and-scalability.md" />
     <File Path="docs/06-implementation-plan.md" />
+    <File Path="docs/06-performance-and-sla.md" />
     <File Path="docs/06-performance-benchmarks.md" />
     <File Path="docs/06-performance-report.md" />
     <File Path="docs/07-infrastructure-as-code-manifest.md" />
+    <File Path="docs/07-regulatory-compliance-mapping.md" />
     <File Path="docs/10-portfolio-summary.md" />
     <File Path="docs/14-advanced-resilience.md" />
     <File Path="docs/14-operational-resilience-dora.md" />

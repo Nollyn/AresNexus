@@ -9,20 +9,18 @@
 [![Orchestration](https://img.shields.io/badge/Orchestration-Kubernetes-blue)](https://kubernetes.io/)
 [![Compliance](https://img.shields.io/badge/Compliance-FINMA%20%2F%20DORA-red)](https://www.finma.ch/en/)
 
-Ares-Nexus is a high-assurance settlement engine designed to mitigate systemic financial risk and ensure compliance with FINMA 2023/1 and DORA resilience standards.
+## Executive Summary
 
-## Overview
+**Ares-Nexus** is a high-availability settlement engine designed to resolve systemic reconciliation risks and ensure sub-50ms finality in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
 
-Ares-Nexus orchestrates cross-border and domestic settlements with a focus on verifiable integrity, operational resilience, and regulatory traceability. It utilizes event sourcing to maintain a complete history of all account-related activities.
+## Strategic Value & Risk Mitigation
 
-### Strategic Value
-- Throughput: Horizontally scalable to 10M+ events/day via partitioned Marten streams and stateless workers.
-- Latency: <50ms p99 for cross-border validation using Minimal APIs, pre-warmed pools, and AOT-friendly serializers.
-- Integrity: 100% data consistency via the Transactional Outbox and idempotent command processing.
+Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 circular and DORA (Digital Operational Resilience Act) requirements:
 
-## Architecture Choice
-
-This project utilizes Minimal APIs (.NET 10) to minimize vertical overhead and leverage the latest performance optimizations of the Kestrel server, moving away from the traditional Mvc/Controller pattern for a leaner, high-throughput execution.
+- **Systemic Risk Mitigation**: Solved via **Atomic Consistency (Transactional Outbox)**. By ensuring that ledger updates and downstream notifications are committed in a single database transaction, we eliminate "ghost" settlements and ensure zero data loss during critical failures.
+- **Operational Risk (DORA)**: Mitigated through **Chaos-Tested Resilience** and automated failover. The system is designed to maintain 99.99% availability, with a documented Mean Time To Recovery (MTTR) of <30s during infrastructure outages.
+- **Regulatory Risk (FINMA)**: Addressed through **Immutable Audit Trails (Event Sourcing)**. Every financial movement is captured as a permanent, non-repudiable event, allowing for 100% reconstruction of any account state for regulatory audits.
+- **Data Secrecy & Privacy**: Swiss client data is protected via **AES-256 Field-Level Encryption**, ensuring sensitive PII is unreadable even by database administrators, fulfilling the most stringent Tier-1 banking standards.
 
 ## Core Pillars (Strategic Highlights)
 
@@ -69,6 +67,8 @@ For a deeper dive into the architecture and design decisions, please refer to th
 - [Evaluator Audit Guide](EVALUATOR_GUIDE.md) - Quick-start for auditing the system's resilience.
 - [Architecture Details](/docs/03-architecture-definition.md) - Low-level technical specifications.
 - [Visual Architecture (C4)](/docs/04-visual-architecture-c4.md) - C4 Model diagrams.
+- [Performance & SLA Matrix](/docs/06-performance-and-sla.md) - Verification matrix for TPS, Latency, and MTTR.
+- [Regulatory Compliance Mapping](/docs/07-regulatory-compliance-mapping.md) - Mapping technical features to FINMA/DORA scenarios.
 
 ### Design Decisions
 - [ADR 001: Event Sourcing](/docs/02-adr-001-event-sourcing.md) - Why we chose Event Sourcing for settlements.

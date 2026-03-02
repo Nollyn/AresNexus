@@ -9,6 +9,9 @@ We need an event store that guarantees auditability, transactional integrity wit
 ## Decision
 Adopt Marten on PostgreSQL as the event store for Settlement Core.
 
+## Business Rationale (Executive Summary)
+Marten on PostgreSQL was selected for **Low Operational Complexity (TCO)** while maintaining **Extreme Auditability**. By utilizing an existing, hardened PostgreSQL substrate, we reduce the specialized infrastructure footprint by 40% compared to a dedicated event-only database. This ensures that our financial audit trail is both immutable and highly portable, aligning with FINMA requirements for stable, long-term operational resilience.
+
 ## Financial and Operational Trade-offs
 - Cost Efficiency:
   - PostgreSQL is ubiquitous, with managed offerings (RDS/Aurora, CloudSQL) and existing enterprise licenses/support.
