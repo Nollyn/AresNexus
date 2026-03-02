@@ -28,7 +28,7 @@ jobs:
       run: dotnet test AresNexus.slnx --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
 
     - name: ReportGenerator
-      uses: danielpalme/ReportGenerator-Action@v5
+      uses: danielpalme/reportgenerator-action@v5
       with:
         reports: 'coverage/**/coverage.cobertura.xml'
         targetdir: 'coveragereport'
