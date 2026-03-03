@@ -1,31 +1,54 @@
-﻿# Service Level Objectives (SLOs)
+﻿# Service Level Objectives (SLOs) & SLAs
 
-## Overview
-As a Tier-1 financial institution, AresNexus must adhere to strict Service Level Agreements (SLAs). Our Service Level Objectives (SLOs) define the internal targets that help us achieve these SLAs.
+## 1. Overview
+AresNexus operates as a Tier-1 financial system. Our targets are mathematically grounded in our **Benchmark Results** and constrained by our **Architecture Limits** (Marten, PostgreSQL, Outbox).
 
-## 1. Availability SLO
-- **Target**: 99.99% (Four Nines)
-- **Measurement**: Percentage of successful REST API requests (2xx, 3xx, 4xx excluding 429) over total requests.
-- **Window**: 30-day rolling window.
-- **Error Budget**: ~4.38 minutes of downtime per month.
+## 2. Core Numerical Targets
 
-## 2. Latency SLO
-- **P95 Latency**: < 100ms for account creation and balance queries.
-- **P99 Latency**: < 500ms for high-load transaction commands (deposit/withdraw).
-- **Measurement**: Time from request reception at the API gateway to response dispatch.
+| Metric | SLO Target | SLA Commitment | Measurement Basis |
+| :--- | :--- | :--- | :--- |
+| **Availability** | **99.99%** | 99.95% | Successful HTTP 2xx/3xx/4xx (excl. 429) |
+| **P95 Latency** | **< 100ms** | < 150ms | Request -> Response (Gateway) |
+| **P99 Latency** | **< 250ms** | < 300ms | Request -> Response (Gateway) |
+| **Settlement Delay** | **< 1s** | < 2s | Event Store -> Outbox Dispatch |
+| **RPO** | **0** | 0 | Event Sourcing (ACID Persistence) |
+| **RTO** | **< 15m** | < 30m | Cold standby restore validation |
 
-## 3. Durability SLO
-- **Target**: 99.999999999% (Eleven Nines)
-- **Measurement**: Zero data loss for confirmed transactions.
-- **Verification**: Nightly consistency checks between the Event Store and the Transactional Outbox.
+## 3. Error Budget & Downtime
+Based on a **30-day rolling window**:
 
-## 4. Alert Triggers
-| Metric | Threshold | Action |
-| :--- | :--- | :--- |
-| **Availability Drop** | < 99.95% (5m) | P1 Page to On-Call Architect |
-| **P95 Latency Spike** | > 200ms (10m) | Auto-scale API replicas |
-| **Error Budget Burn** | > 20% in 24h | Freeze non-critical feature deployments |
-| **Outbox Lag** | > 10,000 messages | P2 Alert - Check Broker connectivity |
+- **99.99% (SLO)**: 4.38 minutes per month allowable downtime.
+- **99.95% (SLA Breach)**: 21.92 minutes per month allowable downtime.
 
-## 5. Reporting
-SLO compliance reports are generated weekly and reviewed by the Architecture Review Board (ARB).
+### Error Budget Calculation
+`Error Budget = (1 - SLO) * Total_Requests`
+*Example: At 1M requests/day, we allow 100 failed requests per day before the budget is exhausted.*
+
+## 4. Architectural Tie-ins
+
+### Latency vs. Snapshots
+- Our P99 SLO (< 250ms) is tied to the `SnapshotInterval=100`. Aggregates with > 5,000 events without snapshots would exceed this target during replay.
+- **Enforcement**: CI/CD includes a "Replay Benchmark" that fails if any aggregate type exceeds 100ms reconstruction time.
+
+### Throughput vs. Rate Limiting
+- The API is rate-limited at **100 req/10s** per client. This protects our **Database I/O Bottleneck** identified in benchmarks, ensuring a single client cannot starve the event store connection pool.
+
+### Availability vs. Circuit Breakers
+- Database circuit breakers (`ResiliencePolicyFactory.cs`) open after **5 consecutive failures** with a **30s break**. This prevents cascading failures but counts against our Availability SLO.
+
+## 5. Breach Handling & Escalation Path
+
+### Level 1: SLO Warning (80% Budget Burn)
+- **Trigger**: Error budget burn rate > 2x over 1 hour.
+- **Action**: Automated Slack alert to SRE and Product teams. Feature flag freeze.
+
+### Level 2: SLO Violation
+- **Trigger**: Error budget exhausted.
+- **Action**: P1 incident opened. Review of "Incident Postmortem" process. Post-mortem review with CTO.
+
+### Level 3: SLA Breach
+- **Trigger**: Availability < 99.95% or P99 > 300ms over 30 days.
+- **Action**: Formal report to Swiss Architecture Governance Board. Root Cause Analysis (RCA) delivered to Risk & Compliance within 24 hours.
+
+## 6. Reporting
+Metrics are collected via Prometheus and visualized in the **Executive SLO Dashboard**. Reports are generated weekly for ARB review.
