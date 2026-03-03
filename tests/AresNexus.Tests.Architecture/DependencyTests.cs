@@ -40,7 +40,7 @@ public class DependencyTests
     }
 
     [Fact]
-    public void Domain_Should_Not_Have_Dependency_On_Api()
+    public void Domain_Should_Not_Have_Any_External_Dependencies()
     {
         // Arrange
         var domainAssembly = typeof(Account).Assembly;
@@ -48,10 +48,15 @@ public class DependencyTests
         // Act
         var result = Types.InAssembly(domainAssembly)
             .ShouldNot()
-            .HaveDependencyOn("AresNexus.Settlement.Api")
+            .HaveDependencyOnAny("AresNexus.Settlement.Infrastructure", 
+                                "AresNexus.Settlement.Application", 
+                                "AresNexus.Settlement.Api",
+                                "Microsoft.EntityFrameworkCore",
+                                "Newtonsoft.Json",
+                                "StackExchange.Redis")
             .GetResult();
 
         // Assert
-        result.IsSuccessful.Should().BeTrue("Domain should not depend on Api");
+        result.IsSuccessful.Should().BeTrue("Domain project must have zero external dependencies to mitigate substitution risk.");
     }
 }

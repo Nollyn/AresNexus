@@ -9,6 +9,11 @@ In Swiss Tier-1 Banking, "State-based" (CRUD) systems are insufficient for high-
 ## Decision
 We will implement **Event Sourcing** as the primary persistence pattern for the Settlement Core. Every financial transaction will be stored as an immutable sequence of events.
 
+## Business Rationale
+- **100% Audit Traceability**: Meets FINMA's most stringent requirements for "proven consistency," removing the need for expensive, error-prone reconciliation sub-systems.
+- **Systemic Risk Mitigation**: Eliminates "Dual-Write" fragility. The event *is* the state, ensuring the ledger and downstream reports are never out of sync.
+- **Operational Resilience**: Enables "Time-Travel" debugging and rapid state reconstruction, significantly reducing MTTR during complex production incidents.
+
 ## Consequences
 *   **Pros:**
     *   **Auditability:** Built-in, 100% accurate audit trail (FINMA requirement).

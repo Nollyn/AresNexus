@@ -11,7 +11,20 @@
 
 ## Executive Summary
 
-**Ares-Nexus** is a high-assurance settlement engine designed for **99.99% operational continuity** in regulated financial environments (**FINMA/DORA**). It is engineered to resolve systemic reconciliation risks and ensure sub-50ms finality in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
+**Ares-Nexus** is a high-assurance settlement engine designed to eliminate systemic reconciliation risks and ensure **99.99% operational continuity** in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
+
+## The Business Problem
+
+Current legacy settlement systems suffer from **"Dual-Write" fragility** and lack of granular auditability, leading to high capital requirements and regulatory friction. **Ares-Nexus** solves this via **Atomic Consistency** and **Immutable Event Sourcing**, ensuring that every financial instruction is either fully processed or safely rolled back, with a 100% verifiable audit trail.
+
+## SLA & Performance Matrix (Simulated Benchmarks)
+
+| Metric | Target | Verification Method |
+| :--- | :--- | :--- |
+| **Throughput** | 10,000 TPS (Transactions Per Second) sustained | k6 Load Test (`/benchmarks/load-test.sh`) |
+| **Latency** | p99 < 50ms for cross-border validation | OpenTelemetry Trace Analysis |
+| **MTTR (Resilience)** | < 30s recovery from Message Broker failure | Chaos Engineering Simulation (RabbitMQ Kill) |
+| **Data Loss** | Zero (0) data loss during system failure | Transactional Outbox + Event Store Integrity |
 
 ## Strategic Value & Risk Mitigation (Business Value Matrix)
 

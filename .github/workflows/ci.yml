@@ -34,14 +34,14 @@ jobs:
         targetdir: 'coveragereport'
         reporttypes: 'HtmlInline;Cobertura'
 
-    - name: Check Coverage
+    - name: Check Coverage (>80% Strategic Target)
       shell: pwsh
       run: |
         [xml]$xml = Get-Content coveragereport/Cobertura.xml
         $coverage = [double]$xml.coverage.'line-rate' * 100
         Write-Host "Code Coverage: $coverage%"
-        if ($coverage -lt 70) {
-          Write-Error "Code coverage is below 70% ($coverage%)"
+        if ($coverage -lt 80) {
+          Write-Error "Code coverage is below 80% ($coverage%) - Required for Ares-Nexus Tier-1 Assurance"
           exit 1
         }
 
