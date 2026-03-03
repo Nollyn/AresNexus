@@ -301,4 +301,19 @@ public class AccountTests
         m1.GetHashCode().Should().Be(m2.GetHashCode());
         m1.GetHashCode().Should().NotBe(m3.GetHashCode());
     }
+
+    [Fact]
+    public void LoadFromSnapshot_WithMismatchedVersion_ShouldThrow()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        account.Deposit(new Money(100)); // Version becomes 1
+        var snapshot = new Account.Snapshot(account.Id, "John Doe", new Money(200), false, 10);
+
+        // Act
+        var act = () => account.LoadFromSnapshot(snapshot);
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>().WithMessage("*version*");
+    }
 }

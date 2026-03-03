@@ -60,4 +60,24 @@ public class PiiEncryptionServiceTests
         // Assert
         result.Should().BeEmpty();
     }
+
+    [Fact]
+    public async Task Decrypt_EmptyString_ShouldReturnEmptyString()
+    {
+        // Act
+        var result = await _service.DecryptAsync(string.Empty);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task Encrypt_Null_ShouldReturnNull()
+    {
+        // Act
+        var result = await _service.EncryptAsync(null!);
+
+        // Assert
+        result.Should().BeNull();
+    }
 }

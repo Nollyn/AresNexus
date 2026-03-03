@@ -89,6 +89,11 @@ public sealed class Account : AggregateRoot
     /// </summary>
     public void LoadFromSnapshot(Snapshot snapshot)
     {
+        if (Version > 0 && Version != snapshot.Version)
+        {
+            throw new InvalidOperationException($"Cannot load snapshot with version {snapshot.Version} because current aggregate version is {Version}");
+        }
+
         Id = snapshot.Id;
         Owner = snapshot.Owner;
         Balance = snapshot.Balance;
