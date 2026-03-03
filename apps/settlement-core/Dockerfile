@@ -19,7 +19,8 @@ RUN dotnet publish "AresNexus.Settlement.Api.csproj" -c Release -o /app/publish 
 
 # Task 3: Chiseled image for minimal attack surface (Senior Architect Requirement)
 # Chiseled images do not contain a shell or package manager, reducing CVE footprint.
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview-chiseled AS final
+# Note: Reverting to standard preview tag until Chiseled variants for .NET 10 are officially published in the Microsoft Container Registry (MCR).
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview AS final
 WORKDIR /app
 COPY --from=publish /app/publish ./
 
