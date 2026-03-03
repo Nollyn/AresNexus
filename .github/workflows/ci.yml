@@ -45,7 +45,13 @@ jobs:
           exit 1
         }
 
-    - name: Trivy Scan
+    - name: Build Docker Image
+      run: |
+        docker build -t aresnexus-settlement:latest -f apps/settlement-core/Dockerfile .
+
+    - name: Trivy Scan (Security Gatekeeping)
+      # Compliance: This scan ensures compliance with DORA's vulnerability management requirements.
+      # We only fail on HIGH and CRITICAL vulnerabilities to manage risk effectively.
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: 'aresnexus-settlement:latest'

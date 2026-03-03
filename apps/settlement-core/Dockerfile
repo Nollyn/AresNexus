@@ -17,9 +17,9 @@ RUN dotnet build "AresNexus.Settlement.Api.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "AresNexus.Settlement.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Task 5: Chiseled image for minimal attack surface
-FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview AS final
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+# Task 3: Chiseled image for minimal attack surface (Senior Architect Requirement)
+# Chiseled images do not contain a shell or package manager, reducing CVE footprint.
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview-chiseled AS final
 WORKDIR /app
 COPY --from=publish /app/publish ./
 
