@@ -50,38 +50,35 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
         if (changes.Count == 0 && !outboxMessages.Any()) return;
 
         // Encrypt PII fields before serialization (Security requirement #4)
+        var encryptedChanges = new List<object>();
         foreach (var change in changes)
         {
-            if (change is FundsDepositedEvent deposited)
+            if (change is FundsDepositedEvent deposited && !string.IsNullOrEmpty(deposited.Reference))
             {
-                if (!string.IsNullOrEmpty(deposited.Reference))
-                {
-                    var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
-                    var updated = deposited with { Reference = encrypted };
-                    // Since it's a collection, we might need to replace it if we want the encrypted version to be stored.
-                    // However, Marten's Append takes the collection.
-                }
+                var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
+                encryptedChanges.Add(deposited with { Reference = encrypted });
             }
-            else if (change is FundsWithdrawnEvent withdrawn)
+            else if (change is FundsWithdrawnEvent withdrawn && !string.IsNullOrEmpty(withdrawn.Reference))
             {
-                if (!string.IsNullOrEmpty(withdrawn.Reference))
-                {
-                    var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
-                    var updated = withdrawn with { Reference = encrypted };
-                }
+                var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
+                encryptedChanges.Add(withdrawn with { Reference = encrypted });
+            }
+            else
+            {
+                encryptedChanges.Add(change);
             }
         }
 
         var expectedVersion = account.Version - changes.Count;
 
-        if (changes.Count > 0)
+        if (encryptedChanges.Count > 0)
         {
             // Append events to the aggregate stream in Marten
-            session.Events.Append(account.Id, changes);
+            session.Events.Append(account.Id, encryptedChanges);
 
             // Crucial: Implement the Transactional Outbox (Persistence requirement #1)
             // Extract uncommitted events and save them into an OutboxMessages table in the same transaction.
-            foreach (var change in changes)
+            foreach (var change in encryptedChanges)
             {
                 var traceId = (change as IDomainEvent)?.TraceId;
                 var correlationId = (change as IDomainEvent)?.CorrelationId;

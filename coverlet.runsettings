@@ -6,7 +6,7 @@
         <Configuration>
           <Format>cobertura</Format>
           <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
-          <Exclude>[*]*Migrations*,[*]*Mock*,[*]*ServiceBusOptions*,[*]*DTO*,[AresNexus.Settlement.Api]AresNexus.Settlement.Api.Program,[AresNexus.Settlement.Api]AresNexus.Settlement.Api.DataSeeder,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository,[*]*Scalar*,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Projections.AccountSummaryProjection,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.EventStore.Upcasters,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Security.DevSecretManager,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Messaging.OutboxMessage,[*]AresNexus.Settlement.Infrastructure.Logging*</Exclude>
+          <Exclude>[*]*Migrations*,[*]*DTO*,[*]*Scalar*,[AresNexus.Settlement.Api]AresNexus.Settlement.Api.DataSeeder</Exclude>
         </Configuration>
       </DataCollector>
     </DataCollectors>

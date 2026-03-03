@@ -1,9 +1,12 @@
-﻿using AresNexus.Settlement.Application.Commands;
+﻿using System.Text;
+using System.Text.Json;
+using AresNexus.Settlement.Application.Commands;
 using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Domain;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using FluentAssertions;
 using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -139,5 +142,61 @@ public class IdempotencyTests
         result.Should().BeTrue();
         nextCalled.Should().BeFalse();
         _idempotencyStoreMock.Verify(s => s.GetAsync<bool>(command.IdempotencyKey), Times.Once);
+    }
+
+    [Fact]
+    public async Task RedisIdempotencyStore_ExistsAsync_WhenKeyExists_ShouldReturnTrue()
+    {
+        // Arrange
+        var cacheMock = new Mock<IDistributedCache>();
+        var key = Guid.NewGuid();
+        cacheMock.Setup(c => c.GetAsync(key.ToString(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync([1]);
+        var store = new RedisIdempotencyStore(cacheMock.Object);
+
+        // Act
+        var result = await store.ExistsAsync(key);
+
+        // Assert
+        result.Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task RedisIdempotencyStore_StoreAsync_ShouldSetCache()
+    {
+        // Arrange
+        var cacheMock = new Mock<IDistributedCache>();
+        var key = Guid.NewGuid();
+        var result = true;
+        var store = new RedisIdempotencyStore(cacheMock.Object);
+
+        // Act
+        await store.StoreAsync(key, result);
+
+        // Assert
+        cacheMock.Verify(c => c.SetAsync(
+            key.ToString(),
+            It.IsAny<byte[]>(),
+            It.IsAny<DistributedCacheEntryOptions>(),
+            It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task RedisIdempotencyStore_GetAsync_ShouldReturnDeserializedResult()
+    {
+        // Arrange
+        var cacheMock = new Mock<IDistributedCache>();
+        var key = Guid.NewGuid();
+        var resultValue = true;
+        var json = JsonSerializer.Serialize(resultValue);
+        cacheMock.Setup(c => c.GetAsync(key.ToString(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(Encoding.UTF8.GetBytes(json));
+        var store = new RedisIdempotencyStore(cacheMock.Object);
+
+        // Act
+        var result = await store.GetAsync<bool>(key);
+
+        // Assert
+        result.Should().BeTrue();
     }
 }

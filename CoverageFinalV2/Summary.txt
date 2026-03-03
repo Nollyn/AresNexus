@@ -1,0 +1,67 @@
+Summary
+  Generated on: 3/3/2026 - 10:15:29 AM
+  Coverage date: 3/2/2026 - 2:02:40 PM - 3/3/2026 - 10:15:28 AM
+  Parser: MultiReport (99x Cobertura)
+  Assemblies: 5
+  Classes: 37
+  Files: 29
+  Line coverage: 64.1%
+  Covered lines: 591
+  Uncovered lines: 330
+  Coverable lines: 921
+  Total lines: 1968
+  Branch coverage: 49.5% (102 of 206)
+  Covered branches: 102
+  Total branches: 206
+  Method coverage: 76.1% (131 of 172)
+  Full method coverage: 73.8% (127 of 172)
+  Covered methods: 131
+  Fully covered methods: 127
+  Total methods: 172
+
+AresNexus.Settlement.Api                                                               98.2%
+  GlobalExceptionHandlingMiddleware                                                     100%
+  Program                                                                              98.2%
+
+AresNexus.Settlement.Application                                                       98.5%
+  AresNexus.Settlement.Application.Commands.ProcessTransactionCommand                   100%
+  AresNexus.Settlement.Application.Handlers.ProcessTransactionCommandHandler           97.9%
+  AresNexus.Settlement.Application.Validation.ProcessTransactionCommandValidator        100%
+  AresNexus.Settlement.Application.Validation.ValidationBehavior<T1, T2>                100%
+
+AresNexus.Settlement.Domain                                                             100%
+  AresNexus.Settlement.Domain.AccountLockedException                                    100%
+  AresNexus.Settlement.Domain.Aggregates.Account                                        100%
+  AresNexus.Settlement.Domain.Events.AccountCreatedEvent                                100%
+  AresNexus.Settlement.Domain.Events.AccountLockedEvent                                 100%
+  AresNexus.Settlement.Domain.Events.FundsDepositedEvent                                100%
+  AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent                                100%
+  AresNexus.Settlement.Domain.Money                                                     100%
+
+AresNexus.Settlement.Infrastructure                                                    35.7%
+  AresNexus.Settlement.Infrastructure.EventStore.FundsDepositedEvent_v1                 100%
+  AresNexus.Settlement.Infrastructure.EventStore.InMemoryCosmosEventStore                78%
+  AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore                         0%
+  AresNexus.Settlement.Infrastructure.EventStore.MoneyDeposited_v1_to_v2_Upcaster       100%
+  AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior<T1, T2>   17.6%
+  AresNexus.Settlement.Infrastructure.Idempotency.InMemoryIdempotencyStore              100%
+  AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore                29.4%
+  AresNexus.Settlement.Infrastructure.Logging.SensitiveDataDestructuringPolicy          100%
+  AresNexus.Settlement.Infrastructure.Messaging.OutboxMessage                          87.5%
+  AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor                           0%
+  AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOptions                         0%
+  AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher                 0%
+  AresNexus.Settlement.Infrastructure.Persistence.Snapshot                                0%
+  AresNexus.Settlement.Infrastructure.Projections.AccountSummary                          0%
+  AresNexus.Settlement.Infrastructure.Projections.AccountSummaryProjection                0%
+  AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository            100%
+  AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository             42.8%
+  AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager                 0%
+  AresNexus.Settlement.Infrastructure.Security.DevSecretManager                         100%
+  AresNexus.Settlement.Infrastructure.Security.MockEncryptionService                     50%
+  AresNexus.Settlement.Infrastructure.Security.MockKeyVaultClient                      33.3%
+  AresNexus.Settlement.Infrastructure.Security.PiiEncryptionService                    16.2%
+
+AresNexus.Shared.Kernel                                                                95.2%
+  AresNexus.Shared.Kernel.AggregateRoot                                                 100%
+  AresNexus.Shared.Kernel.PrivateReflectionDynamicObjectExtensions                        0%

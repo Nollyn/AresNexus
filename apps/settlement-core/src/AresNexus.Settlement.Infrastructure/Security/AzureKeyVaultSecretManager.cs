@@ -22,13 +22,22 @@ public sealed class AzureKeyVaultSecretManager : ISecretManager
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="AzureKeyVaultSecretManager"/> class with a specific client.
+    /// </summary>
+    /// <param name="client">The secret client.</param>
+    public AzureKeyVaultSecretManager(SecretClient client)
+    {
+        _client = client;
+    }
+
+    /// <summary>
     /// Gets a secret value from Azure Key Vault.
     /// </summary>
     /// <param name="secretName">The name of the secret.</param>
     /// <returns>The secret value.</returns>
     public async Task<string> GetSecretAsync(string secretName)
     {
-        KeyVaultSecret secret = await _client.GetSecretAsync(secretName);
-        return secret.Value;
+        var response = await _client.GetSecretAsync(secretName);
+        return response.Value.Value;
     }
 }

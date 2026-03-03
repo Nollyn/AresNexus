@@ -245,6 +245,8 @@ app.MapPost("/api/v1/transactions", async (HttpContext context, ProcessTransacti
 
 app.Run();
 
+public partial class Program { }
+
 /// <summary>
 /// Global exception handling middleware.
 /// </summary>
