@@ -13,37 +13,22 @@ using MediatR;
 
 namespace AresNexus.Tests.Integration;
 
-public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
+public class ApiIntegrationTests : IClassFixture<CustomWebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    private readonly CustomWebApplicationFactory<Program> _factory;
+    private readonly HttpClient _client;
 
-    public ApiIntegrationTests(WebApplicationFactory<Program> factory)
+    public ApiIntegrationTests(CustomWebApplicationFactory<Program> factory)
     {
-        _factory = factory.WithWebHostBuilder(builder =>
-        {
-            builder.ConfigureTestServices(services =>
-            {
-                // Mock out Marten and ServiceBus to avoid needing real infrastructure
-                var eventStoreMock = new Mock<IEventStore>();
-                services.AddScoped(_ => eventStoreMock.Object);
-                
-                var outboxPublisherMock = new Mock<IOutboxPublisher>();
-                services.AddSingleton(_ => outboxPublisherMock.Object);
-
-                var accountRepoMock = new Mock<IAccountRepository>();
-                services.AddScoped(_ => accountRepoMock.Object);
-            });
-        });
+        _factory = factory;
+        _client = factory.CreateClient();
     }
 
     [Fact]
     public async Task GetHealth_ShouldReturnOk()
     {
-        // Arrange
-        var client = _factory.CreateClient();
-
         // Act
-        var response = await client.GetAsync("/health");
+        var response = await _client.GetAsync("/health");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -58,7 +43,6 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task ProcessTransaction_WithMissingIdempotencyKey_ShouldReturnBadRequest()
     {
         // Arrange
-        var client = _factory.CreateClient();
         var command = new {
             AccountId = Guid.NewGuid(),
             Amount = new { Value = 100 },
@@ -66,7 +50,7 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
         };
 
         // Act
-        var response = await client.PostAsJsonAsync("/api/v1/transactions", command);
+        var response = await _client.PostAsJsonAsync("/api/v1/transactions", command);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -76,7 +60,7 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
     public async Task ProcessTransaction_ShouldHandleException_AndReturn500()
     {
         // Arrange
-        var client = _factory.WithWebHostBuilder(builder =>
+        var specializedClient = _factory.WithWebHostBuilder(builder =>
         {
             builder.ConfigureTestServices(services =>
             {
@@ -90,7 +74,7 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
         var command = new ProcessTransactionCommand(Guid.NewGuid(), new Money(100), "DEPOSIT", Guid.NewGuid());
 
         // Act
-        var response = await client.PostAsJsonAsync("/api/v1/transactions", command);
+        var response = await specializedClient.PostAsJsonAsync("/api/v1/transactions", command);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
@@ -101,11 +85,8 @@ public class ApiIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetHealthLive_ShouldReturnOk()
     {
-        // Arrange
-        var client = _factory.CreateClient();
-
         // Act
-        var response = await client.GetAsync("/health/live");
+        var response = await _client.GetAsync("/health/live");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
