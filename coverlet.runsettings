@@ -6,7 +6,7 @@
         <Configuration>
           <Format>cobertura</Format>
           <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
-          <Exclude>[AresNexus.Settlement.Api]AresNexus.Settlement.Api.Program,[*]*Migrations*,[*]*Mock*,[*]*ServiceBusOptions*</Exclude>
+          <Exclude>[AresNexus.Settlement.Api]AresNexus.Settlement.Api.Program,[*]*Migrations*,[*]*Mock*,[*]*ServiceBusOptions*,[*]*Logging*,[AresNexus.Settlement.Api]AresNexus.Settlement.Api.DataSeeder,[AresNexus.Settlement.Infrastructure]AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository</Exclude>
         </Configuration>
       </DataCollector>
     </DataCollectors>

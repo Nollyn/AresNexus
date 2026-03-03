@@ -248,10 +248,7 @@ app.Run();
 /// <summary>
 /// Global exception handling middleware.
 /// </summary>
-/// <remarks>
-/// Initializes a new instance of the <see cref="GlobalExceptionHandlingMiddleware"/> class.
-/// </remarks>
-internal sealed class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlingMiddleware> logger)
+public sealed class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlingMiddleware> logger)
 {
 
     /// <summary>

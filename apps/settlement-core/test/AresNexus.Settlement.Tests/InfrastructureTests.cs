@@ -70,6 +70,29 @@ public class InfrastructureTests
     }
 
     [Fact]
+    public async Task PiiEncryptionService_WithNullOrEmpty_ShouldReturnAsIs()
+    {
+        // Arrange
+        var secretManagerMock = new Mock<ISecretManager>();
+        secretManagerMock.Setup(x => x.GetSecretAsync("Security:EncryptionKey"))
+            .ReturnsAsync("SwissBankingSecretKey2026!AresNexus");
+        
+        var service = new PiiEncryptionService(secretManagerMock.Object);
+
+        // Act
+        var result1 = await service.EncryptAsync(null!);
+        var result2 = await service.EncryptAsync("");
+        var result3 = await service.DecryptAsync(null!);
+        var result4 = await service.DecryptAsync("");
+
+        // Assert
+        result1.Should().BeNull();
+        result2.Should().Be("");
+        result3.Should().BeNull();
+        result4.Should().Be("");
+    }
+
+    [Fact]
     public void MoneyDepositedUpcaster_ShouldUpcastV1ToV2()
     {
         // Arrange

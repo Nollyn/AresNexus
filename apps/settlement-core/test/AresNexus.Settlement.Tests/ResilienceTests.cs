@@ -8,7 +8,12 @@ using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Security;
 using AresNexus.Settlement.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
+using AresNexus.Settlement.Api;
+using System.Text;
 
 namespace AresNexus.Settlement.Tests;
 
@@ -33,6 +38,52 @@ public class ResilienceTests
         _repository = new InMemoryAccountRepository(_eventStore);
         // Handler uses IAccountRepository, IEncryptionService, IKeyVaultClient and Meter.
         _handler = new ProcessTransactionCommandHandler(_repository, _encryptionService, _keyVaultClient, _meter);
+    }
+
+    [Fact]
+    public async Task GlobalExceptionHandlingMiddleware_ShouldReturn500()
+    {
+        // Arrange
+        var loggerMock = new Mock<ILogger<GlobalExceptionHandlingMiddleware>>();
+        var context = new DefaultHttpContext();
+        context.Response.Body = new MemoryStream();
+        
+        var middleware = new GlobalExceptionHandlingMiddleware(
+            next: (innerContext) => throw new Exception("Test exception"),
+            logger: loggerMock.Object);
+
+        // Act
+        await middleware.InvokeAsync(context);
+
+        // Assert
+        Assert.Equal(500, context.Response.StatusCode);
+        context.Response.Body.Seek(0, SeekOrigin.Begin);
+        using (var reader = new StreamReader(context.Response.Body, Encoding.UTF8))
+        {
+            var body = await reader.ReadToEndAsync();
+            Assert.Contains("Unhandled error", body);
+            Assert.Contains("Test exception", body);
+        }
+    }
+
+    [Fact]
+    public async Task IdempotencyBehavior_WhenStoreIsUnavailable_ShouldFailSafely()
+    {
+        // Arrange
+        var storeMock = new Mock<IIdempotencyStore>();
+        storeMock.Setup(s => s.ExistsAsync(It.IsAny<Guid>()))
+            .ThrowsAsync(new Exception("Redis down"));
+        
+        var loggerMock = new Mock<ILogger<CommandIdempotencyBehavior<ProcessTransactionCommand, bool>>>();
+        var behavior = new CommandIdempotencyBehavior<ProcessTransactionCommand, bool>(storeMock.Object, loggerMock.Object);
+        
+        var command = new ProcessTransactionCommand(Guid.NewGuid(), new Money(100), "DEPOSIT", Guid.NewGuid());
+        var nextMock = new Mock<MediatR.RequestHandlerDelegate<bool>>();
+
+        // Act & Assert
+        // Based on current implementation, it will throw. 
+        // If the strategy was "continue", we would verify it calls next().
+        await Assert.ThrowsAsync<Exception>(() => behavior.Handle(command, nextMock.Object, CancellationToken.None));
     }
 
     /// <summary>

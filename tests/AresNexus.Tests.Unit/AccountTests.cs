@@ -192,4 +192,53 @@ public class AccountTests
         account.Version.Should().Be(2);
         account.GetUncommittedChanges().Should().BeEmpty();
     }
+
+    [Fact]
+    public void Withdraw_ExactBalance_ShouldWork()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        account.Deposit(new Money(100));
+
+        // Act
+        account.Withdraw(new Money(100));
+
+        // Assert
+        account.Balance.Amount.Should().Be(0);
+        account.Version.Should().Be(2);
+    }
+
+    [Fact]
+    public void MultipleOperations_ShouldIncrementVersionCorrectly()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+
+        // Act
+        account.Deposit(new Money(100));
+        account.Withdraw(new Money(50));
+        account.Deposit(new Money(200));
+        account.Withdraw(new Money(250));
+
+        // Assert
+        account.Balance.Amount.Should().Be(0);
+        account.Version.Should().Be(4);
+    }
+
+    [Fact]
+    public void Money_Equality_ShouldWork()
+    {
+        // Arrange
+        var m1 = new Money(100, "CHF");
+        var m2 = new Money(100, "CHF");
+        var m3 = new Money(200, "CHF");
+        var m4 = new Money(100, "USD");
+
+        // Assert
+        (m1 == m2).Should().BeTrue();
+        (m1 == m3).Should().BeFalse();
+        (m1 == m4).Should().BeFalse();
+        m1.GetHashCode().Should().Be(m2.GetHashCode());
+        m1.GetHashCode().Should().NotBe(m3.GetHashCode());
+    }
 }

@@ -27,7 +27,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\AresNexus.Settlement.Application\AresNexus.Settlement.Application.csproj" />
     <ProjectReference Include="..\..\src\AresNexus.Settlement.Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\AresNexus.Settlement.Api\AresNexus.Settlement.Api.csproj" />
     <ProjectReference Include="..\..\..\..\shared\src\AresNexus.Shared.Kernel\AresNexus.Shared.Kernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
