@@ -11,24 +11,21 @@ using AresNexus.Settlement.Application.Interfaces;
 using Microsoft.AspNetCore.TestHost;
 using MediatR;
 
+using AresNexus.Tests.Integration.Infrastructure;
+
 namespace AresNexus.Tests.Integration;
 
-public class ApiIntegrationTests : IClassFixture<CustomWebApplicationFactory<Program>>
+public class ApiIntegrationTests : IntegrationTestBase
 {
-    private readonly CustomWebApplicationFactory<Program> _factory;
-    private readonly HttpClient _client;
-
-    public ApiIntegrationTests(CustomWebApplicationFactory<Program> factory)
+    public ApiIntegrationTests(CustomWebApplicationFactory factory) : base(factory)
     {
-        _factory = factory;
-        _client = factory.CreateClient();
     }
 
     [Fact]
     public async Task GetHealth_ShouldReturnOk()
     {
         // Act
-        var response = await _client.GetAsync("/health");
+        var response = await Client.GetAsync("/health");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -50,7 +47,7 @@ public class ApiIntegrationTests : IClassFixture<CustomWebApplicationFactory<Pro
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("/api/v1/transactions", command);
+        var response = await Client.PostAsJsonAsync("/api/v1/transactions", command);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -60,7 +57,7 @@ public class ApiIntegrationTests : IClassFixture<CustomWebApplicationFactory<Pro
     public async Task ProcessTransaction_ShouldHandleException_AndReturn500()
     {
         // Arrange
-        var specializedClient = _factory.WithWebHostBuilder(builder =>
+        var specializedClient = Factory.WithWebHostBuilder(builder =>
         {
             builder.ConfigureTestServices(services =>
             {
@@ -86,7 +83,7 @@ public class ApiIntegrationTests : IClassFixture<CustomWebApplicationFactory<Pro
     public async Task GetHealthLive_ShouldReturnOk()
     {
         // Act
-        var response = await _client.GetAsync("/health/live");
+        var response = await Client.GetAsync("/health/live");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);

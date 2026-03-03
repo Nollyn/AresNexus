@@ -11,10 +11,16 @@ using AresNexus.Settlement.Application.Interfaces;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using AresNexus.Shared.Kernel;
 
+using AresNexus.Tests.Integration.Infrastructure;
+
 namespace AresNexus.Tests.Integration;
 
-public class TransactionalOutboxChaosTests
+public class TransactionalOutboxChaosTests : IntegrationTestBase
 {
+    public TransactionalOutboxChaosTests(CustomWebApplicationFactory factory) : base(factory)
+    {
+    }
+
     [Fact]
     public async Task SaveAsync_WhenDatabaseDisconnectionDuringOutboxSave_ShouldRollback()
     {
