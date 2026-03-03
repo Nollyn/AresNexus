@@ -23,7 +23,7 @@ Current legacy settlement systems suffer from **"Dual-Write" fragility** and lac
 | :--- | :--- | :--- |
 | **Throughput** | 10,000 TPS (Transactions Per Second) sustained | k6 Load Test (`/benchmarks/load-test.sh`) |
 | **Latency** | p99 < 50ms for cross-border validation | OpenTelemetry Trace Analysis |
-| **MTTR (Resilience)** | < 30s recovery from Message Broker failure | Chaos Engineering Simulation (RabbitMQ Kill) |
+| **MTTR (Resilience)** | < 30s recovery from Message Broker failure with zero data loss | Chaos Engineering Simulation (RabbitMQ Kill) |
 | **Data Loss** | Zero (0) data loss during system failure | Transactional Outbox + Event Store Integrity |
 
 ## Strategic Value & Risk Mitigation (Business Value Matrix)

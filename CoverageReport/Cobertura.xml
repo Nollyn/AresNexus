@@ -1,456 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.4432194046306505" branch-rate="0.47029702970297027" lines-covered="402" lines-valid="907" branches-covered="95" branches-valid="202" complexity="328" version="0" timestamp="1772551572">
+<coverage line-rate="0.7959641255605381" branch-rate="0.7450980392156863" lines-covered="355" lines-valid="446" branches-covered="76" branches-valid="102" complexity="201" version="0" timestamp="1772552363">
   <sources>
     <source>C:\Users\Noll\source\repos\Ares-Nexus\Solution\</source>
   </sources>
   <packages>
-    <package name="AresNexus.Settlement.Api" line-rate="0.005847953216374269" branch-rate="0" complexity="5">
-      <classes>
-        <class name="GlobalExceptionHandlingMiddleware" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Api\Program.cs" line-rate="1" branch-rate="1" complexity="1">
-          <methods>
-            <method name=".ctor" signature="(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger`1&lt;GlobalExceptionHandlingMiddleware&gt;)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="251" hits="2" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="251" hits="2" branch="false" />
-          </lines>
-        </class>
-        <class name="Program" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Api\Program.cs" line-rate="0" branch-rate="0" complexity="4">
-          <methods>
-            <method name="&lt;Main&gt;$" signature="(System.String[])" line-rate="0" branch-rate="0" complexity="4">
-              <lines>
-                <line number="26" hits="0" branch="false" />
-                <line number="29" hits="0" branch="false" />
-                <line number="30" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="false" />
-                <line number="33" hits="0" branch="false" />
-                <line number="35" hits="0" branch="false" />
-                <line number="38" hits="0" branch="false" />
-                <line number="39" hits="0" branch="false" />
-                <line number="42" hits="0" branch="false" />
-                <line number="43" hits="0" branch="false" />
-                <line number="46" hits="0" branch="false" />
-                <line number="47" hits="0" branch="false" />
-                <line number="48" hits="0" branch="false" />
-                <line number="49" hits="0" branch="false" />
-                <line number="52" hits="0" branch="false" />
-                <line number="56" hits="0" branch="false" />
-                <line number="57" hits="0" branch="false" />
-                <line number="58" hits="0" branch="false" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="61" hits="0" branch="false" />
-                <line number="62" hits="0" branch="false" />
-                <line number="63" hits="0" branch="false" />
-                <line number="64" hits="0" branch="false" />
-                <line number="65" hits="0" branch="false" />
-                <line number="66" hits="0" branch="false" />
-                <line number="67" hits="0" branch="false" />
-                <line number="68" hits="0" branch="false" />
-                <line number="69" hits="0" branch="false" />
-                <line number="70" hits="0" branch="false" />
-                <line number="71" hits="0" branch="false" />
-                <line number="72" hits="0" branch="false" />
-                <line number="73" hits="0" branch="false" />
-                <line number="74" hits="0" branch="false" />
-                <line number="75" hits="0" branch="false" />
-                <line number="76" hits="0" branch="false" />
-                <line number="77" hits="0" branch="false" />
-                <line number="78" hits="0" branch="false" />
-                <line number="79" hits="0" branch="false" />
-                <line number="80" hits="0" branch="false" />
-                <line number="81" hits="0" branch="false" />
-                <line number="82" hits="0" branch="false" />
-                <line number="83" hits="0" branch="false" />
-                <line number="86" hits="0" branch="false" />
-                <line number="87" hits="0" branch="false" />
-                <line number="88" hits="0" branch="false" />
-                <line number="89" hits="0" branch="false" />
-                <line number="90" hits="0" branch="false" />
-                <line number="91" hits="0" branch="false" />
-                <line number="94" hits="0" branch="false" />
-                <line number="95" hits="0" branch="false" />
-                <line number="96" hits="0" branch="false" />
-                <line number="97" hits="0" branch="false" />
-                <line number="98" hits="0" branch="false" />
-                <line number="99" hits="0" branch="false" />
-                <line number="100" hits="0" branch="false" />
-                <line number="101" hits="0" branch="false" />
-                <line number="102" hits="0" branch="false" />
-                <line number="103" hits="0" branch="false" />
-                <line number="104" hits="0" branch="false" />
-                <line number="105" hits="0" branch="false" />
-                <line number="106" hits="0" branch="false" />
-                <line number="107" hits="0" branch="false" />
-                <line number="110" hits="0" branch="false" />
-                <line number="111" hits="0" branch="false" />
-                <line number="114" hits="0" branch="false" />
-                <line number="115" hits="0" branch="false" />
-                <line number="116" hits="0" branch="false" />
-                <line number="117" hits="0" branch="false" />
-                <line number="118" hits="0" branch="false" />
-                <line number="120" hits="0" branch="false" />
-                <line number="121" hits="0" branch="false" />
-                <line number="123" hits="0" branch="false" />
-                <line number="124" hits="0" branch="false" />
-                <line number="127" hits="0" branch="false" />
-                <line number="128" hits="0" branch="false" />
-                <line number="130" hits="0" branch="false" />
-                <line number="131" hits="0" branch="false" />
-                <line number="136" hits="0" branch="true" condition-coverage="0% (0/4)" />
-                <line number="137" hits="0" branch="false" />
-                <line number="138" hits="0" branch="false" />
-                <line number="139" hits="0" branch="false" />
-                <line number="141" hits="0" branch="false" />
-                <line number="142" hits="0" branch="false" />
-                <line number="143" hits="0" branch="false" />
-                <line number="145" hits="0" branch="false" />
-                <line number="146" hits="0" branch="false" />
-                <line number="147" hits="0" branch="false" />
-                <line number="148" hits="0" branch="false" />
-                <line number="149" hits="0" branch="false" />
-                <line number="150" hits="0" branch="false" />
-                <line number="153" hits="0" branch="false" />
-                <line number="154" hits="0" branch="false" />
-                <line number="155" hits="0" branch="false" />
-                <line number="156" hits="0" branch="false" />
-                <line number="157" hits="0" branch="false" />
-                <line number="158" hits="0" branch="false" />
-                <line number="159" hits="0" branch="false" />
-                <line number="160" hits="0" branch="false" />
-                <line number="161" hits="0" branch="false" />
-                <line number="162" hits="0" branch="false" />
-                <line number="163" hits="0" branch="false" />
-                <line number="164" hits="0" branch="false" />
-                <line number="165" hits="0" branch="false" />
-                <line number="166" hits="0" branch="false" />
-                <line number="167" hits="0" branch="false" />
-                <line number="168" hits="0" branch="false" />
-                <line number="169" hits="0" branch="false" />
-                <line number="170" hits="0" branch="false" />
-                <line number="172" hits="0" branch="false" />
-                <line number="176" hits="0" branch="false" />
-                <line number="179" hits="0" branch="false" />
-                <line number="182" hits="0" branch="false" />
-                <line number="185" hits="0" branch="false" />
-                <line number="188" hits="0" branch="false" />
-                <line number="189" hits="0" branch="false" />
-                <line number="190" hits="0" branch="false" />
-                <line number="191" hits="0" branch="false" />
-                <line number="192" hits="0" branch="false" />
-                <line number="193" hits="0" branch="false" />
-                <line number="194" hits="0" branch="false" />
-                <line number="195" hits="0" branch="false" />
-                <line number="197" hits="0" branch="false" />
-                <line number="198" hits="0" branch="false" />
-                <line number="199" hits="0" branch="false" />
-                <line number="200" hits="0" branch="false" />
-                <line number="201" hits="0" branch="false" />
-                <line number="202" hits="0" branch="false" />
-                <line number="203" hits="0" branch="false" />
-                <line number="204" hits="0" branch="false" />
-                <line number="205" hits="0" branch="false" />
-                <line number="207" hits="0" branch="false" />
-                <line number="208" hits="0" branch="false" />
-                <line number="209" hits="0" branch="false" />
-                <line number="210" hits="0" branch="false" />
-                <line number="212" hits="0" branch="false" />
-                <line number="213" hits="0" branch="false" />
-                <line number="214" hits="0" branch="false" />
-                <line number="215" hits="0" branch="false" />
-                <line number="216" hits="0" branch="false" />
-                <line number="217" hits="0" branch="false" />
-                <line number="218" hits="0" branch="false" />
-                <line number="219" hits="0" branch="false" />
-                <line number="220" hits="0" branch="false" />
-                <line number="221" hits="0" branch="false" />
-                <line number="222" hits="0" branch="false" />
-                <line number="223" hits="0" branch="false" />
-                <line number="224" hits="0" branch="false" />
-                <line number="225" hits="0" branch="false" />
-                <line number="226" hits="0" branch="false" />
-                <line number="227" hits="0" branch="false" />
-                <line number="228" hits="0" branch="false" />
-                <line number="229" hits="0" branch="false" />
-                <line number="230" hits="0" branch="false" />
-                <line number="231" hits="0" branch="false" />
-                <line number="232" hits="0" branch="false" />
-                <line number="233" hits="0" branch="false" />
-                <line number="234" hits="0" branch="false" />
-                <line number="235" hits="0" branch="false" />
-                <line number="236" hits="0" branch="false" />
-                <line number="237" hits="0" branch="false" />
-                <line number="238" hits="0" branch="false" />
-                <line number="239" hits="0" branch="false" />
-                <line number="240" hits="0" branch="false" />
-                <line number="241" hits="0" branch="false" />
-                <line number="242" hits="0" branch="false" />
-                <line number="243" hits="0" branch="false" />
-                <line number="244" hits="0" branch="false" />
-                <line number="246" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="26" hits="0" branch="false" />
-            <line number="29" hits="0" branch="false" />
-            <line number="30" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="false" />
-            <line number="33" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="38" hits="0" branch="false" />
-            <line number="39" hits="0" branch="false" />
-            <line number="42" hits="0" branch="false" />
-            <line number="43" hits="0" branch="false" />
-            <line number="46" hits="0" branch="false" />
-            <line number="47" hits="0" branch="false" />
-            <line number="48" hits="0" branch="false" />
-            <line number="49" hits="0" branch="false" />
-            <line number="52" hits="0" branch="false" />
-            <line number="56" hits="0" branch="false" />
-            <line number="57" hits="0" branch="false" />
-            <line number="58" hits="0" branch="false" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="61" hits="0" branch="false" />
-            <line number="62" hits="0" branch="false" />
-            <line number="63" hits="0" branch="false" />
-            <line number="64" hits="0" branch="false" />
-            <line number="65" hits="0" branch="false" />
-            <line number="66" hits="0" branch="false" />
-            <line number="67" hits="0" branch="false" />
-            <line number="68" hits="0" branch="false" />
-            <line number="69" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
-            <line number="71" hits="0" branch="false" />
-            <line number="72" hits="0" branch="false" />
-            <line number="73" hits="0" branch="false" />
-            <line number="74" hits="0" branch="false" />
-            <line number="75" hits="0" branch="false" />
-            <line number="76" hits="0" branch="false" />
-            <line number="77" hits="0" branch="false" />
-            <line number="78" hits="0" branch="false" />
-            <line number="79" hits="0" branch="false" />
-            <line number="80" hits="0" branch="false" />
-            <line number="81" hits="0" branch="false" />
-            <line number="82" hits="0" branch="false" />
-            <line number="83" hits="0" branch="false" />
-            <line number="86" hits="0" branch="false" />
-            <line number="87" hits="0" branch="false" />
-            <line number="88" hits="0" branch="false" />
-            <line number="89" hits="0" branch="false" />
-            <line number="90" hits="0" branch="false" />
-            <line number="91" hits="0" branch="false" />
-            <line number="94" hits="0" branch="false" />
-            <line number="95" hits="0" branch="false" />
-            <line number="96" hits="0" branch="false" />
-            <line number="97" hits="0" branch="false" />
-            <line number="98" hits="0" branch="false" />
-            <line number="99" hits="0" branch="false" />
-            <line number="100" hits="0" branch="false" />
-            <line number="101" hits="0" branch="false" />
-            <line number="102" hits="0" branch="false" />
-            <line number="103" hits="0" branch="false" />
-            <line number="104" hits="0" branch="false" />
-            <line number="105" hits="0" branch="false" />
-            <line number="106" hits="0" branch="false" />
-            <line number="107" hits="0" branch="false" />
-            <line number="110" hits="0" branch="false" />
-            <line number="111" hits="0" branch="false" />
-            <line number="114" hits="0" branch="false" />
-            <line number="115" hits="0" branch="false" />
-            <line number="116" hits="0" branch="false" />
-            <line number="117" hits="0" branch="false" />
-            <line number="118" hits="0" branch="false" />
-            <line number="120" hits="0" branch="false" />
-            <line number="121" hits="0" branch="false" />
-            <line number="123" hits="0" branch="false" />
-            <line number="124" hits="0" branch="false" />
-            <line number="127" hits="0" branch="false" />
-            <line number="128" hits="0" branch="false" />
-            <line number="130" hits="0" branch="false" />
-            <line number="131" hits="0" branch="false" />
-            <line number="136" hits="0" branch="true" condition-coverage="0% (0/4)" />
-            <line number="137" hits="0" branch="false" />
-            <line number="138" hits="0" branch="false" />
-            <line number="139" hits="0" branch="false" />
-            <line number="141" hits="0" branch="false" />
-            <line number="142" hits="0" branch="false" />
-            <line number="143" hits="0" branch="false" />
-            <line number="145" hits="0" branch="false" />
-            <line number="146" hits="0" branch="false" />
-            <line number="147" hits="0" branch="false" />
-            <line number="148" hits="0" branch="false" />
-            <line number="149" hits="0" branch="false" />
-            <line number="150" hits="0" branch="false" />
-            <line number="153" hits="0" branch="false" />
-            <line number="154" hits="0" branch="false" />
-            <line number="155" hits="0" branch="false" />
-            <line number="156" hits="0" branch="false" />
-            <line number="157" hits="0" branch="false" />
-            <line number="158" hits="0" branch="false" />
-            <line number="159" hits="0" branch="false" />
-            <line number="160" hits="0" branch="false" />
-            <line number="161" hits="0" branch="false" />
-            <line number="162" hits="0" branch="false" />
-            <line number="163" hits="0" branch="false" />
-            <line number="164" hits="0" branch="false" />
-            <line number="165" hits="0" branch="false" />
-            <line number="166" hits="0" branch="false" />
-            <line number="167" hits="0" branch="false" />
-            <line number="168" hits="0" branch="false" />
-            <line number="169" hits="0" branch="false" />
-            <line number="170" hits="0" branch="false" />
-            <line number="172" hits="0" branch="false" />
-            <line number="176" hits="0" branch="false" />
-            <line number="179" hits="0" branch="false" />
-            <line number="182" hits="0" branch="false" />
-            <line number="185" hits="0" branch="false" />
-            <line number="188" hits="0" branch="false" />
-            <line number="189" hits="0" branch="false" />
-            <line number="190" hits="0" branch="false" />
-            <line number="191" hits="0" branch="false" />
-            <line number="192" hits="0" branch="false" />
-            <line number="193" hits="0" branch="false" />
-            <line number="194" hits="0" branch="false" />
-            <line number="195" hits="0" branch="false" />
-            <line number="197" hits="0" branch="false" />
-            <line number="198" hits="0" branch="false" />
-            <line number="199" hits="0" branch="false" />
-            <line number="200" hits="0" branch="false" />
-            <line number="201" hits="0" branch="false" />
-            <line number="202" hits="0" branch="false" />
-            <line number="203" hits="0" branch="false" />
-            <line number="204" hits="0" branch="false" />
-            <line number="205" hits="0" branch="false" />
-            <line number="207" hits="0" branch="false" />
-            <line number="208" hits="0" branch="false" />
-            <line number="209" hits="0" branch="false" />
-            <line number="210" hits="0" branch="false" />
-            <line number="212" hits="0" branch="false" />
-            <line number="213" hits="0" branch="false" />
-            <line number="214" hits="0" branch="false" />
-            <line number="215" hits="0" branch="false" />
-            <line number="216" hits="0" branch="false" />
-            <line number="217" hits="0" branch="false" />
-            <line number="218" hits="0" branch="false" />
-            <line number="219" hits="0" branch="false" />
-            <line number="220" hits="0" branch="false" />
-            <line number="221" hits="0" branch="false" />
-            <line number="222" hits="0" branch="false" />
-            <line number="223" hits="0" branch="false" />
-            <line number="224" hits="0" branch="false" />
-            <line number="225" hits="0" branch="false" />
-            <line number="226" hits="0" branch="false" />
-            <line number="227" hits="0" branch="false" />
-            <line number="228" hits="0" branch="false" />
-            <line number="229" hits="0" branch="false" />
-            <line number="230" hits="0" branch="false" />
-            <line number="231" hits="0" branch="false" />
-            <line number="232" hits="0" branch="false" />
-            <line number="233" hits="0" branch="false" />
-            <line number="234" hits="0" branch="false" />
-            <line number="235" hits="0" branch="false" />
-            <line number="236" hits="0" branch="false" />
-            <line number="237" hits="0" branch="false" />
-            <line number="238" hits="0" branch="false" />
-            <line number="239" hits="0" branch="false" />
-            <line number="240" hits="0" branch="false" />
-            <line number="241" hits="0" branch="false" />
-            <line number="242" hits="0" branch="false" />
-            <line number="243" hits="0" branch="false" />
-            <line number="244" hits="0" branch="false" />
-            <line number="246" hits="0" branch="false" />
-          </lines>
-        </class>
-      </classes>
-    </package>
     <package name="AresNexus.Settlement.Application" line-rate="0.9855072463768116" branch-rate="0.8" complexity="19">
       <classes>
         <class name="AresNexus.Settlement.Application.Commands.ProcessTransactionCommand" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Application\Commands\ProcessTransactionCommand.cs" line-rate="1" branch-rate="1" complexity="8">
           <methods>
             <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.String,System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="989" branch="false" />
-                <line number="17" hits="999" branch="false" />
-                <line number="18" hits="988" branch="false" />
-                <line number="19" hits="1198" branch="false" />
-                <line number="20" hits="780" branch="false" />
-                <line number="21" hits="989" branch="false" />
-                <line number="22" hits="998" branch="false" />
-                <line number="23" hits="1207" branch="false" />
+                <line number="16" hits="2609" branch="false" />
+                <line number="17" hits="2619" branch="false" />
+                <line number="18" hits="2608" branch="false" />
+                <line number="19" hits="2818" branch="false" />
+                <line number="20" hits="2400" branch="false" />
+                <line number="21" hits="2609" branch="false" />
+                <line number="22" hits="2618" branch="false" />
+                <line number="23" hits="2827" branch="false" />
               </lines>
             </method>
             <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="999" branch="false" />
+                <line number="17" hits="2619" branch="false" />
               </lines>
             </method>
             <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="988" branch="false" />
+                <line number="18" hits="2608" branch="false" />
               </lines>
             </method>
             <method name="get_TransactionType" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="1198" branch="false" />
+                <line number="19" hits="2818" branch="false" />
               </lines>
             </method>
             <method name="get_IdempotencyKey" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="780" branch="false" />
+                <line number="20" hits="2400" branch="false" />
               </lines>
             </method>
             <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="21" hits="989" branch="false" />
+                <line number="21" hits="2609" branch="false" />
               </lines>
             </method>
             <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="998" branch="false" />
+                <line number="22" hits="2618" branch="false" />
               </lines>
             </method>
             <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="23" hits="1207" branch="false" />
+                <line number="23" hits="2827" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="16" hits="989" branch="false" />
-            <line number="17" hits="999" branch="false" />
-            <line number="18" hits="988" branch="false" />
-            <line number="19" hits="1198" branch="false" />
-            <line number="20" hits="780" branch="false" />
-            <line number="21" hits="989" branch="false" />
-            <line number="22" hits="998" branch="false" />
-            <line number="23" hits="1207" branch="false" />
+            <line number="16" hits="2609" branch="false" />
+            <line number="17" hits="2619" branch="false" />
+            <line number="18" hits="2608" branch="false" />
+            <line number="19" hits="2818" branch="false" />
+            <line number="20" hits="2400" branch="false" />
+            <line number="21" hits="2609" branch="false" />
+            <line number="22" hits="2618" branch="false" />
+            <line number="23" hits="2827" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Application.Handlers.ProcessTransactionCommandHandler" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Application\Handlers\ProcessTransactionCommandHandler.cs" line-rate="0.9795918367346939" branch-rate="1" complexity="9">
           <methods>
             <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IAccountRepository,AresNexus.Settlement.Application.Interfaces.IEncryptionService,AresNexus.Settlement.Application.Interfaces.IKeyVaultClient,System.Diagnostics.Metrics.Meter)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="28" hits="65" branch="false" />
-                <line number="29" hits="65" branch="false" />
-                <line number="30" hits="65" branch="false" />
-                <line number="31" hits="65" branch="false" />
-                <line number="32" hits="65" branch="false" />
-                <line number="33" hits="65" branch="false" />
-                <line number="34" hits="65" branch="false" />
-                <line number="35" hits="65" branch="false" />
-                <line number="36" hits="65" branch="false" />
-                <line number="37" hits="65" branch="false" />
-                <line number="38" hits="65" branch="false" />
-                <line number="39" hits="65" branch="false" />
-                <line number="40" hits="65" branch="false" />
+                <line number="28" hits="227" branch="false" />
+                <line number="29" hits="227" branch="false" />
+                <line number="30" hits="227" branch="false" />
+                <line number="31" hits="227" branch="false" />
+                <line number="32" hits="227" branch="false" />
+                <line number="33" hits="227" branch="false" />
+                <line number="34" hits="227" branch="false" />
+                <line number="35" hits="227" branch="false" />
+                <line number="36" hits="227" branch="false" />
+                <line number="37" hits="227" branch="false" />
+                <line number="38" hits="227" branch="false" />
+                <line number="39" hits="227" branch="false" />
+                <line number="40" hits="227" branch="false" />
               </lines>
             </method>
             <method name="Handle" signature="()" line-rate="0.9722222222222222" branch-rate="1" complexity="8">
@@ -495,19 +129,19 @@
             </method>
           </methods>
           <lines>
-            <line number="28" hits="65" branch="false" />
-            <line number="29" hits="65" branch="false" />
-            <line number="30" hits="65" branch="false" />
-            <line number="31" hits="65" branch="false" />
-            <line number="32" hits="65" branch="false" />
-            <line number="33" hits="65" branch="false" />
-            <line number="34" hits="65" branch="false" />
-            <line number="35" hits="65" branch="false" />
-            <line number="36" hits="65" branch="false" />
-            <line number="37" hits="65" branch="false" />
-            <line number="38" hits="65" branch="false" />
-            <line number="39" hits="65" branch="false" />
-            <line number="40" hits="65" branch="false" />
+            <line number="28" hits="227" branch="false" />
+            <line number="29" hits="227" branch="false" />
+            <line number="30" hits="227" branch="false" />
+            <line number="31" hits="227" branch="false" />
+            <line number="32" hits="227" branch="false" />
+            <line number="33" hits="227" branch="false" />
+            <line number="34" hits="227" branch="false" />
+            <line number="35" hits="227" branch="false" />
+            <line number="36" hits="227" branch="false" />
+            <line number="37" hits="227" branch="false" />
+            <line number="38" hits="227" branch="false" />
+            <line number="39" hits="227" branch="false" />
+            <line number="40" hits="227" branch="false" />
             <line number="49" hits="209" branch="false" />
             <line number="50" hits="209" branch="false" />
             <line number="52" hits="209" branch="false" />
@@ -550,44 +184,44 @@
           <methods>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="0" complexity="1">
               <lines>
-                <line number="14" hits="7" branch="false" />
-                <line number="15" hits="7" branch="false" />
-                <line number="16" hits="7" branch="false" />
-                <line number="17" hits="7" branch="false" />
-                <line number="18" hits="7" branch="false" />
-                <line number="19" hits="7" branch="false" />
-                <line number="20" hits="7" branch="true" condition-coverage="0% (0/2)" />
-                <line number="21" hits="7" branch="false" />
-                <line number="22" hits="7" branch="false" />
+                <line number="14" hits="21" branch="false" />
+                <line number="15" hits="21" branch="false" />
+                <line number="16" hits="21" branch="false" />
+                <line number="17" hits="21" branch="false" />
+                <line number="18" hits="21" branch="false" />
+                <line number="19" hits="21" branch="false" />
+                <line number="20" hits="21" branch="true" condition-coverage="0% (0/2)" />
+                <line number="21" hits="21" branch="false" />
+                <line number="22" hits="21" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="7" branch="false" />
-            <line number="15" hits="7" branch="false" />
-            <line number="16" hits="7" branch="false" />
-            <line number="17" hits="7" branch="false" />
-            <line number="18" hits="7" branch="false" />
-            <line number="19" hits="7" branch="false" />
-            <line number="20" hits="7" branch="true" condition-coverage="0% (0/2)" />
-            <line number="21" hits="7" branch="false" />
-            <line number="22" hits="7" branch="false" />
+            <line number="14" hits="21" branch="false" />
+            <line number="15" hits="21" branch="false" />
+            <line number="16" hits="21" branch="false" />
+            <line number="17" hits="21" branch="false" />
+            <line number="18" hits="21" branch="false" />
+            <line number="19" hits="21" branch="false" />
+            <line number="20" hits="21" branch="true" condition-coverage="0% (0/2)" />
+            <line number="21" hits="21" branch="false" />
+            <line number="22" hits="21" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Application.Validation.ValidationBehavior`2" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Application\Validation\ValidationBehavior.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name=".ctor" signature="(System.Collections.Generic.IEnumerable`1&lt;FluentValidation.IValidator`1&lt;TRequest&gt;&gt;,Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Application.Validation.ValidationBehavior`2&lt;TRequest,TResponse&gt;&gt;)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="11" hits="7" branch="false" />
-                <line number="12" hits="7" branch="false" />
-                <line number="13" hits="7" branch="false" />
+                <line number="11" hits="21" branch="false" />
+                <line number="12" hits="21" branch="false" />
+                <line number="13" hits="21" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="11" hits="7" branch="false" />
-            <line number="12" hits="7" branch="false" />
-            <line number="13" hits="7" branch="false" />
+            <line number="11" hits="21" branch="false" />
+            <line number="12" hits="21" branch="false" />
+            <line number="13" hits="21" branch="false" />
           </lines>
         </class>
       </classes>
@@ -598,102 +232,102 @@
           <methods>
             <method name=".ctor" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="13" hits="14" branch="false" />
-                <line number="14" hits="14" branch="false" />
-                <line number="15" hits="14" branch="false" />
+                <line number="13" hits="70" branch="false" />
+                <line number="14" hits="70" branch="false" />
+                <line number="15" hits="70" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="13" hits="14" branch="false" />
-            <line number="14" hits="14" branch="false" />
-            <line number="15" hits="14" branch="false" />
+            <line number="13" hits="70" branch="false" />
+            <line number="14" hits="70" branch="false" />
+            <line number="15" hits="70" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Aggregates.Account" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Aggregates\Account.cs" line-rate="1" branch-rate="1" complexity="41">
           <methods>
             <method name="Deposit" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="47" hits="790" branch="false" />
-                <line number="48" hits="797" branch="true" condition-coverage="100% (2/2)" />
-                <line number="49" hits="783" branch="false" />
-                <line number="50" hits="788" branch="false" />
+                <line number="47" hits="2520" branch="false" />
+                <line number="48" hits="2555" branch="true" condition-coverage="100% (2/2)" />
+                <line number="49" hits="2485" branch="false" />
+                <line number="50" hits="2490" branch="false" />
               </lines>
             </method>
             <method name="Withdraw" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="60" hits="28" branch="false" />
-                <line number="61" hits="27" branch="true" condition-coverage="100% (2/2)" />
-                <line number="62" hits="27" branch="true" condition-coverage="100% (2/2)" />
-                <line number="63" hits="20" branch="false" />
-                <line number="64" hits="15" branch="false" />
+                <line number="60" hits="168" branch="false" />
+                <line number="61" hits="195" branch="true" condition-coverage="100% (2/2)" />
+                <line number="62" hits="167" branch="true" condition-coverage="100% (2/2)" />
+                <line number="63" hits="104" branch="false" />
+                <line number="64" hits="99" branch="false" />
               </lines>
             </method>
             <method name="Lock" signature="(System.String,System.String)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="72" hits="107" branch="false" />
-                <line number="73" hits="107" branch="true" condition-coverage="100% (2/2)" />
-                <line number="74" hits="107" branch="false" />
-                <line number="75" hits="6" branch="false" />
+                <line number="72" hits="191" branch="false" />
+                <line number="73" hits="205" branch="true" condition-coverage="100% (2/2)" />
+                <line number="74" hits="177" branch="false" />
+                <line number="75" hits="90" branch="false" />
               </lines>
             </method>
             <method name="CreateSnapshot" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="85" hits="216" branch="false" />
+                <line number="85" hits="272" branch="false" />
               </lines>
             </method>
             <method name="LoadFromSnapshot" signature="(AresNexus.Settlement.Domain.Aggregates.Account/Snapshot)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="91" hits="5481" branch="false" />
-                <line number="92" hits="5277" branch="false" />
-                <line number="93" hits="159" branch="false" />
-                <line number="94" hits="159" branch="false" />
-                <line number="95" hits="159" branch="false" />
-                <line number="96" hits="159" branch="false" />
-                <line number="97" hits="399" branch="false" />
+                <line number="91" hits="6223" branch="false" />
+                <line number="92" hits="6019" branch="false" />
+                <line number="93" hits="901" branch="false" />
+                <line number="94" hits="901" branch="false" />
+                <line number="95" hits="901" branch="false" />
+                <line number="96" hits="901" branch="false" />
+                <line number="97" hits="1141" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="103" hits="214" branch="false" />
-                <line number="104" hits="214" branch="false" />
-                <line number="105" hits="214" branch="false" />
-                <line number="106" hits="214" branch="false" />
-                <line number="107" hits="10450" branch="false" />
+                <line number="103" hits="1286" branch="false" />
+                <line number="104" hits="1286" branch="false" />
+                <line number="105" hits="1286" branch="false" />
+                <line number="106" hits="1286" branch="false" />
+                <line number="107" hits="11522" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="113" hits="7707" branch="false" />
-                <line number="114" hits="7707" branch="false" />
-                <line number="115" hits="7711" branch="false" />
+                <line number="113" hits="43737" branch="false" />
+                <line number="114" hits="43737" branch="false" />
+                <line number="115" hits="43741" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="121" hits="18" branch="false" />
-                <line number="122" hits="18" branch="false" />
-                <line number="123" hits="26" branch="false" />
+                <line number="121" hits="116" branch="false" />
+                <line number="122" hits="116" branch="false" />
+                <line number="123" hits="124" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountLockedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="129" hits="6" branch="false" />
-                <line number="130" hits="6" branch="false" />
-                <line number="131" hits="6" branch="false" />
+                <line number="129" hits="76" branch="false" />
+                <line number="130" hits="76" branch="false" />
+                <line number="131" hits="76" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="29" hits="2295" branch="false" />
+                <line number="29" hits="6915" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="34" hits="101" branch="false" />
-                <line number="35" hits="101" branch="false" />
-                <line number="36" hits="101" branch="false" />
-                <line number="37" hits="101" branch="false" />
+                <line number="34" hits="459" branch="false" />
+                <line number="35" hits="459" branch="false" />
+                <line number="36" hits="459" branch="false" />
+                <line number="37" hits="459" branch="false" />
               </lines>
             </method>
             <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -715,7 +349,7 @@
             </method>
             <method name="Withdraw" signature="(AresNexus.Settlement.Domain.Money,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="50" hits="788" branch="false" />
+                <line number="50" hits="2490" branch="false" />
                 <line number="51" hits="8" branch="true" condition-coverage="100% (2/2)" />
                 <line number="52" hits="2" branch="false" />
                 <line number="53" hits="2" branch="false" />
@@ -723,7 +357,7 @@
             </method>
             <method name="CreateSnapshot" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="63" hits="20" branch="false" />
+                <line number="63" hits="104" branch="false" />
               </lines>
             </method>
             <method name="LoadFromSnapshot" signature="(AresNexus.Settlement.Domain.Aggregates.Account/Snapshot)" line-rate="1" branch-rate="1" complexity="1">
@@ -731,9 +365,9 @@
                 <line number="69" hits="109" branch="false" />
                 <line number="70" hits="101" branch="false" />
                 <line number="71" hits="101" branch="false" />
-                <line number="72" hits="107" branch="false" />
-                <line number="73" hits="107" branch="true" condition-coverage="100% (2/2)" />
-                <line number="74" hits="107" branch="false" />
+                <line number="72" hits="191" branch="false" />
+                <line number="73" hits="205" branch="true" condition-coverage="100% (2/2)" />
+                <line number="74" hits="177" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent)" line-rate="1" branch-rate="1" complexity="1">
@@ -748,8 +382,8 @@
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
                 <line number="90" hits="5322" branch="false" />
-                <line number="91" hits="5481" branch="false" />
-                <line number="92" hits="5277" branch="false" />
+                <line number="91" hits="6223" branch="false" />
+                <line number="92" hits="6019" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent)" line-rate="1" branch-rate="1" complexity="1">
@@ -766,7 +400,7 @@
             </method>
             <method name=".ctor" signature="(System.Guid,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="29" hits="2295" branch="false" />
+                <line number="29" hits="6915" branch="false" />
                 <line number="30" hits="21" branch="false" />
                 <line number="31" hits="21" branch="false" />
                 <line number="32" hits="21" branch="false" />
@@ -783,7 +417,7 @@
                 <line number="57" hits="16" branch="true" condition-coverage="100% (2/2)" />
                 <line number="58" hits="430" branch="true" condition-coverage="100% (2/2)" />
                 <line number="59" hits="4" branch="false" />
-                <line number="60" hits="28" branch="false" />
+                <line number="60" hits="168" branch="false" />
               </lines>
             </method>
             <method name="Lock" signature="(System.String,System.String)" line-rate="1" branch-rate="1" complexity="2">
@@ -801,18 +435,18 @@
             </method>
             <method name="LoadFromSnapshot" signature="(AresNexus.Settlement.Domain.Aggregates.Account/Snapshot)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="85" hits="216" branch="false" />
+                <line number="85" hits="272" branch="false" />
                 <line number="86" hits="204" branch="false" />
                 <line number="87" hits="204" branch="false" />
                 <line number="88" hits="204" branch="false" />
                 <line number="89" hits="204" branch="false" />
                 <line number="90" hits="5322" branch="false" />
-                <line number="91" hits="5481" branch="false" />
+                <line number="91" hits="6223" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="97" hits="399" branch="false" />
+                <line number="97" hits="1141" branch="false" />
                 <line number="98" hits="243" branch="false" />
                 <line number="99" hits="243" branch="false" />
                 <line number="100" hits="243" branch="false" />
@@ -821,21 +455,21 @@
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="107" hits="10450" branch="false" />
+                <line number="107" hits="11522" branch="false" />
                 <line number="108" hits="10236" branch="false" />
                 <line number="109" hits="10236" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="115" hits="7711" branch="false" />
+                <line number="115" hits="43741" branch="false" />
                 <line number="116" hits="4" branch="false" />
                 <line number="117" hits="4" branch="false" />
               </lines>
             </method>
             <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountLockedEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="123" hits="26" branch="false" />
+                <line number="123" hits="124" branch="false" />
                 <line number="124" hits="8" branch="false" />
                 <line number="125" hits="8" branch="false" />
               </lines>
@@ -845,21 +479,21 @@
             <line number="14" hits="464" branch="false" />
             <line number="19" hits="10715" branch="false" />
             <line number="24" hits="633" branch="false" />
-            <line number="29" hits="2295" branch="false" />
+            <line number="29" hits="6915" branch="false" />
             <line number="30" hits="21" branch="false" />
             <line number="31" hits="21" branch="false" />
             <line number="32" hits="21" branch="false" />
-            <line number="34" hits="101" branch="false" />
-            <line number="35" hits="101" branch="false" />
-            <line number="36" hits="101" branch="false" />
-            <line number="37" hits="101" branch="false" />
+            <line number="34" hits="459" branch="false" />
+            <line number="35" hits="459" branch="false" />
+            <line number="36" hits="459" branch="false" />
+            <line number="37" hits="459" branch="false" />
             <line number="42" hits="216" branch="false" />
             <line number="43" hits="216" branch="false" />
             <line number="44" hits="216" branch="false" />
-            <line number="47" hits="790" branch="false" />
-            <line number="48" hits="797" branch="true" condition-coverage="100% (2/2)" />
-            <line number="49" hits="783" branch="false" />
-            <line number="50" hits="788" branch="false" />
+            <line number="47" hits="2520" branch="false" />
+            <line number="48" hits="2555" branch="true" condition-coverage="100% (2/2)" />
+            <line number="49" hits="2485" branch="false" />
+            <line number="50" hits="2490" branch="false" />
             <line number="51" hits="8" branch="true" condition-coverage="100% (2/2)" />
             <line number="52" hits="2" branch="false" />
             <line number="53" hits="2" branch="false" />
@@ -867,299 +501,299 @@
             <line number="57" hits="16" branch="true" condition-coverage="100% (2/2)" />
             <line number="58" hits="430" branch="true" condition-coverage="100% (2/2)" />
             <line number="59" hits="4" branch="false" />
-            <line number="60" hits="28" branch="false" />
-            <line number="61" hits="27" branch="true" condition-coverage="100% (2/2)" />
-            <line number="62" hits="27" branch="true" condition-coverage="100% (2/2)" />
-            <line number="63" hits="20" branch="false" />
-            <line number="64" hits="15" branch="false" />
+            <line number="60" hits="168" branch="false" />
+            <line number="61" hits="195" branch="true" condition-coverage="100% (2/2)" />
+            <line number="62" hits="167" branch="true" condition-coverage="100% (2/2)" />
+            <line number="63" hits="104" branch="false" />
+            <line number="64" hits="99" branch="false" />
             <line number="66" hits="8" branch="false" />
             <line number="67" hits="8" branch="true" condition-coverage="100% (2/2)" />
             <line number="68" hits="8" branch="false" />
             <line number="69" hits="109" branch="false" />
             <line number="70" hits="101" branch="false" />
             <line number="71" hits="101" branch="false" />
-            <line number="72" hits="107" branch="false" />
-            <line number="73" hits="107" branch="true" condition-coverage="100% (2/2)" />
-            <line number="74" hits="107" branch="false" />
-            <line number="75" hits="6" branch="false" />
+            <line number="72" hits="191" branch="false" />
+            <line number="73" hits="205" branch="true" condition-coverage="100% (2/2)" />
+            <line number="74" hits="177" branch="false" />
+            <line number="75" hits="90" branch="false" />
             <line number="79" hits="12" branch="false" />
             <line number="80" hits="121" branch="false" />
             <line number="81" hits="121" branch="false" />
             <line number="82" hits="121" branch="false" />
             <line number="83" hits="121" branch="false" />
             <line number="84" hits="121" branch="false" />
-            <line number="85" hits="216" branch="false" />
+            <line number="85" hits="272" branch="false" />
             <line number="86" hits="204" branch="false" />
             <line number="87" hits="204" branch="false" />
             <line number="88" hits="204" branch="false" />
             <line number="89" hits="204" branch="false" />
             <line number="90" hits="5322" branch="false" />
-            <line number="91" hits="5481" branch="false" />
-            <line number="92" hits="5277" branch="false" />
-            <line number="93" hits="159" branch="false" />
-            <line number="94" hits="159" branch="false" />
-            <line number="95" hits="159" branch="false" />
-            <line number="96" hits="159" branch="false" />
-            <line number="97" hits="399" branch="false" />
+            <line number="91" hits="6223" branch="false" />
+            <line number="92" hits="6019" branch="false" />
+            <line number="93" hits="901" branch="false" />
+            <line number="94" hits="901" branch="false" />
+            <line number="95" hits="901" branch="false" />
+            <line number="96" hits="901" branch="false" />
+            <line number="97" hits="1141" branch="false" />
             <line number="98" hits="243" branch="false" />
             <line number="99" hits="243" branch="false" />
             <line number="100" hits="243" branch="false" />
             <line number="101" hits="240" branch="false" />
-            <line number="103" hits="214" branch="false" />
-            <line number="104" hits="214" branch="false" />
-            <line number="105" hits="214" branch="false" />
-            <line number="106" hits="214" branch="false" />
-            <line number="107" hits="10450" branch="false" />
+            <line number="103" hits="1286" branch="false" />
+            <line number="104" hits="1286" branch="false" />
+            <line number="105" hits="1286" branch="false" />
+            <line number="106" hits="1286" branch="false" />
+            <line number="107" hits="11522" branch="false" />
             <line number="108" hits="10236" branch="false" />
             <line number="109" hits="10236" branch="false" />
-            <line number="113" hits="7707" branch="false" />
-            <line number="114" hits="7707" branch="false" />
-            <line number="115" hits="7711" branch="false" />
+            <line number="113" hits="43737" branch="false" />
+            <line number="114" hits="43737" branch="false" />
+            <line number="115" hits="43741" branch="false" />
             <line number="116" hits="4" branch="false" />
             <line number="117" hits="4" branch="false" />
-            <line number="121" hits="18" branch="false" />
-            <line number="122" hits="18" branch="false" />
-            <line number="123" hits="26" branch="false" />
+            <line number="121" hits="116" branch="false" />
+            <line number="122" hits="116" branch="false" />
+            <line number="123" hits="124" branch="false" />
             <line number="124" hits="8" branch="false" />
             <line number="125" hits="8" branch="false" />
-            <line number="129" hits="6" branch="false" />
-            <line number="130" hits="6" branch="false" />
-            <line number="131" hits="6" branch="false" />
+            <line number="129" hits="76" branch="false" />
+            <line number="130" hits="76" branch="false" />
+            <line number="131" hits="76" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Events.AccountCreatedEvent" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="7">
           <methods>
             <method name=".ctor" signature="(System.Guid,System.String,System.Guid,System.DateTime,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="132" branch="false" />
-                <line number="15" hits="240" branch="false" />
-                <line number="16" hits="240" branch="false" />
-                <line number="17" hits="121" branch="false" />
-                <line number="18" hits="121" branch="false" />
-                <line number="19" hits="123" branch="false" />
-                <line number="20" hits="145" branch="false" />
+                <line number="14" hits="518" branch="false" />
+                <line number="15" hits="626" branch="false" />
+                <line number="16" hits="626" branch="false" />
+                <line number="17" hits="507" branch="false" />
+                <line number="18" hits="507" branch="false" />
+                <line number="19" hits="509" branch="false" />
+                <line number="20" hits="531" branch="false" />
               </lines>
             </method>
             <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="15" hits="240" branch="false" />
+                <line number="15" hits="626" branch="false" />
               </lines>
             </method>
             <method name="get_Owner" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="240" branch="false" />
+                <line number="16" hits="626" branch="false" />
               </lines>
             </method>
             <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="17" hits="121" branch="false" />
+                <line number="17" hits="507" branch="false" />
               </lines>
             </method>
             <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="18" hits="121" branch="false" />
+                <line number="18" hits="507" branch="false" />
               </lines>
             </method>
             <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="19" hits="123" branch="false" />
+                <line number="19" hits="509" branch="false" />
               </lines>
             </method>
             <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="20" hits="145" branch="false" />
+                <line number="20" hits="531" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="132" branch="false" />
-            <line number="15" hits="240" branch="false" />
-            <line number="16" hits="240" branch="false" />
-            <line number="17" hits="121" branch="false" />
-            <line number="18" hits="121" branch="false" />
-            <line number="19" hits="123" branch="false" />
-            <line number="20" hits="145" branch="false" />
+            <line number="14" hits="518" branch="false" />
+            <line number="15" hits="626" branch="false" />
+            <line number="16" hits="626" branch="false" />
+            <line number="17" hits="507" branch="false" />
+            <line number="18" hits="507" branch="false" />
+            <line number="19" hits="509" branch="false" />
+            <line number="20" hits="531" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Events.AccountLockedEvent" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name=".ctor" signature="(System.Guid,System.Guid,System.DateTime,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="63" hits="14" branch="false" />
-                <line number="64" hits="14" branch="false" />
-                <line number="65" hits="14" branch="false" />
-                <line number="66" hits="14" branch="false" />
-                <line number="67" hits="14" branch="false" />
-                <line number="68" hits="14" branch="false" />
+                <line number="63" hits="84" branch="false" />
+                <line number="64" hits="84" branch="false" />
+                <line number="65" hits="84" branch="false" />
+                <line number="66" hits="84" branch="false" />
+                <line number="67" hits="84" branch="false" />
+                <line number="68" hits="84" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="63" hits="14" branch="false" />
-            <line number="64" hits="14" branch="false" />
-            <line number="65" hits="14" branch="false" />
-            <line number="66" hits="14" branch="false" />
-            <line number="67" hits="14" branch="false" />
-            <line number="68" hits="14" branch="false" />
+            <line number="63" hits="84" branch="false" />
+            <line number="64" hits="84" branch="false" />
+            <line number="65" hits="84" branch="false" />
+            <line number="66" hits="84" branch="false" />
+            <line number="67" hits="84" branch="false" />
+            <line number="68" hits="84" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Events.FundsDepositedEvent" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="8">
           <methods>
             <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="32" hits="1014" branch="false" />
-                <line number="33" hits="1004" branch="false" />
-                <line number="34" hits="6122" branch="false" />
-                <line number="35" hits="1006" branch="false" />
-                <line number="36" hits="1006" branch="false" />
-                <line number="37" hits="1008" branch="false" />
-                <line number="38" hits="1008" branch="false" />
-                <line number="39" hits="1225" branch="false" />
+                <line number="32" hits="2770" branch="false" />
+                <line number="33" hits="2760" branch="false" />
+                <line number="34" hits="7878" branch="false" />
+                <line number="35" hits="2762" branch="false" />
+                <line number="36" hits="2762" branch="false" />
+                <line number="37" hits="2764" branch="false" />
+                <line number="38" hits="2764" branch="false" />
+                <line number="39" hits="2981" branch="false" />
               </lines>
             </method>
             <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="33" hits="1004" branch="false" />
+                <line number="33" hits="2760" branch="false" />
               </lines>
             </method>
             <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="34" hits="6122" branch="false" />
+                <line number="34" hits="7878" branch="false" />
               </lines>
             </method>
             <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="35" hits="1006" branch="false" />
+                <line number="35" hits="2762" branch="false" />
               </lines>
             </method>
             <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="36" hits="1006" branch="false" />
+                <line number="36" hits="2762" branch="false" />
               </lines>
             </method>
             <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="37" hits="1008" branch="false" />
+                <line number="37" hits="2764" branch="false" />
               </lines>
             </method>
             <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="38" hits="1008" branch="false" />
+                <line number="38" hits="2764" branch="false" />
               </lines>
             </method>
             <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="39" hits="1225" branch="false" />
+                <line number="39" hits="2981" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="32" hits="1014" branch="false" />
-            <line number="33" hits="1004" branch="false" />
-            <line number="34" hits="6122" branch="false" />
-            <line number="35" hits="1006" branch="false" />
-            <line number="36" hits="1006" branch="false" />
-            <line number="37" hits="1008" branch="false" />
-            <line number="38" hits="1008" branch="false" />
-            <line number="39" hits="1225" branch="false" />
+            <line number="32" hits="2770" branch="false" />
+            <line number="33" hits="2760" branch="false" />
+            <line number="34" hits="7878" branch="false" />
+            <line number="35" hits="2762" branch="false" />
+            <line number="36" hits="2762" branch="false" />
+            <line number="37" hits="2764" branch="false" />
+            <line number="38" hits="2764" branch="false" />
+            <line number="39" hits="2981" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Events\AccountEvents.cs" line-rate="1" branch-rate="1" complexity="8">
           <methods>
             <method name=".ctor" signature="(System.Guid,AresNexus.Settlement.Domain.Money,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="51" hits="25" branch="false" />
-                <line number="52" hits="22" branch="false" />
-                <line number="53" hits="25" branch="false" />
-                <line number="54" hits="22" branch="false" />
-                <line number="55" hits="22" branch="false" />
-                <line number="56" hits="22" branch="false" />
-                <line number="57" hits="22" branch="false" />
-                <line number="58" hits="25" branch="false" />
+                <line number="51" hits="123" branch="false" />
+                <line number="52" hits="120" branch="false" />
+                <line number="53" hits="123" branch="false" />
+                <line number="54" hits="120" branch="false" />
+                <line number="55" hits="120" branch="false" />
+                <line number="56" hits="120" branch="false" />
+                <line number="57" hits="120" branch="false" />
+                <line number="58" hits="123" branch="false" />
               </lines>
             </method>
             <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="52" hits="22" branch="false" />
+                <line number="52" hits="120" branch="false" />
               </lines>
             </method>
             <method name="get_Money" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="53" hits="25" branch="false" />
+                <line number="53" hits="123" branch="false" />
               </lines>
             </method>
             <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="54" hits="22" branch="false" />
+                <line number="54" hits="120" branch="false" />
               </lines>
             </method>
             <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="55" hits="22" branch="false" />
+                <line number="55" hits="120" branch="false" />
               </lines>
             </method>
             <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="56" hits="22" branch="false" />
+                <line number="56" hits="120" branch="false" />
               </lines>
             </method>
             <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="57" hits="22" branch="false" />
+                <line number="57" hits="120" branch="false" />
               </lines>
             </method>
             <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="58" hits="25" branch="false" />
+                <line number="58" hits="123" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="51" hits="25" branch="false" />
-            <line number="52" hits="22" branch="false" />
-            <line number="53" hits="25" branch="false" />
-            <line number="54" hits="22" branch="false" />
-            <line number="55" hits="22" branch="false" />
-            <line number="56" hits="22" branch="false" />
-            <line number="57" hits="22" branch="false" />
-            <line number="58" hits="25" branch="false" />
+            <line number="51" hits="123" branch="false" />
+            <line number="52" hits="120" branch="false" />
+            <line number="53" hits="123" branch="false" />
+            <line number="54" hits="120" branch="false" />
+            <line number="55" hits="120" branch="false" />
+            <line number="56" hits="120" branch="false" />
+            <line number="57" hits="120" branch="false" />
+            <line number="58" hits="123" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Domain.Money" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Domain\Money.cs" line-rate="1" branch-rate="1" complexity="10">
           <methods>
             <method name="op_Addition" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="43" hits="23079" branch="false" />
-                <line number="44" hits="23079" branch="true" condition-coverage="100% (2/2)" />
-                <line number="45" hits="14" branch="false" />
-                <line number="46" hits="14" branch="false" />
-                <line number="49" hits="23065" branch="false" />
-                <line number="50" hits="23065" branch="false" />
+                <line number="43" hits="59165" branch="false" />
+                <line number="44" hits="59165" branch="true" condition-coverage="100% (2/2)" />
+                <line number="45" hits="56" branch="false" />
+                <line number="46" hits="56" branch="false" />
+                <line number="49" hits="59109" branch="false" />
+                <line number="50" hits="59109" branch="false" />
               </lines>
             </method>
             <method name="op_Subtraction" signature="(AresNexus.Settlement.Domain.Money,AresNexus.Settlement.Domain.Money)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="59" hits="43" branch="false" />
-                <line number="60" hits="43" branch="true" condition-coverage="100% (2/2)" />
-                <line number="61" hits="14" branch="false" />
-                <line number="62" hits="14" branch="false" />
-                <line number="65" hits="29" branch="false" />
-                <line number="66" hits="29" branch="false" />
+                <line number="59" hits="197" branch="false" />
+                <line number="60" hits="197" branch="true" condition-coverage="100% (2/2)" />
+                <line number="61" hits="56" branch="false" />
+                <line number="62" hits="56" branch="false" />
+                <line number="65" hits="141" branch="false" />
+                <line number="66" hits="141" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="(System.Decimal,System.String)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="20" hits="25989" branch="false" />
-                <line number="21" hits="25989" branch="false" />
-                <line number="22" hits="25989" branch="true" condition-coverage="100% (2/2)" />
-                <line number="23" hits="14" branch="false" />
-                <line number="24" hits="14" branch="false" />
-                <line number="27" hits="25975" branch="true" condition-coverage="100% (2/2)" />
-                <line number="28" hits="7" branch="false" />
-                <line number="29" hits="7" branch="false" />
-                <line number="32" hits="25968" branch="false" />
-                <line number="33" hits="25968" branch="false" />
-                <line number="34" hits="25968" branch="false" />
+                <line number="20" hits="67643" branch="false" />
+                <line number="21" hits="67643" branch="false" />
+                <line number="22" hits="67643" branch="true" condition-coverage="100% (2/2)" />
+                <line number="23" hits="56" branch="false" />
+                <line number="24" hits="56" branch="false" />
+                <line number="27" hits="67587" branch="true" condition-coverage="100% (2/2)" />
+                <line number="28" hits="35" branch="false" />
+                <line number="29" hits="35" branch="false" />
+                <line number="32" hits="67552" branch="false" />
+                <line number="33" hits="67552" branch="false" />
+                <line number="34" hits="67552" branch="false" />
               </lines>
             </method>
             <method name="get_Amount" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -1176,133 +810,133 @@
           <lines>
             <line number="11" hits="16185" branch="false" />
             <line number="13" hits="21294" branch="false" />
-            <line number="20" hits="25989" branch="false" />
-            <line number="21" hits="25989" branch="false" />
-            <line number="22" hits="25989" branch="true" condition-coverage="100% (2/2)" />
-            <line number="23" hits="14" branch="false" />
-            <line number="24" hits="14" branch="false" />
-            <line number="27" hits="25975" branch="true" condition-coverage="100% (2/2)" />
-            <line number="28" hits="7" branch="false" />
-            <line number="29" hits="7" branch="false" />
-            <line number="32" hits="25968" branch="false" />
-            <line number="33" hits="25968" branch="false" />
-            <line number="34" hits="25968" branch="false" />
-            <line number="43" hits="23079" branch="false" />
-            <line number="44" hits="23079" branch="true" condition-coverage="100% (2/2)" />
-            <line number="45" hits="14" branch="false" />
-            <line number="46" hits="14" branch="false" />
-            <line number="49" hits="23065" branch="false" />
-            <line number="50" hits="23065" branch="false" />
-            <line number="59" hits="43" branch="false" />
-            <line number="60" hits="43" branch="true" condition-coverage="100% (2/2)" />
-            <line number="61" hits="14" branch="false" />
-            <line number="62" hits="14" branch="false" />
-            <line number="65" hits="29" branch="false" />
-            <line number="66" hits="29" branch="false" />
+            <line number="20" hits="67643" branch="false" />
+            <line number="21" hits="67643" branch="false" />
+            <line number="22" hits="67643" branch="true" condition-coverage="100% (2/2)" />
+            <line number="23" hits="56" branch="false" />
+            <line number="24" hits="56" branch="false" />
+            <line number="27" hits="67587" branch="true" condition-coverage="100% (2/2)" />
+            <line number="28" hits="35" branch="false" />
+            <line number="29" hits="35" branch="false" />
+            <line number="32" hits="67552" branch="false" />
+            <line number="33" hits="67552" branch="false" />
+            <line number="34" hits="67552" branch="false" />
+            <line number="43" hits="59165" branch="false" />
+            <line number="44" hits="59165" branch="true" condition-coverage="100% (2/2)" />
+            <line number="45" hits="56" branch="false" />
+            <line number="46" hits="56" branch="false" />
+            <line number="49" hits="59109" branch="false" />
+            <line number="50" hits="59109" branch="false" />
+            <line number="59" hits="197" branch="false" />
+            <line number="60" hits="197" branch="true" condition-coverage="100% (2/2)" />
+            <line number="61" hits="56" branch="false" />
+            <line number="62" hits="56" branch="false" />
+            <line number="65" hits="141" branch="false" />
+            <line number="66" hits="141" branch="false" />
           </lines>
         </class>
       </classes>
     </package>
-    <package name="AresNexus.Settlement.Infrastructure" line-rate="0.34189723320158105" branch-rate="0.36075949367088606" complexity="215">
+    <package name="AresNexus.Settlement.Infrastructure" line-rate="0.5879629629629629" branch-rate="0.6129032258064516" complexity="93">
       <classes>
         <class name="AresNexus.Settlement.Infrastructure.EventStore.FundsDepositedEvent_v1" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\Upcasters.cs" line-rate="1" branch-rate="1" complexity="8">
           <methods>
             <method name=".ctor" signature="(System.Guid,System.Decimal,System.Guid,System.DateTime,System.String,System.String,System.String)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="49" hits="7" branch="false" />
-                <line number="50" hits="7" branch="false" />
-                <line number="51" hits="7" branch="false" />
-                <line number="52" hits="7" branch="false" />
-                <line number="53" hits="7" branch="false" />
-                <line number="54" hits="7" branch="false" />
-                <line number="55" hits="7" branch="false" />
-                <line number="56" hits="7" branch="false" />
+                <line number="49" hits="21" branch="false" />
+                <line number="50" hits="21" branch="false" />
+                <line number="51" hits="21" branch="false" />
+                <line number="52" hits="21" branch="false" />
+                <line number="53" hits="21" branch="false" />
+                <line number="54" hits="21" branch="false" />
+                <line number="55" hits="21" branch="false" />
+                <line number="56" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_AccountId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="50" hits="7" branch="false" />
+                <line number="50" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_Amount" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="51" hits="7" branch="false" />
+                <line number="51" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_EventId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="52" hits="7" branch="false" />
+                <line number="52" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_OccurredOn" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="53" hits="7" branch="false" />
+                <line number="53" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_Reference" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="54" hits="7" branch="false" />
+                <line number="54" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="55" hits="7" branch="false" />
+                <line number="55" hits="21" branch="false" />
               </lines>
             </method>
             <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="56" hits="7" branch="false" />
+                <line number="56" hits="21" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="49" hits="7" branch="false" />
-            <line number="50" hits="7" branch="false" />
-            <line number="51" hits="7" branch="false" />
-            <line number="52" hits="7" branch="false" />
-            <line number="53" hits="7" branch="false" />
-            <line number="54" hits="7" branch="false" />
-            <line number="55" hits="7" branch="false" />
-            <line number="56" hits="7" branch="false" />
+            <line number="49" hits="21" branch="false" />
+            <line number="50" hits="21" branch="false" />
+            <line number="51" hits="21" branch="false" />
+            <line number="52" hits="21" branch="false" />
+            <line number="53" hits="21" branch="false" />
+            <line number="54" hits="21" branch="false" />
+            <line number="55" hits="21" branch="false" />
+            <line number="56" hits="21" branch="false" />
           </lines>
         </class>
-        <class name="AresNexus.Settlement.Infrastructure.EventStore.InMemoryCosmosEventStore" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\InMemoryCosmosEventStore.cs" line-rate="0.72" branch-rate="0.65" complexity="23">
+        <class name="AresNexus.Settlement.Infrastructure.EventStore.InMemoryCosmosEventStore" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\InMemoryCosmosEventStore.cs" line-rate="0.78" branch-rate="0.65" complexity="23">
           <methods>
             <method name="GetEventsAsync" signature="(System.Guid,System.Int32)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="20" hits="972" branch="false" />
-                <line number="21" hits="972" branch="true" condition-coverage="100% (2/2)" />
-                <line number="23" hits="972" branch="true" condition-coverage="100% (2/2)" />
-                <line number="24" hits="972" branch="false" />
+                <line number="20" hits="2400" branch="false" />
+                <line number="21" hits="2400" branch="true" condition-coverage="100% (2/2)" />
+                <line number="23" hits="2400" branch="true" condition-coverage="100% (2/2)" />
+                <line number="24" hits="2400" branch="false" />
               </lines>
             </method>
-            <method name="SaveEventsAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
+            <method name="SaveEventsAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="28" hits="0" branch="false" />
-                <line number="29" hits="0" branch="false" />
-                <line number="30" hits="0" branch="false" />
+                <line number="28" hits="11" branch="false" />
+                <line number="29" hits="11" branch="false" />
+                <line number="30" hits="11" branch="false" />
               </lines>
             </method>
             <method name="SaveChangesAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32,System.Collections.Generic.IEnumerable`1&lt;System.Object&gt;)" line-rate="0.6206896551724138" branch-rate="0.5" complexity="12">
               <lines>
-                <line number="34" hits="935" branch="false" />
-                <line number="35" hits="944" branch="false" />
-                <line number="36" hits="935" branch="false" />
-                <line number="37" hits="935" branch="true" condition-coverage="50% (2/4)" />
+                <line number="34" hits="2298" branch="false" />
+                <line number="35" hits="2307" branch="false" />
+                <line number="36" hits="2298" branch="false" />
+                <line number="37" hits="2298" branch="true" condition-coverage="50% (2/4)" />
                 <line number="38" hits="0" branch="false" />
                 <line number="39" hits="0" branch="false" />
-                <line number="43" hits="935" branch="false" />
-                <line number="46" hits="4763" branch="true" condition-coverage="100% (2/2)" />
-                <line number="47" hits="979" branch="false" />
-                <line number="48" hits="979" branch="true" condition-coverage="50% (1/2)" />
-                <line number="49" hits="979" branch="false" />
-                <line number="50" hits="979" branch="false" />
-                <line number="51" hits="979" branch="false" />
-                <line number="52" hits="979" branch="false" />
-                <line number="53" hits="979" branch="false" />
-                <line number="54" hits="979" branch="false" />
-                <line number="55" hits="979" branch="false" />
-                <line number="57" hits="2805" branch="true" condition-coverage="50% (1/2)" />
+                <line number="43" hits="2298" branch="false" />
+                <line number="46" hits="11708" branch="true" condition-coverage="100% (2/2)" />
+                <line number="47" hits="2407" branch="false" />
+                <line number="48" hits="2407" branch="true" condition-coverage="50% (1/2)" />
+                <line number="49" hits="2407" branch="false" />
+                <line number="50" hits="2407" branch="false" />
+                <line number="51" hits="2407" branch="false" />
+                <line number="52" hits="2407" branch="false" />
+                <line number="53" hits="2407" branch="false" />
+                <line number="54" hits="2407" branch="false" />
+                <line number="55" hits="2407" branch="false" />
+                <line number="57" hits="6894" branch="true" condition-coverage="50% (1/2)" />
                 <line number="58" hits="0" branch="false" />
                 <line number="59" hits="0" branch="true" condition-coverage="0% (0/2)" />
                 <line number="60" hits="0" branch="false" />
@@ -1312,70 +946,70 @@
                 <line number="64" hits="0" branch="false" />
                 <line number="65" hits="0" branch="false" />
                 <line number="66" hits="0" branch="false" />
-                <line number="68" hits="935" branch="false" />
-                <line number="69" hits="935" branch="false" />
+                <line number="68" hits="2298" branch="false" />
+                <line number="69" hits="2298" branch="false" />
               </lines>
             </method>
             <method name="SaveSnapshotAsync" signature="(System.Guid,T,System.Int32)" line-rate="1" branch-rate="0.5" complexity="2">
               <lines>
-                <line number="73" hits="18" branch="false" />
-                <line number="74" hits="18" branch="true" condition-coverage="50% (1/2)" />
-                <line number="75" hits="18" branch="false" />
-                <line number="76" hits="18" branch="false" />
-                <line number="77" hits="18" branch="false" />
+                <line number="73" hits="55" branch="false" />
+                <line number="74" hits="55" branch="true" condition-coverage="50% (1/2)" />
+                <line number="75" hits="55" branch="false" />
+                <line number="76" hits="55" branch="false" />
+                <line number="77" hits="55" branch="false" />
               </lines>
             </method>
             <method name="GetLatestSnapshotAsync" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="81" hits="960" branch="false" />
-                <line number="82" hits="960" branch="true" condition-coverage="100% (2/2)" />
-                <line number="83" hits="960" branch="false" />
+                <line number="81" hits="2362" branch="false" />
+                <line number="82" hits="2362" branch="true" condition-coverage="100% (2/2)" />
+                <line number="83" hits="2362" branch="false" />
               </lines>
             </method>
             <method name="GetUnprocessedOutboxMessages" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="90" hits="12" branch="false" />
-                <line number="91" hits="16" branch="false" />
-                <line number="92" hits="12" branch="false" />
+                <line number="90" hits="49" branch="false" />
+                <line number="91" hits="53" branch="false" />
+                <line number="92" hits="49" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="14" hits="56" branch="false" />
-                <line number="15" hits="56" branch="false" />
-                <line number="16" hits="56" branch="false" />
+                <line number="14" hits="171" branch="false" />
+                <line number="15" hits="171" branch="false" />
+                <line number="16" hits="171" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="14" hits="56" branch="false" />
-            <line number="15" hits="56" branch="false" />
-            <line number="16" hits="56" branch="false" />
-            <line number="20" hits="972" branch="false" />
-            <line number="21" hits="972" branch="true" condition-coverage="100% (2/2)" />
-            <line number="23" hits="972" branch="true" condition-coverage="100% (2/2)" />
-            <line number="24" hits="972" branch="false" />
-            <line number="28" hits="0" branch="false" />
-            <line number="29" hits="0" branch="false" />
-            <line number="30" hits="0" branch="false" />
-            <line number="34" hits="935" branch="false" />
-            <line number="35" hits="944" branch="false" />
-            <line number="36" hits="935" branch="false" />
-            <line number="37" hits="935" branch="true" condition-coverage="50% (2/4)" />
+            <line number="14" hits="171" branch="false" />
+            <line number="15" hits="171" branch="false" />
+            <line number="16" hits="171" branch="false" />
+            <line number="20" hits="2400" branch="false" />
+            <line number="21" hits="2400" branch="true" condition-coverage="100% (2/2)" />
+            <line number="23" hits="2400" branch="true" condition-coverage="100% (2/2)" />
+            <line number="24" hits="2400" branch="false" />
+            <line number="28" hits="11" branch="false" />
+            <line number="29" hits="11" branch="false" />
+            <line number="30" hits="11" branch="false" />
+            <line number="34" hits="2298" branch="false" />
+            <line number="35" hits="2307" branch="false" />
+            <line number="36" hits="2298" branch="false" />
+            <line number="37" hits="2298" branch="true" condition-coverage="50% (2/4)" />
             <line number="38" hits="0" branch="false" />
             <line number="39" hits="0" branch="false" />
-            <line number="43" hits="935" branch="false" />
-            <line number="46" hits="4763" branch="true" condition-coverage="100% (2/2)" />
-            <line number="47" hits="979" branch="false" />
-            <line number="48" hits="979" branch="true" condition-coverage="50% (1/2)" />
-            <line number="49" hits="979" branch="false" />
-            <line number="50" hits="979" branch="false" />
-            <line number="51" hits="979" branch="false" />
-            <line number="52" hits="979" branch="false" />
-            <line number="53" hits="979" branch="false" />
-            <line number="54" hits="979" branch="false" />
-            <line number="55" hits="979" branch="false" />
-            <line number="57" hits="2805" branch="true" condition-coverage="50% (1/2)" />
+            <line number="43" hits="2298" branch="false" />
+            <line number="46" hits="11708" branch="true" condition-coverage="100% (2/2)" />
+            <line number="47" hits="2407" branch="false" />
+            <line number="48" hits="2407" branch="true" condition-coverage="50% (1/2)" />
+            <line number="49" hits="2407" branch="false" />
+            <line number="50" hits="2407" branch="false" />
+            <line number="51" hits="2407" branch="false" />
+            <line number="52" hits="2407" branch="false" />
+            <line number="53" hits="2407" branch="false" />
+            <line number="54" hits="2407" branch="false" />
+            <line number="55" hits="2407" branch="false" />
+            <line number="57" hits="6894" branch="true" condition-coverage="50% (1/2)" />
             <line number="58" hits="0" branch="false" />
             <line number="59" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="60" hits="0" branch="false" />
@@ -1385,258 +1019,28 @@
             <line number="64" hits="0" branch="false" />
             <line number="65" hits="0" branch="false" />
             <line number="66" hits="0" branch="false" />
-            <line number="68" hits="935" branch="false" />
-            <line number="69" hits="935" branch="false" />
-            <line number="73" hits="18" branch="false" />
-            <line number="74" hits="18" branch="true" condition-coverage="50% (1/2)" />
-            <line number="75" hits="18" branch="false" />
-            <line number="76" hits="18" branch="false" />
-            <line number="77" hits="18" branch="false" />
-            <line number="81" hits="960" branch="false" />
-            <line number="82" hits="960" branch="true" condition-coverage="100% (2/2)" />
-            <line number="83" hits="960" branch="false" />
-            <line number="90" hits="12" branch="false" />
-            <line number="91" hits="16" branch="false" />
-            <line number="92" hits="12" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\MartenEventStore.cs" line-rate="0" branch-rate="0" complexity="33">
-          <methods>
-            <method name="SaveEventsAsync" signature="(System.Guid,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="75" hits="0" branch="false" />
-                <line number="76" hits="0" branch="false" />
-                <line number="77" hits="0" branch="false" />
-                <line number="78" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="SaveSnapshotAsync" signature="(System.Guid,T,System.Int32)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="103" hits="0" branch="false" />
-                <line number="105" hits="0" branch="false" />
-                <line number="106" hits="0" branch="false" />
-                <line number="107" hits="0" branch="false" />
-                <line number="108" hits="0" branch="false" />
-                <line number="109" hits="0" branch="false" />
-                <line number="110" hits="0" branch="false" />
-                <line number="111" hits="0" branch="false" />
-                <line number="113" hits="0" branch="false" />
-                <line number="114" hits="0" branch="false" />
-                <line number="115" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="(Marten.IDocumentSession,System.Collections.Generic.IEnumerable`1&lt;AresNexus.Settlement.Application.Interfaces.IEventUpcaster&gt;,AresNexus.Settlement.Application.Interfaces.IEncryptionService)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="19" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="GetEventsAsync" signature="()" line-rate="0" branch-rate="0" complexity="22">
-              <lines>
-                <line number="23" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="24" hits="0" branch="false" />
-                <line number="25" hits="0" branch="false" />
-                <line number="28" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="29" hits="0" branch="false" />
-                <line number="30" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="33" hits="0" branch="false" />
-                <line number="35" hits="0" branch="false" />
-                <line number="36" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="37" hits="0" branch="false" />
-                <line number="38" hits="0" branch="false" />
-                <line number="39" hits="0" branch="false" />
-                <line number="40" hits="0" branch="false" />
-                <line number="41" hits="0" branch="false" />
-                <line number="42" hits="0" branch="false" />
-                <line number="43" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="44" hits="0" branch="false" />
-                <line number="45" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="46" hits="0" branch="false" />
-                <line number="47" hits="0" branch="false" />
-                <line number="48" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="49" hits="0" branch="false" />
-                <line number="50" hits="0" branch="false" />
-                <line number="51" hits="0" branch="false" />
-                <line number="52" hits="0" branch="false" />
-                <line number="53" hits="0" branch="false" />
-                <line number="54" hits="0" branch="false" />
-                <line number="55" hits="0" branch="false" />
-                <line number="58" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="61" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="62" hits="0" branch="false" />
-                <line number="63" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="64" hits="0" branch="false" />
-                <line number="65" hits="0" branch="false" />
-                <line number="66" hits="0" branch="false" />
-                <line number="67" hits="0" branch="false" />
-                <line number="68" hits="0" branch="false" />
-                <line number="70" hits="0" branch="false" />
-                <line number="71" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="GetLatestSnapshotAsync" signature="()" line-rate="0" branch-rate="0" complexity="2">
-              <lines>
-                <line number="119" hits="0" branch="false" />
-                <line number="120" hits="0" branch="false" />
-                <line number="121" hits="0" branch="false" />
-                <line number="122" hits="0" branch="false" />
-                <line number="123" hits="0" branch="false" />
-                <line number="125" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="126" hits="0" branch="false" />
-                <line number="127" hits="0" branch="false" />
-                <line number="130" hits="0" branch="false" />
-                <line number="131" hits="0" branch="false" />
-                <line number="132" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="SaveChangesAsync" signature="()" line-rate="0" branch-rate="0" complexity="6">
-              <lines>
-                <line number="82" hits="0" branch="false" />
-                <line number="84" hits="0" branch="false" />
-                <line number="86" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="87" hits="0" branch="false" />
-                <line number="89" hits="0" branch="true" condition-coverage="0% (0/4)" />
-                <line number="90" hits="0" branch="false" />
-                <line number="91" hits="0" branch="false" />
-                <line number="92" hits="0" branch="false" />
-                <line number="93" hits="0" branch="false" />
-                <line number="94" hits="0" branch="false" />
-                <line number="95" hits="0" branch="false" />
-                <line number="96" hits="0" branch="false" />
-                <line number="98" hits="0" branch="false" />
-                <line number="99" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="19" hits="0" branch="false" />
-            <line number="23" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="24" hits="0" branch="false" />
-            <line number="25" hits="0" branch="false" />
-            <line number="28" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="29" hits="0" branch="false" />
-            <line number="30" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="33" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="36" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="37" hits="0" branch="false" />
-            <line number="38" hits="0" branch="false" />
-            <line number="39" hits="0" branch="false" />
-            <line number="40" hits="0" branch="false" />
-            <line number="41" hits="0" branch="false" />
-            <line number="42" hits="0" branch="false" />
-            <line number="43" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="44" hits="0" branch="false" />
-            <line number="45" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="46" hits="0" branch="false" />
-            <line number="47" hits="0" branch="false" />
-            <line number="48" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="49" hits="0" branch="false" />
-            <line number="50" hits="0" branch="false" />
-            <line number="51" hits="0" branch="false" />
-            <line number="52" hits="0" branch="false" />
-            <line number="53" hits="0" branch="false" />
-            <line number="54" hits="0" branch="false" />
-            <line number="55" hits="0" branch="false" />
-            <line number="58" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="61" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="62" hits="0" branch="false" />
-            <line number="63" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="64" hits="0" branch="false" />
-            <line number="65" hits="0" branch="false" />
-            <line number="66" hits="0" branch="false" />
-            <line number="67" hits="0" branch="false" />
-            <line number="68" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
-            <line number="71" hits="0" branch="false" />
-            <line number="75" hits="0" branch="false" />
-            <line number="76" hits="0" branch="false" />
-            <line number="77" hits="0" branch="false" />
-            <line number="78" hits="0" branch="false" />
-            <line number="82" hits="0" branch="false" />
-            <line number="84" hits="0" branch="false" />
-            <line number="86" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="87" hits="0" branch="false" />
-            <line number="89" hits="0" branch="true" condition-coverage="0% (0/4)" />
-            <line number="90" hits="0" branch="false" />
-            <line number="91" hits="0" branch="false" />
-            <line number="92" hits="0" branch="false" />
-            <line number="93" hits="0" branch="false" />
-            <line number="94" hits="0" branch="false" />
-            <line number="95" hits="0" branch="false" />
-            <line number="96" hits="0" branch="false" />
-            <line number="98" hits="0" branch="false" />
-            <line number="99" hits="0" branch="false" />
-            <line number="103" hits="0" branch="false" />
-            <line number="105" hits="0" branch="false" />
-            <line number="106" hits="0" branch="false" />
-            <line number="107" hits="0" branch="false" />
-            <line number="108" hits="0" branch="false" />
-            <line number="109" hits="0" branch="false" />
-            <line number="110" hits="0" branch="false" />
-            <line number="111" hits="0" branch="false" />
-            <line number="113" hits="0" branch="false" />
-            <line number="114" hits="0" branch="false" />
-            <line number="115" hits="0" branch="false" />
-            <line number="119" hits="0" branch="false" />
-            <line number="120" hits="0" branch="false" />
-            <line number="121" hits="0" branch="false" />
-            <line number="122" hits="0" branch="false" />
-            <line number="123" hits="0" branch="false" />
-            <line number="125" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="126" hits="0" branch="false" />
-            <line number="127" hits="0" branch="false" />
-            <line number="130" hits="0" branch="false" />
-            <line number="131" hits="0" branch="false" />
-            <line number="132" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.EventStore.MoneyDeposited_v1_to_v2_Upcaster" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\EventStore\Upcasters.cs" line-rate="1" branch-rate="1" complexity="3">
-          <methods>
-            <method name="CanUpcast" signature="(System.Type)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="24" hits="12" branch="false" />
-                <line number="25" hits="12" branch="false" />
-                <line number="26" hits="12" branch="false" />
-              </lines>
-            </method>
-            <method name="Upcast" signature="(AresNexus.Shared.Kernel.IDomainEvent)" line-rate="1" branch-rate="1" complexity="2">
-              <lines>
-                <line number="30" hits="13" branch="false" />
-                <line number="31" hits="13" branch="true" condition-coverage="100% (2/2)" />
-                <line number="32" hits="7" branch="false" />
-                <line number="33" hits="7" branch="false" />
-                <line number="35" hits="6" branch="false" />
-                <line number="36" hits="13" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="24" hits="12" branch="false" />
-            <line number="25" hits="12" branch="false" />
-            <line number="26" hits="12" branch="false" />
-            <line number="30" hits="13" branch="false" />
-            <line number="31" hits="13" branch="true" condition-coverage="100% (2/2)" />
-            <line number="32" hits="7" branch="false" />
-            <line number="33" hits="7" branch="false" />
-            <line number="35" hits="6" branch="false" />
-            <line number="36" hits="13" branch="false" />
+            <line number="68" hits="2298" branch="false" />
+            <line number="69" hits="2298" branch="false" />
+            <line number="73" hits="55" branch="false" />
+            <line number="74" hits="55" branch="true" condition-coverage="50% (1/2)" />
+            <line number="75" hits="55" branch="false" />
+            <line number="76" hits="55" branch="false" />
+            <line number="77" hits="55" branch="false" />
+            <line number="81" hits="2362" branch="false" />
+            <line number="82" hits="2362" branch="true" condition-coverage="100% (2/2)" />
+            <line number="83" hits="2362" branch="false" />
+            <line number="90" hits="49" branch="false" />
+            <line number="91" hits="53" branch="false" />
+            <line number="92" hits="49" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior`2" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\CommandIdempotencyBehavior.cs" line-rate="0.17647058823529413" branch-rate="0" complexity="5">
           <methods>
             <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IIdempotencyStore,Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior`2&lt;TRequest,TResponse&gt;&gt;)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="15" branch="false" />
-                <line number="17" hits="15" branch="false" />
-                <line number="18" hits="15" branch="false" />
+                <line number="16" hits="101" branch="false" />
+                <line number="17" hits="101" branch="false" />
+                <line number="18" hits="101" branch="false" />
               </lines>
             </method>
             <method name="Handle" signature="()" line-rate="0" branch-rate="0" complexity="4">
@@ -1659,9 +1063,9 @@
             </method>
           </methods>
           <lines>
-            <line number="16" hits="15" branch="false" />
-            <line number="17" hits="15" branch="false" />
-            <line number="18" hits="15" branch="false" />
+            <line number="16" hits="101" branch="false" />
+            <line number="17" hits="101" branch="false" />
+            <line number="18" hits="101" branch="false" />
             <line number="24" hits="0" branch="false" />
             <line number="25" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="26" hits="0" branch="false" />
@@ -1682,44 +1086,44 @@
           <methods>
             <method name="ExistsAsync" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="16" hits="6" branch="false" />
-                <line number="17" hits="6" branch="false" />
-                <line number="18" hits="6" branch="false" />
+                <line number="16" hits="19" branch="false" />
+                <line number="17" hits="19" branch="false" />
+                <line number="18" hits="19" branch="false" />
               </lines>
             </method>
             <method name="StoreAsync" signature="(System.Guid,System.Object)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="22" hits="6" branch="false" />
-                <line number="23" hits="6" branch="false" />
-                <line number="26" hits="6" branch="false" />
-                <line number="27" hits="6" branch="false" />
+                <line number="22" hits="19" branch="false" />
+                <line number="23" hits="19" branch="false" />
+                <line number="26" hits="19" branch="false" />
+                <line number="27" hits="19" branch="false" />
               </lines>
             </method>
             <method name="GetAsync" signature="(System.Guid)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="31" hits="12" branch="false" />
-                <line number="32" hits="12" branch="true" condition-coverage="100% (2/2)" />
-                <line number="33" hits="12" branch="false" />
+                <line number="31" hits="38" branch="false" />
+                <line number="32" hits="38" branch="true" condition-coverage="100% (2/2)" />
+                <line number="33" hits="38" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="12" hits="62" branch="false" />
+                <line number="12" hits="179" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="12" hits="62" branch="false" />
-            <line number="16" hits="6" branch="false" />
-            <line number="17" hits="6" branch="false" />
-            <line number="18" hits="6" branch="false" />
-            <line number="22" hits="6" branch="false" />
-            <line number="23" hits="6" branch="false" />
-            <line number="26" hits="6" branch="false" />
-            <line number="27" hits="6" branch="false" />
-            <line number="31" hits="12" branch="false" />
-            <line number="32" hits="12" branch="true" condition-coverage="100% (2/2)" />
-            <line number="33" hits="12" branch="false" />
+            <line number="12" hits="179" branch="false" />
+            <line number="16" hits="19" branch="false" />
+            <line number="17" hits="19" branch="false" />
+            <line number="18" hits="19" branch="false" />
+            <line number="22" hits="19" branch="false" />
+            <line number="23" hits="19" branch="false" />
+            <line number="26" hits="19" branch="false" />
+            <line number="27" hits="19" branch="false" />
+            <line number="31" hits="38" branch="false" />
+            <line number="32" hits="38" branch="true" condition-coverage="100% (2/2)" />
+            <line number="33" hits="38" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Idempotency\RedisIdempotencyStore.cs" line-rate="0" branch-rate="0" complexity="6">
@@ -1842,258 +1246,6 @@
             <line number="47" hits="4" branch="false" />
           </lines>
         </class>
-        <class name="AresNexus.Settlement.Infrastructure.Messaging.OutboxMessage" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\OutboxMessage.cs" line-rate="0.875" branch-rate="1" complexity="8">
-          <methods>
-            <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="9" hits="440" branch="false" />
-              </lines>
-            </method>
-            <method name="get_OccurredOnUtc" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="11" hits="440" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Type" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="13" hits="440" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Content" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="15" hits="440" branch="false" />
-              </lines>
-            </method>
-            <method name="get_TraceId" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="17" hits="4" branch="false" />
-              </lines>
-            </method>
-            <method name="get_CorrelationId" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="19" hits="4" branch="false" />
-              </lines>
-            </method>
-            <method name="get_ProcessedOnUtc" signature="()" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="21" hits="4" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Error" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="23" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="9" hits="440" branch="false" />
-            <line number="11" hits="440" branch="false" />
-            <line number="13" hits="440" branch="false" />
-            <line number="15" hits="440" branch="false" />
-            <line number="17" hits="4" branch="false" />
-            <line number="19" hits="4" branch="false" />
-            <line number="21" hits="4" branch="false" />
-            <line number="23" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\OutboxProcessor.cs" line-rate="0" branch-rate="0" complexity="7">
-          <methods>
-            <method name=".ctor" signature="(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor&gt;)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="8" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="ExecuteAsync" signature="()" line-rate="0" branch-rate="0" complexity="6">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-                <line number="17" hits="0" branch="false" />
-                <line number="19" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="20" hits="0" branch="false" />
-                <line number="22" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
-                <line number="24" hits="0" branch="false" />
-                <line number="25" hits="0" branch="false" />
-                <line number="30" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="false" />
-                <line number="33" hits="0" branch="false" />
-                <line number="36" hits="0" branch="false" />
-                <line number="37" hits="0" branch="false" />
-                <line number="38" hits="0" branch="false" />
-                <line number="39" hits="0" branch="false" />
-                <line number="40" hits="0" branch="false" />
-                <line number="42" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="43" hits="0" branch="false" />
-                <line number="44" hits="0" branch="false" />
-                <line number="45" hits="0" branch="false" />
-                <line number="48" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="49" hits="0" branch="false" />
-                <line number="51" hits="0" branch="false" />
-                <line number="52" hits="0" branch="false" />
-                <line number="55" hits="0" branch="false" />
-                <line number="56" hits="0" branch="false" />
-                <line number="58" hits="0" branch="false" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="61" hits="0" branch="false" />
-                <line number="62" hits="0" branch="false" />
-                <line number="63" hits="0" branch="false" />
-                <line number="64" hits="0" branch="false" />
-                <line number="65" hits="0" branch="false" />
-                <line number="66" hits="0" branch="false" />
-                <line number="67" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="8" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-            <line number="19" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="20" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
-            <line number="24" hits="0" branch="false" />
-            <line number="25" hits="0" branch="false" />
-            <line number="30" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="false" />
-            <line number="33" hits="0" branch="false" />
-            <line number="36" hits="0" branch="false" />
-            <line number="37" hits="0" branch="false" />
-            <line number="38" hits="0" branch="false" />
-            <line number="39" hits="0" branch="false" />
-            <line number="40" hits="0" branch="false" />
-            <line number="42" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="43" hits="0" branch="false" />
-            <line number="44" hits="0" branch="false" />
-            <line number="45" hits="0" branch="false" />
-            <line number="48" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="49" hits="0" branch="false" />
-            <line number="51" hits="0" branch="false" />
-            <line number="52" hits="0" branch="false" />
-            <line number="55" hits="0" branch="false" />
-            <line number="56" hits="0" branch="false" />
-            <line number="58" hits="0" branch="false" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="61" hits="0" branch="false" />
-            <line number="62" hits="0" branch="false" />
-            <line number="63" hits="0" branch="false" />
-            <line number="64" hits="0" branch="false" />
-            <line number="65" hits="0" branch="false" />
-            <line number="66" hits="0" branch="false" />
-            <line number="67" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOptions" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="get_ConnectionString" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="18" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="18" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Messaging\ServiceBusOutboxPublisher.cs" line-rate="0" branch-rate="0" complexity="11">
-          <methods>
-            <method name=".ctor" signature="(Microsoft.Extensions.Logging.ILogger`1&lt;AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher&gt;,Microsoft.Extensions.Options.IOptions`1&lt;AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOptions&gt;)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="27" hits="0" branch="false" />
-                <line number="29" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="DisposeAsync" signature="()" line-rate="0" branch-rate="0" complexity="4">
-              <lines>
-                <line number="70" hits="0" branch="false" />
-                <line number="71" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="72" hits="0" branch="false" />
-                <line number="73" hits="0" branch="false" />
-                <line number="74" hits="0" branch="false" />
-                <line number="75" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="76" hits="0" branch="false" />
-                <line number="77" hits="0" branch="false" />
-                <line number="78" hits="0" branch="false" />
-                <line number="79" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="PublishAsync" signature="()" line-rate="0" branch-rate="0" complexity="6">
-              <lines>
-                <line number="35" hits="0" branch="false" />
-                <line number="37" hits="0" branch="false" />
-                <line number="38" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="39" hits="0" branch="false" />
-                <line number="41" hits="0" branch="false" />
-                <line number="42" hits="0" branch="false" />
-                <line number="43" hits="0" branch="false" />
-                <line number="44" hits="0" branch="false" />
-                <line number="45" hits="0" branch="false" />
-                <line number="46" hits="0" branch="false" />
-                <line number="49" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="50" hits="0" branch="false" />
-                <line number="51" hits="0" branch="false" />
-                <line number="52" hits="0" branch="false" />
-                <line number="53" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="54" hits="0" branch="false" />
-                <line number="55" hits="0" branch="false" />
-                <line number="56" hits="0" branch="false" />
-                <line number="58" hits="0" branch="false" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="61" hits="0" branch="false" />
-                <line number="62" hits="0" branch="false" />
-                <line number="63" hits="0" branch="false" />
-                <line number="64" hits="0" branch="false" />
-                <line number="66" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="27" hits="0" branch="false" />
-            <line number="29" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="37" hits="0" branch="false" />
-            <line number="38" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="39" hits="0" branch="false" />
-            <line number="41" hits="0" branch="false" />
-            <line number="42" hits="0" branch="false" />
-            <line number="43" hits="0" branch="false" />
-            <line number="44" hits="0" branch="false" />
-            <line number="45" hits="0" branch="false" />
-            <line number="46" hits="0" branch="false" />
-            <line number="49" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="50" hits="0" branch="false" />
-            <line number="51" hits="0" branch="false" />
-            <line number="52" hits="0" branch="false" />
-            <line number="53" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="54" hits="0" branch="false" />
-            <line number="55" hits="0" branch="false" />
-            <line number="56" hits="0" branch="false" />
-            <line number="58" hits="0" branch="false" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="61" hits="0" branch="false" />
-            <line number="62" hits="0" branch="false" />
-            <line number="63" hits="0" branch="false" />
-            <line number="64" hits="0" branch="false" />
-            <line number="66" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
-            <line number="71" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="72" hits="0" branch="false" />
-            <line number="73" hits="0" branch="false" />
-            <line number="74" hits="0" branch="false" />
-            <line number="75" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="76" hits="0" branch="false" />
-            <line number="77" hits="0" branch="false" />
-            <line number="78" hits="0" branch="false" />
-            <line number="79" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="AresNexus.Settlement.Infrastructure.Persistence.Snapshot" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Persistence\Snapshot.cs" line-rate="0" branch-rate="1" complexity="7">
           <methods>
             <method name=".ctor" signature="(System.Guid,System.Guid,System.String,System.String,System.Int32,System.DateTime)" line-rate="0" branch-rate="1" complexity="1">
@@ -2148,109 +1300,11 @@
             <line number="15" hits="0" branch="false" />
           </lines>
         </class>
-        <class name="AresNexus.Settlement.Infrastructure.Projections.AccountSummary" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Projections\AccountSummaryProjection.cs" line-rate="0" branch-rate="1" complexity="5">
-          <methods>
-            <method name="get_Id" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="12" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Owner" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="14" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_Balance" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="16" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_TransactionCount" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="18" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="get_LastUpdated" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="20" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="12" hits="0" branch="false" />
-            <line number="14" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="18" hits="0" branch="false" />
-            <line number="20" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.Projections.AccountSummaryProjection" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Projections\AccountSummaryProjection.cs" line-rate="0" branch-rate="1" complexity="4">
-          <methods>
-            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.AccountCreatedEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="43" hits="0" branch="false" />
-                <line number="44" hits="0" branch="false" />
-                <line number="45" hits="0" branch="false" />
-                <line number="46" hits="0" branch="false" />
-                <line number="47" hits="0" branch="false" />
-                <line number="48" hits="0" branch="false" />
-                <line number="49" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsDepositedEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="57" hits="0" branch="false" />
-                <line number="58" hits="0" branch="false" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="61" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="Apply" signature="(AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent,AresNexus.Settlement.Infrastructure.Projections.AccountSummary)" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="69" hits="0" branch="false" />
-                <line number="70" hits="0" branch="false" />
-                <line number="71" hits="0" branch="false" />
-                <line number="72" hits="0" branch="false" />
-                <line number="73" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name=".ctor" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="32" hits="0" branch="false" />
-                <line number="33" hits="0" branch="false" />
-                <line number="35" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="32" hits="0" branch="false" />
-            <line number="33" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="43" hits="0" branch="false" />
-            <line number="44" hits="0" branch="false" />
-            <line number="45" hits="0" branch="false" />
-            <line number="46" hits="0" branch="false" />
-            <line number="47" hits="0" branch="false" />
-            <line number="48" hits="0" branch="false" />
-            <line number="49" hits="0" branch="false" />
-            <line number="57" hits="0" branch="false" />
-            <line number="58" hits="0" branch="false" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="61" hits="0" branch="false" />
-            <line number="69" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
-            <line number="71" hits="0" branch="false" />
-            <line number="72" hits="0" branch="false" />
-            <line number="73" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\InMemoryAccountRepository.cs" line-rate="1" branch-rate="0.8571428571428571" complexity="15">
           <methods>
             <method name=".ctor" signature="(AresNexus.Settlement.Application.Interfaces.IEventStore)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="9" hits="56" branch="false" />
+                <line number="9" hits="168" branch="false" />
               </lines>
             </method>
             <method name="GetByIdAsync" signature="()" line-rate="1" branch-rate="1" complexity="6">
@@ -2288,7 +1342,7 @@
             </method>
           </methods>
           <lines>
-            <line number="9" hits="56" branch="false" />
+            <line number="9" hits="168" branch="false" />
             <line number="13" hits="209" branch="false" />
             <line number="14" hits="209" branch="false" />
             <line number="15" hits="209" branch="false" />
@@ -2316,232 +1370,28 @@
             <line number="50" hits="207" branch="false" />
           </lines>
         </class>
-        <class name="AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Repositories\MartenAccountRepository.cs" line-rate="0.42857142857142855" branch-rate="0.3695652173913043" complexity="47">
-          <methods>
-            <method name=".ctor" signature="(Marten.IDocumentSession,AresNexus.Settlement.Application.Interfaces.IEventStore,AresNexus.Settlement.Application.Interfaces.IEncryptionService)" line-rate="1" branch-rate="1" complexity="1">
-              <lines>
-                <line number="20" hits="4" branch="false" />
-              </lines>
-            </method>
-            <method name="GetByIdAsync" signature="()" line-rate="0" branch-rate="0" complexity="6">
-              <lines>
-                <line number="24" hits="0" branch="false" />
-                <line number="26" hits="0" branch="false" />
-                <line number="27" hits="0" branch="false" />
-                <line number="29" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="30" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="false" />
-                <line number="35" hits="0" branch="false" />
-                <line number="37" hits="0" branch="true" condition-coverage="0% (0/4)" />
-                <line number="38" hits="0" branch="false" />
-                <line number="39" hits="0" branch="false" />
-                <line number="42" hits="0" branch="false" />
-                <line number="43" hits="0" branch="false" />
-                <line number="44" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="SaveAsync" signature="()" line-rate="0.5161290322580645" branch-rate="0.425" complexity="40">
-              <lines>
-                <line number="48" hits="2" branch="false" />
-                <line number="49" hits="2" branch="false" />
-                <line number="50" hits="2" branch="true" condition-coverage="50% (2/4)" />
-                <line number="53" hits="14" branch="true" condition-coverage="100% (2/2)" />
-                <line number="54" hits="4" branch="false" />
-                <line number="55" hits="4" branch="true" condition-coverage="100% (2/2)" />
-                <line number="56" hits="2" branch="false" />
-                <line number="57" hits="2" branch="true" condition-coverage="50% (1/2)" />
-                <line number="58" hits="0" branch="false" />
-                <line number="59" hits="0" branch="false" />
-                <line number="60" hits="0" branch="false" />
-                <line number="63" hits="0" branch="false" />
-                <line number="64" hits="2" branch="false" />
-                <line number="65" hits="2" branch="true" condition-coverage="50% (1/2)" />
-                <line number="66" hits="0" branch="false" />
-                <line number="67" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="68" hits="0" branch="false" />
-                <line number="69" hits="0" branch="false" />
-                <line number="70" hits="0" branch="false" />
-                <line number="71" hits="0" branch="false" />
-                <line number="72" hits="0" branch="false" />
-                <line number="73" hits="4" branch="false" />
-                <line number="75" hits="2" branch="false" />
-                <line number="77" hits="2" branch="true" condition-coverage="100% (2/2)" />
-                <line number="78" hits="2" branch="false" />
-                <line number="80" hits="2" branch="false" />
-                <line number="84" hits="14" branch="true" condition-coverage="100% (2/2)" />
-                <line number="85" hits="4" branch="false" />
-                <line number="86" hits="4" branch="true" condition-coverage="50% (1/2)" />
-                <line number="87" hits="4" branch="true" condition-coverage="50% (1/2)" />
-                <line number="89" hits="4" branch="true" condition-coverage="50% (2/4)" />
-                <line number="90" hits="4" branch="false" />
-                <line number="91" hits="4" branch="false" />
-                <line number="92" hits="4" branch="false" />
-                <line number="93" hits="4" branch="false" />
-                <line number="94" hits="4" branch="false" />
-                <line number="95" hits="4" branch="false" />
-                <line number="96" hits="4" branch="false" />
-                <line number="97" hits="4" branch="false" />
-                <line number="98" hits="4" branch="false" />
-                <line number="99" hits="2" branch="false" />
-                <line number="102" hits="6" branch="true" condition-coverage="50% (1/2)" />
-                <line number="103" hits="0" branch="false" />
-                <line number="104" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="105" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="107" hits="0" branch="true" condition-coverage="0% (0/4)" />
-                <line number="108" hits="0" branch="false" />
-                <line number="109" hits="0" branch="false" />
-                <line number="110" hits="0" branch="false" />
-                <line number="111" hits="0" branch="false" />
-                <line number="112" hits="0" branch="false" />
-                <line number="113" hits="0" branch="false" />
-                <line number="114" hits="0" branch="false" />
-                <line number="115" hits="0" branch="false" />
-                <line number="116" hits="0" branch="false" />
-                <line number="119" hits="2" branch="false" />
-                <line number="123" hits="0" branch="true" condition-coverage="0% (0/4)" />
-                <line number="124" hits="0" branch="false" />
-                <line number="125" hits="0" branch="false" />
-                <line number="126" hits="0" branch="false" />
-                <line number="128" hits="0" branch="false" />
-                <line number="129" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="20" hits="4" branch="false" />
-            <line number="24" hits="0" branch="false" />
-            <line number="26" hits="0" branch="false" />
-            <line number="27" hits="0" branch="false" />
-            <line number="29" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="30" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="37" hits="0" branch="true" condition-coverage="0% (0/4)" />
-            <line number="38" hits="0" branch="false" />
-            <line number="39" hits="0" branch="false" />
-            <line number="42" hits="0" branch="false" />
-            <line number="43" hits="0" branch="false" />
-            <line number="44" hits="0" branch="false" />
-            <line number="48" hits="2" branch="false" />
-            <line number="49" hits="2" branch="false" />
-            <line number="50" hits="2" branch="true" condition-coverage="50% (2/4)" />
-            <line number="53" hits="14" branch="true" condition-coverage="100% (2/2)" />
-            <line number="54" hits="4" branch="false" />
-            <line number="55" hits="4" branch="true" condition-coverage="100% (2/2)" />
-            <line number="56" hits="2" branch="false" />
-            <line number="57" hits="2" branch="true" condition-coverage="50% (1/2)" />
-            <line number="58" hits="0" branch="false" />
-            <line number="59" hits="0" branch="false" />
-            <line number="60" hits="0" branch="false" />
-            <line number="63" hits="0" branch="false" />
-            <line number="64" hits="2" branch="false" />
-            <line number="65" hits="2" branch="true" condition-coverage="50% (1/2)" />
-            <line number="66" hits="0" branch="false" />
-            <line number="67" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="68" hits="0" branch="false" />
-            <line number="69" hits="0" branch="false" />
-            <line number="70" hits="0" branch="false" />
-            <line number="71" hits="0" branch="false" />
-            <line number="72" hits="0" branch="false" />
-            <line number="73" hits="4" branch="false" />
-            <line number="75" hits="2" branch="false" />
-            <line number="77" hits="2" branch="true" condition-coverage="100% (2/2)" />
-            <line number="78" hits="2" branch="false" />
-            <line number="80" hits="2" branch="false" />
-            <line number="84" hits="14" branch="true" condition-coverage="100% (2/2)" />
-            <line number="85" hits="4" branch="false" />
-            <line number="86" hits="4" branch="true" condition-coverage="50% (1/2)" />
-            <line number="87" hits="4" branch="true" condition-coverage="50% (1/2)" />
-            <line number="89" hits="4" branch="true" condition-coverage="50% (2/4)" />
-            <line number="90" hits="4" branch="false" />
-            <line number="91" hits="4" branch="false" />
-            <line number="92" hits="4" branch="false" />
-            <line number="93" hits="4" branch="false" />
-            <line number="94" hits="4" branch="false" />
-            <line number="95" hits="4" branch="false" />
-            <line number="96" hits="4" branch="false" />
-            <line number="97" hits="4" branch="false" />
-            <line number="98" hits="4" branch="false" />
-            <line number="99" hits="2" branch="false" />
-            <line number="102" hits="6" branch="true" condition-coverage="50% (1/2)" />
-            <line number="103" hits="0" branch="false" />
-            <line number="104" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="105" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="107" hits="0" branch="true" condition-coverage="0% (0/4)" />
-            <line number="108" hits="0" branch="false" />
-            <line number="109" hits="0" branch="false" />
-            <line number="110" hits="0" branch="false" />
-            <line number="111" hits="0" branch="false" />
-            <line number="112" hits="0" branch="false" />
-            <line number="113" hits="0" branch="false" />
-            <line number="114" hits="0" branch="false" />
-            <line number="115" hits="0" branch="false" />
-            <line number="116" hits="0" branch="false" />
-            <line number="119" hits="2" branch="false" />
-            <line number="123" hits="0" branch="true" condition-coverage="0% (0/4)" />
-            <line number="124" hits="0" branch="false" />
-            <line number="125" hits="0" branch="false" />
-            <line number="126" hits="0" branch="false" />
-            <line number="128" hits="0" branch="false" />
-            <line number="129" hits="0" branch="false" />
-          </lines>
-        </class>
-        <class name="AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\AzureKeyVaultSecretManager.cs" line-rate="0" branch-rate="0" complexity="3">
-          <methods>
-            <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="0" branch-rate="0" complexity="2">
-              <lines>
-                <line number="18" hits="0" branch="false" />
-                <line number="19" hits="0" branch="false" />
-                <line number="20" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="21" hits="0" branch="false" />
-                <line number="22" hits="0" branch="false" />
-              </lines>
-            </method>
-            <method name="GetSecretAsync" signature="()" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="30" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="false" />
-                <line number="33" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="18" hits="0" branch="false" />
-            <line number="19" hits="0" branch="false" />
-            <line number="20" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="21" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-            <line number="30" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="false" />
-            <line number="33" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="AresNexus.Settlement.Infrastructure.Security.DevSecretManager" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\DevSecretManager.cs" line-rate="1" branch-rate="1" complexity="3">
           <methods>
             <method name="GetSecretAsync" signature="(System.String)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="16" hits="10" branch="false" />
-                <line number="17" hits="10" branch="true" condition-coverage="100% (2/2)" />
-                <line number="18" hits="5" branch="false" />
-                <line number="19" hits="5" branch="false" />
+                <line number="16" hits="26" branch="false" />
+                <line number="17" hits="26" branch="true" condition-coverage="100% (2/2)" />
+                <line number="18" hits="13" branch="false" />
+                <line number="19" hits="13" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="(Microsoft.Extensions.Configuration.IConfiguration)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="8" hits="10" branch="false" />
+                <line number="8" hits="26" branch="false" />
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="8" hits="10" branch="false" />
-            <line number="16" hits="10" branch="false" />
-            <line number="17" hits="10" branch="true" condition-coverage="100% (2/2)" />
-            <line number="18" hits="5" branch="false" />
-            <line number="19" hits="5" branch="false" />
+            <line number="8" hits="26" branch="false" />
+            <line number="16" hits="26" branch="false" />
+            <line number="17" hits="26" branch="true" condition-coverage="100% (2/2)" />
+            <line number="18" hits="13" branch="false" />
+            <line number="19" hits="13" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Settlement.Infrastructure.Security.MockEncryptionService" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\Security\MockEncryptionService.cs" line-rate="0.5" branch-rate="0" complexity="3">
@@ -2606,12 +1456,12 @@
           <methods>
             <method name=".ctor" signature="(AresNexus.Settlement.Infrastructure.Security.ISecretManager)" line-rate="1" branch-rate="0.5" complexity="2">
               <lines>
-                <line number="19" hits="18" branch="false" />
-                <line number="20" hits="18" branch="false" />
-                <line number="21" hits="18" branch="true" condition-coverage="50% (1/2)" />
-                <line number="22" hits="18" branch="false" />
-                <line number="23" hits="18" branch="false" />
-                <line number="24" hits="18" branch="false" />
+                <line number="19" hits="86" branch="false" />
+                <line number="20" hits="86" branch="false" />
+                <line number="21" hits="86" branch="true" condition-coverage="50% (1/2)" />
+                <line number="22" hits="86" branch="false" />
+                <line number="23" hits="86" branch="false" />
+                <line number="24" hits="86" branch="false" />
               </lines>
             </method>
             <method name="DecryptAsync" signature="()" line-rate="0" branch-rate="0" complexity="2">
@@ -2655,12 +1505,12 @@
             </method>
           </methods>
           <lines>
-            <line number="19" hits="18" branch="false" />
-            <line number="20" hits="18" branch="false" />
-            <line number="21" hits="18" branch="true" condition-coverage="50% (1/2)" />
-            <line number="22" hits="18" branch="false" />
-            <line number="23" hits="18" branch="false" />
-            <line number="24" hits="18" branch="false" />
+            <line number="19" hits="86" branch="false" />
+            <line number="20" hits="86" branch="false" />
+            <line number="21" hits="86" branch="true" condition-coverage="50% (1/2)" />
+            <line number="22" hits="86" branch="false" />
+            <line number="23" hits="86" branch="false" />
+            <line number="24" hits="86" branch="false" />
             <line number="28" hits="0" branch="false" />
             <line number="29" hits="0" branch="true" condition-coverage="0% (0/2)" />
             <line number="31" hits="0" branch="false" />
@@ -2702,44 +1552,44 @@
           <methods>
             <method name="GetUncommittedChanges" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="50" hits="968" branch="false" />
+                <line number="50" hits="2522" branch="false" />
               </lines>
             </method>
             <method name="MarkChangesAsCommitted" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="55" hits="935" branch="false" />
+                <line number="55" hits="2391" branch="false" />
               </lines>
             </method>
             <method name="LoadsFromHistory" signature="(System.Collections.Generic.IEnumerable`1&lt;AresNexus.Shared.Kernel.IDomainEvent&gt;)" line-rate="1" branch-rate="1" complexity="2">
               <lines>
-                <line number="62" hits="903" branch="false" />
-                <line number="66" hits="47747" branch="true" condition-coverage="100% (2/2)" />
-                <line number="67" hits="22519" branch="false" />
-                <line number="68" hits="22519" branch="false" />
-                <line number="69" hits="22519" branch="false" />
-                <line number="70" hits="903" branch="false" />
+                <line number="62" hits="2317" branch="false" />
+                <line number="66" hits="122101" branch="true" condition-coverage="100% (2/2)" />
+                <line number="67" hits="57575" branch="false" />
+                <line number="68" hits="57575" branch="false" />
+                <line number="69" hits="57575" branch="false" />
+                <line number="70" hits="2317" branch="false" />
               </lines>
             </method>
             <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="76" hits="1156" branch="false" />
+                <line number="76" hits="3370" branch="false" />
               </lines>
             </method>
             <method name="ApplyChange" signature="(AresNexus.Shared.Kernel.IDomainEvent,System.Boolean)" line-rate="1" branch-rate="1" complexity="4">
               <lines>
-                <line number="79" hits="23675" branch="false" />
-                <line number="80" hits="23675" branch="true" condition-coverage="100% (2/2)" />
-                <line number="82" hits="23675" branch="true" condition-coverage="100% (2/2)" />
-                <line number="83" hits="1156" branch="false" />
-                <line number="84" hits="1156" branch="false" />
-                <line number="85" hits="1156" branch="false" />
-                <line number="87" hits="23675" branch="false" />
-                <line number="88" hits="23675" branch="false" />
+                <line number="79" hits="60945" branch="false" />
+                <line number="80" hits="60945" branch="true" condition-coverage="100% (2/2)" />
+                <line number="82" hits="60945" branch="true" condition-coverage="100% (2/2)" />
+                <line number="83" hits="3370" branch="false" />
+                <line number="84" hits="3370" branch="false" />
+                <line number="85" hits="3370" branch="false" />
+                <line number="87" hits="60945" branch="false" />
+                <line number="88" hits="60945" branch="false" />
               </lines>
             </method>
             <method name=".ctor" signature="()" line-rate="1" branch-rate="1" complexity="1">
               <lines>
-                <line number="34" hits="1091" branch="false" />
+                <line number="34" hits="2989" branch="false" />
               </lines>
             </method>
             <method name="get_Id" signature="()" line-rate="1" branch-rate="1" complexity="1">
@@ -2754,26 +1604,26 @@
             </method>
           </methods>
           <lines>
-            <line number="34" hits="1091" branch="false" />
+            <line number="34" hits="2989" branch="false" />
             <line number="39" hits="663" branch="false" />
             <line number="44" hits="11350" branch="false" />
-            <line number="50" hits="968" branch="false" />
-            <line number="55" hits="935" branch="false" />
-            <line number="62" hits="903" branch="false" />
-            <line number="66" hits="47747" branch="true" condition-coverage="100% (2/2)" />
-            <line number="67" hits="22519" branch="false" />
-            <line number="68" hits="22519" branch="false" />
-            <line number="69" hits="22519" branch="false" />
-            <line number="70" hits="903" branch="false" />
-            <line number="76" hits="1156" branch="false" />
-            <line number="79" hits="23675" branch="false" />
-            <line number="80" hits="23675" branch="true" condition-coverage="100% (2/2)" />
-            <line number="82" hits="23675" branch="true" condition-coverage="100% (2/2)" />
-            <line number="83" hits="1156" branch="false" />
-            <line number="84" hits="1156" branch="false" />
-            <line number="85" hits="1156" branch="false" />
-            <line number="87" hits="23675" branch="false" />
-            <line number="88" hits="23675" branch="false" />
+            <line number="50" hits="2522" branch="false" />
+            <line number="55" hits="2391" branch="false" />
+            <line number="62" hits="2317" branch="false" />
+            <line number="66" hits="122101" branch="true" condition-coverage="100% (2/2)" />
+            <line number="67" hits="57575" branch="false" />
+            <line number="68" hits="57575" branch="false" />
+            <line number="69" hits="57575" branch="false" />
+            <line number="70" hits="2317" branch="false" />
+            <line number="76" hits="3370" branch="false" />
+            <line number="79" hits="60945" branch="false" />
+            <line number="80" hits="60945" branch="true" condition-coverage="100% (2/2)" />
+            <line number="82" hits="60945" branch="true" condition-coverage="100% (2/2)" />
+            <line number="83" hits="3370" branch="false" />
+            <line number="84" hits="3370" branch="false" />
+            <line number="85" hits="3370" branch="false" />
+            <line number="87" hits="60945" branch="false" />
+            <line number="88" hits="60945" branch="false" />
           </lines>
         </class>
         <class name="AresNexus.Shared.Kernel.PrivateReflectionDynamicObjectExtensions" filename="C:\Users\Noll\source\repos\Ares-Nexus\Solution\shared\src\AresNexus.Shared.Kernel\AggregateRoot.cs" line-rate="0" branch-rate="1" complexity="1">

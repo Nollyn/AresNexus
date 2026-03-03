@@ -6,6 +6,7 @@ using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using AresNexus.Settlement.Infrastructure.Logging;
 using AresNexus.Settlement.Infrastructure.Security;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 using FluentAssertions;
 using Serilog.Core;
@@ -190,6 +191,73 @@ public class InfrastructureTests
         var structValue = (StructureValue)propertyValue!;
         var refProp = structValue.Properties.First(p => p.Name == "Reference");
         refProp.Value.ToString().Should().Be("\"***MASKED***\"");
+    }
+
+    [Fact]
+    public async Task InMemoryCosmosEventStore_ShouldWorkCorrectly()
+    {
+        // Arrange
+        var store = new InMemoryCosmosEventStore();
+        var aggregateId = Guid.NewGuid();
+        var events = new List<AresNexus.Shared.Kernel.IDomainEvent>
+        {
+            new FundsDepositedEvent(aggregateId, new Money(100), Guid.NewGuid(), DateTime.UtcNow)
+        };
+
+        // Act & Assert: Save and Get
+        await store.SaveEventsAsync(aggregateId, events, -1);
+        var storedEvents = await store.GetEventsAsync(aggregateId);
+        storedEvents.Should().HaveCount(1);
+        storedEvents.First().Should().BeOfType<FundsDepositedEvent>();
+
+        // Snapshot
+        var snapshot = new { Balance = 100 };
+        await store.SaveSnapshotAsync(aggregateId, snapshot, 0);
+        var (loadedSnapshot, version) = await store.GetLatestSnapshotAsync<object>(aggregateId);
+        loadedSnapshot.Should().NotBeNull();
+        version.Should().Be(0);
+
+        // Outbox
+        var outbox = store.GetUnprocessedOutboxMessages();
+        outbox.Should().HaveCount(1);
+    }
+
+    [Fact]
+    public async Task PiiEncryptionService_Decrypt_ShouldWorkCorrectly()
+    {
+        // Arrange
+        var secretManagerMock = new Mock<ISecretManager>();
+        secretManagerMock.Setup(s => s.GetSecretAsync("Security:EncryptionKey"))
+            .ReturnsAsync("SwissBankingSecretKey2026!AresNexus");
+        var service = new PiiEncryptionService(secretManagerMock.Object);
+        var originalText = "Sensitive Swiss Data";
+
+        // Act
+        var encrypted = await service.EncryptAsync(originalText);
+        var decrypted = await service.DecryptAsync(encrypted);
+
+        // Assert
+        decrypted.Should().Be(originalText);
+    }
+
+    [Fact]
+    public async Task ServiceBusOutboxPublisher_InMockMode_ShouldNotThrow()
+    {
+        // Arrange
+        var loggerMock = new Mock<ILogger<ServiceBusOutboxPublisher>>();
+        var optionsMock = new Mock<IOptions<ServiceBusOptions>>();
+        optionsMock.Setup(o => o.Value).Returns(new ServiceBusOptions 
+        { 
+            ConnectionString = "Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock" 
+        });
+
+        var publisher = new ServiceBusOutboxPublisher(loggerMock.Object, optionsMock.Object);
+
+        // Act
+        var act = () => publisher.PublishAsync("test-topic", new { Data = "Test" }, "trace-1", "corr-1");
+
+        // Assert
+        await act.Should().NotThrowAsync();
     }
 
     [Fact]

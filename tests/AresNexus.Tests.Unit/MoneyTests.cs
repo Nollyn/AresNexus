@@ -103,4 +103,21 @@ public class MoneyTests
         // Assert
         act.Should().Throw<InvalidOperationException>().WithMessage("Cannot subtract money with different currencies");
     }
+
+    [Fact]
+    public void Equality_ShouldWork()
+    {
+        // Arrange
+        var m1 = new Money(100, "CHF");
+        var m2 = new Money(100, "CHF");
+        var m3 = new Money(101, "CHF");
+        var m4 = new Money(100, "USD");
+
+        // Assert
+        (m1 == m2).Should().BeTrue();
+        (m1 != m3).Should().BeTrue();
+        (m1 == m4).Should().BeFalse();
+        m1.Equals(m2).Should().BeTrue();
+        m1.GetHashCode().Should().Be(m2.GetHashCode());
+    }
 }

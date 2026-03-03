@@ -10,9 +10,9 @@ set -euo pipefail
 
 MODE=${1:-smoke}
 BASE_URL=${BASE_URL:-http://localhost:5001}
-VUS_SMOKE=${VUS_SMOKE:-50}
-VUS_STRESS=${VUS_STRESS:-500}
-VUS_SOAK=${VUS_SOAK:-150}
+VUS_SMOKE=${VUS_SMOKE:-100}
+VUS_STRESS=${VUS_STRESS:-1000}
+VUS_SOAK=${VUS_SOAK:-500}
 
 K6_SCRIPT=$(cat <<'K6'
 import http from 'k6/http';

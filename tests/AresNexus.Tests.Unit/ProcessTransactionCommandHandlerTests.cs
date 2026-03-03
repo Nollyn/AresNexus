@@ -115,4 +115,29 @@ public class ProcessTransactionCommandHandlerTests
         // Assert
         await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
     }
+
+    [Fact]
+    public async Task Handle_WhenAccountNotFound_ShouldCreateNewAccountAndReturnTrue()
+    {
+        // Arrange
+        var accountId = Guid.NewGuid();
+        var command = new ProcessTransactionCommand(
+            accountId,
+            new Money(100),
+            TransactionTypes.Deposit,
+            Guid.NewGuid());
+
+        _repositoryMock.Setup(r => r.GetByIdAsync(accountId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync((Account?)null);
+
+        // Act
+        var result = await _handler.Handle(command, CancellationToken.None);
+
+        // Assert
+        result.Should().BeTrue();
+        _repositoryMock.Verify(r => r.SaveAsync(
+            It.Is<Account>(a => a.Id == accountId && a.Balance.Amount == 100),
+            It.IsAny<IEnumerable<object>>(),
+            It.IsAny<CancellationToken>()), Times.Once);
+    }
 }

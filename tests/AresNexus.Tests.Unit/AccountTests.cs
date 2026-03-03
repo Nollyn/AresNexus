@@ -74,6 +74,66 @@ public class AccountTests
     }
 
     [Fact]
+    public void Withdraw_FromLockedAccount_ShouldThrow()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        account.Deposit(new Money(100));
+        account.Lock();
+
+        // Act
+        var act = () => account.Withdraw(new Money(50));
+
+        // Assert
+        act.Should().Throw<AccountLockedException>();
+    }
+
+    [Fact]
+    public void Deposit_ToLockedAccount_ShouldThrow()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        account.Lock();
+
+        // Act
+        var act = () => account.Deposit(new Money(50));
+
+        // Assert
+        act.Should().Throw<AccountLockedException>();
+    }
+
+    [Fact]
+    public void Lock_ShouldBeIdempotent()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        account.Lock();
+        var versionBefore = account.Version;
+
+        // Act
+        account.Lock();
+
+        // Assert
+        account.IsLocked.Should().BeTrue();
+        account.Version.Should().Be(versionBefore);
+    }
+
+    [Fact]
+    public void MultiCurrency_Deposits_ShouldWork()
+    {
+        // Arrange
+        var account = new Account(Guid.NewGuid(), "John Doe");
+        
+        // Act
+        account.Deposit(new Money(100, "CHF"));
+        account.Deposit(new Money(50, "CHF"));
+
+        // Assert
+        account.Balance.Amount.Should().Be(150);
+        account.Balance.Currency.Should().Be("CHF");
+    }
+
+    [Fact]
     public void Deposit_WithNegativeAmount_ShouldThrow()
     {
         // Act

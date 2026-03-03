@@ -57,6 +57,31 @@ public class IdempotencyTests
     }
 
     [Fact]
+    public async Task Handle_WhenRequestIsNotProcessTransactionCommand_ShouldCallNextDirectly()
+    {
+        // Arrange
+        var request = new Mock<IRequest<bool>>().Object;
+        var nextCalled = false;
+        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
+        {
+            nextCalled = true;
+            return Task.FromResult(true);
+        };
+
+        var behavior = new CommandIdempotencyBehavior<IRequest<bool>, bool>(
+            _idempotencyStoreMock.Object,
+            new Mock<ILogger<CommandIdempotencyBehavior<IRequest<bool>, bool>>>().Object);
+
+        // Act
+        var result = await behavior.Handle(request, next, CancellationToken.None);
+
+        // Assert
+        result.Should().BeTrue();
+        nextCalled.Should().BeTrue();
+        _idempotencyStoreMock.Verify(s => s.ExistsAsync(It.IsAny<Guid>()), Times.Never);
+    }
+
+    [Fact]
     public async Task Handle_WhenKeyDoesNotExist_ShouldCallNextAndStoreResult()
     {
         // Arrange
@@ -83,5 +108,36 @@ public class IdempotencyTests
         result.Should().BeTrue();
         nextCalled.Should().BeTrue();
         _idempotencyStoreMock.Verify(s => s.StoreAsync(command.IdempotencyKey, true), Times.Once);
+    }
+
+    [Fact]
+    public async Task Handle_WhenKeyExists_ShouldReturnCachedResult_AndNotCallNext()
+    {
+        // Arrange
+        var command = new ProcessTransactionCommand(
+            Guid.NewGuid(),
+            new Money(100),
+            "DEPOSIT",
+            Guid.NewGuid());
+
+        _idempotencyStoreMock.Setup(s => s.ExistsAsync(command.IdempotencyKey))
+            .ReturnsAsync(true);
+        _idempotencyStoreMock.Setup(s => s.GetAsync<bool>(command.IdempotencyKey))
+            .ReturnsAsync(true);
+
+        var nextCalled = false;
+        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
+        {
+            nextCalled = true;
+            return Task.FromResult(false); // Should not be called
+        };
+
+        // Act
+        var result = await _behavior.Handle(command, next, CancellationToken.None);
+
+        // Assert
+        result.Should().BeTrue();
+        nextCalled.Should().BeFalse();
+        _idempotencyStoreMock.Verify(s => s.GetAsync<bool>(command.IdempotencyKey), Times.Once);
     }
 }
