@@ -74,6 +74,54 @@ public class AccountTests
     }
 
     [Fact]
+    public void Deposit_WithNegativeAmount_ShouldThrow()
+    {
+        // Act
+        var act = () => new Money(-100);
+
+        // Assert
+        act.Should().Throw<ArgumentException>().WithMessage("Amount cannot be negative*");
+    }
+
+    [Fact]
+    public void Money_WithEmptyCurrency_ShouldThrow()
+    {
+        // Act
+        var act = () => new Money(100, "");
+
+        // Assert
+        act.Should().Throw<ArgumentException>().WithMessage("Currency must be specified*");
+    }
+
+    [Fact]
+    public void Money_WithDifferentCurrencies_Addition_ShouldThrow()
+    {
+        // Arrange
+        var m1 = new Money(100, "CHF");
+        var m2 = new Money(100, "USD");
+
+        // Act
+        var act = () => _ = m1 + m2;
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>().WithMessage("Cannot add money with different currencies");
+    }
+
+    [Fact]
+    public void Money_WithDifferentCurrencies_Subtraction_ShouldThrow()
+    {
+        // Arrange
+        var m1 = new Money(100, "CHF");
+        var m2 = new Money(100, "USD");
+
+        // Act
+        var act = () => _ = m1 - m2;
+
+        // Assert
+        act.Should().Throw<InvalidOperationException>().WithMessage("Cannot subtract money with different currencies");
+    }
+
+    [Fact]
     public void Snapshot_ShouldCaptureCurrentState()
     {
         // Arrange

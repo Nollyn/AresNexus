@@ -163,6 +163,14 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 
 This project is licensed under the MIT License.
 
+## Roadmap to 80% Coverage
+
+Currently, the CI is configured with a 70% coverage threshold focusing on high-value Domain and Application logic. Our strategic goal is to reach 80% coverage by:
+1. **Expanding Edge Case Testing**: Increasing coverage for complex domain invariants in the `Account` aggregate.
+2. **Integration Testing**: Implementing comprehensive integration tests for the `MartenAccountRepository` to verify event persistence and snapshotting.
+3. **Failure Mode Analysis**: Adding more unit tests for negative scenarios in all command handlers.
+4. **Resilience Verification**: Expanding idempotency and encryption tests to cover all sensitive data fields.
+
 ## AI Governance & Leadership
 
 While this repository utilized **Junie** (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and mechanics, all **Architectural Thinking, System Design Decisions, and Pattern Selection** (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed, reviewed, and validated by the author. This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for mechanical execution while maintaining absolute human-led strategic integrity.
