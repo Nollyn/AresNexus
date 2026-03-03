@@ -22,6 +22,15 @@ RUN dotnet publish "AresNexus.Settlement.Api.csproj" -c Release -o /app/publish 
 # Note: Reverting to standard preview tag until Chiseled variants for .NET 10 are officially published in the Microsoft Container Registry (MCR).
 FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview AS final
 WORKDIR /app
+
+# Harden the image by patching known CVEs (e.g., CVE-2025-68973 in gpgv)
+# Since we're not yet using Chiseled images, we still have access to apt.
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gpgv \
+    && rm -rf /var/lib/apt/lists/*
+USER $APP_UID
+
 COPY --from=publish /app/publish ./
 
 # Task 5: Non-Root user (standard in chiseled/hardened images)
