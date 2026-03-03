@@ -37,7 +37,7 @@ public sealed class AzureKeyVaultSecretManager : ISecretManager
     /// <returns>The secret value.</returns>
     public async Task<string> GetSecretAsync(string secretName)
     {
-        var response = await _client.GetSecretAsync(secretName);
+        var response = await _client.GetSecretAsync(secretName, null, default);
         return response.Value.Value;
     }
 }

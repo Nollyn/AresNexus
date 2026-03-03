@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using Xunit;
 
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
+
 namespace AresNexus.Tests.Unit;
 
 public class SecurityTests
@@ -149,12 +151,19 @@ public class SecurityTests
         var clientMock = new Mock<SecretClient>();
         var secretName = "MySecret";
         var secretValue = "SecretValue";
-        var keyVaultSecret = SecretModelFactory.KeyVaultSecret(new SecretProperties(secretName), secretValue);
         
-        var response = Response.FromValue(keyVaultSecret, new Mock<Response>().Object);
+        var keyVaultSecret = SecretModelFactory.KeyVaultSecret(
+            new SecretProperties(secretName), 
+            secretValue);
+        
+        var responseMock = new Mock<Response<KeyVaultSecret>>();
+        responseMock.Setup(r => r.Value).Returns(keyVaultSecret);
 
-        clientMock.Setup(c => c.GetSecretAsync(secretName, It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(response);
+        clientMock.Setup(c => c.GetSecretAsync(
+                It.IsAny<string>(), 
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(responseMock.Object);
 
         var manager = new AzureKeyVaultSecretManager(clientMock.Object);
 
