@@ -1,0 +1,58 @@
+Summary
+  Generated on: 3/3/2026 - 7:33:19 AM
+  Coverage date: 3/3/2026 - 7:31:18 AM - 3/3/2026 - 7:33:19 AM
+  Parser: MultiReport (4x Cobertura)
+  Assemblies: 4
+  Classes: 30
+  Files: 25
+  Line coverage: 76.6%
+  Covered lines: 246
+  Uncovered lines: 75
+  Coverable lines: 321
+  Total lines: 1586
+  Branch coverage: 81.6% (49 of 60)
+  Covered branches: 49
+  Total branches: 60
+  Method coverage: 75.3% (49 of 65)
+  Full method coverage: 72.3% (47 of 65)
+  Covered methods: 49
+  Fully covered methods: 47
+  Total methods: 65
+
+AresNexus.Settlement.Application                                                        100%
+  AresNexus.Settlement.Application.Commands.ProcessTransactionCommand                   100%
+  AresNexus.Settlement.Application.Handlers.ProcessTransactionCommandHandler            100%
+  AresNexus.Settlement.Application.Validation.ProcessTransactionCommandValidator        100%
+  AresNexus.Settlement.Application.Validation.ValidationBehavior<T1, T2>                100%
+
+AresNexus.Settlement.Domain                                                            97.8%
+  AresNexus.Settlement.Domain.AccountLockedException                                    100%
+  AresNexus.Settlement.Domain.Aggregates.Account                                        100%
+  AresNexus.Settlement.Domain.Events.AccountCreatedEvent                                100%
+  AresNexus.Settlement.Domain.Events.AccountLockedEvent                                 100%
+  AresNexus.Settlement.Domain.Events.FundsDepositedEvent                                100%
+  AresNexus.Settlement.Domain.Events.FundsWithdrawnEvent                                100%
+  AresNexus.Settlement.Domain.Money                                                    91.3%
+
+AresNexus.Settlement.Infrastructure                                                    58.6%
+  AresNexus.Settlement.Infrastructure.EventStore.FundsDepositedEvent_v1                 100%
+  AresNexus.Settlement.Infrastructure.EventStore.InMemoryCosmosEventStore                72%
+  AresNexus.Settlement.Infrastructure.EventStore.MartenEventStore                         0%
+  AresNexus.Settlement.Infrastructure.EventStore.MoneyDeposited_v1_to_v2_Upcaster       100%
+  AresNexus.Settlement.Infrastructure.Idempotency.CommandIdempotencyBehavior<T1, T2>    100%
+  AresNexus.Settlement.Infrastructure.Idempotency.InMemoryIdempotencyStore              100%
+  AresNexus.Settlement.Infrastructure.Idempotency.RedisIdempotencyStore                   0%
+  AresNexus.Settlement.Infrastructure.Logging.SensitiveDataDestructuringPolicy          100%
+  AresNexus.Settlement.Infrastructure.Messaging.OutboxProcessor                           0%
+  AresNexus.Settlement.Infrastructure.Messaging.ServiceBusOutboxPublisher                 0%
+  AresNexus.Settlement.Infrastructure.Persistence.Snapshot                                0%
+  AresNexus.Settlement.Infrastructure.Projections.AccountSummaryProjection                0%
+  AresNexus.Settlement.Infrastructure.Repositories.InMemoryAccountRepository            100%
+  AresNexus.Settlement.Infrastructure.Repositories.MartenAccountRepository                0%
+  AresNexus.Settlement.Infrastructure.Security.AzureKeyVaultSecretManager                 0%
+  AresNexus.Settlement.Infrastructure.Security.DevSecretManager                         100%
+  AresNexus.Settlement.Infrastructure.Security.PiiEncryptionService                     100%
+
+AresNexus.Shared.Kernel                                                                94.7%
+  AresNexus.Shared.Kernel.AggregateRoot                                                 100%
+  AresNexus.Shared.Kernel.PrivateReflectionDynamicObjectExtensions                        0%

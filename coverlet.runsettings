@@ -5,8 +5,8 @@
       <DataCollector friendlyName="XPlat Code Coverage">
         <Configuration>
           <Format>cobertura</Format>
-          <ExcludeByFile>**/Migrations/*.cs,**/DTOs/*.cs,**/Models/*.cs,**/Program.cs</ExcludeByFile>
-          <Exclude>[*]*.Migrations.*,[*]*.DTOs.*,[*]*.Models.*,[*]Infrastructure.Persistence.*</Exclude>
+          <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
+          <Exclude>[AresNexus.Settlement.Api]AresNexus.Settlement.Api.Program,[*]*Migrations*,[*]*Mock*,[*]*ServiceBusOptions*</Exclude>
         </Configuration>
       </DataCollector>
     </DataCollectors>

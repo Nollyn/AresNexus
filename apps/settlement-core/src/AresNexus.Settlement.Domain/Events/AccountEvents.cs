@@ -56,3 +56,13 @@ public record FundsWithdrawnEvent(
     string? Reference = null, 
     string? TraceId = null, 
     string? CorrelationId = null) : IDomainEvent;
+
+/// <summary>
+/// Event raised when an account is locked.
+/// </summary>
+public record AccountLockedEvent(
+    Guid AccountId, 
+    Guid EventId, 
+    DateTime OccurredOn, 
+    string? TraceId = null, 
+    string? CorrelationId = null) : IDomainEvent;

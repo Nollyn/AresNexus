@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading.RateLimiting;
 using AresNexus.Settlement.Api;
 using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Validation;
 using AresNexus.Settlement.Infrastructure.EventStore;
 using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Logging;
@@ -116,6 +117,7 @@ builder.Services.AddMarten(options =>
     options.AutoCreateSchemaObjects = AutoCreate.All;
 }).UseLightweightSessions();
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandIdempotencyBehavior<,>));
 
 builder.Services.AddScoped<IEventStore, MartenEventStore>();

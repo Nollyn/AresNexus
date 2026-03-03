@@ -19,6 +19,11 @@ public sealed class Account : AggregateRoot
     public Money Balance { get; private set; } = new(0);
 
     /// <summary>
+    /// Gets a value indicating whether the account is locked.
+    /// </summary>
+    public bool IsLocked { get; private set; }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="Account"/> class.
     /// </summary>
     public Account() { }
@@ -40,6 +45,7 @@ public sealed class Account : AggregateRoot
     /// <param name="correlationId">The correlation identifier.</param>
     public void Deposit(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
+        if (IsLocked) throw new AccountLockedException(Id);
         ApplyChange(new FundsDepositedEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
@@ -48,19 +54,29 @@ public sealed class Account : AggregateRoot
     /// </summary>
     public void Withdraw(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
+        if (IsLocked) throw new AccountLockedException(Id);
         if (Balance.Amount < money.Amount) throw new InvalidOperationException("Insufficient funds");
         ApplyChange(new FundsWithdrawnEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
     }
 
     /// <summary>
+    /// Locks the account.
+    /// </summary>
+    public void Lock(string? traceId = null, string? correlationId = null)
+    {
+        if (IsLocked) return;
+        ApplyChange(new AccountLockedEvent(Id, Guid.NewGuid(), DateTime.UtcNow, traceId, correlationId));
+    }
+
+    /// <summary>
     /// Represents a snapshot of the account state.
     /// </summary>
-    public record Snapshot(Guid Id, string Owner, Money Balance, int Version);
+    public record Snapshot(Guid Id, string Owner, Money Balance, bool IsLocked, int Version);
 
     /// <summary>
     /// Creates a snapshot of the current state.
     /// </summary>
-    public Snapshot CreateSnapshot() => new(Id, Owner, Balance, Version);
+    public Snapshot CreateSnapshot() => new(Id, Owner, Balance, IsLocked, Version);
 
     /// <summary>
     /// Loads the aggregate state from a snapshot.
@@ -70,6 +86,7 @@ public sealed class Account : AggregateRoot
         Id = snapshot.Id;
         Owner = snapshot.Owner;
         Balance = snapshot.Balance;
+        IsLocked = snapshot.IsLocked;
         Version = snapshot.Version;
     }
 
@@ -97,5 +114,13 @@ public sealed class Account : AggregateRoot
     public void Apply(FundsWithdrawnEvent e)
     {
         Balance -= e.Money;
+    }
+
+    /// <summary>
+    /// Applies the <see cref="AccountLockedEvent"/>.
+    /// </summary>
+    public void Apply(AccountLockedEvent e)
+    {
+        IsLocked = true;
     }
 }
