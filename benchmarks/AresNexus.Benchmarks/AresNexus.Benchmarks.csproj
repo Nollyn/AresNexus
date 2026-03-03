@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Exclude from normal test runs -->
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="Marten" Version="8.22.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Api\AresNexus.Settlement.Api.csproj" />
+    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Domain\AresNexus.Settlement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
