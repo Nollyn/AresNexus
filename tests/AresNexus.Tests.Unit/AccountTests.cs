@@ -143,7 +143,7 @@ public class AccountTests
     {
         // Arrange
         var account = new Account();
-        var snapshot = new Account.Snapshot(Guid.NewGuid(), "Jane Doe", new Money(500), 10);
+        var snapshot = new Account.Snapshot(Guid.NewGuid(), "Jane Doe", new Money(500), false, 10);
 
         // Act
         account.LoadFromSnapshot(snapshot);
@@ -153,6 +153,20 @@ public class AccountTests
         account.Owner.Should().Be(snapshot.Owner);
         account.Balance.Should().Be(snapshot.Balance);
         account.Version.Should().Be(snapshot.Version);
+    }
+
+    [Fact]
+    public void LoadFromSnapshot_ShouldSetCorrectVersion()
+    {
+        // Arrange
+        var account = new Account();
+        var snapshot = new Account.Snapshot(Guid.NewGuid(), "Jane Doe", new Money(500), false, 10);
+
+        // Act
+        account.LoadFromSnapshot(snapshot);
+
+        // Assert
+        account.Version.Should().Be(10);
     }
 
     [Fact]
