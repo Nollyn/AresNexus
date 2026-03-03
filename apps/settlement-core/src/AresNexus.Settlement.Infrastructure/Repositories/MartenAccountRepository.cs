@@ -2,8 +2,10 @@
 using AresNexus.Settlement.Domain.Aggregates;
 using AresNexus.Settlement.Domain.Events;
 using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Resilience;
 using AresNexus.Shared.Kernel;
 using Marten;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 namespace AresNexus.Settlement.Infrastructure.Repositories;
@@ -17,8 +19,16 @@ namespace AresNexus.Settlement.Infrastructure.Repositories;
 /// <param name="session">The Marten document session.</param>
 /// <param name="eventStore">The event store for snapshots and history.</param>
 /// <param name="encryptionService">The PII encryption service.</param>
-public sealed class MartenAccountRepository(IDocumentSession session, IEventStore eventStore, IEncryptionService encryptionService) : IAccountRepository
+/// <param name="configuration">The configuration for snapshots.</param>
+/// <param name="resiliencePolicyFactory">The resilience policy factory.</param>
+public sealed class MartenAccountRepository(
+    IDocumentSession session, 
+    IEventStore eventStore, 
+    IEncryptionService encryptionService,
+    IConfiguration configuration,
+    IResiliencePolicyFactory resiliencePolicyFactory) : IAccountRepository
 {
+    private readonly int _snapshotInterval = configuration.GetValue<int>("EventSourcing:SnapshotInterval", 100);
     /// <inheritdoc />
     public async Task<Account?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -46,81 +56,84 @@ public sealed class MartenAccountRepository(IDocumentSession session, IEventStor
     /// <inheritdoc />
     public async Task SaveAsync(Account account, IEnumerable<object> outboxMessages, CancellationToken cancellationToken = default)
     {
-        var changes = account.GetUncommittedChanges();
-        if (changes.Count == 0 && !outboxMessages.Any()) return;
-
-        // Encrypt PII fields before serialization (Security requirement #4)
-        var encryptedChanges = new List<object>();
-        foreach (var change in changes)
+        await resiliencePolicyFactory.GetDatabasePolicy().ExecuteAsync(async () => 
         {
-            if (change is FundsDepositedEvent deposited && !string.IsNullOrEmpty(deposited.Reference))
-            {
-                var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
-                encryptedChanges.Add(deposited with { Reference = encrypted });
-            }
-            else if (change is FundsWithdrawnEvent withdrawn && !string.IsNullOrEmpty(withdrawn.Reference))
-            {
-                var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
-                encryptedChanges.Add(withdrawn with { Reference = encrypted });
-            }
-            else
-            {
-                encryptedChanges.Add(change);
-            }
-        }
+            var changes = account.GetUncommittedChanges();
+            if (changes.Count == 0 && !outboxMessages.Any()) return;
 
-        var expectedVersion = account.Version - changes.Count;
-
-        if (encryptedChanges.Count > 0)
-        {
-            // Append events to the aggregate stream in Marten
-            session.Events.Append(account.Id, encryptedChanges);
-
-            // Crucial: Implement the Transactional Outbox (Persistence requirement #1)
-            // Extract uncommitted events and save them into an OutboxMessages table in the same transaction.
-            foreach (var change in encryptedChanges)
+            // Encrypt PII fields before serialization (Security requirement #4)
+            var encryptedChanges = new List<object>();
+            foreach (var change in changes)
             {
-                var traceId = (change as IDomainEvent)?.TraceId;
-                var correlationId = (change as IDomainEvent)?.CorrelationId;
+                if (change is FundsDepositedEvent deposited && !string.IsNullOrEmpty(deposited.Reference))
+                {
+                    var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
+                    encryptedChanges.Add(deposited with { Reference = encrypted });
+                }
+                else if (change is FundsWithdrawnEvent withdrawn && !string.IsNullOrEmpty(withdrawn.Reference))
+                {
+                    var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
+                    encryptedChanges.Add(withdrawn with { Reference = encrypted });
+                }
+                else
+                {
+                    encryptedChanges.Add(change);
+                }
+            }
+
+            var expectedVersion = account.Version - changes.Count;
+
+            if (encryptedChanges.Count > 0)
+            {
+                // Append events to the aggregate stream in Marten
+                session.Events.Append(account.Id, encryptedChanges);
+
+                // Crucial: Implement the Transactional Outbox (Persistence requirement #1)
+                // Extract uncommitted events and save them into an OutboxMessages table in the same transaction.
+                foreach (var change in encryptedChanges)
+                {
+                    var traceId = (change as IDomainEvent)?.TraceId;
+                    var correlationId = (change as IDomainEvent)?.CorrelationId;
+
+                    session.Store(new OutboxMessage
+                    {
+                        Id = Guid.NewGuid(),
+                        Type = change.GetType().AssemblyQualifiedName ?? change.GetType().FullName ?? "Unknown",
+                        Content = JsonSerializer.Serialize(change),
+                        TraceId = traceId,
+                        CorrelationId = correlationId,
+                        OccurredOnUtc = DateTime.UtcNow
+                    });
+                }
+            }
+
+            // Also save additional outbox messages if any (propagate IDs if message type supports them)
+            foreach (var msg in outboxMessages)
+            {
+                var traceId = (msg as IDomainEvent)?.TraceId;
+                var correlationId = (msg as IDomainEvent)?.CorrelationId;
 
                 session.Store(new OutboxMessage
                 {
                     Id = Guid.NewGuid(),
-                    Type = change.GetType().AssemblyQualifiedName ?? change.GetType().FullName ?? "Unknown",
-                    Content = JsonSerializer.Serialize(change),
+                    Type = msg.GetType().AssemblyQualifiedName ?? msg.GetType().FullName ?? "Unknown",
+                    Content = JsonSerializer.Serialize(msg),
                     TraceId = traceId,
                     CorrelationId = correlationId,
                     OccurredOnUtc = DateTime.UtcNow
                 });
             }
-        }
 
-        // Also save additional outbox messages if any (propagate IDs if message type supports them)
-        foreach (var msg in outboxMessages)
-        {
-            var traceId = (msg as IDomainEvent)?.TraceId;
-            var correlationId = (msg as IDomainEvent)?.CorrelationId;
+            // Marten's DocumentSession handles the transaction across Events and Documents (OutboxMessages)
+            await session.SaveChangesAsync(cancellationToken);
 
-            session.Store(new OutboxMessage
+            // Snapshotting (Performance requirement #4)
+            // Take a snapshot every _snapshotInterval events
+            if (account.Version >= (_snapshotInterval - 1) && (expectedVersion / _snapshotInterval < account.Version / _snapshotInterval))
             {
-                Id = Guid.NewGuid(),
-                Type = msg.GetType().AssemblyQualifiedName ?? msg.GetType().FullName ?? "Unknown",
-                Content = JsonSerializer.Serialize(msg),
-                TraceId = traceId,
-                CorrelationId = correlationId,
-                OccurredOnUtc = DateTime.UtcNow
-            });
-        }
-
-        // Marten's DocumentSession handles the transaction across Events and Documents (OutboxMessages)
-        await session.SaveChangesAsync(cancellationToken);
-
-        // Snapshotting (Performance requirement #4)
-        // Take a snapshot every 100 events
-        if (account.Version >= 99 && (expectedVersion / 100 < account.Version / 100))
-        {
-            await eventStore.SaveSnapshotAsync(account.Id, account.CreateSnapshot(), account.Version);
-        }
+                await eventStore.SaveSnapshotAsync(account.Id, account.CreateSnapshot(), account.Version);
+            }
+        });
 
         account.MarkChangesAsCommitted();
     }

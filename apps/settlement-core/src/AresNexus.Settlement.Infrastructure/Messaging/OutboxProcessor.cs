@@ -34,7 +34,7 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
 
         // Fetch unprocessed outbox messages from Marten
         var messages = await session.Query<OutboxMessage>()
-            .Where(x => x.ProcessedOnUtc == null)
+            .Where(x => x.ProcessedOnUtc == null && !x.IsPoison)
             .OrderBy(x => x.OccurredOnUtc)
             .Take(50)
             .ToListAsync(stoppingToken);
@@ -43,11 +43,31 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
 
         foreach (var message in messages)
         {
-            // Publish to Azure Service Bus with Trace/Correlation IDs for Zero-Lag Observability requirement #2
-            await publisher.PublishAsync("settlements.transactions", message.Content, message.TraceId, message.CorrelationId);
-            message.ProcessedOnUtc = DateTime.UtcNow;
+            try
+            {
+                // Publish to Azure Service Bus with Trace/Correlation IDs for Zero-Lag Observability requirement #2
+                await publisher.PublishAsync("settlements.transactions", message.Content, message.TraceId, message.CorrelationId);
+                message.ProcessedOnUtc = DateTime.UtcNow;
+                message.Error = null;
+            }
+            catch (Exception ex)
+            {
+                message.AttemptCount++;
+                message.LastAttemptUtc = DateTime.UtcNow;
+                message.Error = ex.Message;
+                
+                if (message.AttemptCount >= 5)
+                {
+                    message.IsPoison = true;
+                    logger.LogCritical("Message {Id} marked as POISON after {Attempts} attempts. Error: {Error}", message.Id, message.AttemptCount, message.Error);
+                }
+                else
+                {
+                    logger.LogWarning(ex, "Failed to publish outbox message {Id}. Attempt {Attempt} of 5", message.Id, message.AttemptCount);
+                }
+            }
             
-            // Mark as processed in the database
+            // Mark as processed (or updated retry state) in the database
             session.Store(message);
         }
         

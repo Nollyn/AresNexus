@@ -16,6 +16,11 @@ public interface IDomainEvent
     DateTime OccurredOn { get; }
 
     /// <summary>
+    /// Gets the Schema version of the event for evolution and backward compatibility.
+    /// </summary>
+    int SchemaVersion { get; init; }
+
+    /// <summary>
     /// Gets the Trace ID for distributed tracing (FINMA requirement).
     /// </summary>
     string? TraceId { get; init; }
@@ -24,6 +29,24 @@ public interface IDomainEvent
     /// Gets the Correlation ID for distributed tracing (DORA requirement).
     /// </summary>
     string? CorrelationId { get; init; }
+}
+
+/// <summary>
+/// Interface for aggregates that support snapshotting.
+/// </summary>
+/// <typeparam name="TSnapshot">The type of the snapshot.</typeparam>
+public interface ISnapshotable<TSnapshot>
+{
+    /// <summary>
+    /// Creates a snapshot of the current state.
+    /// </summary>
+    TSnapshot CreateSnapshot();
+
+    /// <summary>
+    /// Loads the aggregate state from a snapshot.
+    /// </summary>
+    /// <param name="snapshot">The snapshot to load from.</param>
+    void LoadFromSnapshot(TSnapshot snapshot);
 }
 
 /// <summary>

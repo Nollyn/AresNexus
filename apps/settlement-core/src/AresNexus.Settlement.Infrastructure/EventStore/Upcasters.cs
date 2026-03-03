@@ -30,7 +30,7 @@ public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
     {
         if (@event is FundsDepositedEvent_v1 v1)
         {
-            return new FundsDepositedEvent(v1.AccountId, new Money(v1.Amount, "CHF"), v1.EventId, v1.OccurredOn, v1.Reference, v1.TraceId, v1.CorrelationId);
+            return new FundsDepositedEvent(v1.AccountId, new Money(v1.Amount, "CHF"), v1.EventId, v1.OccurredOn, 2, v1.Reference, v1.TraceId, v1.CorrelationId);
         }
         return @event;
     }
@@ -43,6 +43,7 @@ public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
 /// <param name="Amount">The amount deposited.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
+/// <param name="SchemaVersion">The schema version of the event.</param>
 /// <param name="Reference">An optional reference for the deposit.</param>
 /// <param name="TraceId">The trace identifier.</param>
 /// <param name="CorrelationId">The correlation identifier.</param>
@@ -51,6 +52,7 @@ public record FundsDepositedEvent_v1(
     decimal Amount, 
     Guid EventId, 
     DateTime OccurredOn, 
+    int SchemaVersion = 1,
     string? Reference = null,
     string? TraceId = null,
     string? CorrelationId = null) : IDomainEvent;

@@ -9,6 +9,7 @@ namespace AresNexus.Settlement.Domain.Events;
 /// <param name="Owner">The owner of the account.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
+/// <param name="SchemaVersion">The schema version of the event.</param>
 /// <param name="TraceId">The trace identifier.</param>
 /// <param name="CorrelationId">The correlation identifier.</param>
 public record AccountCreatedEvent(
@@ -16,6 +17,7 @@ public record AccountCreatedEvent(
     string Owner, 
     Guid EventId, 
     DateTime OccurredOn, 
+    int SchemaVersion = 1,
     string? TraceId = null, 
     string? CorrelationId = null) : IDomainEvent;
 
@@ -26,6 +28,7 @@ public record AccountCreatedEvent(
 /// <param name="Money">The money deposited.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
+/// <param name="SchemaVersion">The schema version of the event.</param>
 /// <param name="Reference">An optional reference for the deposit.</param>
 /// <param name="TraceId">The trace identifier.</param>
 /// <param name="CorrelationId">The correlation identifier.</param>
@@ -34,6 +37,7 @@ public record FundsDepositedEvent(
     Money Money, 
     Guid EventId, 
     DateTime OccurredOn, 
+    int SchemaVersion = 1,
     string? Reference = null, 
     string? TraceId = null, 
     string? CorrelationId = null) : IDomainEvent;
@@ -45,6 +49,7 @@ public record FundsDepositedEvent(
 /// <param name="Money">The money withdrawn.</param>
 /// <param name="EventId">The unique identifier of the event.</param>
 /// <param name="OccurredOn">The timestamp when the event occurred.</param>
+/// <param name="SchemaVersion">The schema version of the event.</param>
 /// <param name="Reference">An optional reference for the withdrawal.</param>
 /// <param name="TraceId">The trace identifier.</param>
 /// <param name="CorrelationId">The correlation identifier.</param>
@@ -53,6 +58,7 @@ public record FundsWithdrawnEvent(
     Money Money, 
     Guid EventId, 
     DateTime OccurredOn, 
+    int SchemaVersion = 1,
     string? Reference = null, 
     string? TraceId = null, 
     string? CorrelationId = null) : IDomainEvent;
@@ -60,9 +66,16 @@ public record FundsWithdrawnEvent(
 /// <summary>
 /// Event raised when an account is locked.
 /// </summary>
+/// <param name="AccountId">The unique identifier of the account.</param>
+/// <param name="EventId">The unique identifier of the event.</param>
+/// <param name="OccurredOn">The timestamp when the event occurred.</param>
+/// <param name="SchemaVersion">The schema version of the event.</param>
+/// <param name="TraceId">The trace identifier.</param>
+/// <param name="CorrelationId">The correlation identifier.</param>
 public record AccountLockedEvent(
     Guid AccountId, 
     Guid EventId, 
     DateTime OccurredOn, 
+    int SchemaVersion = 1,
     string? TraceId = null, 
     string? CorrelationId = null) : IDomainEvent;

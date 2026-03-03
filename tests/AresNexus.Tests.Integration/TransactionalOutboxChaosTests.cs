@@ -39,7 +39,20 @@ public class TransactionalOutboxChaosTests : IntegrationTestBase
         mockSession.Setup(s => s.SaveChangesAsync(It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("Database disconnection simulated."));
 
-        var repository = new MartenAccountRepository(mockSession.Object, mockEventStore.Object, mockEncryptionService.Object);
+        var mockConfiguration = new Mock<Microsoft.Extensions.Configuration.IConfiguration>();
+        mockConfiguration.Setup(c => c.GetSection(It.IsAny<string>())).Returns(new Mock<Microsoft.Extensions.Configuration.IConfigurationSection>().Object);
+
+        var mockResiliencePolicyFactory = new Mock<AresNexus.Settlement.Infrastructure.Resilience.IResiliencePolicyFactory>();
+        
+        mockResiliencePolicyFactory.Setup(f => f.GetDatabasePolicy())
+            .Returns(Polly.Policy.NoOpAsync());
+
+        var repository = new MartenAccountRepository(
+            mockSession.Object, 
+            mockEventStore.Object, 
+            mockEncryptionService.Object, 
+            mockConfiguration.Object, 
+            mockResiliencePolicyFactory.Object);
 
         // Act
         var act = () => repository.SaveAsync(account, Enumerable.Empty<object>());

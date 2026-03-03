@@ -99,7 +99,7 @@ public class InfrastructureTests
         // Arrange
         var upcaster = new MoneyDeposited_v1_to_v2_Upcaster();
         var accountId = Guid.NewGuid();
-        var v1 = new FundsDepositedEvent_v1(accountId, 100.50m, Guid.NewGuid(), DateTime.UtcNow, "Ref", "Trace", "Corr");
+        var v1 = new FundsDepositedEvent_v1(accountId, 100.50m, Guid.NewGuid(), DateTime.UtcNow, 1, "Ref", "Trace", "Corr");
 
         // Act
         var result = upcaster.Upcast(v1);
@@ -180,7 +180,7 @@ public class InfrastructureTests
         factoryMock.Setup(x => x.CreatePropertyValue(It.IsAny<object?>(), It.IsAny<bool>()))
             .Returns((object? val, bool _) => new ScalarValue(val));
 
-        var evt = new FundsDepositedEvent(Guid.NewGuid(), new Money(100), Guid.NewGuid(), DateTime.UtcNow, "SecretRef");
+        var evt = new FundsDepositedEvent(Guid.NewGuid(), new Money(100), Guid.NewGuid(), DateTime.UtcNow, 1, "SecretRef");
 
         // Act
         var result = policy.TryDestructure(evt, factoryMock.Object, out var propertyValue);

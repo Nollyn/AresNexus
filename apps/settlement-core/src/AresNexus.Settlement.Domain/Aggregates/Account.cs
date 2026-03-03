@@ -6,7 +6,7 @@ namespace AresNexus.Settlement.Domain.Aggregates;
 /// <summary>
 /// Aggregate root for a settlement account.
 /// </summary>
-public sealed class Account : AggregateRoot
+public sealed class Account : AggregateRoot, ISnapshotable<Account.Snapshot>
 {
     /// <summary>
     /// Gets the account owner.
@@ -33,7 +33,7 @@ public sealed class Account : AggregateRoot
     /// </summary>
     public Account(Guid id, string owner, string? traceId = null, string? correlationId = null)
     {
-        ApplyChange(new AccountCreatedEvent(id, owner, Guid.NewGuid(), DateTime.UtcNow, traceId, correlationId));
+        ApplyChange(new AccountCreatedEvent(id, owner, Guid.NewGuid(), DateTime.UtcNow, 1, traceId, correlationId));
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public sealed class Account : AggregateRoot
     public void Deposit(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
         if (IsLocked) throw new AccountLockedException(Id);
-        ApplyChange(new FundsDepositedEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
+        ApplyChange(new FundsDepositedEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, 1, reference, traceId, correlationId));
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public sealed class Account : AggregateRoot
     {
         if (IsLocked) throw new AccountLockedException(Id);
         if (Balance.Amount < money.Amount) throw new InvalidOperationException("Insufficient funds");
-        ApplyChange(new FundsWithdrawnEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, reference, traceId, correlationId));
+        ApplyChange(new FundsWithdrawnEvent(Id, money, Guid.NewGuid(), DateTime.UtcNow, 1, reference, traceId, correlationId));
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public sealed class Account : AggregateRoot
     public void Lock(string? traceId = null, string? correlationId = null)
     {
         if (IsLocked) return;
-        ApplyChange(new AccountLockedEvent(Id, Guid.NewGuid(), DateTime.UtcNow, traceId, correlationId));
+        ApplyChange(new AccountLockedEvent(Id, Guid.NewGuid(), DateTime.UtcNow, 1, traceId, correlationId));
     }
 
     /// <summary>

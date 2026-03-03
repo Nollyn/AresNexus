@@ -9,6 +9,7 @@ using AresNexus.Settlement.Infrastructure.Idempotency;
 using AresNexus.Settlement.Infrastructure.Logging;
 using AresNexus.Settlement.Infrastructure.Messaging;
 using AresNexus.Settlement.Infrastructure.Repositories;
+using AresNexus.Settlement.Infrastructure.Resilience;
 using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
@@ -120,6 +121,7 @@ builder.Services.AddMarten(options =>
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandIdempotencyBehavior<,>));
 
+builder.Services.AddSingleton<IResiliencePolicyFactory, ResiliencePolicyFactory>();
 builder.Services.AddScoped<IEventStore, MartenEventStore>();
 builder.Services.AddScoped<IAccountRepository, MartenAccountRepository>();
 

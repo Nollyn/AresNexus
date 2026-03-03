@@ -21,4 +21,10 @@ public sealed class OutboxMessage
     public DateTime? ProcessedOnUtc { get; set; }
     /// <summary>Error message if any.</summary>
     public string? Error { get; set; }
+    /// <summary>Number of processing attempts.</summary>
+    public int AttemptCount { get; set; }
+    /// <summary>Timestamp of last attempt.</summary>
+    public DateTime? LastAttemptUtc { get; set; }
+    /// <summary>Is the message considered poison.</summary>
+    public bool IsPoison { get; set; }
 }
