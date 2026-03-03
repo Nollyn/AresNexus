@@ -46,7 +46,18 @@
       timeout: 5s
       retries: 3
 
-  settlement-core:
+  nginx-lb:
+    image: nginx:alpine
+    volumes:
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "5000:80"
+    depends_on:
+      - settlement-core-1
+      - settlement-core-2
+      - settlement-core-3
+
+  settlement-core-1:
     build:
       context: .
       dockerfile: apps/settlement-core/Dockerfile
@@ -55,6 +66,7 @@
       - ConnectionStrings__Redis=redis:6379
       - ServiceBus__ConnectionString=Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock
       - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
+      - OTEL_SERVICE_NAME=settlement-core-1
     depends_on:
       postgres-eventstore:
         condition: service_healthy
@@ -62,28 +74,53 @@
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
-    ports:
-      - "5001:8080"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health/live"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+
+  settlement-core-2:
+    build:
+      context: .
+      dockerfile: apps/settlement-core/Dockerfile
+    environment:
+      - ConnectionStrings__PostgreSQL=Host=postgres-eventstore;Database=AresNexus;Username=postgres;Password=password123
+      - ConnectionStrings__Redis=redis:6379
+      - ServiceBus__ConnectionString=Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock
+      - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
+      - OTEL_SERVICE_NAME=settlement-core-2
+    depends_on:
+      postgres-eventstore:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  settlement-core-3:
+    build:
+      context: .
+      dockerfile: apps/settlement-core/Dockerfile
+    environment:
+      - ConnectionStrings__PostgreSQL=Host=postgres-eventstore;Database=AresNexus;Username=postgres;Password=password123
+      - ConnectionStrings__Redis=redis:6379
+      - ServiceBus__ConnectionString=Endpoint=sb://mock.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mock
+      - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
+      - OTEL_SERVICE_NAME=settlement-core-3
+    depends_on:
+      postgres-eventstore:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 
   gateway-api:
     build:
       context: .
       dockerfile: apps/gateway-api/Dockerfile
     depends_on:
-      settlement-core:
-        condition: service_healthy
+      - nginx-lb
+    environment:
+      - SettlementApi__Url=http://nginx-lb
     ports:
-      - "5000:8080"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      - "5001:8080"
 
   prometheus:
     image: prom/prometheus:latest

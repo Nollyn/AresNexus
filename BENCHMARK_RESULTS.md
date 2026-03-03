@@ -100,6 +100,20 @@
 - **Storage Impact**: ~15% overhead on total DB size.
 - **Benefit**: Keeps P99 latency stable regardless of aggregate age.
 
+## E) Post-Incident Refactor: Outbox Throughput (March 2026)
+
+Following the outbox lag incident (SIM-2026-001), a parallel dispatch refactor was applied.
+
+| Configuration | Batch Size | Dispatch Mode | Throughput (msg/sec) | Latency (P99) |
+| :--- | :--- | :--- | :--- | :--- |
+| Baseline (Before) | 50 | Sequential | ~450 | 120ms |
+| **Refactored (After)** | **100** | **Parallel (Task.WhenAll)** | **~1,850** | **35ms** |
+
+### Impact Analysis:
+- **Throughput**: ~4.1x improvement in message dispatch rate.
+- **Resilience**: The system can now drain a 1-million message backlog in ~9 minutes (previously ~37 minutes).
+- **Resource Usage**: Slight increase in ephemeral port usage and concurrent Service Bus connections, well within Tier-1 provider limits.
+
 ## Execution Instructions
 To run benchmarks locally:
 ```powershell

@@ -1,0 +1,26 @@
+﻿C4Context
+    title System Context Diagram - AresNexus
+
+    Person(client, "External Client", "Institutional trading / settlement partners.")
+    System(ares_nexus, "AresNexus API", "High-performance settlement core (Event Sourcing).")
+    System_Ext(postgres, "PostgreSQL (Event Store)", "Primary source of truth (Marten).")
+    System_Ext(monitoring, "Observability Layer", "Prometheus/Grafana/OpenTelemetry.")
+    System_Ext(cicd, "CI/CD Pipeline", "Automated builds, tests, and deployment.")
+
+    Rel(client, ares_nexus, "Settlement Requests", "HTTPS/gRPC")
+    Rel(ares_nexus, client, "Status Notifications", "Webhooks/Async Events")
+    Rel(ares_nexus, postgres, "Append Events / Read Projections", "SQL/Marten")
+    Rel(ares_nexus, monitoring, "Metrics / Traces / Logs", "OTLP/Serilog")
+    Rel(cicd, ares_nexus, "Deploys / Validates", "GitHub Actions")
+
+    UpdateElementStyle(ares_nexus, $fontColor="white", $bgColor="#1168bd", $borderColor="#0b4884")
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+    Enterprise_Boundary(b1, "Trust Boundary") {
+        System(ares_nexus)
+        System_Ext(postgres)
+        System_Ext(monitoring)
+    }
+
+    Note right of ares_nexus: All ingress/egress is strictly governed by RBAC and TLS 1.3.
+    Note left of postgres: Data is encrypted at rest using AES-256.
