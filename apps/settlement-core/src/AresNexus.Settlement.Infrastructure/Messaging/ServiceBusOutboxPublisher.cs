@@ -33,6 +33,12 @@ public sealed class ServiceBusOutboxPublisher(ILogger<ServiceBusOutboxPublisher>
     /// <inheritdoc />
     public async Task PublishAsync(string topic, object payload, string? traceId = null, string? correlationId = null)
     {
+        if (_options.ConnectionString.Contains("mock.servicebus.windows.net"))
+        {
+            logger.LogWarning("[Outbox] MOCK MODE: Skipping actual Service Bus publishing to {Topic} due to mock connection string.", topic);
+            return;
+        }
+
         try
         {
             _client ??= new ServiceBusClient(_options.ConnectionString);

@@ -11,35 +11,25 @@
 
 ## Executive Summary
 
-**Ares-Nexus** is a high-availability settlement engine designed to resolve systemic reconciliation risks and ensure sub-50ms finality in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
+**Ares-Nexus** is a high-assurance settlement engine designed for **99.99% operational continuity** in regulated financial environments (**FINMA/DORA**). It is engineered to resolve systemic reconciliation risks and ensure sub-50ms finality in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
 
-## Strategic Value & Risk Mitigation
+## Strategic Value & Risk Mitigation (Business Value Matrix)
 
 Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 circular and DORA (Digital Operational Resilience Act) requirements:
 
-- **Systemic Risk Mitigation**: Solved via **Atomic Consistency (Transactional Outbox)**. By ensuring that ledger updates and downstream notifications are committed in a single database transaction, we eliminate "ghost" settlements and ensure zero data loss during critical failures.
-- **Operational Risk (DORA)**: Mitigated through **Chaos-Tested Resilience** and automated failover. The system is designed to maintain 99.99% availability, with a documented Mean Time To Recovery (MTTR) of <30s during infrastructure outages.
-- **Regulatory Risk (FINMA)**: Addressed through **Immutable Audit Trails (Event Sourcing)**. Every financial movement is captured as a permanent, non-repudiable event, allowing for 100% reconstruction of any account state for regulatory audits.
-- **Data Secrecy & Privacy**: Swiss client data is protected via **AES-256 Field-Level Encryption**, ensuring sensitive PII is unreadable even by database administrators, fulfilling the most stringent Tier-1 banking standards.
+| Pattern | Technical Implementation | Business Risk Mitigated | Regulatory Alignment |
+|:---|:---|:---|:---|
+| **Transactional Outbox** | Atomic persistence of events and messages | **Financial Inconsistency (Zero Loss)** | FINMA 2023/1 (Operational Risk) |
+| **Snapshotting** | Automated state capture every 100 events | **SLA Breach (Low Latency / Recovery)** | DORA (Digital Resilience) |
+| **Encryption** | AES-256 Field-Level Hardening of PII | **Data Privacy (Bank Secrecy)** | GDPR / Swiss Bank Secrecy |
+| **Event Sourcing** | Immutable Audit Trail (Marten/Postgres) | **Regulatory Non-Compliance** | Auditability & Traceability |
+| **Idempotency** | Redis-backed Command Validation | **Double-Spending / Duplicate Entry** | Operational Integrity |
 
-## Core Pillars (Strategic Highlights)
+## AI Disclosure & Leadership
 
-- **Event Sourcing (Marten)**: Complete, immutable audit trail of all financial movements, ensuring 100% auditability for FINMA compliance.
-- **Transactional Outbox**: Atomic consistency between domain state changes and external notifications, solving the "Dual-Write" problem.
-- **Strict Idempotency**: Redis-backed command validation ensuring every financial instruction is processed exactly once.
-- **Performance Snapshotting**: Automated state capturing every 100 events to maintain sub-millisecond recovery times as streams grow.
-- **Field-Level Encryption**: AES-256 hardening of PII data within events before persistence, meeting Tier-1 banking privacy standards.
+Architectural Strategy, Pattern Selection, and Compliance Mapping by **[Your Name]**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
 
-## Tech Stack Justification
-
-- **.NET 10 (Chiseled)**: Chosen for its industry-leading performance, native AOT capabilities, and reduced attack surface (via Chiseled containers), essential for high-frequency settlement.
-- **PostgreSQL + Marten**: Leverages the stability of Postgres with the power of Marten as a Document Store and Event Store, providing ACID compliance and flexible schema evolution.
-- **RabbitMQ**: Selected for its robust message queuing and support for complex routing patterns, ensuring resilient inter-service communication.
-- **Redis**: Provides high-performance distributed locking and idempotency checks required for DORA operational resilience.
-
-## AI Governance & Leadership
-
-While this repository utilized **Junie** (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and mechanics, all **Architectural Thinking, System Design Decisions, and Pattern Selection** (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed, reviewed, and validated by the author. This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for mechanical execution while maintaining absolute human-led strategic integrity.
+This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
 
 ## Project Structure
 
@@ -171,6 +161,3 @@ Currently, the CI is configured with a 70% coverage threshold focusing on high-v
 3. **Failure Mode Analysis**: Adding more unit tests for negative scenarios in all command handlers.
 4. **Resilience Verification**: Expanding idempotency and encryption tests to cover all sensitive data fields.
 
-## AI Governance & Leadership
-
-While this repository utilized **Junie** (JetBrains AI Agent) for rapid scaffolding, boilerplate generation, and mechanics, all **Architectural Thinking, System Design Decisions, and Pattern Selection** (including the implementation of the Transactional Outbox, Event Sourcing strategy, and FINMA/DORA compliance framework) were directed, reviewed, and validated by the author. This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for mechanical execution while maintaining absolute human-led strategic integrity.

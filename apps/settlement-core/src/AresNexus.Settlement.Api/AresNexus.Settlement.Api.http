@@ -1,6 +1,18 @@
 @AresNexus.Settlement.Api_HostAddress = http://localhost:5136
 
-GET {{AresNexus.Settlement.Api_HostAddress}}/weatherforecast/
+GET {{AresNexus.Settlement.Api_HostAddress}}/health
 Accept: application/json
 
 ###
+
+POST {{AresNexus.Settlement.Api_HostAddress}}/api/v1/settlement/process
+Content-Type: application/json
+
+{
+  "accountId": "d0000000-0000-0000-0000-000000000001",
+  "amount": 100.50,
+  "currency": "CHF",
+  "transactionType": "DEPOSIT",
+  "idempotencyKey": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "reference": "Monthly Salary"
+}

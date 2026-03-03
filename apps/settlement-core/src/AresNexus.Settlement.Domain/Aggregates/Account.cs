@@ -52,6 +52,10 @@ public sealed class Account : AggregateRoot
     /// <summary>
     /// Withdraws funds from the account.
     /// </summary>
+    /// <param name="money">The money to withdraw.</param>
+    /// <param name="reference">The optional reference.</param>
+    /// <param name="traceId">The trace identifier.</param>
+    /// <param name="correlationId">The correlation identifier.</param>
     public void Withdraw(Money money, string? reference = null, string? traceId = null, string? correlationId = null)
     {
         if (IsLocked) throw new AccountLockedException(Id);
@@ -62,6 +66,8 @@ public sealed class Account : AggregateRoot
     /// <summary>
     /// Locks the account.
     /// </summary>
+    /// <param name="traceId">The trace identifier.</param>
+    /// <param name="correlationId">The correlation identifier.</param>
     public void Lock(string? traceId = null, string? correlationId = null)
     {
         if (IsLocked) return;

@@ -28,6 +28,7 @@ WORKDIR /app
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gpgv \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 USER $APP_UID
 

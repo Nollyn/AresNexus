@@ -44,7 +44,7 @@ public sealed class ProcessTransactionCommandHandler : IRequestHandler<ProcessTr
     /// </summary>
     /// <param name="request">The transaction command.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>True if the transaction was processed successfully.</returns>
+    /// <returns>A task that represents the asynchronous operation. The task result contains true if the transaction was processed successfully.</returns>
     public async Task<bool> Handle(ProcessTransactionCommand request, CancellationToken cancellationToken)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
