@@ -1,0 +1,27 @@
+﻿@startuml
+title Stress Burst Performance Simulation (10k+ TPS)
+
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+
+rectangle "Load Generator\n(10k+ TPS Burst)" as LG
+rectangle "API Layer\n(Auto-Scaled)" as API
+rectangle "PostgreSQL\n(Primary)" as DB
+rectangle "RabbitMQ\n(Event Bus)" as MQ
+
+LG --> API : High Throughput Requests
+API --> DB : Read/Write Operations
+API --> MQ : Publish Domain Events
+
+note right of API
+P95 Latency: Stable
+No error spikes
+Horizontal scaling triggered
+end note
+
+note bottom of LG
+Burst simulation sustained
+without degradation
+end note
+
+@enduml
