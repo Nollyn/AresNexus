@@ -22,16 +22,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install PlantUML
+      - name: Download PlantUML JAR
         run: |
-          sudo apt-get update
-          sudo apt-get install -y plantuml
+          mkdir -p bin
+          curl -L "https://github.com/plantuml/plantuml/releases/latest/download/plantuml-1.2025.0.jar" -o bin/plantuml.jar
 
       - name: Render Diagrams
         run: |
           mkdir -p docs/diagrams
           cd docs/architecture/diagrams-src
-          plantuml -tpng -o ../../diagrams *.puml
+          java -jar ../../../bin/plantuml.jar -tpng -v -o ../../diagrams *.puml
 
       - name: Commit and Push Changes
         run: |

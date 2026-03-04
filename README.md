@@ -1,8 +1,8 @@
 ﻿# Ares-Nexus
 
 ![Build](https://github.com/Nollyn/AresNexus/actions/workflows/ci.yml/badge.svg?branch=main)
-[![Test Coverage](https://img.shields.io/badge/Coverage-82%25-green)](https://github.com/AresNexus/AresNexus/actions/workflows/ci.yml)
-[![Security Scan](https://img.shields.io/badge/Security-Trivy_Passed-blue)](https://github.com/AresNexus/AresNexus/actions/workflows/ci.yml)
+[![Test Coverage](https://img.shields.io/badge/Coverage-82%25-brown)](https://github.com/AresNexus/AresNexus/actions/workflows/ci.yml)
+[![Security Scan](https://img.shields.io/badge/Security-Trivy_Passed-darkblue)](https://github.com/AresNexus/AresNexus/actions/workflows/ci.yml)
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple)](https://dotnet.microsoft.com/)
 [![Architecture](https://img.shields.io/badge/Architecture-Clean_Architecture_%7C_DDD-darkgreen)](https://en.wikipedia.org/wiki/Domain-driven_design)
 [![Pattern](https://img.shields.io/badge/Pattern-Event_Sourcing-darkred)](https://martinfowler.com/eaaDev/EventSourcing.html)

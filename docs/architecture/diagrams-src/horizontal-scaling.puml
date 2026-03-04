@@ -1,5 +1,5 @@
 ﻿@startuml horizontal-scaling
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.11.0/C4_Deployment.puml
 
 title Horizontal Scaling Topology for Ares-Nexus
 
