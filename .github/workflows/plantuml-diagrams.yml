@@ -2,10 +2,14 @@
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'docs/architecture/diagrams-src/**'
-      - '.github/workflows/plantuml-diagrams.yml'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   render:
@@ -14,6 +18,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Java
@@ -34,14 +39,12 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add docs/diagrams/*.png
-          if git diff --cached --quiet; then
-            echo "No changes to diagrams."
+          if git diff --quiet; then
+            echo "No diagram changes"
           else
+            git config --local user.email "action@github.com"
+            git config --local user.name "github-actions[bot]"
+            git add docs/diagrams/*.png
             git commit -m "docs: auto-generate architecture diagrams [skip ci]" --trailer "Co-authored-by: Junie <junie@jetbrains.com>"
             git push
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
