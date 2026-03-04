@@ -38,14 +38,22 @@ jobs:
           mkdir -p docs/diagrams
           java -jar bin/plantuml.jar -tpng -v -o ../../diagrams docs/architecture/diagrams-src/*.puml
 
+      - name: Debug generated files
+        run: |
+          echo "Listing diagrams directory:"
+          ls -la docs/diagrams || true
+
       - name: Commit and Push Changes
         run: |
-          if git diff --quiet; then
-            echo "No diagram changes"
+          # Stage generated diagrams
+          git add docs/diagrams
+
+          # Check if there is anything staged
+          if git diff --cached --quiet; then
+            echo "No diagram changes to commit"
           else
             git config --local user.email "action@github.com"
             git config --local user.name "github-actions[bot]"
-            git add docs/diagrams/*.png
-            git commit -m "docs: auto-generate architecture diagrams [skip ci]" --trailer "Co-authored-by: Junie <junie@jetbrains.com>"
+            git commit -m "docs: auto-generate architecture diagrams [skip ci]"
             git push
           fi
