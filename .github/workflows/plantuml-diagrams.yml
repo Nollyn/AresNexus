@@ -25,13 +25,12 @@ jobs:
       - name: Download PlantUML JAR
         run: |
           mkdir -p bin
-          curl -L "https://github.com/plantuml/plantuml/releases/latest/download/plantuml-1.2025.0.jar" -o bin/plantuml.jar
+          curl -L "https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar" -o bin/plantuml.jar
 
       - name: Render Diagrams
         run: |
           mkdir -p docs/diagrams
-          cd docs/architecture/diagrams-src
-          java -jar ../../../bin/plantuml.jar -tpng -v -o ../../diagrams *.puml
+          java -jar bin/plantuml.jar -tpng -v -o ../../diagrams docs/architecture/diagrams-src/*.puml
 
       - name: Commit and Push Changes
         run: |
