@@ -33,6 +33,14 @@ jobs:
           mkdir -p bin
           curl -L "https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar" -o bin/plantuml.jar
 
+      - name: Install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+
+      - name: Verify Graphviz installation
+        run: dot -V
+
       - name: Render Diagrams
         run: |
           mkdir -p docs/diagrams
