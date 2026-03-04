@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'docs/architecture/diagrams-src/**'
+      - '.github/workflows/plantuml-diagrams.yml'
   workflow_dispatch:
 
 permissions:
