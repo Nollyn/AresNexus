@@ -1,7 +1,7 @@
 # Technical Architecture & Resilience Framework
 
 ## 1. Core Patterns
-*   **CQRS (Command Query Responsibility Segregation):** Separates the high-stakes write model (Event Store) from the high-speed read model (PostgreSQL/Redis), ensuring **0ms-proximate latency** for dashboarding and queries.
+*   **CQRS (Command Query Responsibility Segregation):** Separates the high-stakes write model (Event Store) from the high-speed read model (PostgreSQL/Redis), ensuring **sub-50ms p99 latency** for dashboarding and queries.
 *   **Saga Pattern (Orchestration):** Manages distributed transactions across "Settlement" and "Compliance" contexts. If Compliance rejects a payment, a **Compensating Transaction** is triggered to revert reserved funds.
 *   **Outbox Pattern:** Ensures "At-Least-Once" delivery of events to the message broker, preventing data loss during network partitions.
 

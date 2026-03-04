@@ -3,7 +3,7 @@
 **Objective:** Modernization of Tier-1 Swiss Cross-Border Settlement Systems.
 
 ## 1. Problem Statement
-Legacy settlement systems (VB6/Monolithic) lack the **traceability** required by evolving **FINMA** regulations and the **scalability** demanded by **ISO 20022** standards. The goal of Ares-Nexus is to provide an immutable, high-throughput settlement engine with 99.99% availability.
+Legacy settlement systems (VB6/Monolithic) lack the **traceability** required by evolving **FINMA** regulations and the **scalability** demanded by **ISO 20022** standards. The goal of Ares-Nexus is to provide an immutable, high-throughput settlement engine (10,000+ TPS) with 99.99% availability and <50ms P99 latency.
 
 ## 2. The Inverse Conway Maneuver (Organizational Strategy)
 To avoid a monolithic architecture, I have enforced an **Inverse Conway Maneuver** by structuring the engineering organization into **Stream-Aligned Teams** corresponding to Domain-Driven Design (DDD) Bounded Contexts:

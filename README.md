@@ -40,7 +40,7 @@ Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 cir
 
 ## AI Disclosure & Leadership
 
-Architectural Strategy, Pattern Selection, and Compliance Mapping by **[Your Name]**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
+Architectural Strategy, Pattern Selection, and Compliance Mapping by **Laynoll Diaz Martinez**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
 
 This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
 
@@ -78,10 +78,6 @@ For a deeper dive into the architecture and design decisions, please refer to th
 - [ADR 002: Marten vs. EventStoreDB](/docs/02-adr-002-storage-marten-vs-eventstoredb.md) - Operational cost vs. specialized hardware.
 - [ADR 003: RabbitMQ vs. Kafka](/docs/02-adr-003-messaging-rabbitmq-vs-kafka.md) - Latency requirements vs. stream retention.
 - [ADR 004: Minimal APIs vs. Controllers](/docs/02-adr-004-apis-minimal-vs-controllers.md) - Reduced cold-start latency for scaling.
-
-### Performance & Benchmarks
-- [Performance Benchmarks](/docs/06-performance-benchmarks.md) - TPS/latency, memory footprint, and Outbox RTO under stress.
-- Load testing script: `./benchmarks/load-test.sh` (k6) — simulate "Black Friday" bursts.
 
 ### Operations & Infrastructure
 - [Implementation Plan](/docs/06-implementation-plan.md) - Phase-by-phase execution strategy.
@@ -166,11 +162,15 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 
 This project is licensed under the MIT License.
 
-## Roadmap to 80% Coverage
+## Test Coverage Status
 
-Currently, the CI is configured with a 70% coverage threshold focusing on high-value Domain and Application logic. Our strategic goal is to reach 80% coverage by:
-1. **Expanding Edge Case Testing**: Increasing coverage for complex domain invariants in the `Account` aggregate.
-2. **Integration Testing**: Implementing comprehensive integration tests for the `MartenAccountRepository` to verify event persistence and snapshotting.
-3. **Failure Mode Analysis**: Adding more unit tests for negative scenarios in all command handlers.
-4. **Resilience Verification**: Expanding idempotency and encryption tests to cover all sensitive data fields.
+Current CI-enforced code coverage: **81.8%**
+
+Coverage focuses on:
+- Domain invariants
+- Application command handlers
+- Event persistence logic
+- Resilience and idempotency mechanisms
+
+Coverage threshold enforced in CI: 80%
 

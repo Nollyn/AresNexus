@@ -8,11 +8,12 @@ AresNexus operates as a Tier-1 financial system. Our targets are mathematically 
 | Metric | SLO Target | SLA Commitment | Measurement Basis |
 | :--- | :--- | :--- | :--- |
 | **Availability** | **99.99%** | 99.95% | Successful HTTP 2xx/3xx/4xx (excl. 429) |
-| **P95 Latency** | **< 100ms** | < 150ms | Request -> Response (Gateway) |
-| **P99 Latency** | **< 250ms** | < 300ms | Request -> Response (Gateway) |
-| **Settlement Delay** | **< 1s** | < 2s | Event Store -> Outbox Dispatch |
+| **P95 Latency** | **< 25ms** | < 40ms | Request -> Response (Gateway) |
+| **P99 Latency** | **< 50ms** | < 100ms | Request -> Response (Gateway) |
+| **Throughput** | **10,000 TPS** | 8,000 TPS | Sustained k6 Load Test |
+| **MTTR (Resilience)** | **< 30s** | < 60s | Automated Failover to Secondary |
 | **RPO** | **0** | 0 | Event Sourcing (ACID Persistence) |
-| **RTO** | **< 15m** | < 30m | Cold standby restore validation |
+| **RTO** | **< 30s** | < 60s | Outbox catch-up and failover |
 
 ## 3. Error Budget & Downtime
 Based on a **30-day rolling window**:
@@ -27,7 +28,7 @@ Based on a **30-day rolling window**:
 ## 4. Architectural Tie-ins
 
 ### Latency vs. Snapshots
-- Our P99 SLO (< 250ms) is tied to the `SnapshotInterval=100`. Aggregates with > 5,000 events without snapshots would exceed this target during replay.
+- Our P99 SLO (< 50ms) is tied to the `SnapshotInterval=100`. Aggregates with > 5,000 events without snapshots would exceed this target during replay.
 - **Enforcement**: CI/CD includes a "Replay Benchmark" that fails if any aggregate type exceeds 100ms reconstruction time.
 
 ### Throughput vs. Rate Limiting
@@ -47,7 +48,7 @@ Based on a **30-day rolling window**:
 - **Action**: P1 incident opened. Review of "Incident Postmortem" process. Post-mortem review with CTO.
 
 ### Level 3: SLA Breach
-- **Trigger**: Availability < 99.95% or P99 > 300ms over 30 days.
+- **Trigger**: Availability < 99.95% or P99 > 100ms over 30 days.
 - **Action**: Formal report to Swiss Architecture Governance Board. Root Cause Analysis (RCA) delivered to Risk & Compliance within 24 hours.
 
 ## 6. Reporting

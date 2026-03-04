@@ -8,7 +8,7 @@ AresNexus is designed to scale horizontally to handle massive settlement volumes
 ### 1. Stateless API Tier
 - **Scaling Unit**: Containerized API replicas (Kubernetes Deployment).
 - **Session Management**: No server-side session state. Authentication is JWT-based, and idempotency is handled via a shared Redis cluster.
-- **Auto-scaling**: Triggered by CPU usage (>60%) or P95 latency spikes (>200ms).
+- **Auto-scaling**: Triggered by CPU usage (>60%) or P95 latency spikes (>25ms).
 
 ### 2. Persistence Layer (Marten/PostgreSQL)
 - **Primary Scale-Up**: Vertical scaling of the primary PostgreSQL instance to handle higher write throughput.

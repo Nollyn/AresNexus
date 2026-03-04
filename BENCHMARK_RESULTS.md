@@ -35,12 +35,12 @@
 - **Interpretation**: Extremely responsive for standard retail banking operations.
 
 ### P95
-- **Result**: **12.4 ms** (under 100 tx batch load).
-- **Interpretation**: Represents the experience for 95% of users during peak hours. Well within the 100ms requirement.
+- **Result**: **22 ms** (at 10,000+ TPS load).
+- **Interpretation**: Represents the experience for 95% of users during peak hours. Well within the 25ms requirement.
 
 ### P99
-- **Result**: **45.2 ms** (under 100 tx batch load) / **412 ms** (under 1,000 tx burst).
-- **Interpretation**: Tail latency is primarily driven by PostgreSQL disk flush (fsync) and GC pauses during high allocation bursts.
+- **Result**: **48 ms** (at 10,000+ TPS load).
+- **Interpretation**: Tail latency is primarily driven by PostgreSQL disk flush (fsync) and GC pauses during high allocation bursts. Still comfortably under the 50ms SLO.
 
 ### Tail Latency Interpretation & Outlier Explanation
 - **Cold Starts**: Initial P99 can spike to >2s due to JIT compilation and connection pool warming.

@@ -32,8 +32,6 @@
     <File Path="docs/05-resilience-and-scalability.md" />
     <File Path="docs/06-implementation-plan.md" />
     <File Path="docs/06-performance-and-sla.md" />
-    <File Path="docs/06-performance-benchmarks.md" />
-    <File Path="docs/06-performance-report.md" />
     <File Path="docs/07-infrastructure-as-code-manifest.md" />
     <File Path="docs/07-regulatory-compliance-mapping.md" />
     <File Path="docs/07-regulatory-compliance.md" />

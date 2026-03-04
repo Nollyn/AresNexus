@@ -24,4 +24,4 @@ We will implement **Event Sourcing** as the primary persistence pattern for the 
     *   **Versioning:** Requires a strict strategy for "Event Upcasting" (schema evolution).
 
 ## Risk Mitigation
-To mitigate "Talent Risk" and complexity, we will use a standardized Event Store (Azure CosmosDB with Change Feed) and provide an Internal Developer Platform (IDP) to abstract the event-bus logic.
+To mitigate "Talent Risk" and complexity, we will use a standardized Event Store (Marten on PostgreSQL) which provides ACID compliance and high-performance JSONB storage.

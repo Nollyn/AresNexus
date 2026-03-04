@@ -6,7 +6,7 @@ The project follows a **Monorepo Strategy** to maintain cross-service consistenc
 ```text
 /ares-nexus
 ├── /apps                     # Microservices (Bounded Contexts)
-│   ├── /settlement-core      # .NET 8 Event Sourcing Engine
+│   ├── /settlement-core      # .NET 10 Event Sourcing Engine
 │   ├── /compliance-engine    # Python/Go AML Validation
 │   └── /gateway-api          # Edge Validation & OIDC
 ├── /infrastructure           # Infrastructure as Code (IaC)
