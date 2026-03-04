@@ -2,15 +2,15 @@
 
 This document provides a hierarchical view of the AresNexus architecture, following the C4 Model.
 
-## [Level 1: System Context](diagrams/C4_Context.mermaid)
+## [Level 1: System Context](../diagrams/c4-context.png)
 The high-level relationship between AresNexus and its external ecosystem.
 - **Key Takeaway:** AresNexus acts as the central settlement engine, interacting with external clients and maintaining strict trust boundaries.
 
-## [Level 2: Container Diagram](diagrams/C4_Container.mermaid)
+## [Level 2: Container Diagram](../diagrams/c4-container.png)
 The decomposition of the system into logical containers and data stores.
 - **Key Takeaway:** The API is designed for stateless horizontal scaling, with PostgreSQL (Marten) serving as the primary consistency anchor through event sourcing.
 
-## [Level 3: Component Diagram](diagrams/C4_Component.mermaid)
+## [Level 3: Component Diagram](../diagrams/c4-component.png)
 The internal structure of the API container, showing how commands are processed and how resilience is enforced.
 - **Key Takeaway:** The command path is heavily protected by rate limiting and Polly policies, ensuring stability even under stress.
 

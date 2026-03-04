@@ -12,3 +12,8 @@
 To justify seniority, I have implemented a **Chaos Mesh** suite that simulates:
 *   **Pod Eviction:** Ensuring the system recovers without losing a single financial event.
 *   **Latency Injection:** Testing the **Circuit Breaker** patterns to ensure the UI remains responsive even if the DB is slow.
+## 4. Scaling Architecture
+![Horizontal Scaling](./diagrams/horizontal-scaling.png)
+
+## 5. Resilience in Practice: Handling Failures
+![Incident Sequence](./diagrams/incident-sequence.png)

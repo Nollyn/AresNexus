@@ -3,6 +3,9 @@
 ## Overview
 AresNexus implements a multi-layered resilience model to ensure high availability and data consistency in Tier-1 banking operations. We utilize Polly to handle transient failures and prevent cascading system collapses.
 
+## Resilience in Practice: Handling Failures
+![Incident Sequence Diagram](../diagrams/incident-sequence.png)
+
 ## Database Resilience
 We use a **Policy Wrap** for all database operations via Marten:
 1.  **Retry with Exponential Backoff**: Handles transient network issues or temporary database unavailability.

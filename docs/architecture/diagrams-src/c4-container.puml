@@ -1,0 +1,32 @@
+﻿@startuml c4-container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Container Diagram for Ares-Nexus
+
+System_Boundary(ares_nexus, "Ares-Nexus") {
+    Container(api, "ASP.NET Core API", "C#, .NET 10", "Provides REST/gRPC endpoints, stateless scaling.")
+    Container(app_layer, "Application Layer", "C#, MediatR", "CQRS handlers, validation, idempotent command handling.")
+    Container(domain_layer, "Domain Layer", "C#", "Aggregates, invariants, domain events.")
+    
+    ContainerDb(event_store, "Marten Event Store", "PostgreSQL", "Stores event streams and projections (Event Sourcing).")
+    Container(rabbitmq, "RabbitMQ Broker", "Erlang", "Message broker for inter-service communication.")
+    Container(outbox_proc, "Outbox Processor", "C# Background Service", "Reliable publishing of domain events (Outbox Pattern).")
+    
+    Container(prometheus, "Prometheus", "Time-series DB", "Scrapes metrics from API nodes.")
+    Container(grafana, "Grafana", "Visualization", "Provides dashboards for monitoring.")
+}
+
+System_Ext(banking_core, "Banking Core System")
+
+Rel(banking_core, api, "Sends commands", "gRPC/REST")
+Rel(api, app_layer, "Dispatches commands", "In-process")
+Rel(app_layer, domain_layer, "Invokes logic on aggregates")
+Rel(app_layer, event_store, "Persists event streams", "Marten API")
+Rel(event_store, outbox_proc, "Reads new events")
+Rel(outbox_proc, rabbitmq, "Publishes to exchange", "AMQP")
+Rel(prometheus, api, "Scrapes metrics", "HTTP/Metrics")
+Rel(grafana, prometheus, "Queries metrics", "PromQL")
+
+@enduml

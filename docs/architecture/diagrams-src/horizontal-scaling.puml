@@ -1,0 +1,32 @@
+﻿@startuml horizontal-scaling
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+title Horizontal Scaling Topology for Ares-Nexus
+
+Deployment_Node(k8s, "Kubernetes Cluster", "Azure Kubernetes Service") {
+    Deployment_Node(ingress, "K8s Load Balancer", "Nginx Ingress") {
+        Container(hpa, "Horizontal Pod Autoscaler", "Kubernetes Native", "Scales pods based on CPU/Memory/Requests.")
+    }
+
+    Deployment_Node(api_nodes, "Stateless API Tier") {
+        Container(pod1, "API Pod 1", "ASP.NET Core", "Stateless scaling, no session affinity.")
+        Container(pod2, "API Pod 2", "ASP.NET Core", "Stateless scaling, no session affinity.")
+        Container(pod3, "API Pod 3", "ASP.NET Core", "Stateless scaling, no session affinity.")
+    }
+
+    Deployment_Node(monitoring, "Observability") {
+        Container(prometheus, "Prometheus", "Scrapes metrics from all pods.")
+    }
+
+    Deployment_Node(shared_infra, "Shared Persistence & Messaging") {
+        ContainerDb(postgres, "Shared PostgreSQL Cluster", "Primary + Read Replicas", "Optimistic concurrency ensures safe concurrent writes.")
+        Container(rabbitmq, "Shared RabbitMQ Cluster", "3-Node Cluster", "Quorum queues for high availability.")
+    }
+}
+
+Rel(ingress, api_nodes, "Distributes traffic", "HTTP/gRPC")
+Rel(api_nodes, postgres, "Reads/Writes events", "TCP/Marten")
+Rel(api_nodes, rabbitmq, "Publishes events", "AMQP")
+Rel(prometheus, api_nodes, "Scrapes metrics")
+
+@enduml

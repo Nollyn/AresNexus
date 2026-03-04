@@ -1,0 +1,21 @@
+﻿@startuml c4-context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context Diagram for Ares-Nexus (High-Assurance Settlement Engine)
+
+Person(ops_team, "Operations Team", "Monitors metrics and system health.")
+System(ares_nexus, "Ares-Nexus", "High-Assurance Settlement Engine for processing financial settlements.")
+
+System_Ext(banking_core, "Banking Core System", "Main system for banking operations.")
+System_Ext(reg_audit, "Regulatory Audit Authority", "Authority for auditing financial transactions.")
+System_Ext(payment_net, "External Payment Network", "Network for external financial settlements.")
+
+Rel(banking_core, ares_nexus, "Sends settlement commands", "gRPC/REST")
+Rel(ares_nexus, banking_core, "Emits settlement events", "RabbitMQ")
+Rel(ares_nexus, reg_audit, "Reads audit logs", "PostgreSQL/Export")
+Rel(ops_team, ares_nexus, "Monitors metrics", "Prometheus/Grafana")
+Rel(ares_nexus, payment_net, "Executes settlements", "ISO20022/Swift")
+
+@enduml

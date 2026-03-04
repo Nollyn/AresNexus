@@ -4,6 +4,7 @@
 AresNexus is designed to scale horizontally to handle massive settlement volumes. Our architecture relies on stateless application tiers and a highly partitionable persistence layer.
 
 ## Horizontal Scaling Strategy
+![Horizontal Scaling Diagram](../diagrams/horizontal-scaling.png)
 
 ### 1. Stateless API Tier
 - **Scaling Unit**: Containerized API replicas (Kubernetes Deployment).

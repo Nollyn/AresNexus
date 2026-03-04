@@ -1,0 +1,36 @@
+﻿@startuml incident-sequence
+title Resilience Scenario: Primary RabbitMQ Failure
+
+participant "Outbox Processor" as OP
+participant "PostgreSQL (Outbox)" as ES
+participant "RabbitMQ (Broker)" as RMQ
+
+activate OP
+OP -> ES: Scan for new outbox events
+ES --> OP: List of events (Event A, Event B)
+
+OP -[#red]> RMQ: Try publish Event A
+note right of RMQ: BROKER DOWN
+RMQ -[#red]X OP: Connection Timeout/Error
+
+note over OP: Retry Mechanism Triggered
+OP -> OP: Wait (Exponential Backoff)
+
+OP -[#red]> RMQ: Try publish Event A (Retry 1)
+RMQ -[#red]X OP: Broker still unavailable
+
+note over ES: Message remains in outbox as 'Unpublished'
+note over ES: No data loss - persists in PostgreSQL
+
+... Broker Recovers ...
+
+OP -> RMQ: Try publish Event A (Retry 2)
+RMQ --> OP: ACK (Success)
+
+OP -> ES: Mark Event A as Published
+ES --> OP: Success
+
+note over OP: Idempotency Guard on Consumers\nprevents duplicate processing if ACK was lost.
+deactivate OP
+
+@enduml

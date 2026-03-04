@@ -4,6 +4,7 @@
 AresNexus utilizes a zero-downtime deployment strategy to ensure continuous availability for settlement operations. We follow the principle of **Immutable Infrastructure** and **Automated Verification**.
 
 ## Deployment Models
+![Deployment Diagram](../diagrams/deployment.png)
 
 ### 1. Blue/Green Deployment
 - **Purpose**: Low-risk production releases.

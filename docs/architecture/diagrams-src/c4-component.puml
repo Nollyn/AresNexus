@@ -1,0 +1,30 @@
+﻿@startuml c4-component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram for ASP.NET Core API (Settlement Engine)
+
+Container_Boundary(api_boundary, "ASP.NET Core API Container") {
+    Component(cmd_handlers, "Command Handlers", "C#, MediatR", "Orchestrate command execution, enforce idempotency.")
+    Component(query_handlers, "Query Handlers", "C#, MediatR", "Execute read-only operations against projections.")
+    Component(aggregates, "Domain Aggregates", "C#, DDD", "Maintain invariants, apply state transitions.")
+    Component(marten_repo, "Marten Repository", "C#, Marten", "Abstraction over PostgreSQL event store.")
+    Component(outbox_pub, "Outbox Publisher", "C#, Background Service", "Monitors event store for new events.")
+    Component(enc_service, "Encryption Service", "C#, HSM/KMS", "Ensures PII/sensitive data is encrypted before storage.")
+    Component(idempotency_guard, "Idempotency Guard", "C#, Redis/DB", "Prevents duplicate command execution.")
+}
+
+ContainerDb(postgres, "PostgreSQL (Marten)", "Relational/JSONB", "Stores event streams and projection snapshots.")
+Container(rabbitmq, "RabbitMQ", "Message Broker", "Reliable delivery of domain events.")
+
+Rel(cmd_handlers, idempotency_guard, "Checks for duplicates")
+Rel(cmd_handlers, marten_repo, "Loads/Saves streams")
+Rel(marten_repo, aggregates, "Rehydrates/Appends events")
+Rel(aggregates, enc_service, "Encrypts sensitive data")
+Rel(marten_repo, postgres, "Writes events (atomic transaction)")
+Rel(outbox_pub, postgres, "Reads new events")
+Rel(outbox_pub, rabbitmq, "Publishes to exchange")
+Rel(query_handlers, postgres, "Queries read-models")
+
+@enduml

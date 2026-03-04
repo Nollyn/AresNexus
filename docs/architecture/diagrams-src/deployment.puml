@@ -1,0 +1,33 @@
+﻿@startuml deployment
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+title Deployment Diagram for Ares-Nexus Ecosystem
+
+Deployment_Node(cloud, "Cloud Environment", "Azure / AWS") {
+    Deployment_Node(k8s, "Kubernetes Cluster", "AKS / EKS") {
+        Deployment_Node(namespace_app, "Settlement Namespace") {
+            Container(api, "API Deployment", "Multiple Replicas", "ASP.NET Core Application")
+            Container(hpa, "HPA", "Horizontal Pod Autoscaler")
+        }
+
+        Deployment_Node(namespace_db, "Data Persistence") {
+            ContainerDb(postgres, "PostgreSQL StatefulSet", "Primary + Replicas", "Marten Store / Projections")
+        }
+
+        Deployment_Node(namespace_msg, "Messaging Tier") {
+            Container(rabbitmq, "RabbitMQ Cluster", "3 Nodes", "High Availability Quorum Queues")
+        }
+
+        Deployment_Node(namespace_monitoring, "Observability Stack") {
+            Container(prometheus, "Prometheus Server", "Scraping & Alerting")
+            Container(grafana, "Grafana", "Dashboards")
+        }
+    }
+}
+
+Rel(api, postgres, "Reads/Writes events", "TCP")
+Rel(api, rabbitmq, "Publishes/Subscribes", "AMQP")
+Rel(prometheus, api, "Scrapes metrics", "HTTP")
+Rel(grafana, prometheus, "Queries metrics", "PromQL")
+
+@enduml

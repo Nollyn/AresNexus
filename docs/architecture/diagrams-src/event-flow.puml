@@ -1,0 +1,36 @@
+﻿@startuml event-flow
+title Event-Sourced Settlement Command Flow
+
+actor Client
+participant "Command Handler" as CH
+participant "Aggregate" as AGG
+participant "Marten Event Store" as ES
+participant "Outbox Processor" as OP
+participant "RabbitMQ" as RMQ
+
+Client -> CH: Sends settlement command (Command ID)
+activate CH
+CH -> ES: Check idempotency (Command ID)
+CH -> ES: Rehydrate Aggregate stream
+ES --> CH: Current Aggregate state
+CH -> AGG: Execute action (validate invariants)
+activate AGG
+AGG --> CH: List of Domain Events
+deactivate AGG
+
+CH -> ES: Transaction: Append events & Update projection
+note over ES: Snapshotting mechanism used periodically\nto reduce rehydration time
+ES --> CH: Success
+CH --> Client: Command acknowledged (202 Accepted)
+deactivate CH
+
+OP -> ES: Scan for unprocessed outbox events
+activate OP
+OP -> RMQ: Publish events (At-least-once delivery)
+activate RMQ
+RMQ --> OP: ACK
+deactivate RMQ
+OP -> ES: Mark outbox events as published
+deactivate OP
+
+@enduml

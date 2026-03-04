@@ -2,25 +2,7 @@
 
 This diagram shows the internal containers of the AresNexus system.
 
-```mermaid
-C4Container
-    title Container diagram for AresNexus
-
-    Person(user, "User/Client", "External consumer of the API.")
-
-    System_Boundary(c1, "AresNexus Settlement Core") {
-        Container(api, "Settlement API", "ASP.NET Core 10", "Provides REST endpoints for settlement operations.")
-        Container(worker, "Outbox Processor", "Background Service", "Processes the transactional outbox and publishes events.")
-        ContainerDb(db, "Event Store & DB", "PostgreSQL (Marten)", "Stores immutable event streams and projections.")
-    }
-
-    System_Ext(broker, "Message Broker", "Azure Service Bus / RabbitMQ", "External message broker for event distribution.")
-
-    Rel(user, api, "Uses", "HTTPS/JSON")
-    Rel(api, db, "Reads/Writes", "Npgsql")
-    Rel(worker, db, "Reads outbox", "Npgsql")
-    Rel(worker, broker, "Publishes events to", "AMQP/SBMP")
-```
+![C4 Container Diagram](../diagrams/c4-container.png)
 
 ### Data Flow
 1. **API** receives a request and creates a command.

@@ -1,0 +1,48 @@
+﻿name: Render PlantUML Diagrams
+
+on:
+  push:
+    paths:
+      - 'docs/architecture/diagrams-src/**'
+      - '.github/workflows/plantuml-diagrams.yml'
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install PlantUML
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y plantuml
+
+      - name: Render Diagrams
+        run: |
+          mkdir -p docs/diagrams
+          cd docs/architecture/diagrams-src
+          plantuml -tpng -o ../../diagrams *.puml
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/diagrams/*.png
+          if git diff --cached --quiet; then
+            echo "No changes to diagrams."
+          else
+            git commit -m "docs: auto-generate architecture diagrams [skip ci]" --trailer "Co-authored-by: Junie <junie@jetbrains.com>"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
