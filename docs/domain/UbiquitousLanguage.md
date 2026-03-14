@@ -1,4 +1,4 @@
-﻿# Ubiquitous Language - Settlement Core
+# Ubiquitous Language - Settlement Core
 
 ## Core Domain Terms
 

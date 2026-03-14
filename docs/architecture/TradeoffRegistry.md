@@ -1,4 +1,4 @@
-﻿# Architectural Tradeoff Registry
+# Architectural Tradeoff Registry
 
 ## Decision 1: Marten vs. EventStoreDB
 - **Decision**: Use Marten (PostgreSQL-based Event Store).

@@ -1,4 +1,4 @@
-﻿# Snapshot Strategy
+# Snapshot Strategy
 
 ## Overview
 AresNexus utilizes snapshotting to optimize the performance of loading large event streams. Instead of replaying thousands of events to rebuild the state of an aggregate root, we can load a periodic snapshot and only apply events that occurred after the snapshot.

@@ -1,4 +1,4 @@
-﻿# Horizontal Scaling Validation
+# Horizontal Scaling Validation
 
 This document details the validation of AresNexus's horizontal scaling capabilities, ensuring that the system remains consistent, idempotent, and highly available when running multiple instances.
 

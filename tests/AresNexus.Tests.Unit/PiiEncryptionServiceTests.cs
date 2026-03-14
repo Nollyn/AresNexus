@@ -1,5 +1,5 @@
-﻿using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Infrastructure.Security;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Infrastructure.Security;
 using FluentAssertions;
 using Moq;
 using Xunit;

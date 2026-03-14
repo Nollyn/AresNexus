@@ -1,4 +1,4 @@
-﻿# AresNexus Performance Analysis
+# AresNexus Performance Analysis
 
 ## Latest Run: 2026-03-03
 

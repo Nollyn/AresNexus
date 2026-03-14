@@ -5,6 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);1591</NoWarn>
     <!-- Exclude from normal test runs -->
     <IsTestProject>false</IsTestProject>
   </PropertyGroup>
@@ -15,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Api\AresNexus.Settlement.Api.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Domain\AresNexus.Settlement.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\API\AresNexus.Settlement.Api.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Domain\AresNexus.Settlement.Domain.csproj" />
   </ItemGroup>
 
 </Project>

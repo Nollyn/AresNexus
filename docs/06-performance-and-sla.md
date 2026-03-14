@@ -1,4 +1,4 @@
-﻿# Performance & SLA Matrix
+# Performance & SLA Matrix
 
 ## Verification Matrix
 

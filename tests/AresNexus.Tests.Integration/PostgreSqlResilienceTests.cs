@@ -1,4 +1,4 @@
-﻿using AresNexus.Tests.Integration.Infrastructure;
+using AresNexus.Tests.Integration.Infrastructure;
 using FluentAssertions;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;

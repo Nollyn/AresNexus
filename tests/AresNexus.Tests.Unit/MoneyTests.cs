@@ -1,4 +1,4 @@
-﻿using AresNexus.Settlement.Domain;
+using AresNexus.Services.Settlement.Domain;
 using FluentAssertions;
 using Xunit;
 

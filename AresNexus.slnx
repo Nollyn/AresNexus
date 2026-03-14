@@ -1,25 +1,21 @@
 <Solution>
-  <Folder Name="/apps/" />
-  <Folder Name="/apps/settlement-core/">
-    <File Path="apps/settlement-core/Dockerfile" />
-  </Folder>
-  <Folder Name="/apps/settlement-core/src/">
-    <Project Path="apps/settlement-core/src/AresNexus.Settlement.Api/AresNexus.Settlement.Api.csproj" />
-    <Project Path="apps/settlement-core/src/AresNexus.Settlement.Application/AresNexus.Settlement.Application.csproj" />
-    <Project Path="apps/settlement-core/src/AresNexus.Settlement.Domain/AresNexus.Settlement.Domain.csproj" />
-    <Project Path="apps/settlement-core/src/AresNexus.Settlement.Infrastructure/AresNexus.Settlement.Infrastructure.csproj" />
-  </Folder>
-  <Folder Name="/apps/settlement-core/test/">
-    <Project Path="apps/settlement-core/test/AresNexus.Settlement.Tests/AresNexus.Settlement.Tests.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/ApiGateway/AresNexus.Gateway.Api.csproj" />
+    <Project Path="src/Services/SettlementService/API/AresNexus.Settlement.Api.csproj" />
+    <Project Path="src/Services/SettlementService/Application/AresNexus.Settlement.Application.csproj" />
+    <Project Path="src/Services/SettlementService/Domain/AresNexus.Settlement.Domain.csproj" />
+    <Project Path="src/Services/SettlementService/Infrastructure/AresNexus.Settlement.Infrastructure.csproj" />
+    <File Path="src/Services/ComplianceService/Dockerfile" />
+    <File Path="src/Services/ComplianceService/main.py" />
+    <Project Path="src/BuildingBlocks/Domain/AresNexus.Shared.Kernel.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/AresNexus.Tests.Unit/AresNexus.Tests.Unit.csproj" />
     <Project Path="tests/AresNexus.Tests.Integration/AresNexus.Tests.Integration.csproj" />
     <Project Path="tests/AresNexus.Tests.Architecture/AresNexus.Tests.Architecture.csproj" />
   </Folder>
-  <Folder Name="/shared/" />
-  <Folder Name="/shared/src/">
-    <Project Path="shared/src/AresNexus.Shared.Kernel/AresNexus.Shared.Kernel.csproj" />
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/AresNexus.Benchmarks/AresNexus.Benchmarks.csproj" />
   </Folder>
   <Folder Name="/docs/">
     <File Path="docs/01-strategic-vision.md" />
@@ -40,21 +36,15 @@
     <File Path="docs/14-operational-resilience-dora.md" />
     <File Path="docs/system-context.md" />
   </Folder>
-  <Folder Name="/infrastructure/" />
-  <Folder Name="/infrastructure/kubernetes/">
-    <File Path="infrastructure/kubernetes/08-k8s-network-policy.yaml" />
-    <File Path="infrastructure/kubernetes/08-k8s-resilience-manifest.yaml" />
-    <File Path="infrastructure/kubernetes/08b-k8s-network-policy.yaml" />
-    <File Path="infrastructure/kubernetes/09-k8s-resilience-manifest.yaml" />
-    <File Path="infrastructure/kubernetes/09-resource-quota.yaml" />
-    <File Path="infrastructure/kubernetes/10-pod-disruption-budget.yaml" />
-  </Folder>
-  <Folder Name="/monitoring/" />
-  <Folder Name="/monitoring/grafana/">
-    <File Path="monitoring/grafana/dashboard-settlement.json" />
-  </Folder>
-  <Folder Name="/monitoring/prometheus/">
-    <File Path="monitoring/prometheus/prometheus.yml" />
-    <File Path="monitoring/prometheus/rules.yml" />
+  <Folder Name="/deploy/">
+    <File Path="deploy/kubernetes/08-k8s-network-policy.yaml" />
+    <File Path="deploy/kubernetes/08-k8s-resilience-manifest.yaml" />
+    <File Path="deploy/kubernetes/08b-k8s-network-policy.yaml" />
+    <File Path="deploy/kubernetes/09-k8s-resilience-manifest.yaml" />
+    <File Path="deploy/kubernetes/09-resource-quota.yaml" />
+    <File Path="deploy/kubernetes/10-pod-disruption-budget.yaml" />
+    <File Path="deploy/monitoring/grafana/dashboard-settlement.json" />
+    <File Path="deploy/monitoring/prometheus/prometheus.yml" />
+    <File Path="deploy/monitoring/prometheus/rules.yml" />
   </Folder>
 </Solution>

@@ -1,4 +1,4 @@
-﻿# C4 Context Diagram - AresNexus
+# C4 Context Diagram - AresNexus
 
 This diagram shows the AresNexus system in the context of its external actors and systems.
 

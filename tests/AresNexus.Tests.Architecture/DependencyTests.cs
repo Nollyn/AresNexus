@@ -1,4 +1,4 @@
-﻿using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Services.Settlement.Domain.Aggregates;
 using NetArchTest.Rules;
 using Xunit;
 using FluentAssertions;
@@ -16,7 +16,7 @@ public class DependencyTests
         // Act
         var result = Types.InAssembly(domainAssembly)
             .ShouldNot()
-            .HaveDependencyOn("AresNexus.Settlement.Infrastructure")
+            .HaveDependencyOn("AresNexus.Services.Settlement.Infrastructure")
             .GetResult();
 
         // Assert
@@ -32,7 +32,7 @@ public class DependencyTests
         // Act
         var result = Types.InAssembly(domainAssembly)
             .ShouldNot()
-            .HaveDependencyOn("AresNexus.Settlement.Application")
+            .HaveDependencyOn("AresNexus.Services.Settlement.Application")
             .GetResult();
 
         // Assert
@@ -48,9 +48,9 @@ public class DependencyTests
         // Act
         var result = Types.InAssembly(domainAssembly)
             .ShouldNot()
-            .HaveDependencyOnAny("AresNexus.Settlement.Infrastructure", 
-                                "AresNexus.Settlement.Application", 
-                                "AresNexus.Settlement.Api",
+            .HaveDependencyOnAny("AresNexus.Services.Settlement.Infrastructure", 
+                                "AresNexus.Services.Settlement.Application", 
+                                "AresNexus.Services.Settlement.Api",
                                 "Microsoft.EntityFrameworkCore",
                                 "Newtonsoft.Json",
                                 "StackExchange.Redis")

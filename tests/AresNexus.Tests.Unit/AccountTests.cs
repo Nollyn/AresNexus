@@ -1,7 +1,7 @@
-﻿using AresNexus.Settlement.Domain;
-using AresNexus.Settlement.Domain.Aggregates;
-using AresNexus.Settlement.Domain.Events;
-using AresNexus.Shared.Kernel;
+using AresNexus.Services.Settlement.Domain;
+using AresNexus.Services.Settlement.Domain.Aggregates;
+using AresNexus.Services.Settlement.Domain.Events;
+using AresNexus.BuildingBlocks.Domain;
 using FluentAssertions;
 using Xunit;
 

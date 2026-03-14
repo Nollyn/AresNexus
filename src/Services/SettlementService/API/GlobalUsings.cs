@@ -1,0 +1,14 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Marten;
+global using AresNexus.BuildingBlocks.Domain;
+global using AresNexus.Services.Settlement.Application.Interfaces;
+global using AresNexus.Services.Settlement.Domain;
+global using AresNexus.Services.Settlement.Domain.Events;
+global using AresNexus.Services.Settlement.Domain.Aggregates;

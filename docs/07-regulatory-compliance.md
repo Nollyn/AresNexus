@@ -1,4 +1,4 @@
-﻿# Regulatory & Risk Mapping: Swiss Financial Market Standards
+# Regulatory & Risk Mapping: Swiss Financial Market Standards
 
 This document details how the Ares-Nexus architecture specifically addresses the regulatory requirements set by **FINMA** and the **Digital Operational Resilience Act (DORA)**.
 

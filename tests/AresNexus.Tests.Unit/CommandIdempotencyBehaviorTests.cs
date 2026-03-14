@@ -1,7 +1,7 @@
-﻿using AresNexus.Settlement.Application.Commands;
-using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Domain;
-using AresNexus.Settlement.Infrastructure.Idempotency;
+using AresNexus.Services.Settlement.Application.Commands;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Domain;
+using AresNexus.Services.Settlement.Infrastructure.Idempotency;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Moq;

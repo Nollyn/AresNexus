@@ -1,5 +1,5 @@
-﻿using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Infrastructure.Messaging;
 using Azure.Messaging.ServiceBus;
 using FluentAssertions;
 using Marten;

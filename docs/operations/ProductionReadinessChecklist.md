@@ -1,4 +1,4 @@
-﻿# AresNexus Production Readiness Checklist
+# AresNexus Production Readiness Checklist
 
 This document defines the formal requirements for a service to be considered production-ready in the AresNexus Swiss Tier-1 environment.
 

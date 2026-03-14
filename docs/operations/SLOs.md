@@ -1,4 +1,4 @@
-﻿# Service Level Objectives (SLOs) & SLAs
+# Service Level Objectives (SLOs) & SLAs
 
 ## 1. Overview
 AresNexus operates as a Tier-1 financial system. Our targets are mathematically grounded in our **Benchmark Results** and constrained by our **Architecture Limits** (Marten, PostgreSQL, Outbox).

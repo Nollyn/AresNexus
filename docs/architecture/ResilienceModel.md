@@ -1,4 +1,4 @@
-﻿# Resilience Model
+# Resilience Model
 
 ## Overview
 AresNexus implements a multi-layered resilience model to ensure high availability and data consistency in Tier-1 banking operations. We utilize Polly to handle transient failures and prevent cascading system collapses.

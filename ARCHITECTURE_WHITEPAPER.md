@@ -1,4 +1,4 @@
-﻿# AresNexus Architecture Decision Whitepaper
+# AresNexus Architecture Decision Whitepaper
 ## Executive Summary
 
 **AresNexus** is a staff-level reference architecture designed specifically for **Tier-1 financial institutions** requiring the highest standards of auditability, resilience, and regulatory compliance. It provides a blueprint for a high-performance banking settlement core, demonstrating how to handle mission-critical financial transactions with absolute integrity.

@@ -1,4 +1,4 @@
-﻿# ADR 003: RabbitMQ vs. Kafka for Inter-service Messaging
+# ADR 003: RabbitMQ vs. Kafka for Inter-service Messaging
 
 ## Status
 Accepted

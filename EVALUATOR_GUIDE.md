@@ -1,4 +1,4 @@
-﻿# EVALUATOR_GUIDE: AresNexus Technical Audit
+# EVALUATOR_GUIDE: AresNexus Technical Audit
 
 Welcome to the AresNexus Technical Evaluation. This guide is designed to provide you with a "Zero-Config" experience for auditing the system's resilience, consistency, and compliance architectures.
 
@@ -65,15 +65,15 @@ To verify the implementation and security of the system, please refer to the fol
 ## 5. Architectural Pattern Audit Trail (Code-to-Concept)
 To verify the implementation of core architectural patterns, please refer to the following key files:
 
-- **Event Sourcing (Aggregate Root)**: `apps/settlement-core/src/AresNexus.Settlement.Domain/Aggregates/Account.cs`
+- **Event Sourcing (Aggregate Root)**: `src/Services/SettlementService/Domain/Aggregates/Account.cs`
   - *Audit Note*: Observe the `ApplyChange` and `Apply` methods for state mutation via events.
-- **Transactional Outbox**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Messaging/OutboxProcessor.cs` and `MartenAccountRepository.cs`
+- **Transactional Outbox**: `src/Services/SettlementService/Infrastructure/Messaging/OutboxProcessor.cs` and `MartenAccountRepository.cs`
   - *Audit Note*: The repository saves events and outbox messages in a single Marten transaction; the processor relays them.
-- **Strict Idempotency**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Idempotency/IdempotencyMiddleware.cs`
+- **Strict Idempotency**: `src/Services/SettlementService/Infrastructure/Idempotency/IdempotencyMiddleware.cs`
   - *Audit Note*: Verification of the `Idempotency-Key` header against Redis.
-- **Field-Level Encryption**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Security/PiiEncryptionService.cs`
+- **Field-Level Encryption**: `src/Services/SettlementService/Infrastructure/Security/PiiEncryptionService.cs`
   - *Audit Note*: AES-256 encryption applied to the `Reference` field in the command handler.
-- **Automated Snapshotting**: `apps/settlement-core/src/AresNexus.Settlement.Infrastructure/Repositories/MartenAccountRepository.cs` (Line 123)
+- **Automated Snapshotting**: `src/Services/SettlementService/Infrastructure/Repositories/MartenAccountRepository.cs` (Line 123)
   - *Audit Note*: Threshold-based snapshotting to maintain O(1) recovery time.
 
 ## 5. Observability & "Golden Signals" (DORA Compliance)
@@ -97,7 +97,7 @@ The following files describe how AresNexus meets the 2026 DORA requirements:
 This exercise demonstrates resilience during a simulated node/pod failure with zero message loss.
 
 Prerequisites:
-- Deployment has ≥3 replicas with label `app=settlement-core`.
+- Deployment has =3 replicas with label `app=settlement-core`.
 - `infrastructure/chaos/pod-failure.yaml` applied (PDB + optional Chaos Mesh PodChaos).
 
 Steps:
@@ -115,11 +115,11 @@ Steps:
      kubectl delete pod -l app=settlement-core --field-selector=status.phase=Running --grace-period=0 --force --namespace ares --limit=1
      ```
 3. Observe in Grafana:
-   - Request success rate remains ≥ 99.99%.
+   - Request success rate remains = 99.99%.
    - p99 latency remains < 50ms after brief spike.
    - Outbox backlog remains bounded and returns to baseline.
 4. Verify zero data loss:
-   - Compare total events persisted (Marten) vs. messages delivered (RabbitMQ) — counts align.
+   - Compare total events persisted (Marten) vs. messages delivered (RabbitMQ) � counts align.
 
 Why it works:
 - The PodDisruptionBudget enforces at least 2 pods available at all times, preventing total unavailability during voluntary disruptions and most node failures.

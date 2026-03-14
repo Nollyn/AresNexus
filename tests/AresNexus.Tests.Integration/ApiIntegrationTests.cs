@@ -1,13 +1,13 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http.Json;
-using AresNexus.Settlement.Application.Commands;
-using AresNexus.Settlement.Domain;
+using AresNexus.Services.Settlement.Application.Commands;
+using AresNexus.Services.Settlement.Domain;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
-using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Application.Interfaces;
 using Microsoft.AspNetCore.TestHost;
 using MediatR;
 

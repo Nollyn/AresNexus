@@ -1,4 +1,4 @@
-﻿# Concurrency Control
+# Concurrency Control
 
 ## Overview
 In a high-throughput settlement system, multiple processes may attempt to modify the same account simultaneously. AresNexus utilizes **Optimistic Concurrency Control (OCC)** to ensure data integrity without the overhead of heavy-duty locking.

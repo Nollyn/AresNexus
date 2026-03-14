@@ -1,0 +1,36 @@
+﻿groups:
+  - name: AresNexusAlerts
+    rules:
+      - alert: HighSettlementLatency
+        expr: histogram_quantile(0.99, sum(rate(settlement_processing_seconds_bucket[5m])) by (le)) > 0.050
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Settlement Latency exceeds 50ms (p99) in Switzerland North"
+      
+      - alert: RegulatoryValidationFailure
+        expr: rate(compliance_validation_errors_total[1m]) > 0
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Compliance Engine rejected a Tier-1 transaction. Manual audit required."
+
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service {{ $labels.instance }} is down"
+          description: "Service {{ $labels.job }} is unreachable for more than 1 minute."
+
+      - alert: HighErrorRate
+        expr: (sum(rate(settlement_failure_total[5m])) / (sum(rate(settlement_success_total[5m])) + sum(rate(settlement_failure_total[5m])))) > 0.1
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High Settlement Error Rate (>10%)"
+          description: "Settlement error rate is {{ $value | printf \"%.2f\" }} in the last 5 minutes."

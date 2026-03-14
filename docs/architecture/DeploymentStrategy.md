@@ -1,4 +1,4 @@
-﻿# Deployment Strategy
+# Deployment Strategy
 
 ## Overview
 AresNexus utilizes a zero-downtime deployment strategy to ensure continuous availability for settlement operations. We follow the principle of **Immutable Infrastructure** and **Automated Verification**.

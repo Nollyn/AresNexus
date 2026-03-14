@@ -1,4 +1,4 @@
-﻿# Concurrency Control
+# Concurrency Control
 
 ## Overview
 AresNexus handles financial settlements where data consistency and integrity are critical. This document explains our concurrency control mechanisms for managing multiple simultaneous updates to the same aggregate root.

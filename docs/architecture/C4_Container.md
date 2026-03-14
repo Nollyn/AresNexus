@@ -1,4 +1,4 @@
-﻿# C4 Container Diagram - AresNexus
+# C4 Container Diagram - AresNexus
 
 This diagram shows the internal containers of the AresNexus system.
 

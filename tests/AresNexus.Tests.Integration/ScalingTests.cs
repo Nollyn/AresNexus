@@ -1,7 +1,7 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http.Json;
-using AresNexus.Settlement.Application.Commands;
-using AresNexus.Settlement.Domain;
+using AresNexus.Services.Settlement.Application.Commands;
+using AresNexus.Services.Settlement.Domain;
 using AresNexus.Tests.Integration.Infrastructure;
 using FluentAssertions;
 using Xunit;
@@ -62,12 +62,12 @@ public class ScalingTests : IntegrationTestBase
         // Use relative path reaching out from the bin folder if necessary, 
         // but for a robust test we should look for the file in the project structure.
         var projectRoot = AppContext.BaseDirectory;
-        while (!Directory.Exists(Path.Combine(projectRoot, "apps")) && Path.GetDirectoryName(projectRoot) != null)
+        while (!Directory.Exists(Path.Combine(projectRoot, "src")) && Path.GetDirectoryName(projectRoot) != null)
         {
             projectRoot = Path.GetDirectoryName(projectRoot)!;
         }
 
-        var outboxPath = Path.Combine(projectRoot, "apps", "settlement-core", "src", "AresNexus.Settlement.Infrastructure", "Messaging", "OutboxProcessor.cs");
+        var outboxPath = Path.Combine(projectRoot, "src", "Services", "SettlementService", "Infrastructure", "Messaging", "OutboxProcessor.cs");
         var outboxCode = File.ReadAllText(outboxPath);
         outboxCode.Should().Contain("pg_advisory_xact_lock(12345)");
     }

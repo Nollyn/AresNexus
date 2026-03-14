@@ -1,4 +1,4 @@
-﻿# Scaling Strategy
+# Scaling Strategy
 
 ## Overview
 AresNexus is designed to scale horizontally to handle massive settlement volumes. Our architecture relies on stateless application tiers and a highly partitionable persistence layer.

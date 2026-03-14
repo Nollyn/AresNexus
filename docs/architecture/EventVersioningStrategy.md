@@ -1,4 +1,4 @@
-﻿# Event Versioning Strategy
+# Event Versioning Strategy
 
 ## Overview
 AresNexus follows an **Event Sourcing** pattern. Since events are immutable and represent the single source of truth, evolving their schema requires a robust versioning strategy to maintain backward compatibility and ensure replay safety.

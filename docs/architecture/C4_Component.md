@@ -1,4 +1,4 @@
-﻿# C4 Component Diagram - Settlement API
+# C4 Component Diagram - Settlement API
 
 This diagram shows the core components inside the Settlement API.
 

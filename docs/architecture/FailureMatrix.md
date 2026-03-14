@@ -1,4 +1,4 @@
-﻿# Failure Matrix
+# Failure Matrix
 
 | Failure Type | Detection | Recovery | Data Loss Risk | SLA Impact |
 | :--- | :--- | :--- | :--- | :--- |

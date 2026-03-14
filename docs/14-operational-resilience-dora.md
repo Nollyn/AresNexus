@@ -1,4 +1,4 @@
-﻿# Operational Resilience & DORA Compliance
+# Operational Resilience & DORA Compliance
 
 AresNexus is designed to meet the rigorous requirements of the **Digital Operational Resilience Act (DORA)**, coming into full effect in 2026. This document details the architectural patterns and implementations that ensure continuous monitoring, high availability, and effective risk management for Swiss Tier-1 banking.
 
@@ -8,7 +8,32 @@ To comply with DORA's requirements for continuous monitoring and rapid incident 
 
 -   **End-to-End Traceability**: Every command entering the `GatewayAPI` or `SettlementCore` is assigned a unique `TraceId` and `CorrelationId`.
 -   **Propagation**: These identifiers are propagated across asynchronous boundaries using the **Transactional Outbox** and **Azure Service Bus** application properties.
--   **OpenTelemetry Integration**: Standardized instrumentation using `OpenTelemetry.Instrumentation.AspNetCore` and `OpenTelemetry.Exporter.OpenTelemetryProtocol` (OTLP) for seamless integration with modern observability stacks (Grafana, Jaeger, etc.).
+-   **OpenTelemetry Integration**: Standardized instrumentation using `OpenTelemetry.Instrumentation.AspNetCore`, `OpenTelemetry.Instrumentation.Runtime`, and `OpenTelemetry.Exporter.Prometheus.AspNetCore` for seamless integration with Prometheus and Grafana.
+
+### Metrics Reference
+
+The following key metrics are exposed for monitoring:
+
+| Metric Name | Type | Description |
+|-------------|------|-------------|
+| `settlement_total_count_total` | Counter | Total number of settlement transactions processed (success/failure). |
+| `settlement_processing_seconds` | Histogram | Latency of settlement transaction processing in seconds. |
+| `compliance_validation_errors_total` | Counter | Total number of compliance validation rejections (Compliance Engine). |
+| `http_server_request_duration_seconds` | Histogram | ASP.NET Core HTTP request duration. |
+| `http_server_active_requests` | Gauge | Number of active HTTP requests. |
+
+### Accessing Metrics
+
+Metrics are available in Prometheus format at the `/metrics` endpoint of each service:
+- **API Gateway**: `http://gateway-api:8080/metrics`
+- **Settlement Service**: `http://settlement-core:8080/metrics`
+- **Compliance Service**: `http://compliance-engine:8080/metrics`
+
+### Example Prometheus Queries
+
+- **Transactions Per Second**: `rate(settlement_total_count_total[1m])`
+- **P95 Latency**: `histogram_quantile(0.95, sum(rate(settlement_processing_seconds_bucket[5m])) by (le))`
+- **Compliance Failure Rate**: `rate(compliance_validation_errors_total[1m])`
 
 ## 2. Long-Term Evolution (Event Upcasting)
 

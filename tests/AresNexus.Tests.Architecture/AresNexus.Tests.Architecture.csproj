@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4" />
-    <PackageReference Include="FluentAssertions" Version="8.8.0" />
+    <PackageReference Include="FluentAssertions" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Domain\AresNexus.Settlement.Domain.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Application\AresNexus.Settlement.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Domain\AresNexus.Settlement.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Application\AresNexus.Settlement.Application.csproj" />
   </ItemGroup>
 
 </Project>

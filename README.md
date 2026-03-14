@@ -1,4 +1,4 @@
-﻿# Ares-Nexus
+# Ares-Nexus
 
 ![Build](https://github.com/Nollyn/AresNexus/actions/workflows/ci.yml/badge.svg?branch=main)
 [![Test Coverage](https://img.shields.io/badge/Coverage-82%25-brown)](https://github.com/AresNexus/AresNexus/actions/workflows/ci.yml)
@@ -42,7 +42,7 @@ Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 cir
 
 Architectural Strategy, Pattern Selection, and Compliance Mapping by **Laynoll Diaz Martinez**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
 
-This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
+This project demonstrates a modern **'Architect-as-Orchestrator'** workflow�leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
 
 ## Project Structure
 
@@ -51,7 +51,7 @@ This project demonstrates a modern **'Architect-as-Orchestrator'** workflow—le
   - **Application**: Layer containing MediatR commands, handlers, and validators.
   - **Domain**: Core business logic, aggregate roots (Account), and domain events.
   - **Infrastructure**: Event Store (Marten/PostgreSQL) and Messaging (RabbitMQ/Redis) adapters.
-- **apps/compliance-engine**: A secondary service (Python-based) for transaction compliance checks.
+- **src/Services/ComplianceService**: A secondary service (Python-based) for transaction compliance checks.
 - **shared**: Common libraries.
   - **AresNexus.Shared.Kernel**: Common DDD primitives, base `AggregateRoot`, and event interfaces.
 - **infrastructure**: Deployment and configuration assets.
@@ -84,6 +84,7 @@ For a deeper dive into the architecture and design decisions, please refer to th
 - [Resilience and Scalability](/docs/05-resilience-and-scalability.md) - High availability and disaster recovery patterns.
 - [Infrastructure as Code](/docs/07-infrastructure-as-code-manifest.md) - Overview of IaC approach.
 - [Portfolio Summary](/docs/10-portfolio-summary.md) - Executive overview of the solution.
+- [Observability Guide](/docs/operations/OBSERVABILITY_GUIDE.md) - Deep dive into metrics and monitoring.
 
 ## Getting Started
 
@@ -95,7 +96,7 @@ For a deeper dive into the architecture and design decisions, please refer to th
 ### Running the API (Local Development)
 1. Navigate to the API project directory:
    ```powershell
-   cd apps/settlement-core/src/AresNexus.Settlement.Api
+   cd src/Services/SettlementService/API
    ```
 2. Run the application:
    ```powershell
@@ -108,13 +109,13 @@ For a deeper dive into the architecture and design decisions, please refer to th
 The solution is cloud-native and ready for Kubernetes deployment.
 
 ### Kubernetes Manifests
-Located in `infrastructure/kubernetes/`:
+Located in `deploy/kubernetes/`:
 - **Resilience Manifests**: (`08-k8s-resilience-manifest.yaml`, `09-k8s-resilience-manifest.yaml`) Define deployments with anti-affinity rules, resource limits, and health probes (Liveness/Readiness) to ensure zero-downtime rolling updates.
 - **Network Policies**: (`08-k8s-network-policy.yaml`, `08b-k8s-network-policy.yaml`) Implement a Zero-Trust security model, restricting ingress/egress traffic to only authorized services (e.g., Gateway to API, API to Event Store).
 
 ### Monitoring Stack
 - **Prometheus**: Scrapes metrics from `/metrics` endpoints using OpenTelemetry.
-- **Grafana**: Provides visual dashboards (see `monitoring/grafana/dashboard-settlement.json`).
+- **Grafana**: Provides visual dashboards (see `deploy/monitoring/grafana/dashboard-settlement.json`).
 
 ## Features
 

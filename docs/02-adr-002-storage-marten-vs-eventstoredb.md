@@ -1,4 +1,4 @@
-﻿# ADR 002: Marten (PostgreSQL) vs. EventStoreDB for Event Sourcing
+# ADR 002: Marten (PostgreSQL) vs. EventStoreDB for Event Sourcing
 
 ## Status
 Accepted
@@ -21,7 +21,7 @@ Marten on PostgreSQL was selected for **Low Operational Complexity (TCO)** while
   - Marten provides documents + events in one substrate; projections and outbox share a single transaction boundary.
 - Performance & Scalability:
   - Append-only streams are efficient with proper partitioning and indexing; snapshotting keeps recovery O(1).
-  - EventStoreDB is optimized for streams/reads but the marginal gain doesn’t offset ops complexity for our current SLA.
+  - EventStoreDB is optimized for streams/reads but the marginal gain doesn�t offset ops complexity for our current SLA.
 - Risk & Talent:
   - Postgres skills are widely available; Marten has healthy OSS velocity.
   - Avoids lock-in to specialized protocols while keeping escape hatches (CDC, logical replication).

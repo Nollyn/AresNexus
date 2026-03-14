@@ -1,9 +1,9 @@
-﻿using AresNexus.Settlement.Application.Commands;
-using AresNexus.Settlement.Application.Handlers;
-using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Domain;
-using AresNexus.Settlement.Domain.Aggregates;
-using AresNexus.Shared.Kernel;
+using AresNexus.Services.Settlement.Application.Commands;
+using AresNexus.Services.Settlement.Application.Handlers;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Domain;
+using AresNexus.Services.Settlement.Domain.Aggregates;
+using AresNexus.BuildingBlocks.Domain;
 using FluentAssertions;
 using Moq;
 using System.Diagnostics.Metrics;

@@ -22,10 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Application\AresNexus.Settlement.Application.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Domain\AresNexus.Settlement.Domain.csproj" />
-    <ProjectReference Include="..\..\apps\settlement-core\src\AresNexus.Settlement.Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\shared\src\AresNexus.Shared.Kernel\AresNexus.Shared.Kernel.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Application\AresNexus.Settlement.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Domain\AresNexus.Settlement.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Services\SettlementService\Infrastructure\AresNexus.Settlement.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\BuildingBlocks\Domain\AresNexus.Shared.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,9 +2,9 @@
 using BenchmarkDotNet.Running;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
-using AresNexus.Settlement.Domain.Aggregates;
-using AresNexus.Settlement.Infrastructure.Repositories;
-using AresNexus.Settlement.Domain;
+using AresNexus.Services.Settlement.Domain.Aggregates;
+using AresNexus.Services.Settlement.Infrastructure.Repositories;
+using AresNexus.Services.Settlement.Domain;
 
 namespace AresNexus.Benchmarks;
 
@@ -34,14 +34,12 @@ public class TransactionProcessingBenchmark
         services.AddMarten(options =>
         {
             options.Connection("Host=localhost;Database=AresNexus_Benchmarks;Username=postgres;Password=postgres");
-            options.AutoCreateSchemaObjects = JasperFx.CodeGeneration.AutoCreate.All;
         });
 
         _serviceProvider = services.BuildServiceProvider();
         _store = _serviceProvider.GetRequiredService<IDocumentStore>();
         
         // Ensure clean state
-        _store.Advanced.Clean.CompletelyRemoveAll();
     }
 
     [Benchmark]
@@ -52,10 +50,10 @@ public class TransactionProcessingBenchmark
             var accountId = Guid.NewGuid();
             await using var session = _store.LightweightSession();
             
-            var account = new Account(accountId, "CH123", "EUR");
-            account.Deposit(new Money(100, "EUR"), "Initial Deposit");
+            var account = new Account(accountId, "CH123");
+            account.Deposit(new Money(100), "Initial Deposit");
             
-            session.Events.StartStream<Account>(accountId, account.GetUncommittedEvents());
+            session.Events.StartStream<Account>(accountId, account.GetUncommittedChanges());
             await session.SaveChangesAsync();
         }
     }

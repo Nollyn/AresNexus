@@ -1,6 +1,6 @@
-﻿using System.Security.Cryptography;
-using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Infrastructure.Security;
+using System.Security.Cryptography;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Infrastructure.Security;
 using Azure;
 using Azure.Security.KeyVault.Secrets;
 using FluentAssertions;

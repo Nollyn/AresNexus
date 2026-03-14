@@ -1,4 +1,4 @@
-﻿# Threat Model - AresNexus Settlement Core
+# Threat Model - AresNexus Settlement Core
 
 ## Trust Boundaries
 1.  **Public API Edge**: Boundary between the internet (via Gateway) and the Settlement API.

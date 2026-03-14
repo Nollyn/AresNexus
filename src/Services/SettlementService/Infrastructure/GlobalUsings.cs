@@ -1,0 +1,16 @@
+global using AresNexus.Services.Settlement.Application.Commands;
+global using AresNexus.Services.Settlement.Application.Interfaces;
+global using AresNexus.Services.Settlement.Domain.Aggregates;
+global using AresNexus.Services.Settlement.Domain;
+global using AresNexus.Services.Settlement.Domain.Events;
+global using MediatR;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
+global using Microsoft.Extensions.Hosting;
+global using System.Text.Json;
+global using System.Text;
+global using System.Reflection;
+global using System.Collections.Concurrent;
+global using Marten;
+global using AresNexus.BuildingBlocks.Domain;

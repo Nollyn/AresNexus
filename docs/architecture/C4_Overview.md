@@ -1,4 +1,4 @@
-﻿# C4 Architecture Overview
+# C4 Architecture Overview
 
 This document provides a hierarchical view of the AresNexus architecture, following the C4 Model.
 

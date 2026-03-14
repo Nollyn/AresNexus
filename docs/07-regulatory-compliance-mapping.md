@@ -1,4 +1,4 @@
-﻿# Regulatory Compliance Mapping
+# Regulatory Compliance Mapping
 
 ## Overview
 

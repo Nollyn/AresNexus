@@ -1,15 +1,15 @@
-﻿using AresNexus.Settlement.Domain;
-using AresNexus.Settlement.Domain.Aggregates;
-using AresNexus.Settlement.Infrastructure.Repositories;
+using AresNexus.Services.Settlement.Domain;
+using AresNexus.Services.Settlement.Domain.Aggregates;
+using AresNexus.Services.Settlement.Infrastructure.Repositories;
 using Marten;
 using Marten.Events;
 using Moq;
 using Xunit;
 using FluentAssertions;
 using System.Text.Json;
-using AresNexus.Settlement.Application.Interfaces;
-using AresNexus.Settlement.Infrastructure.Messaging;
-using AresNexus.Shared.Kernel;
+using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Services.Settlement.Infrastructure.Messaging;
+using AresNexus.BuildingBlocks.Domain;
 
 using AresNexus.Tests.Integration.Infrastructure;
 
@@ -42,10 +42,10 @@ public class TransactionalOutboxChaosTests : IntegrationTestBase
         var mockConfiguration = new Mock<Microsoft.Extensions.Configuration.IConfiguration>();
         mockConfiguration.Setup(c => c.GetSection(It.IsAny<string>())).Returns(new Mock<Microsoft.Extensions.Configuration.IConfigurationSection>().Object);
 
-        var mockResiliencePolicyFactory = new Mock<AresNexus.Settlement.Infrastructure.Resilience.IResiliencePolicyFactory>();
+        var mockResiliencePolicyFactory = new Mock<AresNexus.Services.Settlement.Infrastructure.Resilience.IResiliencePolicyFactory>();
         
         mockResiliencePolicyFactory.Setup(f => f.GetDatabasePolicy())
-            .Returns(Polly.Policy.NoOpAsync());
+            .Returns((Polly.IAsyncPolicy)Polly.Policy.NoOpAsync());
 
         var repository = new MartenAccountRepository(
             mockSession.Object, 

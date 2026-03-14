@@ -1,4 +1,4 @@
-﻿# ADR 004: Minimal APIs vs. MVC Controllers
+# ADR 004: Minimal APIs vs. MVC Controllers
 
 ## Status
 Accepted
@@ -20,7 +20,7 @@ Adopt **Minimal APIs** and **.NET 10** for the Settlement Core HTTP surface.
   - Controllers provide richer conventions but add overhead not required for our bounded HTTP surface.
 - Simplicity & Developer Velocity:
   - Route handlers are concise, AOT-friendly, and integrate cleanly with DI/filters.
-  - Some advanced features (filters, model binding) require explicit composition—acceptable trade for speed.
+  - Some advanced features (filters, model binding) require explicit composition�acceptable trade for speed.
 - Scaling Behavior:
   - Lean handlers enable more pods per node at same SLO, improving cost efficiency under burst traffic.
 

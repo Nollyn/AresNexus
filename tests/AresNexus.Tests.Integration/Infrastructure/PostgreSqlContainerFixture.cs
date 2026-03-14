@@ -1,17 +1,22 @@
-﻿using Testcontainers.PostgreSql;
+using Testcontainers.PostgreSql;
 using Xunit;
 
 namespace AresNexus.Tests.Integration.Infrastructure;
 
 public class PostgreSqlContainerFixture : IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _container = new PostgreSqlBuilder()
-        .WithImage("postgres:16-alpine")
-        .WithDatabase("AresNexus")
-        .WithUsername("postgres")
-        .WithPassword("postgres")
-        .WithCleanUp(true)
-        .Build();
+    private readonly PostgreSqlContainer _container;
+
+    public PostgreSqlContainerFixture()
+    {
+        _container = new PostgreSqlBuilder()
+            .WithImage("postgres:16-alpine")
+            .WithDatabase("AresNexus")
+            .WithUsername("postgres")
+            .WithPassword("postgres")
+            .WithCleanUp(true)
+            .Build();
+    }
 
     public string ConnectionString => _container.GetConnectionString();
 

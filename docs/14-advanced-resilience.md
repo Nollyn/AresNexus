@@ -1,4 +1,4 @@
-﻿# Advanced Resilience: Snapshotting and Upcasting
+# Advanced Resilience: Snapshotting and Upcasting
 
 ## Overview
 

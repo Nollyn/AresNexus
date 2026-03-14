@@ -1,4 +1,4 @@
-﻿# Strategic Architecture Decision Records (ADRs)
+# Strategic Architecture Decision Records (ADRs)
 
 This document outlines the high-level architectural decisions and trade-offs made for the AresNexus settlement system. These decisions were directed by the Principal Architect to ensure compliance with Swiss Tier-1 (FINMA/DORA) resilience and auditability standards.
 
