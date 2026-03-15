@@ -47,7 +47,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t aresnexus-settlement:latest -f apps/settlement-core/Dockerfile .
+        docker build -t aresnexus-settlement:latest -f src/Services/SettlementService/API/Dockerfile .
 
     - name: Trivy Scan (Security Gatekeeping)
       # Compliance: This scan ensures compliance with DORA's vulnerability management requirements.
