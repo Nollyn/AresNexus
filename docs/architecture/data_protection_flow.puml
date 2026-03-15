@@ -1,0 +1,31 @@
+﻿@startuml data_protection_flow
+skinparam sequenceMessageAlign center
+
+title Data Protection Flow - Ares Nexus
+
+participant "Financial Core Event" as core
+participant "AI Agent" as agent
+participant "Data Protection Gateway" as dpg
+participant "External LLM (Azure Swiss)" as llm
+
+core -> agent : SettlementCreatedEvent(IBAN, Name, Amount)
+activate agent
+
+agent -> dpg : SanitizeAsync(input_data)
+activate dpg
+dpg -> dpg : Redact PII (Names, Emails)
+dpg -> dpg : Hash Identifiers (IBAN, AccID)
+dpg -> dpg : Bucket Amounts (CHF 5k -> CHF_HIGH)
+dpg --> agent : Sanitized Input (Redacted, Hashed, Bucketed)
+deactivate dpg
+
+agent -> llm : Request Reasoning(Sanitized Input)
+activate llm
+llm --> agent : Reasoning Recommendation (Confidence)
+deactivate llm
+
+agent -> agent : Map Reasoning to RecommendationEvent
+agent -> core : Emit RecommendationEvent
+deactivate agent
+
+@enduml

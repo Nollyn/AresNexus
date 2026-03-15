@@ -1,0 +1,30 @@
+﻿@startuml multi_agent_arch
+!include https://raw.githubusercontent.com/plantuml-office/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Secure Multi-Agent Architecture - Ares Nexus
+
+System_Boundary(core_zone, "Core Financial Zone") {
+    Container(settlement_service, "Settlement Service", ".NET Core", "Handles payments and accounts.")
+    Container(compliance_engine, "Compliance Engine", ".NET Core", "Rules-based validation.")
+    Container(event_bus, "Event Bus", "RabbitMQ/NATS", "Asynchronous messaging.")
+}
+
+System_Boundary(ai_zone, "AI Observability Zone") {
+    Container(ai_agents, "AI Agents (apps/ai-agents)", ".NET Core", "FraudAgent, ComplianceAgent, RiskAgent, etc.")
+    Container(governance, "AI Governance Layer", ".NET Core", "ModelRegistry, AuditLogger, DecisionTraceStore.")
+    Container(mrm, "Model Risk Management", ".NET Core", "DriftDetector, PerformanceMonitor.")
+    Container(protection_gateway, "Data Protection Gateway", ".NET Core", "Redaction, Hashing, Bucketing.")
+    Container(decision_gate, "Agent Decision Gate", ".NET Core", "Human-in-the-loop, Policy Engine.")
+}
+
+Rel(event_bus, ai_agents, "SettlementCreatedEvent, etc.", "Subscribe")
+Rel(ai_agents, protection_gateway, "Sanitize input data")
+Rel(protection_gateway, ai_agents, "Sanitized data returned")
+Rel(ai_agents, governance, "Log decisions and traces")
+Rel(ai_agents, mrm, "Report performance and confidence")
+Rel(ai_agents, decision_gate, "Emit RecommendationEvent")
+Rel(decision_gate, settlement_service, "Approved System Action", "Event/Command")
+
+@enduml

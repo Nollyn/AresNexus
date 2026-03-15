@@ -1,0 +1,39 @@
+﻿@startuml agent_decision_flow
+skinparam sequenceMessageAlign center
+
+title Agent Decision Flow - Ares Nexus
+
+participant "AI Agent" as agent
+participant "AI Governance Layer" as governance
+participant "Decision Gate" as gate
+participant "Policy Engine / Human" as policy
+participant "Financial Core" as core
+
+agent -> agent : Reason(Sanitized Data)
+agent -> governance : LogDecisionAsync(Reasoning, Confidence)
+activate governance
+governance -> governance : Store Decision Trace
+deactivate governance
+
+agent -> gate : Emit RecommendationEvent
+activate gate
+gate -> policy : EvaluateRecommendation(recommendation)
+activate policy
+alt confidence < 0.70
+    policy --> gate : Reject (Policy Violation)
+else confidence >= 0.70 AND manual_required == false
+    policy --> gate : Approve (Automatic)
+else manual_approval_required == true
+    policy -> policy : Request Human Approval
+    policy --> gate : Approved (By Human)
+end
+deactivate policy
+
+alt recommendation Approved
+    gate -> core : Execute System Action (Approved)
+else recommendation Rejected
+    gate -> gate : Log Rejection and Reason
+end
+deactivate gate
+
+@enduml

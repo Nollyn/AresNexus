@@ -5,6 +5,10 @@ using AresNexus.AiAgents.Agents.RiskAgent;
 using AresNexus.AiAgents.Agents.OpsAgent;
 using AresNexus.AiAgents.Agents.SettlementAgent;
 using AresNexus.AiAgents.Agents.ObservabilityAgent;
+using AresNexus.AiAgents.Core.Governance;
+using AresNexus.AiAgents.Core.Protection;
+using AresNexus.AiAgents.Core.ModelRisk;
+using AresNexus.AiAgents.Core.DecisionGate;
 using AresNexus.AiAgents.Infrastructure.LLMProvider;
 using AresNexus.AiAgents.Infrastructure.MetricsCollectors;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +25,19 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
+
+// Data Protection Layer
+builder.Services.AddSingleton<IDataProtectionGateway, DataProtectionGateway>();
+
+// AI Governance Layer
+builder.Services.AddSingleton<IAIModelRegistry, AIModelRegistry>();
+builder.Services.AddSingleton<IAgentAuditLogger, AgentAuditLogger>();
+
+// Model Risk Management
+builder.Services.AddSingleton<IModelRiskManager, ModelRiskManager>();
+
+// Decision Gate
+builder.Services.AddSingleton<IDecisionGate, DecisionGate>();
 
 // Agents
 builder.Services.AddSingleton<IAgent, FraudAgent>();

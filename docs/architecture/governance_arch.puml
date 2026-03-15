@@ -1,0 +1,22 @@
+﻿@startuml ai_governance_arch
+!include https://raw.githubusercontent.com/plantuml-office/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title AI Governance Architecture Diagram - Ares Nexus
+
+Container_Boundary(ai_governance, "AI Governance Layer") {
+    Component(model_registry, "AI Model Registry", "Internal Storage", "Maintains authorized model versions and policies.")
+    Component(audit_logger, "Agent Audit Logger", "Immutable Log", "Records all AI decisions with timestamp, agentId, confidence.")
+    Component(trace_store, "Decision Trace Store", "JSON/Blob Storage", "Stores full reasoning traces for forensic analysis.")
+    Component(policy_checks, "Governance Policy Checks", "Policy Engine", "Enforces usage rules (e.g., maximum confidence variance).")
+}
+
+Container(ai_agent, "AI Agent", ".NET Core", "FraudAgent/ComplianceAgent")
+
+Rel(ai_agent, model_registry, "Lookup authorized model")
+Rel(ai_agent, audit_logger, "Log decision and confidence")
+Rel(ai_agent, trace_store, "Store reasoning trace")
+Rel(audit_logger, policy_checks, "Trigger policy evaluation")
+
+@enduml

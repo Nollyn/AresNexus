@@ -46,6 +46,10 @@ This project demonstrates a modern **'Architect-as-Orchestrator'** workflow�le
 
 ## Project Structure
 
+- **apps/ai-agents**: Secure multi-agent AI system for financial monitoring and advisory.
+  - **Agents**: Fraud, Compliance, Risk, Settlement, Ops, and Observability agents.
+  - **Core**: AI Governance, Data Protection Gateway, and Model Risk Management.
+  - **Decision Gate**: Human-in-the-loop and policy engine for AI recommendations.
 - **apps/settlement-core**: The primary settlement system.
   - **Api**: ASP.NET Core Web API providing the transaction interface.
   - **Application**: Layer containing MediatR commands, handlers, and validators.
@@ -67,6 +71,9 @@ For a deeper dive into the architecture and design decisions, please refer to th
 
 ### Strategic & Architecture
 - [Architecture Vision & ADRs](ARCHITECTURE.md) - Project goals and high-level roadmap.
+- [Secure Multi-Agent Architecture](/docs/multi-agent-architecture.md) - FinTech-grade AI agent design.
+- [AI Governance & Audit](/docs/ai-governance.md) - Traceability and control for AI decisions.
+- [Model Risk Management](/docs/model-risk-management.md) - Monitoring drift and safety thresholds.
 - [Evaluator Audit Guide](EVALUATOR_GUIDE.md) - Quick-start for auditing the system's resilience.
 - [Architecture Details](/docs/03-architecture-definition.md) - Low-level technical specifications.
 - [Visual Architecture (C4)](/docs/04-visual-architecture-c4.md) - C4 Model diagrams.
@@ -119,11 +126,12 @@ Located in `deploy/kubernetes/`:
 
 ## Features
 
+- **Secure Multi-Agent AI**: Distributed advisory agents (Fraud, Risk, Compliance) following the `Observe → Reason → Recommend` pattern.
+- **AI Governance Layer**: Full auditability of AI decisions with `AgentAuditLogger` and `DecisionTraceStore`.
+- **Data Protection Gateway**: Automatic PII redaction and financial identifier hashing (IBAN/AccountID) before LLM interaction.
+- **Model Risk Management**: Automated drift detection and "circuit breaker" safety thresholds for AI models.
 - **Event Sourcing**: Complete audit trail of all account transactions.
-- **Zero-Trust Security**: Kubernetes Network Policies for microsegmentation.
-- **High Availability**: Multi-replica deployments with pod anti-affinity.
-- **Observability**: Fully integrated with OpenTelemetry, Prometheus, and Grafana.
-- **Modern API**: Built with Minimal APIs, Versioning, and Scalar for documentation.
+- **Zero-Trust Security**: Kubernetes Network Policies for microsegmentation and isolated AI Security Zones.
 
 ## Seniority Upgrades (Audit-Ready & Resilient)
 
@@ -134,6 +142,7 @@ To meet Swiss Banking Resilience (FINMA & DORA compliance) standards, the follow
 3.  **Performance (Snapshotting & Upcasting)**: Automated aggregate snapshotting every 100 events and a robust `EventUpcaster` base class for schema evolution. This ensures sub-millisecond state recovery and long-term data maintainability.
 4.  **Security (Field-Level Encryption)**: AES-256 encryption for sensitive fields (`Reference` and `Metadata`) in financial events before they are persisted to the database. This provides defense-in-depth and meets Tier-1 banking standards for data privacy.
 5.  **Operational Resilience (Kubernetes Hardening)**: Implementation of `ResourceQuota` to limit CPU/RAM per namespace and `PodDisruptionBudget` to ensure 99.99% availability during cluster maintenance and upgrades.
+6.  **Secure AI Governance (Swiss Compliance)**: AI agents operate in an isolated **Observability Zone**, separated from the **Core Financial Zone**. All AI interactions pass through a **Data Protection Gateway** (PII redaction) and are governed by a **Decision Gate** ensuring AI remains advisory-only (Human-in-the-loop).
 
 ## Quick Start for Evaluators
 
@@ -156,6 +165,8 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 | Regulation | Requirement | Technical Feature |
 |-----------|-------------|-------------------|
 | FINMA 2023/1 (Operational Risk) | Proven consistency and auditability | Transactional Outbox, Event Sourcing Snapshotting |
+| nFADP / Swiss Data Protection | Protect sensitive data in AI/LLM | Data Protection Gateway (Redaction/Hashing) |
+| FINMA AI Guidelines | Traceability of AI decisions | AI Governance Layer (AuditLogger/DecisionTraceStore) |
 | GDPR / Swiss Bank Secrecy | Protect PII at rest/in-transit | AES-256 Field-Level Encryption, TLS everywhere |
 | DORA (Digital Resilience) | Chaos testing, rapid recovery, observability | Kubernetes PodDisruptionBudget, Chaos experiments, OpenTelemetry + Prometheus/Grafana |
 

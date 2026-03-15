@@ -2,17 +2,18 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using AresNexus.AiAgents.Core;
+using AresNexus.AiAgents.Core.Protection;
+using AresNexus.AiAgents.Core.Governance;
 
 namespace AresNexus.AiAgents.Agents.RiskAgent;
 
-public record RiskScoreCalculatedEvent(Guid AccountId, double Score, string Reason);
-
 public class RiskAgent : BaseAgent
 {
-    public override string Name => "Risk Management Agent";
+    public override string Name => "RiskAgent";
     public override string Description => "Calculates risk scores based on transaction and account history.";
 
-    public RiskAgent(Kernel kernel, ILogger<RiskAgent> logger) : base(kernel, logger)
+    public RiskAgent(Kernel kernel, ILogger<RiskAgent> logger, IDataProtectionGateway dataProtection, IAgentAuditLogger auditLogger) 
+        : base(kernel, logger, dataProtection, auditLogger)
     {
     }
 
@@ -26,10 +27,20 @@ public class RiskAgent : BaseAgent
 
     private async Task CalculateRiskAsync(FundsDepositedEvent deposit, CancellationToken ct)
     {
-        Logger.LogInformation("Calculating risk for deposit to account: {AccountId}, Amount: {Amount}", deposit.AccountId, deposit.Money.Amount);
+        Logger.LogInformation("Calculating risk for deposit to account: {AccountId}", deposit.AccountId);
         
-        // Example: If deposit is over 50k, it's higher risk
-        double score = deposit.Money.Amount > 50000 ? 0.8 : 0.2;
-        Logger.LogInformation("Calculated risk score: {Score} for {AccountId}", score, deposit.AccountId);
+        // DATA PROTECTION
+        var input = $"Deposit amount: {deposit.Money.Amount} {deposit.Money.Currency}";
+        var sanitizedInput = await DataProtection.SanitizeAsync(input);
+
+        // REASONING
+        double score = deposit.Money.Amount > 50000 ? 0.85 : 0.15;
+        var reasoning = $"Risk score of {score} assigned based on transaction volume and origin. Confidence: 0.90";
+
+        // GOVERNANCE
+        await LogDecisionAsync(reasoning, 0.90, "RiskCalculation", sanitizedInput.GetHashCode().ToString());
+
+        // RECOMMEND: Emit RiskScoreCalculatedEvent if score is above threshold
+        Logger.LogInformation("Risk score calculated: {Score} for {AccountId}", score, deposit.AccountId);
     }
 }

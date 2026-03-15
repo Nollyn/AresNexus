@@ -1,0 +1,21 @@
+﻿@startuml context
+!include https://raw.githubusercontent.com/plantuml-office/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context Diagram - Ares Nexus Secure AI-Assisted Platform
+
+Person(customer, "Banking Customer", "A customer of the bank using financial services.")
+System_Boundary(ares_nexus, "Ares Nexus Platform") {
+    System(core, "Core Financial Zone", "Handles settlements, accounts, and compliance. Truth of financial state.")
+    System(ai_zone, "AI Observability Zone", "Multi-agent AI system for fraud, risk, and ops recommendations.")
+}
+
+System_Ext(llm, "External LLM Provider", "Sanitized reasoning (e.g., Azure OpenAI Swiss region).")
+
+Rel(customer, core, "Executes transactions", "HTTPS/gRPC")
+Rel(core, ai_zone, "Emits financial events", "Event Bus")
+Rel(ai_zone, llm, "Requests reasoning (Sanitized)", "HTTPS")
+Rel(ai_zone, core, "Provides recommendations", "Event Bus (Decision Gate)")
+
+@enduml
