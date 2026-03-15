@@ -1,0 +1,81 @@
+﻿@startuml ai-multi-agent-architecture
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.11.0/C4_Component.puml
+
+' LAYOUT_TOP_DOWN()
+LAYOUT_WITH_LEGEND()
+
+title AresNexus AI-Augmented System Architecture
+
+' CORE FINANCIAL ZONE
+System_Boundary(core_zone, "CORE FINANCIAL ZONE") {
+    Container(gateway_api, "Gateway API", "ASP.NET Core", "System entry point for financial commands.")
+    Container(settlement_core, "Settlement Core", "C#, Marten", "Orchestrates transaction lifecycle and settlement.")
+    Container(compliance_engine, "Compliance Engine", "C#, RuleEngine", "Validates core financial rules and limits.")
+    
+    ContainerDb(event_bus, "Event Bus / Messaging Layer", "RabbitMQ", "Central message broker for event distribution.")
+    
+    Container(decision_gate, "Decision Gate", "C#, Validation Layer", "Evaluates agent recommendations before action.")
+}
+
+' AI OBSERVABILITY ZONE
+System_Boundary(ai_zone, "AI OBSERVABILITY ZONE") {
+    
+    ' AI SYSTEM - ai-agents service
+    Boundary(ai_agents_service, "AI Agents Service") {
+        Component(fraud_agent, "FraudAgent", "Python/LangChain", "Analyzes patterns for fraudulent activity.")
+        Component(compliance_agent, "ComplianceAgent", "Python/LangChain", "Ensures regulatory compliance of transactions.")
+        Component(risk_agent, "RiskAgent", "Python/LangChain", "Assesses real-time financial risk profiles.")
+        Component(settlement_agent, "SettlementAgent", "Python/LangChain", "Optimizes settlement routing and timing.")
+        Component(ops_agent, "OpsAgent", "Python/LangChain", "Monitors system health and operational metrics.")
+        Component(obs_agent, "ObservabilityAgent", "Python/LangChain", "Aggregates logs and traces for deep insights.")
+    }
+
+    ' GOVERNANCE COMPONENTS
+    Boundary(governance_layer, "Governance Layer") {
+        Component(model_registry, "ModelRegistry", "MLflow/Service", "Versioned storage for ML model artifacts.")
+        Component(model_version_manager, "ModelVersionManager", "Service", "Controls model lifecycle and deployment.")
+        Component(agent_audit_logger, "AgentAuditLogger", "Log Collector", "Immutable records of agent actions.")
+        Component(decision_trace_store, "DecisionTraceStore", "Storage", "Detailed traces of agent reasoning paths.")
+    }
+
+    ' MODEL RISK MANAGEMENT
+    Boundary(model_risk_mgt, "Model Risk Management") {
+        Component(validation_service, "ModelValidationService", "Service", "Pre-deployment model validation.")
+        Component(drift_detector, "ModelDriftDetector", "Service", "Identifies data and concept drift.")
+        Component(perf_monitor, "ModelPerformanceMonitor", "Service", "Tracks agent accuracy and KPIs.")
+    }
+
+    ' DATA PROTECTION
+    Boundary(data_protection, "Data Protection Gateway") {
+        Component(redaction, "REDACTION", "Service", "Masks PII/sensitive data fields.")
+        Component(tokenization, "TOKENIZATION", "Service", "Replaces sensitive data with tokens.")
+        Component(classification, "DATA CLASSIFICATION", "Service", "Tags data by sensitivity level.")
+    }
+}
+
+' INTERACTION FLOWS
+' 1. Core services emit events
+Rel(settlement_core, event_bus, "Emits events")
+Rel(compliance_engine, event_bus, "Emits events")
+Rel(gateway_api, event_bus, "Emits events")
+
+' 2. AI Agents observe events
+Rel(event_bus, ai_agents_service, "Observes events (via Data Protection)", "AMQP/Events")
+Rel(ai_agents_service, data_protection, "Passes data for protection", "Internal")
+
+' 3. Agents generate recommendations
+Rel(ai_agents_service, governance_layer, "Logs decisions & traces")
+Rel(ai_agents_service, model_risk_mgt, "Reports performance/drift")
+
+' 4. Recommendations go through the Decision Gate
+Rel(ai_agents_service, decision_gate, "Sends recommendations")
+
+' 5. Decision Gate interacts with core services
+Rel(decision_gate, settlement_core, "Authorizes/Rejects actions", "gRPC/Internal")
+Rel(decision_gate, compliance_engine, "Queries constraints", "gRPC/Internal")
+
+' Governance & Management Links
+Rel(governance_layer, model_risk_mgt, "Shared metadata")
+Rel(ai_agents_service, model_registry, "Loads model artifacts")
+
+@enduml
