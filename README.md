@@ -45,7 +45,7 @@ Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 cir
 | **Decision Trace Store** | Immutable Logging of AI Reasoning | Lack of "Explainability" in AI | **EU AI Act / FINMA** |
 | **Model Drift Detection** | Runtime Latency & Confidence Thresholds | Model Hallucinations / Degradation | **DORA (Operational Risk)** |
 
-This project demonstrates a modern **'Architect-as-Orchestrator'** workflow, leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
+This project demonstrates a modern **'Architect-as-Orchestrator'** workflow — leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
 
 ### Trustworthy AI Governance
 Unlike standard AI implementations, AresNexus follows a **"Non-Executive AI"** pattern:
