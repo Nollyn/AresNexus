@@ -14,7 +14,7 @@
 **Ares-Nexus** is a high-assurance settlement engine designed to eliminate systemic reconciliation risks and ensure **99.99% operational continuity** in regulated cross-border payment corridors. Engineered for the Swiss financial market, it provides a high-assurance substrate that bridges the gap between legacy core banking and the modern era of instant, 24/7/365 global liquidity.
 
 ## System Architecture Overview
-![AresNexus Architecture](./diagrams/ai-multi-agent-architecture.png)
+![AresNexus Architecture](./docs/diagrams/ai-multi-agent-architecture.png)
 > **Note:** The architecture is divided into a **Deterministic Financial Core** and an **AI-Augmented Governance Layer**, separated by a **Data Protection Gateway** to ensure Swiss DPA compliance.
 
 ## The Business Problem
