@@ -41,12 +41,17 @@ Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 cir
 | **Encryption** | AES-256 Field-Level Hardening of PII | **Data Privacy (Bank Secrecy)** | GDPR / Swiss Bank Secrecy |
 | **Event Sourcing** | Immutable Audit Trail (Marten/Postgres) | **Regulatory Non-Compliance** | Auditability & Traceability |
 | **Idempotency** | Redis-backed Command Validation | **Double-Spending / Duplicate Entry** | Operational Integrity |
-
-## AI Disclosure & Leadership
-
-Architectural Strategy, Pattern Selection, and Compliance Mapping by **Laynoll Diaz Martinez**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
+| **Data Protection Gateway** | PII Redaction & Hashing via Interceptor | Data Leakage to Third-Party LLMs | **Swiss DPA / GDPR** |
+| **Decision Trace Store** | Immutable Logging of AI Reasoning | Lack of "Explainability" in AI | **EU AI Act / FINMA** |
+| **Model Drift Detection** | Runtime Latency & Confidence Thresholds | Model Hallucinations / Degradation | **DORA (Operational Risk)** |
 
 This project demonstrates a modern **'Architect-as-Orchestrator'** workflow�leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
+
+### Trustworthy AI Governance
+Unlike standard AI implementations, AresNexus follows a **"Non-Executive AI"** pattern:
+*   **Observe-Reason-Recommend:** Agents (Fraud, Compliance, Risk) ingest events but cannot emit commands.
+*   **Human-in-the-Loop:** A deterministic **Decision Gate** evaluates agent confidence scores. If confidence < 95%, the system triggers a manual review workflow.
+*   **PII Sanitization:** All financial identifiers (IBANs, Names) are irreversibly hashed before reaching the LLM context.
 
 ## Project Structure
 
@@ -177,6 +182,10 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 ## License
 
 This project is licensed under the MIT License.
+
+## AI Disclosure & Leadership
+
+Architectural Strategy, Pattern Selection, and Compliance Mapping by **Laynoll Diaz Martinez**. Technical Scaffolding, boilerplate implementation, and mechanical execution assisted by **Junie** (JetBrains AI Agent).
 
 ## Test Coverage Status
 
