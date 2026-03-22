@@ -1,17 +1,9 @@
-using Xunit;
-
 namespace AresNexus.Tests.Integration.Infrastructure;
 
-public abstract class IntegrationTestBase : IClassFixture<CustomWebApplicationFactory>, IDisposable
+public abstract class IntegrationTestBase(CustomWebApplicationFactory factory) : IClassFixture<CustomWebApplicationFactory>, IDisposable
 {
-    protected readonly HttpClient Client;
-    protected readonly CustomWebApplicationFactory Factory;
-
-    protected IntegrationTestBase(CustomWebApplicationFactory factory)
-    {
-        Factory = factory;
-        Client = factory.CreateClient();
-    }
+    protected readonly HttpClient Client = factory.CreateClient();
+    protected readonly CustomWebApplicationFactory Factory = factory;
 
     public virtual void Dispose()
     {

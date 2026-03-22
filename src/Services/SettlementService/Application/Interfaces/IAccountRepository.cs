@@ -1,6 +1,6 @@
-using AresNexus.Services.Settlement.Domain.Aggregates;
+using AresNexus.Settlement.Domain.Aggregates;
 
-namespace AresNexus.Services.Settlement.Application.Interfaces;
+namespace AresNexus.Settlement.Application.Interfaces;
 
 /// <summary>
 /// Repository for the Account aggregate.

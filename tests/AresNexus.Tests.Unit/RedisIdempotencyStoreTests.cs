@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
-using AresNexus.Services.Settlement.Infrastructure.Idempotency;
+using AresNexus.Settlement.Infrastructure.Idempotency;
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Distributed;
 using Moq;
@@ -22,7 +22,7 @@ public class RedisIdempotencyStoreTests
     {
         // Arrange
         var key = Guid.NewGuid();
-        _cacheMock.Setup(x => x.GetAsync(key.ToString(), default))
+        _cacheMock.Setup(x => x.GetAsync(key.ToString(), CancellationToken.None))
             .ReturnsAsync(Encoding.UTF8.GetBytes("some data"));
 
         // Act
@@ -37,7 +37,7 @@ public class RedisIdempotencyStoreTests
     {
         // Arrange
         var key = Guid.NewGuid();
-        _cacheMock.Setup(x => x.GetAsync(key.ToString(), default))
+        _cacheMock.Setup(x => x.GetAsync(key.ToString(), CancellationToken.None))
             .ReturnsAsync((byte[]?)null);
 
         // Act
@@ -62,7 +62,7 @@ public class RedisIdempotencyStoreTests
             key.ToString(),
             It.Is<byte[]>(b => Encoding.UTF8.GetString(b).Contains("true")),
             It.IsAny<DistributedCacheEntryOptions>(),
-            default), Times.Once);
+            CancellationToken.None), Times.Once);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public class RedisIdempotencyStoreTests
         var key = Guid.NewGuid();
         var expected = new TestResult { Value = "Test" };
         var json = JsonSerializer.Serialize(expected);
-        _cacheMock.Setup(x => x.GetAsync(key.ToString(), default))
+        _cacheMock.Setup(x => x.GetAsync(key.ToString(), CancellationToken.None))
             .ReturnsAsync(Encoding.UTF8.GetBytes(json));
 
         // Act
@@ -80,7 +80,7 @@ public class RedisIdempotencyStoreTests
 
         // Assert
         result.Should().NotBeNull();
-        result!.Value.Should().Be("Test");
+        result.Value.Should().Be("Test");
     }
 
     [Fact]
@@ -88,7 +88,7 @@ public class RedisIdempotencyStoreTests
     {
         // Arrange
         var key = Guid.NewGuid();
-        _cacheMock.Setup(x => x.GetAsync(key.ToString(), default))
+        _cacheMock.Setup(x => x.GetAsync(key.ToString(), CancellationToken.None))
             .ReturnsAsync((byte[]?)null);
 
         // Act
@@ -98,8 +98,8 @@ public class RedisIdempotencyStoreTests
         result.Should().BeNull();
     }
 
-    public class TestResult
+    private class TestResult
     {
-        public string Value { get; set; } = string.Empty;
+        public string Value { get; init; } = string.Empty;
     }
 }

@@ -1,8 +1,7 @@
-﻿using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Application.Validation;
-using AresNexus.Services.Settlement.Domain;
+﻿using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Validation;
+using AresNexus.Settlement.Domain;
 using FluentValidation.TestHelper;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 

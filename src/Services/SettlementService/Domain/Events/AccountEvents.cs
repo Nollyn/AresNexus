@@ -1,6 +1,6 @@
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Domain.Events;
+namespace AresNexus.Settlement.Domain.Events;
 
 /// <summary>
 /// Event raised when an account is created.

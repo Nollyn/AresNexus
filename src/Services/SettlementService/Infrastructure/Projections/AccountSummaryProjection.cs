@@ -1,7 +1,7 @@
+using AresNexus.Settlement.Domain.Events;
 using Marten.Events.Aggregation;
-using AresNexus.Services.Settlement.Domain.Events;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Projections;
+namespace AresNexus.Settlement.Infrastructure.Projections;
 
 /// <summary>
 /// Explicit Read-Model for Account Summary.
@@ -39,7 +39,7 @@ public class AccountSummaryProjection : SingleStreamProjection<AccountSummary, G
     /// </summary>
     /// <param name="event">The account created event.</param>
     /// <param name="view">The account summary view.</param>
-    public void Apply(AccountCreatedEvent @event, AccountSummary view)
+    public static void Apply(AccountCreatedEvent @event, AccountSummary view)
     {
         view.Id = @event.AccountId;
         view.Owner = @event.Owner;
@@ -53,7 +53,7 @@ public class AccountSummaryProjection : SingleStreamProjection<AccountSummary, G
     /// </summary>
     /// <param name="event">The funds deposited event.</param>
     /// <param name="view">The account summary view.</param>
-    public void Apply(FundsDepositedEvent @event, AccountSummary view)
+    public static void Apply(FundsDepositedEvent @event, AccountSummary view)
     {
         view.Balance += @event.Money.Amount;
         view.TransactionCount++;
@@ -65,7 +65,7 @@ public class AccountSummaryProjection : SingleStreamProjection<AccountSummary, G
     /// </summary>
     /// <param name="event">The funds withdrawn event.</param>
     /// <param name="view">The account summary view.</param>
-    public void Apply(FundsWithdrawnEvent @event, AccountSummary view)
+    public static void Apply(FundsWithdrawnEvent @event, AccountSummary view)
     {
         view.Balance -= @event.Money.Amount;
         view.TransactionCount++;

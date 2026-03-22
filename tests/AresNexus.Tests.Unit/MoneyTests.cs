@@ -1,6 +1,5 @@
-using AresNexus.Services.Settlement.Domain;
+using AresNexus.Settlement.Domain;
 using FluentAssertions;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 
@@ -66,7 +65,7 @@ public class MoneyTests
     public void Addition_WithDifferentCurrencies_ShouldThrow()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
+        var m1 = new Money(100);
         var m2 = new Money(50, "USD");
 
         // Act
@@ -94,7 +93,7 @@ public class MoneyTests
     public void Subtraction_WithDifferentCurrencies_ShouldThrow()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
+        var m1 = new Money(100);
         var m2 = new Money(40, "USD");
 
         // Act
@@ -108,9 +107,9 @@ public class MoneyTests
     public void Equality_ShouldWork()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
-        var m2 = new Money(100, "CHF");
-        var m3 = new Money(101, "CHF");
+        var m1 = new Money(100);
+        var m2 = new Money(100);
+        var m3 = new Money(101);
         var m4 = new Money(100, "USD");
 
         // Assert

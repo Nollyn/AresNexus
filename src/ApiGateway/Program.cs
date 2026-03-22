@@ -25,14 +25,19 @@ builder.Host.UseSerilog();
 
 // OpenTelemetry configuration
 builder.Services.AddOpenTelemetry()
-    .ConfigureResource(r => r.AddService("AresNexus.Gateway.Api"))
+    .ConfigureResource(r => r
+        .AddService("AresNexus.Gateway.Api")
+        .AddAttributes(new Dictionary<string, object>
+        {
+            ["region"] = builder.Configuration["REGION"] ?? "switzerland-zurich"
+        }))
     .WithTracing(t => t.AddAspNetCoreInstrumentation()
                        .AddHttpClientInstrumentation()
                        .AddOtlpExporter(o => o.Endpoint = new Uri("http://otel-collector:4317")))
     .WithMetrics(m => m.AddAspNetCoreInstrumentation()
                        .AddRuntimeInstrumentation()
                        .AddProcessInstrumentation()
-                       .AddPrometheusExporter()
+                       .AddPrometheusExporter(o => o.ScrapeEndpointPath = "/metrics")
                        .AddOtlpExporter(o => o.Endpoint = new Uri("http://otel-collector:4317")));
 
 // Add services to the container.

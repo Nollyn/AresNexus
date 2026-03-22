@@ -2,9 +2,8 @@
 using BenchmarkDotNet.Running;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using AresNexus.Services.Settlement.Infrastructure.Repositories;
-using AresNexus.Services.Settlement.Domain;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Aggregates;
 
 namespace AresNexus.Benchmarks;
 

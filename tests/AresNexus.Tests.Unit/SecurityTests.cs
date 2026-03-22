@@ -1,12 +1,9 @@
-using System.Security.Cryptography;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Security;
+using AresNexus.Settlement.Infrastructure.Security;
 using Azure;
 using Azure.Security.KeyVault.Secrets;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Moq;
-using Xunit;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 
@@ -22,7 +19,7 @@ public class SecurityTests
         secretManagerMock.Setup(s => s.GetSecretAsync("Security:EncryptionKey"))
             .ReturnsAsync("AVerySecureKey123!@#4567890123456");
         var service = new PiiEncryptionService(secretManagerMock.Object);
-        var plainText = "Sensitive Swiss Data";
+        const string plainText = "Sensitive Swiss Data";
 
         // Act
         var encrypted = await service.EncryptAsync(plainText);

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// Dev-only secret manager using local configuration (UserSecrets).
@@ -8,7 +8,7 @@ namespace AresNexus.Services.Settlement.Infrastructure.Security;
 public sealed class DevSecretManager(IConfiguration configuration) : ISecretManager
 {
     /// <summary>
-    /// Gets a secret value from local configuration.
+    /// Gets a secret value from a local configuration.
     /// </summary>
     /// <param name="secretName">The name of the secret.</param>
     /// <returns>The secret value.</returns>

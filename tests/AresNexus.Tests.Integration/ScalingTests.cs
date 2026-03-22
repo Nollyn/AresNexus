@@ -1,19 +1,14 @@
 using System.Net;
 using System.Net.Http.Json;
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Domain;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Domain;
 using AresNexus.Tests.Integration.Infrastructure;
 using FluentAssertions;
-using Xunit;
 
 namespace AresNexus.Tests.Integration;
 
-public class ScalingTests : IntegrationTestBase
+public class ScalingTests(CustomWebApplicationFactory factory) : IntegrationTestBase(factory)
 {
-    public ScalingTests(CustomWebApplicationFactory factory) : base(factory)
-    {
-    }
-
     [Fact]
     public async Task ConcurrentCommands_OnSameAggregate_ShouldRespectOptimisticConcurrency()
     {
@@ -43,7 +38,7 @@ public class ScalingTests : IntegrationTestBase
         response.EnsureSuccessStatusCode();
 
         var tasks = new List<Task<HttpResponseMessage>>();
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
         {
             var command = new ProcessTransactionCommand(accountId, new Money(10), "WITHDRAW", Guid.NewGuid());
             tasks.Add(Client.PostAsJsonAsync("/api/v1/transactions", command));
@@ -57,18 +52,26 @@ public class ScalingTests : IntegrationTestBase
     }
 
     [Fact]
-    public async Task MultipleInstances_ShouldNotDuplicateOutboxProcessing()
+    public Task MultipleInstances_ShouldNotDuplicateOutboxProcessing()
     {
-        // Use relative path reaching out from the bin folder if necessary, 
-        // but for a robust test we should look for the file in the project structure.
-        var projectRoot = AppContext.BaseDirectory;
-        while (!Directory.Exists(Path.Combine(projectRoot, "src")) && Path.GetDirectoryName(projectRoot) != null)
+        try
         {
-            projectRoot = Path.GetDirectoryName(projectRoot)!;
-        }
+            // Use a relative path reaching out from the bin folder if necessary, 
+            // but for a robust test we should look for the file in the project structure.
+            var projectRoot = AppContext.BaseDirectory;
+            while (!Directory.Exists(Path.Combine(projectRoot, "src")) && Path.GetDirectoryName(projectRoot) != null)
+            {
+                projectRoot = Path.GetDirectoryName(projectRoot)!;
+            }
 
-        var outboxPath = Path.Combine(projectRoot, "src", "Services", "SettlementService", "Infrastructure", "Messaging", "OutboxProcessor.cs");
-        var outboxCode = File.ReadAllText(outboxPath);
-        outboxCode.Should().Contain("pg_advisory_xact_lock(12345)");
+            var outboxPath = Path.Combine(projectRoot, "src", "Services", "SettlementService", "Infrastructure", "Messaging", "OutboxProcessor.cs");
+            var outboxCode = File.ReadAllText(outboxPath);
+            outboxCode.Should().Contain("pg_advisory_xact_lock(12345)");
+            return Task.CompletedTask;
+        }
+        catch (Exception exception)
+        {
+            return Task.FromException(exception);
+        }
     }
 }

@@ -1,4 +1,4 @@
-namespace AresNexus.Services.Settlement.Application.Interfaces;
+namespace AresNexus.Settlement.Application.Interfaces;
 
 /// <summary>
 /// Interface for interacting with a Key Vault for encryption and decryption.

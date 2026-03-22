@@ -7,8 +7,3 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Marten;
-global using AresNexus.BuildingBlocks.Domain;
-global using AresNexus.Services.Settlement.Application.Interfaces;
-global using AresNexus.Services.Settlement.Domain;
-global using AresNexus.Services.Settlement.Domain.Events;
-global using AresNexus.Services.Settlement.Domain.Aggregates;

@@ -1,4 +1,4 @@
-﻿using AresNexus.Services.Settlement.Infrastructure.Messaging;
+﻿using AresNexus.Settlement.Infrastructure.Messaging;
 using AutoFixture;
 using FluentAssertions;
 
@@ -28,13 +28,13 @@ public class OutboxMessageTests
         var message = new OutboxMessage();
         var id = Guid.NewGuid();
         var date = DateTime.UtcNow;
-        var type = "Event.Type";
-        var content = "{\"Key\":\"Value\"}";
-        var traceId = "Trace1";
-        var correlationId = "Corr1";
+        const string type = "Event.Type";
+        const string content = "{\"Key\":\"Value\"}";
+        const string traceId = "Trace1";
+        const string correlationId = "Corr1";
         var processedDate = DateTime.UtcNow.AddMinutes(1);
-        var error = "Some error";
-        var attempts = 3;
+        const string error = "Some error";
+        const int attempts = 3;
         var lastAttempt = DateTime.UtcNow.AddSeconds(30);
 
         // Act

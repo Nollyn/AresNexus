@@ -1,4 +1,4 @@
-namespace AresNexus.Services.Settlement.Application.Interfaces;
+namespace AresNexus.Settlement.Application.Interfaces;
 
 /// <summary>
 /// Service for encrypting and decrypting sensitive data.

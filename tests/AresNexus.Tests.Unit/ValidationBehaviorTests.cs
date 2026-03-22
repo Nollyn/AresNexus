@@ -1,11 +1,10 @@
-﻿using AresNexus.Services.Settlement.Application.Validation;
+﻿using AresNexus.Settlement.Application.Validation;
+using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Xunit;
-using FluentAssertions;
 
 namespace AresNexus.Tests.Unit;
 
@@ -28,22 +27,22 @@ public class ValidationBehaviorTests
     public async Task Handle_WhenNoValidators_ShouldCallNext()
     {
         // Arrange
-        var behavior = new ValidationBehavior<TestRequest, TestResponse>(
-            new List<IValidator<TestRequest>>(), 
-            _loggerMock.Object);
+        var behavior = new ValidationBehavior<TestRequest, TestResponse>([], _loggerMock.Object);
         var request = new TestRequest();
         var nextCalled = false;
-        RequestHandlerDelegate<TestResponse> next = (CancellationToken ct) => 
-        {
-            nextCalled = true;
-            return Task.FromResult(new TestResponse());
-        };
 
         // Act
-        await behavior.Handle(request, next, CancellationToken.None);
+        await behavior.Handle(request, Next, CancellationToken.None);
 
         // Assert
         nextCalled.Should().BeTrue();
+        return;
+
+        Task<TestResponse> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(new TestResponse());
+        }
     }
 
     [Fact]
@@ -52,20 +51,22 @@ public class ValidationBehaviorTests
         // Arrange
         var request = new TestRequest();
         var nextCalled = false;
-        RequestHandlerDelegate<TestResponse> next = (CancellationToken ct) => 
-        {
-            nextCalled = true;
-            return Task.FromResult(new TestResponse());
-        };
 
         _validatorMock.Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<TestRequest>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
 
         // Act
-        await _behavior.Handle(request, next, CancellationToken.None);
+        await _behavior.Handle(request, Next, CancellationToken.None);
 
         // Assert
         nextCalled.Should().BeTrue();
+        return;
+
+        Task<TestResponse> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(new TestResponse());
+        }
     }
 
     [Fact]
@@ -73,14 +74,13 @@ public class ValidationBehaviorTests
     {
         // Arrange
         var request = new TestRequest();
-        RequestHandlerDelegate<TestResponse> next = (CancellationToken ct) => Task.FromResult(new TestResponse());
 
         var failures = new List<ValidationFailure> { new("Property", "Error") };
         _validatorMock.Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<TestRequest>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(failures));
 
         // Act
-        var act = () => _behavior.Handle(request, next, CancellationToken.None);
+        var act = () => _behavior.Handle(request, Next, CancellationToken.None);
 
         // Assert
         await act.Should().ThrowAsync<ValidationException>();
@@ -92,6 +92,9 @@ public class ValidationBehaviorTests
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             Times.Once);
+        return;
+
+        static Task<TestResponse> Next(CancellationToken ct = default) => Task.FromResult(new TestResponse());
     }
 
     public class TestRequest : IRequest<TestResponse> { }

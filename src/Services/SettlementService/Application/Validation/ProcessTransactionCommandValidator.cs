@@ -1,7 +1,7 @@
-using AresNexus.Services.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Commands;
 using FluentValidation;
 
-namespace AresNexus.Services.Settlement.Application.Validation;
+namespace AresNexus.Settlement.Application.Validation;
 
 /// <summary>
 /// Validates <see cref="ProcessTransactionCommand"/>.

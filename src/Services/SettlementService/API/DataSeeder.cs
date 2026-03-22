@@ -1,6 +1,9 @@
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Api;
+namespace AresNexus.Settlement.Api;
 
 /// <summary>
 /// Automated Seeding and Demo Mode.

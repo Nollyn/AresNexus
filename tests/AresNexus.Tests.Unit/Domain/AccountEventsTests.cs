@@ -1,5 +1,4 @@
-﻿using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Domain.Events;
+﻿using AresNexus.Settlement.Domain.Events;
 using AutoFixture;
 using FluentAssertions;
 
@@ -65,11 +64,11 @@ public class AccountEventsTests
     {
         // Arrange
         var accountId = Guid.NewGuid();
-        var owner = "Owner1";
+        const string owner = "Owner1";
         var eventId = Guid.NewGuid();
         var occurredOn = DateTime.UtcNow;
-        var traceId = "T1";
-        var correlationId = "C1";
+        const string traceId = "T1";
+        const string correlationId = "C1";
 
         // Act
         var @event = new AccountCreatedEvent(accountId, owner, eventId, occurredOn, 1, traceId, correlationId);

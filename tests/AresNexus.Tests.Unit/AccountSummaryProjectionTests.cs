@@ -1,14 +1,12 @@
-﻿using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Domain.Events;
-using AresNexus.Services.Settlement.Infrastructure.Projections;
+﻿using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Settlement.Infrastructure.Projections;
 using FluentAssertions;
 
 namespace AresNexus.Tests.Unit;
 
 public class AccountSummaryProjectionTests
 {
-    private readonly AccountSummaryProjection _sut = new();
-
     [Fact]
     public void Apply_AccountCreatedEvent_ShouldInitializeView()
     {
@@ -19,7 +17,7 @@ public class AccountSummaryProjectionTests
         var @event = new AccountCreatedEvent(accountId, "Owner", Guid.NewGuid(), occurredOn);
 
         // Act
-        _sut.Apply(@event, view);
+        AccountSummaryProjection.Apply(@event, view);
 
         // Assert
         view.Id.Should().Be(accountId);
@@ -34,12 +32,12 @@ public class AccountSummaryProjectionTests
     {
         // Arrange
         var view = new AccountSummary { Balance = 100, TransactionCount = 1 };
-        var money = new Money(50, "CHF");
+        var money = new Money(50);
         var occurredOn = DateTime.UtcNow;
         var @event = new FundsDepositedEvent(Guid.NewGuid(), money, Guid.NewGuid(), occurredOn);
 
         // Act
-        _sut.Apply(@event, view);
+        AccountSummaryProjection.Apply(@event, view);
 
         // Assert
         view.Balance.Should().Be(150);
@@ -52,12 +50,12 @@ public class AccountSummaryProjectionTests
     {
         // Arrange
         var view = new AccountSummary { Balance = 100, TransactionCount = 1 };
-        var money = new Money(50, "CHF");
+        var money = new Money(50);
         var occurredOn = DateTime.UtcNow;
         var @event = new FundsWithdrawnEvent(Guid.NewGuid(), money, Guid.NewGuid(), occurredOn);
 
         // Act
-        _sut.Apply(@event, view);
+        AccountSummaryProjection.Apply(@event, view);
 
         // Assert
         view.Balance.Should().Be(50);

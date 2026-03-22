@@ -1,6 +1,6 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Interfaces;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// Mock implementation of IKeyVaultClient for demonstration.
@@ -20,10 +20,6 @@ public sealed class MockKeyVaultClient : IKeyVaultClient
     /// <inheritdoc />
     public Task<string> DecryptAsync(string cipherText, string keyId)
     {
-        if (cipherText.StartsWith($"{Prefix}{keyId}:"))
-        {
-            return Task.FromResult(cipherText[(Prefix.Length + keyId.Length + 1)..]);
-        }
-        return Task.FromResult(cipherText);
+        return Task.FromResult(cipherText.StartsWith($"{Prefix}{keyId}:") ? cipherText[(Prefix.Length + keyId.Length + 1)..] : cipherText);
     }
 }

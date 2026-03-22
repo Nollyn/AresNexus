@@ -1,4 +1,4 @@
-﻿using AresNexus.Services.Settlement.Domain;
+﻿using AresNexus.Settlement.Domain;
 using AutoFixture;
 using FluentAssertions;
 
@@ -24,8 +24,8 @@ public class MoneyTests
     public void Constructor_Should_Initialize_Properties()
     {
         // Arrange
-        var amount = 100.50m;
-        var currency = "USD";
+        const decimal amount = 100.50m;
+        const string currency = "USD";
 
         // Act
         var money = new Money(amount, currency);
@@ -39,7 +39,7 @@ public class MoneyTests
     public void Constructor_Should_Throw_When_Amount_Is_Negative()
     {
         // Act
-        Action act = () => new Money(-1m, "CHF");
+        Action act = () => new Money(-1m);
 
         // Assert
         act.Should().Throw<ArgumentException>()
@@ -61,8 +61,8 @@ public class MoneyTests
     public void Addition_Operator_Should_Work_For_Same_Currency()
     {
         // Arrange
-        var m1 = new Money(10m, "CHF");
-        var m2 = new Money(20m, "CHF");
+        var m1 = new Money(10m);
+        var m2 = new Money(20m);
 
         // Act
         var result = m1 + m2;
@@ -76,7 +76,7 @@ public class MoneyTests
     public void Addition_Operator_Should_Throw_For_Different_Currencies()
     {
         // Arrange
-        var m1 = new Money(10m, "CHF");
+        var m1 = new Money(10m);
         var m2 = new Money(20m, "USD");
 
         // Act
@@ -91,8 +91,8 @@ public class MoneyTests
     public void Subtraction_Operator_Should_Work_For_Same_Currency()
     {
         // Arrange
-        var m1 = new Money(30m, "CHF");
-        var m2 = new Money(10m, "CHF");
+        var m1 = new Money(30m);
+        var m2 = new Money(10m);
 
         // Act
         var result = m1 - m2;
@@ -106,7 +106,7 @@ public class MoneyTests
     public void Subtraction_Operator_Should_Throw_For_Different_Currencies()
     {
         // Arrange
-        var m1 = new Money(30m, "CHF");
+        var m1 = new Money(30m);
         var m2 = new Money(10m, "USD");
 
         // Act
@@ -121,9 +121,9 @@ public class MoneyTests
     public void Equality_Should_Be_Based_On_Value()
     {
         // Arrange
-        var m1 = new Money(100m, "CHF");
-        var m2 = new Money(100m, "CHF");
-        var m3 = new Money(200m, "CHF");
+        var m1 = new Money(100m);
+        var m2 = new Money(100m);
+        var m3 = new Money(200m);
 
         // Assert
         m1.Should().Be(m2);

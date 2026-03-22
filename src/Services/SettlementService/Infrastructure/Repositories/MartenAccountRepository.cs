@@ -1,14 +1,12 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using AresNexus.Services.Settlement.Domain.Events;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using AresNexus.Services.Settlement.Infrastructure.Resilience;
-using AresNexus.BuildingBlocks.Domain;
-using Marten;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Resilience;
+using AresNexus.Shared.Kernel;
 using Microsoft.Extensions.Configuration;
-using System.Text.Json;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Repositories;
+namespace AresNexus.Settlement.Infrastructure.Repositories;
 
 /// <summary>
 /// Marten-based implementation of the Account repository for Swiss Tier-1 Banking.
@@ -28,7 +26,7 @@ public sealed class MartenAccountRepository(
     IConfiguration configuration,
     IResiliencePolicyFactory resiliencePolicyFactory) : IAccountRepository
 {
-    private readonly int _snapshotInterval = configuration.GetValue<int>("EventSourcing:SnapshotInterval", 100);
+    private readonly int _snapshotInterval = configuration.GetValue("EventSourcing:SnapshotInterval", 100);
     /// <inheritdoc />
     public async Task<Account?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -59,25 +57,30 @@ public sealed class MartenAccountRepository(
         await resiliencePolicyFactory.GetDatabasePolicy().ExecuteAsync(async () => 
         {
             var changes = account.GetUncommittedChanges();
-            if (changes.Count == 0 && !outboxMessages.Any()) return;
+            var enumerable = outboxMessages.ToList();
+            if (changes.Count == 0 && enumerable.Count == 0) return;
 
             // Encrypt PII fields before serialization (Security requirement #4)
             var encryptedChanges = new List<object>();
             foreach (var change in changes)
             {
-                if (change is FundsDepositedEvent deposited && !string.IsNullOrEmpty(deposited.Reference))
+                switch (change)
                 {
-                    var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
-                    encryptedChanges.Add(deposited with { Reference = encrypted });
-                }
-                else if (change is FundsWithdrawnEvent withdrawn && !string.IsNullOrEmpty(withdrawn.Reference))
-                {
-                    var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
-                    encryptedChanges.Add(withdrawn with { Reference = encrypted });
-                }
-                else
-                {
-                    encryptedChanges.Add(change);
+                    case FundsDepositedEvent deposited when !string.IsNullOrEmpty(deposited.Reference):
+                    {
+                        var encrypted = await encryptionService.EncryptAsync(deposited.Reference);
+                        encryptedChanges.Add(deposited with { Reference = encrypted });
+                        break;
+                    }
+                    case FundsWithdrawnEvent withdrawn when !string.IsNullOrEmpty(withdrawn.Reference):
+                    {
+                        var encrypted = await encryptionService.EncryptAsync(withdrawn.Reference);
+                        encryptedChanges.Add(withdrawn with { Reference = encrypted });
+                        break;
+                    }
+                    default:
+                        encryptedChanges.Add(change);
+                        break;
                 }
             }
 
@@ -107,8 +110,8 @@ public sealed class MartenAccountRepository(
                 }
             }
 
-            // Also save additional outbox messages if any (propagate IDs if message type supports them)
-            foreach (var msg in outboxMessages)
+            // Also save additional outbox messages if any (propagate IDs if the message type supports them)
+            foreach (var msg in enumerable)
             {
                 var traceId = (msg as IDomainEvent)?.TraceId;
                 var correlationId = (msg as IDomainEvent)?.CorrelationId;

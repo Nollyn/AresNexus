@@ -1,13 +1,12 @@
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Application.Handlers;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using AresNexus.BuildingBlocks.Domain;
+using System.Diagnostics.Metrics;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Handlers;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Shared.Kernel;
 using FluentAssertions;
 using Moq;
-using System.Diagnostics.Metrics;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 
@@ -16,7 +15,6 @@ public class ProcessTransactionCommandHandlerTests
     private readonly Mock<IAccountRepository> _repositoryMock;
     private readonly Mock<IEncryptionService> _encryptionServiceMock;
     private readonly Mock<IKeyVaultClient> _keyVaultClientMock;
-    private readonly Meter _meter;
     private readonly ProcessTransactionCommandHandler _handler;
 
     public ProcessTransactionCommandHandlerTests()
@@ -24,12 +22,12 @@ public class ProcessTransactionCommandHandlerTests
         _repositoryMock = new Mock<IAccountRepository>();
         _encryptionServiceMock = new Mock<IEncryptionService>();
         _keyVaultClientMock = new Mock<IKeyVaultClient>();
-        _meter = new Meter("TestMeter");
+        var meter = new Meter("TestMeter");
         _handler = new ProcessTransactionCommandHandler(
             _repositoryMock.Object,
             _encryptionServiceMock.Object,
             _keyVaultClientMock.Object,
-            _meter);
+            meter);
     }
 
     [Fact]

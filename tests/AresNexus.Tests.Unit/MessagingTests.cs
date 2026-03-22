@@ -1,13 +1,11 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using Azure.Messaging.ServiceBus;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Infrastructure.Messaging;
 using FluentAssertions;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 

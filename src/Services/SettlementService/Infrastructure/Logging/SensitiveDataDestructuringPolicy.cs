@@ -1,9 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Logging;
+namespace AresNexus.Settlement.Infrastructure.Logging;
 
 /// <summary>
 /// Serilog destructuring policy to mask sensitive data (Reference field) in logs.

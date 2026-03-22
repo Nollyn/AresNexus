@@ -1,11 +1,10 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using AresNexus.Services.Settlement.Domain.Events;
-using AresNexus.BuildingBlocks.Domain;
-using Marten;
-using System.Text.Json;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Persistence;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Infrastructure.EventStore;
+namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
 /// Marten-based implementation of the event store for Swiss Tier-1 Banking.
@@ -27,29 +26,31 @@ public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEven
         // Decrypt PII fields (Security requirement #4)
         foreach (var @event in domainEvents)
         {
-            if (@event is FundsDepositedEvent deposited)
+            switch (@event)
             {
-                if (!string.IsNullOrEmpty(deposited.Reference))
+                case FundsDepositedEvent deposited:
                 {
+                    if (string.IsNullOrEmpty(deposited.Reference)) continue;
                     // Use private reflection to update the record field (not ideal but record properties are init-only)
-                    var field = typeof(FundsDepositedEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                    if (field != null)
-                    {
-                        var decrypted = await encryptionService.DecryptAsync(deposited.Reference);
-                        field.SetValue(deposited, decrypted);
-                    }
+                    var field = typeof(FundsDepositedEvent).GetField("<Reference>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+                    if (field == null) continue;
+                    var decrypted = await encryptionService.DecryptAsync(deposited.Reference);
+                    field.SetValue(deposited, decrypted);
+                    break;
                 }
-            }
-            else if (@event is FundsWithdrawnEvent withdrawn)
-            {
-                if (!string.IsNullOrEmpty(withdrawn.Reference))
+                case FundsWithdrawnEvent withdrawn:
                 {
-                    var field = typeof(FundsWithdrawnEvent).GetField("<Reference>k__BackingField", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                    if (field != null)
+                    if (!string.IsNullOrEmpty(withdrawn.Reference))
                     {
-                        var decrypted = await encryptionService.DecryptAsync(withdrawn.Reference);
-                        field.SetValue(withdrawn, decrypted);
+                        var field = typeof(FundsWithdrawnEvent).GetField("<Reference>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+                        if (field != null)
+                        {
+                            var decrypted = await encryptionService.DecryptAsync(withdrawn.Reference);
+                            field.SetValue(withdrawn, decrypted);
+                        }
                     }
+
+                    break;
                 }
             }
         }
@@ -102,7 +103,7 @@ public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEven
     public Task SaveSnapshotAsync<T>(Guid aggregateId, T snapshot, int version) where T : notnull
     {
         // Performance requirement #1: Create a Snapshot entity in the Infrastructure layer.
-        var infrastructureSnapshot = new Persistence.Snapshot(
+        var infrastructureSnapshot = new Snapshot(
             Guid.NewGuid(),
             aggregateId,
             typeof(T).Name,
@@ -117,7 +118,7 @@ public sealed class MartenEventStore(IDocumentSession session, IEnumerable<IEven
     /// <inheritdoc />
     public async Task<(T? Snapshot, int Version)> GetLatestSnapshotAsync<T>(Guid aggregateId) where T : notnull
     {
-        var infraSnapshot = await session.Query<Persistence.Snapshot>()
+        var infraSnapshot = await session.Query<Snapshot>()
             .Where(x => x.AggregateId == aggregateId && x.AggregateType == typeof(T).Name)
             .OrderByDescending(x => x.Version)
             .FirstOrDefaultAsync();

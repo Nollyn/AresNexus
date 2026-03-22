@@ -1,9 +1,8 @@
-using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using AresNexus.Services.Settlement.Domain.Events;
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Shared.Kernel;
 using FluentAssertions;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 
@@ -14,7 +13,7 @@ public class AccountTests
     {
         // Arrange
         var accountId = Guid.NewGuid();
-        var owner = "John Doe";
+        const string owner = "John Doe";
 
         // Act
         var account = new Account(accountId, owner);
@@ -125,8 +124,8 @@ public class AccountTests
         var account = new Account(Guid.NewGuid(), "John Doe");
         
         // Act
-        account.Deposit(new Money(100, "CHF"));
-        account.Deposit(new Money(50, "CHF"));
+        account.Deposit(new Money(100));
+        account.Deposit(new Money(50));
 
         // Assert
         account.Balance.Amount.Should().Be(150);
@@ -157,7 +156,7 @@ public class AccountTests
     public void Money_WithDifferentCurrencies_Addition_ShouldThrow()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
+        var m1 = new Money(100);
         var m2 = new Money(100, "USD");
 
         // Act
@@ -171,7 +170,7 @@ public class AccountTests
     public void Money_WithDifferentCurrencies_Subtraction_ShouldThrow()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
+        var m1 = new Money(100);
         var m2 = new Money(100, "USD");
 
         // Act
@@ -289,9 +288,9 @@ public class AccountTests
     public void Money_Equality_ShouldWork()
     {
         // Arrange
-        var m1 = new Money(100, "CHF");
-        var m2 = new Money(100, "CHF");
-        var m3 = new Money(200, "CHF");
+        var m1 = new Money(100);
+        var m2 = new Money(100);
+        var m3 = new Money(200);
         var m4 = new Money(100, "USD");
 
         // Assert

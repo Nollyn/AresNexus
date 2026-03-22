@@ -1,4 +1,4 @@
-namespace AresNexus.BuildingBlocks.Domain;
+namespace AresNexus.Shared.Kernel;
 
 /// <summary>
 /// Represents a domain event.

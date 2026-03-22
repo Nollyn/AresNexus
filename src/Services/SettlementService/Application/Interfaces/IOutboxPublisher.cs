@@ -1,4 +1,4 @@
-namespace AresNexus.Services.Settlement.Application.Interfaces;
+namespace AresNexus.Settlement.Application.Interfaces;
 
 /// <summary>
 /// Publishes integration events/messages as part of the outbox pattern.

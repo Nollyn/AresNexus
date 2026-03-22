@@ -1,9 +1,7 @@
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using MediatR;
-using Microsoft.Extensions.Logging;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Interfaces;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Idempotency;
+namespace AresNexus.Settlement.Infrastructure.Idempotency;
 
 /// <summary>
 /// MediatR pipeline behavior to handle idempotency for commands.
@@ -24,7 +22,7 @@ public sealed class CommandIdempotencyBehavior<TRequest, TResponse>(
     {
         if (request is not ProcessTransactionCommand command)
         {
-            return await next();
+            return await next(cancellationToken);
         }
 
         if (await idempotencyStore.ExistsAsync(command.IdempotencyKey))
@@ -34,7 +32,7 @@ public sealed class CommandIdempotencyBehavior<TRequest, TResponse>(
             return cachedResult!;
         }
 
-        var response = await next();
+        var response = await next(cancellationToken);
 
         await idempotencyStore.StoreAsync(command.IdempotencyKey, response!);
         logger.LogInformation("Command with IdempotencyKey {IdempotencyKey} processed and cached.", command.IdempotencyKey);

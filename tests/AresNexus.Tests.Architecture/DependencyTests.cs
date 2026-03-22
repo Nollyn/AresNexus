@@ -1,7 +1,6 @@
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using NetArchTest.Rules;
-using Xunit;
+using AresNexus.Settlement.Domain.Aggregates;
 using FluentAssertions;
+using NetArchTest.Rules;
 
 namespace AresNexus.Tests.Architecture;
 

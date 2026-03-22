@@ -1,26 +1,18 @@
 using System.Net;
 using System.Net.Http.Json;
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Domain;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Domain;
+using AresNexus.Tests.Integration.Infrastructure;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
+using MediatR;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using Xunit;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using Microsoft.AspNetCore.TestHost;
-using MediatR;
-
-using AresNexus.Tests.Integration.Infrastructure;
 
 namespace AresNexus.Tests.Integration;
 
-public class ApiIntegrationTests : IntegrationTestBase
+public class ApiIntegrationTests(CustomWebApplicationFactory factory) : IntegrationTestBase(factory)
 {
-    public ApiIntegrationTests(CustomWebApplicationFactory factory) : base(factory)
-    {
-    }
-
     [Fact]
     public async Task GetHealth_ShouldReturnOk()
     {
@@ -30,11 +22,11 @@ public class ApiIntegrationTests : IntegrationTestBase
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var content = await response.Content.ReadFromJsonAsync<HealthResponse>();
-        content!.status.Should().Be("UP");
+        content!.Status.Should().Be("UP");
     }
 
-    private record HealthResponse(string status);
-    private record ErrorResponse(string error);
+    private record HealthResponse(string Status);
+    private record ErrorResponse(string Error);
 
     [Fact]
     public async Task ProcessTransaction_WithMissingIdempotencyKey_ShouldReturnBadRequest()
@@ -76,7 +68,7 @@ public class ApiIntegrationTests : IntegrationTestBase
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
         var content = await response.Content.ReadFromJsonAsync<ErrorResponse>();
-        content!.error.Should().Be("Unhandled error");
+        content!.Error.Should().Be("Unhandled error");
     }
 
     [Fact]

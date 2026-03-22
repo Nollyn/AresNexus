@@ -1,5 +1,4 @@
-﻿using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
+﻿using AresNexus.Settlement.Infrastructure.Messaging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

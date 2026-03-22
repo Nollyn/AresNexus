@@ -2,7 +2,7 @@ using AresNexus.Tests.Integration.Infrastructure;
 using FluentAssertions;
 using Marten;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
+using Xunit.Abstractions;
 
 namespace AresNexus.Tests.Integration;
 
@@ -10,11 +10,13 @@ namespace AresNexus.Tests.Integration;
 public class PostgreSqlResilienceTests : IDisposable
 {
     private readonly PostgreSqlContainerFixture _fixture;
+    private readonly ITestOutputHelper _testOutputHelper;
     private readonly CustomWebApplicationFactory _factory;
 
-    public PostgreSqlResilienceTests(PostgreSqlContainerFixture fixture)
+    public PostgreSqlResilienceTests(PostgreSqlContainerFixture fixture, ITestOutputHelper testOutputHelper)
     {
         _fixture = fixture;
+        _testOutputHelper = testOutputHelper;
         _factory = new CustomWebApplicationFactory();
         _factory.SetConnectionString(_fixture.ConnectionString);
     }
@@ -23,7 +25,7 @@ public class PostgreSqlResilienceTests : IDisposable
     public async Task DatabaseConnection_WhenInterruptedAndRestored_ShouldRecover()
     {
         // Debug: Log connection string
-        Console.WriteLine($"[DEBUG_LOG] Using connection string: {_fixture.ConnectionString}");
+        _testOutputHelper.WriteLine($"[DEBUG_LOG] Using connection string: {_fixture.ConnectionString}");
         
         // Arrange
         using var scope = _factory.Services.CreateScope();

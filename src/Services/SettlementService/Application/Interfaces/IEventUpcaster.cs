@@ -1,6 +1,6 @@
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Application.Interfaces;
+namespace AresNexus.Settlement.Application.Interfaces;
 
 /// <summary>
 /// Defines an interface for event upcasters to handle version evolution of domain events.

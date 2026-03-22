@@ -1,26 +1,20 @@
-using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Domain.Aggregates;
-using AresNexus.Services.Settlement.Infrastructure.Repositories;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Aggregates;
+using AresNexus.Settlement.Infrastructure.Repositories;
+using AresNexus.Settlement.Infrastructure.Resilience;
+using AresNexus.Tests.Integration.Infrastructure;
+using FluentAssertions;
 using Marten;
 using Marten.Events;
+using Microsoft.Extensions.Configuration;
 using Moq;
-using Xunit;
-using FluentAssertions;
-using System.Text.Json;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using AresNexus.BuildingBlocks.Domain;
-
-using AresNexus.Tests.Integration.Infrastructure;
+using Polly;
 
 namespace AresNexus.Tests.Integration;
 
-public class TransactionalOutboxChaosTests : IntegrationTestBase
+public class TransactionalOutboxChaosTests(CustomWebApplicationFactory factory) : IntegrationTestBase(factory)
 {
-    public TransactionalOutboxChaosTests(CustomWebApplicationFactory factory) : base(factory)
-    {
-    }
-
     [Fact]
     public async Task SaveAsync_WhenDatabaseDisconnectionDuringOutboxSave_ShouldRollback()
     {
@@ -39,13 +33,13 @@ public class TransactionalOutboxChaosTests : IntegrationTestBase
         mockSession.Setup(s => s.SaveChangesAsync(It.IsAny<CancellationToken>()))
             .ThrowsAsync(new InvalidOperationException("Database disconnection simulated."));
 
-        var mockConfiguration = new Mock<Microsoft.Extensions.Configuration.IConfiguration>();
-        mockConfiguration.Setup(c => c.GetSection(It.IsAny<string>())).Returns(new Mock<Microsoft.Extensions.Configuration.IConfigurationSection>().Object);
+        var mockConfiguration = new Mock<IConfiguration>();
+        mockConfiguration.Setup(c => c.GetSection(It.IsAny<string>())).Returns(new Mock<IConfigurationSection>().Object);
 
-        var mockResiliencePolicyFactory = new Mock<AresNexus.Services.Settlement.Infrastructure.Resilience.IResiliencePolicyFactory>();
+        var mockResiliencePolicyFactory = new Mock<IResiliencePolicyFactory>();
         
         mockResiliencePolicyFactory.Setup(f => f.GetDatabasePolicy())
-            .Returns((Polly.IAsyncPolicy)Polly.Policy.NoOpAsync());
+            .Returns(Policy.NoOpAsync());
 
         var repository = new MartenAccountRepository(
             mockSession.Object, 
@@ -64,7 +58,7 @@ public class TransactionalOutboxChaosTests : IntegrationTestBase
         // We verify that SaveChangesAsync was indeed called but failed.
         mockSession.Verify(s => s.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
         
-        // The aggregate should still have its uncommitted changes if we didn't call MarkChangesAsCommitted (which is at the end of SaveAsync)
+        // The aggregate should still have its uncommitted changes if we didn't call MarkChangesAsCommitted (which is at the end of SaveAsync).
         // However, the current implementation of SaveAsync calls MarkChangesAsCommitted AFTER SaveChangesAsync.
         // So if SaveChangesAsync fails, MarkChangesAsCommitted is NOT called.
         account.GetUncommittedChanges().Should().NotBeEmpty();

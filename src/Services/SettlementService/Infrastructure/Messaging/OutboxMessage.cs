@@ -1,4 +1,4 @@
-namespace AresNexus.Services.Settlement.Infrastructure.Messaging;
+namespace AresNexus.Settlement.Infrastructure.Messaging;
 
 /// <summary>
 /// Represents a message to be sent via the outbox.

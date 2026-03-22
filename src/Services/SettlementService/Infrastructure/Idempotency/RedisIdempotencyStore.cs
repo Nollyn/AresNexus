@@ -1,8 +1,7 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Idempotency;
+namespace AresNexus.Settlement.Infrastructure.Idempotency;
 
 /// <summary>
 /// Redis-based implementation of <see cref="IIdempotencyStore"/> using <see cref="IDistributedCache"/> for Zurich Financial Safety.

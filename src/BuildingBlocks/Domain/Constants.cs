@@ -1,4 +1,4 @@
-namespace AresNexus.BuildingBlocks.Domain;
+namespace AresNexus.Shared.Kernel;
 
 /// <summary>
 /// Defines standard transaction types.
@@ -25,7 +25,7 @@ public static class CurrencyConstants
 /// </summary>
 public static class SystemConstants
 {
-    /// <summary>The default system user name.</summary>
+    /// <summary>The default system username.</summary>
     public const string SystemUser = "SYSTEM";
 }
 

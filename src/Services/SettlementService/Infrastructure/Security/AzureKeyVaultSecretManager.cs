@@ -2,7 +2,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.Extensions.Configuration;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// Production secret manager using Azure Key Vault.

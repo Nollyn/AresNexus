@@ -1,7 +1,7 @@
-using AresNexus.Services.Settlement.Domain.Events;
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Domain.Aggregates;
+namespace AresNexus.Settlement.Domain.Aggregates;
 
 /// <summary>
 /// Aggregate root for a settlement account.

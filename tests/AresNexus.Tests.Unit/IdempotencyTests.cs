@@ -1,31 +1,29 @@
 using System.Text;
 using System.Text.Json;
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Domain;
-using AresNexus.Services.Settlement.Infrastructure.Idempotency;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Infrastructure.Idempotency;
 using FluentAssertions;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 
 public class IdempotencyTests
 {
     private readonly Mock<IIdempotencyStore> _idempotencyStoreMock;
-    private readonly Mock<ILogger<CommandIdempotencyBehavior<ProcessTransactionCommand, bool>>> _loggerMock;
     private readonly CommandIdempotencyBehavior<ProcessTransactionCommand, bool> _behavior;
 
     public IdempotencyTests()
     {
         _idempotencyStoreMock = new Mock<IIdempotencyStore>();
-        _loggerMock = new Mock<ILogger<CommandIdempotencyBehavior<ProcessTransactionCommand, bool>>>();
+        var loggerMock = new Mock<ILogger<CommandIdempotencyBehavior<ProcessTransactionCommand, bool>>>();
         _behavior = new CommandIdempotencyBehavior<ProcessTransactionCommand, bool>(
             _idempotencyStoreMock.Object,
-            _loggerMock.Object);
+            loggerMock.Object);
     }
 
     [Fact]
@@ -44,19 +42,21 @@ public class IdempotencyTests
             .ReturnsAsync(true);
 
         var nextCalled = false;
-        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
-        {
-            nextCalled = true;
-            return Task.FromResult(false);
-        };
 
         // Act
-        var result = await _behavior.Handle(command, next, CancellationToken.None);
+        var result = await _behavior.Handle(command, Next, CancellationToken.None);
 
         // Assert
         result.Should().BeTrue();
         nextCalled.Should().BeFalse();
         _idempotencyStoreMock.Verify(s => s.GetAsync<bool>(command.IdempotencyKey), Times.Once);
+        return;
+
+        Task<bool> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(false);
+        }
     }
 
     [Fact]
@@ -65,23 +65,25 @@ public class IdempotencyTests
         // Arrange
         var request = new Mock<IRequest<bool>>().Object;
         var nextCalled = false;
-        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
-        {
-            nextCalled = true;
-            return Task.FromResult(true);
-        };
 
         var behavior = new CommandIdempotencyBehavior<IRequest<bool>, bool>(
             _idempotencyStoreMock.Object,
             new Mock<ILogger<CommandIdempotencyBehavior<IRequest<bool>, bool>>>().Object);
 
         // Act
-        var result = await behavior.Handle(request, next, CancellationToken.None);
+        var result = await behavior.Handle(request, Next, CancellationToken.None);
 
         // Assert
         result.Should().BeTrue();
         nextCalled.Should().BeTrue();
         _idempotencyStoreMock.Verify(s => s.ExistsAsync(It.IsAny<Guid>()), Times.Never);
+        return;
+
+        Task<bool> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(true);
+        }
     }
 
     [Fact]
@@ -98,19 +100,21 @@ public class IdempotencyTests
             .ReturnsAsync(false);
 
         var nextCalled = false;
-        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
-        {
-            nextCalled = true;
-            return Task.FromResult(true);
-        };
 
         // Act
-        var result = await _behavior.Handle(command, next, CancellationToken.None);
+        var result = await _behavior.Handle(command, Next, CancellationToken.None);
 
         // Assert
         result.Should().BeTrue();
         nextCalled.Should().BeTrue();
         _idempotencyStoreMock.Verify(s => s.StoreAsync(command.IdempotencyKey, true), Times.Once);
+        return;
+
+        Task<bool> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(true);
+        }
     }
 
     [Fact]
@@ -129,19 +133,21 @@ public class IdempotencyTests
             .ReturnsAsync(true);
 
         var nextCalled = false;
-        RequestHandlerDelegate<bool> next = (CancellationToken ct) =>
-        {
-            nextCalled = true;
-            return Task.FromResult(false); // Should not be called
-        };
 
         // Act
-        var result = await _behavior.Handle(command, next, CancellationToken.None);
+        var result = await _behavior.Handle(command, Next, CancellationToken.None);
 
         // Assert
         result.Should().BeTrue();
         nextCalled.Should().BeFalse();
         _idempotencyStoreMock.Verify(s => s.GetAsync<bool>(command.IdempotencyKey), Times.Once);
+        return;
+
+        Task<bool> Next(CancellationToken ct)
+        {
+            nextCalled = true;
+            return Task.FromResult(false); // Should not be called
+        }
     }
 
     [Fact]

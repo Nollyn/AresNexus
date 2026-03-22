@@ -1,4 +1,5 @@
-﻿using AresNexus.Services.Settlement.Application.Commands;
+﻿using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Domain;
 using AutoFixture;
 using FluentAssertions;
 
@@ -27,12 +28,12 @@ public class ProcessTransactionCommandTests
     {
         // Arrange
         var accountId = Guid.NewGuid();
-        var money = _fixture.Create<AresNexus.Services.Settlement.Domain.Money>();
-        var type = "DEPOSIT";
+        var money = _fixture.Create<Money>();
+        const string type = "DEPOSIT";
         var idempotencyKey = Guid.NewGuid();
-        var reference = "Ref123";
-        var traceId = "Trace123";
-        var correlationId = "Corr123";
+        const string reference = "Ref123";
+        const string traceId = "Trace123";
+        const string correlationId = "Corr123";
 
         // Act
         var command = new ProcessTransactionCommand(

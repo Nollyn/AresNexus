@@ -1,9 +1,8 @@
 using System.Security.Cryptography;
 using System.Text;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using Microsoft.Extensions.Configuration;
+using AresNexus.Settlement.Application.Interfaces;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// PII Encryption Service using AES-256 for Zurich Compliance.
@@ -18,8 +17,12 @@ public sealed class PiiEncryptionService : IEncryptionService
     /// <param name="secretManager">The secret manager to load the encryption key from.</param>
     public PiiEncryptionService(ISecretManager secretManager)
     {
-        var keyString = secretManager.GetSecretAsync("Security:EncryptionKey").GetAwaiter().GetResult() 
-                        ?? "SwissBankingSecretKey2026!AresNexus";
+        var keyString = secretManager.GetSecretAsync("Security:EncryptionKey").GetAwaiter().GetResult();
+        if (string.IsNullOrEmpty(keyString))
+        {
+            // Default key for development and testing. In production, this should be properly configured.
+            keyString = "AresNexus-Default-Security-Key-2024-ZRH";
+        }
         _key = Encoding.UTF8.GetBytes(keyString.PadRight(32)[..32]);
     }
 
@@ -36,10 +39,10 @@ public sealed class PiiEncryptionService : IEncryptionService
         using var ms = new MemoryStream();
         
         // Write IV first
-        await ms.WriteAsync(aes.IV, 0, aes.IV.Length);
+        await ms.WriteAsync(aes.IV.AsMemory(0, aes.IV.Length));
 
-        using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
-        using (var sw = new StreamWriter(cs))
+        await using (var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+        await using (var sw = new StreamWriter(cs))
         {
             await sw.WriteAsync(plainText);
         }
@@ -67,7 +70,7 @@ public sealed class PiiEncryptionService : IEncryptionService
 
         using var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
         using var ms = new MemoryStream(cipher);
-        using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+        await using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
         using var sr = new StreamReader(cs);
 
         return await sr.ReadToEndAsync();

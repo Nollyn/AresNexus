@@ -1,18 +1,15 @@
+using JasperFx;
+using Marten;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using Marten;
 using OpenTelemetry;
-using OpenTelemetry.Trace;
 using OpenTelemetry.Metrics;
-using JasperFx;
+using OpenTelemetry.Trace;
 
 namespace AresNexus.Tests.Integration.Infrastructure;
 
@@ -79,7 +76,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 services.AddMarten(options =>
                 {
                     options.Connection(_connectionString);
-                    options.AutoCreateSchemaObjects = JasperFx.AutoCreate.All;
+                    options.AutoCreateSchemaObjects = AutoCreate.All;
                 }).UseLightweightSessions();
             }
 
@@ -94,7 +91,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             
             // STEP 5 - Add validation: If any BackgroundService starts, log a warning
             var remainingHostedServices = services.Where(d => d.ServiceType == typeof(IHostedService)).ToList();
-            if (remainingHostedServices.Any())
+            if (remainingHostedServices.Count != 0)
             {
                 Console.WriteLine("[WARNING] BackgroundService detected in test environment!");
             }

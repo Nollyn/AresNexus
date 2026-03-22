@@ -1,6 +1,4 @@
-using System.Text.Json;
-
-namespace AresNexus.Services.Settlement.Infrastructure.Persistence;
+namespace AresNexus.Settlement.Infrastructure.Persistence;
 
 /// <summary>
 /// Snapshot entity for the Infrastructure layer.

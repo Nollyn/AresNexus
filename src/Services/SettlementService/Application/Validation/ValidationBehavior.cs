@@ -1,7 +1,7 @@
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
-namespace AresNexus.Services.Settlement.Application.Validation;
+namespace AresNexus.Settlement.Application.Validation;
 
 /// <summary>
 /// MediatR pipeline behavior to handle validation for all requests.
@@ -19,7 +19,7 @@ public sealed class ValidationBehavior<TRequest, TResponse>(
     {
         if (!validators.Any())
         {
-            return await next();
+            return await next(cancellationToken);
         }
 
         var context = new ValidationContext<TRequest>(request);
@@ -32,7 +32,7 @@ public sealed class ValidationBehavior<TRequest, TResponse>(
             .Where(f => f != null)
             .ToList();
 
-        if (failures.Count != 0)
+        if (failures.Count == 0) return await next(cancellationToken);
         {
             logger.LogWarning("Validation failed for {RequestType}. Errors: {Errors}", 
                 typeof(TRequest).Name, 
@@ -40,7 +40,5 @@ public sealed class ValidationBehavior<TRequest, TResponse>(
             
             throw new ValidationException(failures);
         }
-
-        return await next();
     }
 }

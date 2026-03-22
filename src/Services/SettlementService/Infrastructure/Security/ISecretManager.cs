@@ -1,4 +1,4 @@
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// Interface for a secret manager to abstract Azure Key Vault vs Local Secrets.

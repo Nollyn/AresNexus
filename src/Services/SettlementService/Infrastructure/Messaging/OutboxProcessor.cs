@@ -1,6 +1,7 @@
+using AresNexus.Settlement.Application.Interfaces;
 using Npgsql;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Messaging;
+namespace AresNexus.Settlement.Infrastructure.Messaging;
 
 /// <summary>
 /// Background worker to process outbox messages from Marten and publish them to Azure Service Bus.
@@ -24,12 +25,10 @@ public sealed class OutboxProcessor(IServiceProvider serviceProvider, ILogger<Ou
         // Use Marten Advisory Lock to ensure only one worker processes at a time.
         // We use the IDocumentSession's internal connection but avoid starting a manual transaction
         // as Marten sessions already manage the connection state.
-        if (session.Connection is { } conn && conn is NpgsqlConnection npgsqlConnection)
+        if (session.Connection is { } npgsqlConnection)
         {
-            using (var cmd = new NpgsqlCommand("SELECT pg_advisory_xact_lock(12345);", npgsqlConnection))
-            {
-                await cmd.ExecuteNonQueryAsync(stoppingToken);
-            }
+            await using var cmd = new NpgsqlCommand("SELECT pg_advisory_xact_lock(12345);", npgsqlConnection);
+            await cmd.ExecuteNonQueryAsync(stoppingToken);
         }
 
         // Fetch unprocessed outbox messages from Marten

@@ -1,7 +1,6 @@
-using System.Collections.Concurrent;
-using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Interfaces;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Idempotency;
+namespace AresNexus.Settlement.Infrastructure.Idempotency;
 
 /// <summary>
 /// Mock implementation of IIdempotencyStore using Redis-like behavior.

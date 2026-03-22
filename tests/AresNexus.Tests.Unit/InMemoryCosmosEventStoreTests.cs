@@ -1,7 +1,6 @@
-﻿using AresNexus.BuildingBlocks.Domain;
-using AresNexus.Services.Settlement.Infrastructure.EventStore;
+﻿using AresNexus.Settlement.Infrastructure.EventStore;
+using AresNexus.Shared.Kernel;
 using FluentAssertions;
-using Moq;
 
 namespace AresNexus.Tests.Unit;
 
@@ -18,7 +17,7 @@ public class InMemoryCosmosEventStoreTests
         await _sut.SaveEventsAsync(aggregateId, [ev], -1);
 
         // Act
-        var events = await _sut.GetEventsAsync(aggregateId, -1);
+        var events = await _sut.GetEventsAsync(aggregateId);
 
         // Assert
         events.Should().HaveCount(1);

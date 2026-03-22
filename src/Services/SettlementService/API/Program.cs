@@ -1,16 +1,17 @@
 using System.Diagnostics.Metrics;
 using System.Reflection;
 using System.Threading.RateLimiting;
-using AresNexus.Services.Settlement.Api;
-using AresNexus.Services.Settlement.Application.Commands;
-using AresNexus.Services.Settlement.Application.Validation;
-using AresNexus.Services.Settlement.Infrastructure.EventStore;
-using AresNexus.Services.Settlement.Infrastructure.Idempotency;
-using AresNexus.Services.Settlement.Infrastructure.Logging;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using AresNexus.Services.Settlement.Infrastructure.Repositories;
-using AresNexus.Services.Settlement.Infrastructure.Resilience;
-using AresNexus.Services.Settlement.Infrastructure.Security;
+using AresNexus.Settlement.Api;
+using AresNexus.Settlement.Application.Commands;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Validation;
+using AresNexus.Settlement.Infrastructure.EventStore;
+using AresNexus.Settlement.Infrastructure.Idempotency;
+using AresNexus.Settlement.Infrastructure.Logging;
+using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Settlement.Infrastructure.Repositories;
+using AresNexus.Settlement.Infrastructure.Resilience;
+using AresNexus.Settlement.Infrastructure.Security;
 using Asp.Versioning;
 using FluentValidation;
 using JasperFx;
@@ -103,7 +104,12 @@ builder.Services.AddApiVersioning(options =>
 
 // OpenTelemetry
 builder.Services.AddOpenTelemetry()
-    .ConfigureResource(r => r.AddService(builder.Configuration["OTEL_SERVICE_NAME"] ?? "AresNexus.Settlement.Api"))
+    .ConfigureResource(r => r
+        .AddService(builder.Configuration["OTEL_SERVICE_NAME"] ?? "AresNexus.Settlement.Api")
+        .AddAttributes(new Dictionary<string, object>
+        {
+            ["region"] = builder.Configuration["REGION"] ?? "switzerland-zurich"
+        }))
     .WithTracing(t => t.AddAspNetCoreInstrumentation()
                        .AddHttpClientInstrumentation()
                        .AddSource("AresNexus.Settlement")
@@ -115,7 +121,7 @@ builder.Services.AddOpenTelemetry()
                        .AddMeter("AresNexus.Shared.Kernel")
                        .AddMeter("Microsoft.AspNetCore.Hosting")
                        .AddMeter("Microsoft.AspNetCore.Server.Kestrel")
-                       .AddPrometheusExporter()
+                       .AddPrometheusExporter(o => o.ScrapeEndpointPath = "/metrics")
                        .AddOtlpExporter(o => o.Endpoint = new Uri("http://otel-collector:4317")));
 
 // MediatR + Validators
@@ -163,7 +169,7 @@ else
 }
 
 builder.Services.AddSingleton<IKeyVaultClient, MockKeyVaultClient>();
-builder.Services.AddSingleton<IEventUpcaster, MoneyDeposited_v1_to_v2_Upcaster>();
+builder.Services.AddSingleton<IEventUpcaster, MoneyDepositedV1ToV2Upcaster>();
 builder.Services.AddSingleton<IEncryptionService, PiiEncryptionService>();
 builder.Services.AddSingleton<IOutboxPublisher, ServiceBusOutboxPublisher>();
 builder.Services.AddHostedService<OutboxProcessor>();

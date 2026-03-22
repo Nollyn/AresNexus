@@ -1,4 +1,4 @@
-﻿using AresNexus.BuildingBlocks.Domain;
+﻿using AresNexus.Shared.Kernel;
 using FluentAssertions;
 
 namespace AresNexus.Tests.Unit;
@@ -12,7 +12,7 @@ public class SharedKernelTests
         var obj = new { Name = "Test", Value = 123 };
 
         // Act
-        dynamic dynamicObj = obj.AsDynamic();
+        var dynamicObj = obj.AsDynamic();
 
         // Assert
         ((string)dynamicObj.Name).Should().Be("Test");

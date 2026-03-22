@@ -1,6 +1,6 @@
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Domain;
+namespace AresNexus.Settlement.Domain;
 
 /// <summary>
 /// Represents a monetary value in a specific currency.
@@ -41,12 +41,7 @@ public record Money
     /// <returns>The sum of the two monetary values.</returns>
     public static Money operator +(Money a, Money b)
     {
-        if (a.Currency != b.Currency)
-        {
-            throw new InvalidOperationException("Cannot add money with different currencies");
-        }
-
-        return new Money(a.Amount + b.Amount, a.Currency);
+        return a.Currency != b.Currency ? throw new InvalidOperationException("Cannot add money with different currencies") : new Money(a.Amount + b.Amount, a.Currency);
     }
 
     /// <summary>
@@ -57,11 +52,6 @@ public record Money
     /// <returns>The difference between the two monetary values.</returns>
     public static Money operator -(Money a, Money b)
     {
-        if (a.Currency != b.Currency)
-        {
-            throw new InvalidOperationException("Cannot subtract money with different currencies");
-        }
-
-        return new Money(a.Amount - b.Amount, a.Currency);
+        return a.Currency != b.Currency ? throw new InvalidOperationException("Cannot subtract money with different currencies") : new Money(a.Amount - b.Amount, a.Currency);
     }
 }

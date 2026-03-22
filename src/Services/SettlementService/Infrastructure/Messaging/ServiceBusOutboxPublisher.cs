@@ -1,11 +1,7 @@
-using System.Collections.Concurrent;
-using System.Text.Json;
-using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Interfaces;
 using Azure.Messaging.ServiceBus;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Messaging;
+namespace AresNexus.Settlement.Infrastructure.Messaging;
 
 /// <summary>
 /// Options for configuring Service Bus publisher.

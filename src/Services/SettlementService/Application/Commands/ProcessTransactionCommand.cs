@@ -1,7 +1,6 @@
-using AresNexus.Services.Settlement.Domain;
-using MediatR;
+using AresNexus.Settlement.Domain;
 
-namespace AresNexus.Services.Settlement.Application.Commands;
+namespace AresNexus.Settlement.Application.Commands;
 
 /// <summary>
 /// Command to process a transaction.

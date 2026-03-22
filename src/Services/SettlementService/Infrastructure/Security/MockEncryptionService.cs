@@ -1,6 +1,6 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Application.Interfaces;
 
-namespace AresNexus.Services.Settlement.Infrastructure.Security;
+namespace AresNexus.Settlement.Infrastructure.Security;
 
 /// <summary>
 /// Mock implementation of IEncryptionService for demonstration.

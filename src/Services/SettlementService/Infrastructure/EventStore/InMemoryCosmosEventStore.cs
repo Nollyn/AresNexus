@@ -1,10 +1,9 @@
-using System.Collections.Concurrent;
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Messaging;
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Infrastructure.Messaging;
+using AresNexus.Shared.Kernel;
 using Newtonsoft.Json;
 
-namespace AresNexus.Services.Settlement.Infrastructure.EventStore;
+namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
 /// Mock implementation of an EventStore using an in-memory structure inspired by CosmosDB patterns.
@@ -40,10 +39,11 @@ public sealed class InMemoryCosmosEventStore : IEventStore
         }
 
         // Atomically (simulated) add events and outbox messages
-        stream.AddRange(events);
+        var domainEvents = events.ToList();
+        stream.AddRange(domainEvents);
         
         // Also add the events themselves as outbox messages for consistency with MartenAccountRepository logic
-        foreach (var change in events)
+        foreach (var change in domainEvents)
         {
             _outbox.Enqueue(new OutboxMessage
             {

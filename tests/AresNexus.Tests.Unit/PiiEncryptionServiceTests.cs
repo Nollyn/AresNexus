@@ -1,23 +1,20 @@
-using AresNexus.Services.Settlement.Application.Interfaces;
-using AresNexus.Services.Settlement.Infrastructure.Security;
+using AresNexus.Settlement.Infrastructure.Security;
 using FluentAssertions;
 using Moq;
-using Xunit;
 
 namespace AresNexus.Tests.Unit;
 
 public class PiiEncryptionServiceTests
 {
-    private readonly Mock<ISecretManager> _secretManagerMock;
     private readonly PiiEncryptionService _service;
 
     public PiiEncryptionServiceTests()
     {
-        _secretManagerMock = new Mock<ISecretManager>();
-        _secretManagerMock.Setup(s => s.GetSecretAsync(It.IsAny<string>()))
+        var secretManagerMock = new Mock<ISecretManager>();
+        secretManagerMock.Setup(s => s.GetSecretAsync(It.IsAny<string>()))
             .ReturnsAsync("TestSecretKey123456789012345678");
         
-        _service = new PiiEncryptionService(_secretManagerMock.Object);
+        _service = new PiiEncryptionService(secretManagerMock.Object);
     }
 
     [Fact]
@@ -41,7 +38,7 @@ public class PiiEncryptionServiceTests
     public async Task Decrypt_ShouldReturnOriginalText()
     {
         // Arrange
-        var originalText = "Sensitive PII Data";
+        const string originalText = "Sensitive PII Data";
         var encrypted = await _service.EncryptAsync(originalText);
 
         // Act

@@ -1,6 +1,9 @@
-using AresNexus.BuildingBlocks.Domain;
+using AresNexus.Settlement.Application.Interfaces;
+using AresNexus.Settlement.Domain;
+using AresNexus.Settlement.Domain.Events;
+using AresNexus.Shared.Kernel;
 
-namespace AresNexus.Services.Settlement.Infrastructure.EventStore;
+namespace AresNexus.Settlement.Infrastructure.EventStore;
 
 /// <summary>
 /// Base class for event upcasters to handle version evolution of domain events.
@@ -17,20 +20,20 @@ public abstract class EventUpcaster : IEventUpcaster
 /// <summary>
 /// Upcasts FundsDepositedEvent from V1 (no currency) to V2 (with currency).
 /// </summary>
-public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
+public sealed class MoneyDepositedV1ToV2Upcaster : EventUpcaster
 {
     /// <inheritdoc />
     public override bool CanUpcast(Type eventType)
     {
-        return eventType == typeof(FundsDepositedEvent_v1);
+        return eventType == typeof(FundsDepositedEventV1);
     }
 
     /// <inheritdoc />
     public override IDomainEvent Upcast(IDomainEvent @event)
     {
-        if (@event is FundsDepositedEvent_v1 v1)
+        if (@event is FundsDepositedEventV1 v1)
         {
-            return new FundsDepositedEvent(v1.AccountId, new Money(v1.Amount, "CHF"), v1.EventId, v1.OccurredOn, 2, v1.Reference, v1.TraceId, v1.CorrelationId);
+            return new FundsDepositedEvent(v1.AccountId, new Money(v1.Amount), v1.EventId, v1.OccurredOn, 2, v1.Reference, v1.TraceId, v1.CorrelationId);
         }
         return @event;
     }
@@ -47,7 +50,7 @@ public sealed class MoneyDeposited_v1_to_v2_Upcaster : EventUpcaster
 /// <param name="Reference">An optional reference for the deposit.</param>
 /// <param name="TraceId">The trace identifier.</param>
 /// <param name="CorrelationId">The correlation identifier.</param>
-public record FundsDepositedEvent_v1(
+public record FundsDepositedEventV1(
     Guid AccountId, 
     decimal Amount, 
     Guid EventId, 
