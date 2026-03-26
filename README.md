@@ -179,9 +179,14 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 | GDPR / Swiss Bank Secrecy | Protect PII at rest/in-transit | AES-256 Field-Level Encryption, TLS everywhere |
 | DORA (Digital Resilience) | Chaos testing, rapid recovery, observability | Kubernetes PodDisruptionBudget, Chaos experiments, OpenTelemetry + Prometheus/Grafana |
 
-## License
+## 🛡️ License & Intellectual Property
 
-This project is licensed under the MIT License.
+This project is licensed under **CC BY-NC-ND 4.0** (Non-Commercial). 
+The **Financial Determinism Theorem** and the **NEAI Core** are proprietary assets. 
+
+- **Recruiters & Tech Leads:** Feel free to explore the architecture and performance benchmarks.
+- **Commercial Use:** Integration into production banking systems requires a commercial license.
+- **Full Demo:** The private core logic can be demonstrated under a Non-Disclosure Agreement (NDA).
 
 ## AI Disclosure & Leadership
 
