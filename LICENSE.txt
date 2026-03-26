@@ -1,0 +1,10 @@
+Copyright (c) 2026 Laynoll Diaz Martinez
+
+Licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
+
+TERMS:
+1. NON-COMMERCIAL: You may not use this material for commercial purposes (Banking, Fintech, or Consulting).
+2. NO DERIVATIVES: If you remix, transform, or build upon the material, you may not distribute the modified material.
+3. ATTRIBUTION: You must give appropriate credit to the author.
+
+For commercial licensing or full engine access, please contact: laynolldiaz@gmail.com
