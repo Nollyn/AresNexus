@@ -192,7 +192,7 @@ While this software is open for industry adoption and contribution, any commerci
 If you use this architecture, patterns, or benchmarks in your research or commercial infrastructure, please cite it as follows:
 
 > **Diaz Martinez, L., & Alvarez Salas, C. A. (2026).** *Ares-Nexus: A Non-Executive AI Architecture for Deterministic Financial Settlements.* 
-> **DOI:** [10.5281/zenodo.11054367](https://doi.org)
+> **DOI:** [10.5281/zenodo.19294367](https://doi.org)
 > **SSRN:** [Abstract ID 6485660](https://ssrn.com)
 
 ---
