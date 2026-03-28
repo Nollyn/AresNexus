@@ -196,11 +196,9 @@ If you use this architecture, patterns, or benchmarks in your research or commer
 > **SSRN:** [Abstract ID 6485660](https://ssrn.com)
 
 ---
-[![DOI](https://zenodo.org)](https://doi.org) 
+[![DOI](https://zenodo.org-darkgreen)](https://doi.org)
 
 - **Recruiters & Tech Leads:** Feel free to explore the architecture and performance benchmarks.
-- **Commercial Use:** Integration into production banking systems requires a commercial license.
-- **Full Demo:** The private core logic can be demonstrated under a Non-Disclosure Agreement (NDA).
 
 ## AI Disclosure & Leadership
 
