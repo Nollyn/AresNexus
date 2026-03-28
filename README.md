@@ -179,10 +179,24 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 | GDPR / Swiss Bank Secrecy | Protect PII at rest/in-transit | AES-256 Field-Level Encryption, TLS everywhere |
 | DORA (Digital Resilience) | Chaos testing, rapid recovery, observability | Kubernetes PodDisruptionBudget, Chaos experiments, OpenTelemetry + Prometheus/Grafana |
 
-## 🛡️ License & Intellectual Property
+## 📜 License & Intellectual Property
 
-This project is licensed under **CC BY-NC-ND 4.0** (Non-Commercial). 
-The **Financial Determinism Theorem** and the **NEAI Core** are proprietary assets. 
+This project is licensed under the **Apache License 2.0**. 
+
+### Intellectual Property Notice
+The **Non-Executive AI (NEAI) Pattern** and the **Financial Determinism Principle (FDP)** are original architectural contributions developed by **Laynoll Díaz Martínez** and **Claudia A. Alvarez Salas**. 
+
+While this software is open for industry adoption and contribution, any commercial, internal, or academic implementation of these patterns must provide appropriate credit to the original authors.
+
+### 🎓 How to Cite
+If you use this architecture, patterns, or benchmarks in your research or commercial infrastructure, please cite it as follows:
+
+> **Diaz Martinez, L., & Alvarez Salas, C. A. (2026).** *Ares-Nexus: A Non-Executive AI Architecture for Deterministic Financial Settlements.* 
+> **DOI:** [10.5281/zenodo.11054367](https://doi.org)
+> **SSRN:** [Abstract ID 6485660](https://ssrn.com)
+
+---
+[![DOI](https://zenodo.org)](https://doi.org) 
 
 - **Recruiters & Tech Leads:** Feel free to explore the architecture and performance benchmarks.
 - **Commercial Use:** Integration into production banking systems requires a commercial license.
@@ -203,4 +217,9 @@ Coverage focuses on:
 - Resilience and idempotency mechanisms
 
 Coverage threshold enforced in CI: 80%
+
+## Research Reference
+- **SSRN Abstract ID:** [6485660](https://ssrn.com)
+- **DOI (Zenodo):** https://doi.org/10.5281/zenodo.19294367
+
 
