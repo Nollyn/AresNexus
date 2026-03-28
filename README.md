@@ -179,7 +179,7 @@ AresNexus is engineered to meet the stringent standards set by **FINMA** (Swiss 
 | GDPR / Swiss Bank Secrecy | Protect PII at rest/in-transit | AES-256 Field-Level Encryption, TLS everywhere |
 | DORA (Digital Resilience) | Chaos testing, rapid recovery, observability | Kubernetes PodDisruptionBudget, Chaos experiments, OpenTelemetry + Prometheus/Grafana |
 
-## 📜 License & Intellectual Property
+## License & Intellectual Property
 
 This project is licensed under the **Apache License 2.0**. 
 
@@ -188,7 +188,7 @@ The **Non-Executive AI (NEAI) Pattern** and the **Financial Determinism Principl
 
 While this software is open for industry adoption and contribution, any commercial, internal, or academic implementation of these patterns must provide appropriate credit to the original authors.
 
-### 🎓 How to Cite
+### How to Cite
 If you use this architecture, patterns, or benchmarks in your research or commercial infrastructure, please cite it as follows:
 
 > **Diaz Martinez, L., & Alvarez Salas, C. A. (2026).** *Ares-Nexus: A Non-Executive AI Architecture for Deterministic Financial Settlements.* 
