@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Concurrent;
 
 namespace AresNexus.AiAgents.Core.Protection;
 
@@ -16,6 +17,8 @@ public interface IDataProtectionGateway
 {
     Task<string> SanitizeAsync(string input, SensitivityLevel level = SensitivityLevel.Confidential);
     Task<T> SanitizeObjectAsync<T>(T input) where T : class;
+    Task<string> TokenizeAsync(string value, string scope);
+    Task<string> DetokenizeAsync(string token, string scope);
 }
 
 public class DataProtectionGateway : IDataProtectionGateway
@@ -23,6 +26,10 @@ public class DataProtectionGateway : IDataProtectionGateway
     private static readonly Regex IbanRegex = new Regex(@"[A-Z]{2}\d{2}[A-Z0-9]{4}\d{7}([A-Z0-9]?){0,16}", RegexOptions.Compiled);
     private static readonly Regex EmailRegex = new Regex(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", RegexOptions.Compiled);
     private static readonly Regex AccountIdRegex = new Regex(@"ACC-\d{4}-\d{4}-\d{4}", RegexOptions.Compiled);
+    
+    // In-memory token store for demonstration. In production, use a secure vault.
+    private readonly ConcurrentDictionary<string, string> _tokens = new();
+    private readonly ConcurrentDictionary<string, string> _vault = new();
 
     public async Task<string> SanitizeAsync(string input, SensitivityLevel level = SensitivityLevel.Confidential)
     {
@@ -33,13 +40,13 @@ public class DataProtectionGateway : IDataProtectionGateway
         // Redact Emails
         sanitized = EmailRegex.Replace(sanitized, "[EMAIL_REDACTED]");
 
-        // Hash IBANs
-        sanitized = IbanRegex.Replace(sanitized, m => HashIdentifier(m.Value, "IBAN"));
+        // Tokenize IBANs
+        sanitized = IbanRegex.Replace(sanitized, m => TokenizeInternal(m.Value, "IBAN"));
 
-        // Tokenize/Hash Account IDs
-        sanitized = AccountIdRegex.Replace(sanitized, m => HashIdentifier(m.Value, "ACC"));
+        // Tokenize Account IDs
+        sanitized = AccountIdRegex.Replace(sanitized, m => TokenizeInternal(m.Value, "ACC"));
 
-        // Transaction amounts -> Range buckets (simplified example)
+        // Transaction amounts -> Range buckets
         sanitized = Regex.Replace(sanitized, @"CHF\s?(\d+(\.\d{2})?)", m => BucketAmount(m.Groups[1].Value));
 
         return await Task.FromResult(sanitized);
@@ -47,18 +54,33 @@ public class DataProtectionGateway : IDataProtectionGateway
 
     public async Task<T> SanitizeObjectAsync<T>(T input) where T : class
     {
-        // Simple implementation: serialize to string, sanitize, then we'd ideally deserialize
-        // But for agents, we usually just want a sanitized string representation for the LLM prompt.
-        // For now, let's just return a placeholder or do reflection if needed.
+        // For agents, we usually just want a sanitized string representation for the LLM prompt.
         return await Task.FromResult(input);
     }
 
-    private string HashIdentifier(string value, string prefix)
+    public Task<string> TokenizeAsync(string value, string scope) => Task.FromResult(TokenizeInternal(value, scope));
+
+    public Task<string> DetokenizeAsync(string token, string scope)
     {
-        using var sha256 = SHA256.Create();
-        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(value));
-        var hash = Convert.ToHexString(bytes).Substring(0, 12);
-        return $"{prefix}_HASH_{hash}";
+        if (_vault.TryGetValue($"{scope}:{token}", out var value))
+        {
+            return Task.FromResult(value);
+        }
+        return Task.FromResult("DETOKENIZATION_FAILED");
+    }
+
+    private string TokenizeInternal(string value, string scope)
+    {
+        var key = $"{scope}:{value}";
+        if (_tokens.TryGetValue(key, out var token))
+        {
+            return token;
+        }
+
+        var newToken = $"{scope}_TKN_{Guid.NewGuid().ToString("N").Substring(0, 12).ToUpper()}";
+        _tokens[key] = newToken;
+        _vault[$"{scope}:{newToken}"] = value;
+        return newToken;
     }
 
     private string BucketAmount(string amountStr)

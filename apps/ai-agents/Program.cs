@@ -29,9 +29,10 @@ builder.Host.UseSerilog();
 // Data Protection Layer
 builder.Services.AddSingleton<IDataProtectionGateway, DataProtectionGateway>();
 
-// AI Governance Layer
+// Governance & Traceability
 builder.Services.AddSingleton<IAIModelRegistry, AIModelRegistry>();
 builder.Services.AddSingleton<IAgentAuditLogger, AgentAuditLogger>();
+builder.Services.AddSingleton<IDecisionTraceStore, DecisionTraceStore>();
 
 // Model Risk Management
 builder.Services.AddSingleton<IModelRiskManager, ModelRiskManager>();

@@ -1,4 +1,5 @@
 ﻿using AresNexus.AiAgents.Core.Governance;
+using AresNexus.AiAgents.Core.ModelRisk;
 
 namespace AresNexus.AiAgents.Core.DecisionGate;
 
@@ -7,7 +8,10 @@ public record RecommendationEvent(
     string RecommendationType,
     string Details,
     double ConfidenceScore,
-    bool RequiresHumanApproval
+    bool RequiresHumanApproval,
+    string ModelVersion,
+    string InputHash,
+    object Metadata
 );
 
 public interface IDecisionGate
@@ -18,27 +22,49 @@ public interface IDecisionGate
 public class DecisionGate : IDecisionGate
 {
     private readonly IAgentAuditLogger _auditLogger;
+    private readonly IModelRiskManager _riskManager;
 
-    public DecisionGate(IAgentAuditLogger auditLogger)
+    public DecisionGate(IAgentAuditLogger auditLogger, IModelRiskManager riskManager)
     {
         _auditLogger = auditLogger;
+        _riskManager = riskManager;
     }
 
     public async Task<bool> EvaluateRecommendationAsync(RecommendationEvent recommendation)
     {
-        // Enforce policies
-        if (recommendation.ConfidenceScore < 0.7)
+        // 1. Audit Log the receipt of recommendation
+        await _auditLogger.LogDecisionAsync(new AIDecision(
+            Guid.NewGuid(),
+            DateTime.UtcNow,
+            recommendation.AgentId,
+            recommendation.ModelVersion,
+            recommendation.InputHash,
+            recommendation.Details,
+            recommendation.ConfidenceScore,
+            recommendation.RecommendationType
+        ));
+
+        // 2. Model Risk Management Check
+        var isModelSafe = await _riskManager.ValidateModelDecisionAsync(recommendation.AgentId, recommendation);
+        if (!isModelSafe)
         {
-            // Low confidence recommendations are rejected or require human review
+            return false;
+        }
+
+        // 3. Enforce Deterministic Policies
+        if (recommendation.ConfidenceScore < 0.85) // Tier-1 banking threshold
+        {
             return false;
         }
 
         if (recommendation.RequiresHumanApproval)
         {
-            // Trigger human approval workflow
-            return false; // For now, default to blocked until approved
+            // Human-in-the-loop requirement for certain categories of actions
+            return false; 
         }
 
-        return await Task.FromResult(true);
+        // 4. Verification against compliance rules (if possible)
+        
+        return true;
     }
 }

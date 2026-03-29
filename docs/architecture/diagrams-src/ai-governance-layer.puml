@@ -1,0 +1,28 @@
+﻿@startuml ai-governance-layer
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.11.0/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title AresNexus – Non-Executive AI Governance Layer
+
+System_Boundary(ai_observability_zone, "AI OBSERVABILITY ZONE") {
+    Boundary(governance, "AI Model Governance") {
+        Component(registry, "ModelRegistry", "C#", "Versioned repository for models and policies.")
+        Component(v_manager, "ModelVersionManager", "C#", "Controls which model versions are active.")
+        Component(audit_logger, "AgentAuditLogger", "C#", "Captures all agent reasoning and decisions.")
+        Component(trace_store, "DecisionTraceStore", "C#", "Immutable store for deep reasoning traces.")
+    }
+    
+    Boundary(risk_mgt, "Model Risk Management") {
+        Component(validator, "ModelValidationService", "C#", "Validates model performance before activation.")
+        Component(drift_det, "ModelDriftDetector", "C#", "Identifies data drift in real-time.")
+        Component(perf_mon, "ModelPerformanceMonitor", "C#", "Tracks accuracy and drift KPIs.")
+    }
+}
+
+Rel(registry, v_manager, "Provides version data")
+Rel(v_manager, validator, "Requests validation")
+Rel(perf_mon, audit_logger, "Reads logs for metrics")
+Rel(drift_det, trace_store, "Analyzes reasoning trends")
+
+@enduml

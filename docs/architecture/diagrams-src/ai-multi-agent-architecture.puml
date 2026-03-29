@@ -22,12 +22,12 @@ System_Boundary(ai_zone, "AI OBSERVABILITY ZONE") {
     
     ' AI SYSTEM - ai-agents service
     Boundary(ai_agents_service, "AI Agents Service") {
-        Component(fraud_agent, "FraudAgent", "Python/LangChain", "Analyzes patterns for fraudulent activity.")
-        Component(compliance_agent, "ComplianceAgent", "Python/LangChain", "Ensures regulatory compliance of transactions.")
-        Component(risk_agent, "RiskAgent", "Python/LangChain", "Assesses real-time financial risk profiles.")
-        Component(settlement_agent, "SettlementAgent", "Python/LangChain", "Optimizes settlement routing and timing.")
-        Component(ops_agent, "OpsAgent", "Python/LangChain", "Monitors system health and operational metrics.")
-        Component(obs_agent, "ObservabilityAgent", "Python/LangChain", "Aggregates logs and traces for deep insights.")
+        Component(fraud_agent, "FraudAgent", "C# / SemanticKernel", "Analyzes patterns for fraudulent activity.")
+        Component(compliance_agent, "ComplianceAgent", "C# / SemanticKernel", "Ensures regulatory compliance of transactions.")
+        Component(risk_agent, "RiskAgent", "C# / SemanticKernel", "Assesses real-time financial risk profiles.")
+        Component(settlement_agent, "SettlementAgent", "C# / SemanticKernel", "Optimizes settlement routing and timing.")
+        Component(ops_agent, "OpsAgent", "C# / SemanticKernel", "Monitors system health and operational metrics.")
+        Component(obs_agent, "ObservabilityAgent", "C# / SemanticKernel", "Aggregates logs and traces for deep insights.")
     }
 
     ' GOVERNANCE COMPONENTS

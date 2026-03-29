@@ -15,11 +15,11 @@
 
 ## System Architecture Overview
 ![AresNexus Architecture](./docs/diagrams/ai-multi-agent-architecture.png)
-> **Note:** The architecture is divided into a **Deterministic Financial Core** and an **AI-Augmented Governance Layer**, separated by a **Data Protection Gateway** to ensure Swiss DPA compliance.
+> **Note:** The architecture is strictly divided into a **Deterministic Financial Core** and a **Non-Executive AI Observability Layer**, separated by a **Data Protection Gateway** to ensure Swiss Bank Secrecy and GDPR compliance.
 
 ## The Business Problem
 
-Current legacy settlement systems suffer from **"Dual-Write" fragility** and lack of granular auditability, leading to high capital requirements and regulatory friction. **Ares-Nexus** solves this via **Atomic Consistency** and **Immutable Event Sourcing**, ensuring that every financial instruction is either fully processed or safely rolled back, with a 100% verifiable audit trail.
+Current legacy settlement systems suffer from **"Dual-Write" fragility** and lack of granular auditability, leading to high capital requirements and regulatory friction. **Ares-Nexus** solves this via **Atomic Consistency**, **Deterministic Execution**, and **Immutable Event Sourcing**, ensuring that every financial instruction is either fully processed or safely rolled back, with a 100% verifiable audit trail.
 
 ## SLA & Performance Matrix (Simulated Benchmarks)
 
@@ -36,22 +36,23 @@ Ares-Nexus is architected to address the core challenges of the FINMA 2023/1 cir
 
 | Pattern | Technical Implementation | Business Risk Mitigated | Regulatory Alignment |
 |:---|:---|:---|:---|
+| **Deterministic Execution** | Only the Settlement Core modifies financial state | **"Ghost" Transactions / Execution Errors** | FINMA 2023/1 (Operational Risk) |
+| **Non-Executive AI** | AI agents are restricted to the Observability Layer | **Model Hallucination / AI Misconduct** | FINMA / EU AI Act |
 | **Transactional Outbox** | Atomic persistence of events and messages | **Financial Inconsistency (Zero Loss)** | FINMA 2023/1 (Operational Risk) |
-| **Snapshotting** | Automated state capture every 100 events | **SLA Breach (Low Latency / Recovery)** | DORA (Digital Resilience) |
-| **Encryption** | AES-256 Field-Level Hardening of PII | **Data Privacy (Bank Secrecy)** | GDPR / Swiss Bank Secrecy |
+| **Encryption & Tokenization** | AES-256 + Vault-backed Tokenization | **Data Privacy (Bank Secrecy)** | GDPR / Swiss Bank Secrecy |
 | **Event Sourcing** | Immutable Audit Trail (Marten/Postgres) | **Regulatory Non-Compliance** | Auditability & Traceability |
 | **Idempotency** | Redis-backed Command Validation | **Double-Spending / Duplicate Entry** | Operational Integrity |
-| **Data Protection Gateway** | PII Redaction & Hashing via Interceptor | Data Leakage to Third-Party LLMs | **Swiss DPA / GDPR** |
-| **Decision Trace Store** | Immutable Logging of AI Reasoning | Lack of "Explainability" in AI | **EU AI Act / FINMA** |
-| **Model Drift Detection** | Runtime Latency & Confidence Thresholds | Model Hallucinations / Degradation | **DORA (Operational Risk)** |
+| **Decision Gate** | Deterministic validation of AI recommendations | **Uncontrolled AI Actions** | FINMA / DORA |
+| **Model Governance** | Versioned models, reasoning audit trails | **Lack of AI Transparency** | EU AI Act / FINMA |
 
 This project demonstrates a modern **'Architect-as-Orchestrator'** workflow — leveraging AI for rapid delivery while maintaining absolute human-led strategic integrity, ensuring all patterns meet Tier-1 banking standards.
 
 ### Trustworthy AI Governance
-Unlike standard AI implementations, AresNexus follows a **"Non-Executive AI"** pattern:
-*   **Observe-Reason-Recommend:** Agents (Fraud, Compliance, Risk) ingest events but cannot emit commands.
-*   **Human-in-the-Loop:** A deterministic **Decision Gate** evaluates agent confidence scores. If confidence < 95%, the system triggers a manual review workflow.
-*   **PII Sanitization:** All financial identifiers (IBANs, Names) are irreversibly hashed before reaching the LLM context.
+AresNexus follows the **"Non-Executive AI (NEAI)"** architecture:
+*   **Observe-Reason-Recommend:** Agents (Fraud, Compliance, Risk, Settlement, Ops, Observability) ingest events but NEVER emit financial commands.
+*   **Deterministic Decision Gate:** Every agent recommendation is validated by a policy engine. Actions are rejected if confidence < 85% or if specific safety rules are triggered.
+*   **PII Sanitization & Tokenization:** All financial identifiers are tokenized via the **Data Protection Gateway** before reaching any AI component.
+*   **Traceability:** Reasoning traces for every AI recommendation are stored in an immutable store for regulatory audit.
 
 ## Project Structure
 
@@ -90,10 +91,11 @@ For a deeper dive into the architecture and design decisions, please refer to th
 - [Regulatory Compliance Mapping](/docs/07-regulatory-compliance-mapping.md) - Mapping technical features to FINMA/DORA scenarios.
 
 ### Design Decisions
-- [ADR 001: Event Sourcing](/docs/02-adr-001-event-sourcing.md) - Why we chose Event Sourcing for settlements.
-- [ADR 002: Marten vs. EventStoreDB](/docs/02-adr-002-storage-marten-vs-eventstoredb.md) - Operational cost vs. specialized hardware.
-- [ADR 003: RabbitMQ vs. Kafka](/docs/02-adr-003-messaging-rabbitmq-vs-kafka.md) - Latency requirements vs. stream retention.
-- [ADR 004: Minimal APIs vs. Controllers](/docs/02-adr-004-apis-minimal-vs-controllers.md) - Reduced cold-start latency for scaling.
+- [ADR 001: Event Sourcing](/docs/architecture/adr/02-adr-001-event-sourcing.md) - Why we chose Event Sourcing for settlements.
+- [ADR 002: Marten vs. EventStoreDB](/docs/architecture/adr/02-adr-002-storage-marten-vs-eventstoredb.md) - Operational cost vs. specialized hardware.
+- [ADR 003: RabbitMQ vs. Kafka](/docs/architecture/adr/02-adr-003-messaging-rabbitmq-vs-kafka.md) - Latency requirements vs. stream retention.
+- [ADR 004: Minimal APIs vs. Controllers](/docs/architecture/adr/02-adr-004-apis-minimal-vs-controllers.md) - Reduced cold-start latency for scaling.
+- [ADR 005: Deterministic Core & NEAI Governance](/docs/architecture/adr/02-adr-005-deterministic-core-non-executive-ai-governance.md) - Governance framework for Non-Executive AI.
 
 ### Operations & Infrastructure
 - [Implementation Plan](/docs/06-implementation-plan.md) - Phase-by-phase execution strategy.

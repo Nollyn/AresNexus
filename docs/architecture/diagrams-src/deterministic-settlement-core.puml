@@ -1,0 +1,24 @@
+﻿@startuml deterministic-settlement-core
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.11.0/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title AresNexus – Deterministic Settlement Core Architecture
+
+System_Boundary(core_zone, "DETERMINISTIC CORE (Financial Zone)") {
+    Container(gateway, "Gateway API", "ASP.NET Core", "Entry point, enforces TLS 1.3 and Swiss Bank Secrecy.")
+    Container(compliance, "Compliance Engine", "C#, MediatR", "Hardened deterministic rules, KYC/AML validation.")
+    Container(settlement, "Settlement Core", "C#, Marten", "The ONLY component executing financial state changes.")
+    
+    ContainerDb(event_store, "Event Store", "PostgreSQL/Marten", "Immutable ledger of all financial state transitions.")
+    Container(outbox, "Transactional Outbox", "C#", "Ensures atomicity between state changes and event emission.")
+    ContainerDb(message_broker, "Message Broker", "RabbitMQ", "Distributes events to the AI Observability Layer.")
+}
+
+Rel(gateway, compliance, "Validates Command", "gRPC")
+Rel(compliance, settlement, "Processes Transaction", "MediatR")
+Rel(settlement, event_store, "Appends Events", "ACID")
+Rel(event_store, outbox, "Reads for Dispatch")
+Rel(outbox, message_broker, "Publishes Events", "AMQP")
+
+@enduml
