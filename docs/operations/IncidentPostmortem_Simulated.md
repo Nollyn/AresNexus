@@ -66,7 +66,7 @@ Following the analysis of the lag incident, we have refactored the `OutboxProces
 
 ---
 
-## ?? Phase 5 — Engineering Scar Tissue: What we would change if rebuilding today
+## Phase 5 - Engineering Scar Tissue: What we would change if rebuilding today
 
 While the current architecture is robust and meets all Swiss Tier-1 compliance requirements, 24 months of production "scar tissue" suggests the following shifts if we were starting from a blank slate today:
 
