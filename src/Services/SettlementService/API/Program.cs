@@ -88,9 +88,9 @@ builder.Services.AddRateLimiter(options =>
             factory: _ => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
-                PermitLimit = 10, // Significantly more restrictive for high-risk operations
-                QueueLimit = 0,
-                Window = TimeSpan.FromMinutes(1)
+                PermitLimit = 100, // Permitir más ráfagas para simulaciones institucionales
+                QueueLimit = 20,   // Añadir cola para suavizar picos
+                Window = TimeSpan.FromSeconds(10) // Ventana más corta y reactiva
             }));
 });
 

@@ -159,9 +159,10 @@ To meet Swiss Banking Resilience (FINMA & DORA compliance) standards, the follow
 
 1.  **Clone** the repository.
 2.  **`make up`**: Pulls/Builds everything and starts the infrastructure stack (Postgres, RabbitMQ, Redis, Prometheus, Grafana).
-3.  **`make demo`**: Sends a burst of ISO 20022 transactions to populate the system and verify the end-to-end flow.
-4.  **Open `http://localhost:5001/swagger`**: Explore the Settlement Core API.
-5.  **`make test`**: Runs all Unit, Integration, and Architecture tests.
+3.  **`make demo`**: Sends a basic burst of ISO 20022 transactions.
+4.  **`make demo-portfolio`**: Executes the full institutional portfolio simulation ($5.5B Portfolio).
+5.  **Open `http://localhost:5001/swagger`**: Explore the Settlement Core API.
+6.  **`make test`**: Runs all Unit, Integration, and Architecture tests.
 
 ## Swiss Tier-1 Compliance
 

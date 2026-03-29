@@ -116,7 +116,14 @@ public sealed class Account : AggregateRoot, ISnapshotable<Account.Snapshot>
     /// </summary>
     public void Apply(FundsDepositedEvent e)
     {
-        Balance += e.Money;
+        if (Balance.Amount == 0 && Balance.Currency != e.Money.Currency)
+        {
+            Balance = new Money(e.Money.Amount, e.Money.Currency);
+        }
+        else
+        {
+            Balance += e.Money;
+        }
     }
 
     /// <summary>

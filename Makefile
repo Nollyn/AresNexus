@@ -17,6 +17,11 @@ test:
 demo:
 	bash ./scripts/run-demo.sh
 
+# Task: Run Institutional Portfolio Simulation ($5.5B Portfolio)
+demo-portfolio:
+	@echo "Starting Ares-Nexus Institutional Portfolio Simulation..."
+	dotnet run --project apps/simulation/AresNexus.Simulation.csproj
+
 # Health check verification: pings the /metrics endpoint to confirm it's emitting data
 check-health:
 	@echo "Checking Settlement Core metrics..."

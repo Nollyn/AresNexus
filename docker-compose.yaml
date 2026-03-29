@@ -72,6 +72,7 @@
       - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
       - OTEL_SERVICE_NAME=settlement-core-1
       - REGION=switzerland-north
+      - Marten__AutoCreateSchemaObjects=All
     depends_on:
       postgres-eventstore:
         condition: service_healthy
@@ -92,7 +93,10 @@
       - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
       - OTEL_SERVICE_NAME=settlement-core-2
       - REGION=switzerland-north
+      - Marten__AutoCreateSchemaObjects=None
     depends_on:
+      settlement-core-1:
+        condition: service_started
       postgres-eventstore:
         condition: service_healthy
       redis:
@@ -112,7 +116,10 @@
       - Security__EncryptionKey=vE6p8W9xY2zB4A6C8E0G2I4K6M8O0Q2S
       - OTEL_SERVICE_NAME=settlement-core-3
       - REGION=switzerland-north
+      - Marten__AutoCreateSchemaObjects=None
     depends_on:
+      settlement-core-1:
+        condition: service_started
       postgres-eventstore:
         condition: service_healthy
       redis:
@@ -128,7 +135,7 @@
     depends_on:
       - nginx-lb
     environment:
-      - SettlementApi__Url=http://nginx-lb
+      - SettlementApi__Url=http://nginx-lb:80
       - REGION=switzerland-north
     ports:
       - "5001:8080"

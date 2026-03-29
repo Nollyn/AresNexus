@@ -62,6 +62,12 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddOpenApi();
 
 // Task 3: Ensure all HttpClient calls in the Gateway use Polly for retries and circuit breaking.
+builder.Services.AddHttpClient("SettlementClient", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["SettlementApi__Url"] ?? "http://nginx-lb:80");
+})
+.AddStandardResilienceHandler();
+
 builder.Services.AddHttpClient("ComplianceBridge")
     .AddStandardResilienceHandler();
 
@@ -84,5 +90,56 @@ app.MapGet("/", () => "AresNexus Gateway API (Active)");
 
 // Returns the health status of the Gateway API.
 app.MapGet("/health", () => Results.Ok(new { status = "UP" }));
+
+app.MapPost("/api/v1/transactions", async (HttpContext context, IHttpClientFactory factory) =>
+{
+    var client = factory.CreateClient("SettlementClient");
+    
+    // Read the request body into a byte array so it can be reused for retries
+    var memoryStream = new MemoryStream();
+    await context.Request.Body.CopyToAsync(memoryStream);
+    var bodyBytes = memoryStream.ToArray();
+
+    // Use a strategy to wrap the SendAsync in a way that respects retries
+    // Actually, SendAsync will be called by the StandardResilienceHandler.
+    // If it retries, it will call our SendAsync again.
+    // Wait, the ResilienceHandler is INSIDE the HttpClient.
+    // When client.SendAsync(request) is called, it enters the resilience pipeline.
+    // If the pipeline retries, it tries to send the SAME request object again.
+    // HttpRequestMessage can only be sent once because its content is a stream.
+    
+    // To support retries, we might need to handle it ourselves or use a custom primary handler.
+    // But a simpler way is to not use StreamContent directly if we want Polly to retry.
+    
+    var response = await client.PostAsync("/api/v1/transactions", new ByteArrayContent(bodyBytes)
+    {
+        Headers = { ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse(context.Request.ContentType ?? "application/json") }
+    });
+    
+    var content = await response.Content.ReadAsByteArrayAsync();
+    
+    // Create a physical response that forwards the status code and content
+    context.Response.StatusCode = (int)response.StatusCode;
+    foreach (var header in response.Headers)
+    {
+        if (header.Key.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase)) continue;
+        context.Response.Headers[header.Key] = header.Value.ToArray();
+    }
+    foreach (var header in response.Content.Headers)
+    {
+        if (header.Key.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase)) continue;
+        context.Response.Headers[header.Key] = header.Value.ToArray();
+    }
+
+    if (content.Length > 0)
+    {
+        context.Response.ContentLength = content.Length;
+        await context.Response.Body.WriteAsync(content);
+        await context.Response.Body.FlushAsync();
+    }
+    return Results.Empty;
+})
+.WithName("ForwardTransaction")
+.WithOpenApi();
 
 app.Run();

@@ -1,0 +1,63 @@
+﻿@startuml portfolio-simulation-flow
+
+skinparam backgroundColor #fdfdfd
+skinparam handwritten false
+skinparam monochrome false
+skinparam packageStyle rectangle
+skinparam shadowing true
+
+title Ares-Nexus: Institutional Portfolio Simulation Flow ($5.5B Portfolio)
+
+actor "System Engineer" as user
+
+package "Simulation Layer" {
+    component [Synthetic Portfolio Generator] as generator <<C#>>
+    component [Transaction Simulator] as simulator <<C#>>
+    database "Synthetic Dataset" as dataset {
+        artifact accounts.json
+        artifact positions.json
+        artifact transactions.json
+    }
+}
+
+package "Ares-Nexus Architecture" {
+    component [Gateway API] as gateway <<ASP.NET Core>>
+    component [Settlement Core] as core <<Deterministic>>
+    component [Compliance Engine] as compliance
+    queue "RabbitMQ Bus" as bus
+    database "Event Store" as es <<Marten/PostgreSQL>>
+    
+    package "AI Observability Layer" {
+        component [FraudAgent] as fraud
+        component [RiskAgent] as risk
+        component [ComplianceAgent] as compAgent
+        component [Decision Gate] as gate
+    }
+}
+
+package "Monitoring & Observability" {
+    component [Prometheus] as prom
+    component [Grafana] as grafana
+}
+
+user -> generator : make demo-portfolio
+generator -> dataset : Generate accounts/positions/transactions
+simulator -> dataset : Read transactions
+simulator -> gateway : POST /api/v1/transactions
+gateway -> compliance : Validate PII/Swiss Secrecy
+compliance -> core : Execute Deterministic Action
+core -> es : Store Event
+core -> bus : Publish Event
+bus -> fraud : Observe Event
+bus -> risk : Observe Event
+bus -> compAgent : Observe Event
+
+fraud -> gate : Recommendation
+risk -> gate : Recommendation
+compAgent -> gate : Recommendation
+
+core -> prom : Emit Metrics
+simulator -> prom : Observe Throughput
+prom -> grafana : Visualize Simulation State
+
+@enduml
